@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CEPSE - Cámara Provincial de Economía Popular y Solidaria de Esmeraldas</title>
+    <link rel="icon" type="image/x-icon" href="img/icon.ico">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "background-light": "#ffffff",
+                        "background-dark": "#f8fafc",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        /* Estilos del Background Neural Grid en Blanco */
+        #grid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #ffffff;
+            /* Fondo cambiado a blanco */
+            display: block;
+        }
+
+        body {
+            background-color: #ffffff;
+        }
+
+        /* Ajuste de transparencia para secciones */
+        .bg-white,
+        .bg-background-light {
+            background-color: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(4px);
+        }
+
+        @media (min-width: 1280px) {
+            .banner-responsive {
+                height: 150px !important;
+            }
+        }
+
+        /* Asegurar visibilidad de textos sobre fondo claro */
+        .text-white-force {
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+
+<body class="font-display text-slate-900 min-h-screen relative">
+
+    <canvas id="grid-canvas"></canvas>
+
+    <header
+        class="sticky top-0 z-50 backdrop-blur-md border-b border-primary/20 bg-no-repeat bg-center banner-responsive"
+        style="background-image: url('img/banner.jpeg'); background-size: contain; width: 100%; height: 16.18vw; max-height: 259px; min-height: 80px;">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <div class="flex justify-end items-center h-full">
+                <div class="flex items-center gap-4">
+                    <button
+                        class="bg-primary hover:bg-primary/90 text-slate-900 font-bold py-2 px-6 rounded-full transition-all shadow-md hover:shadow-primary/20">
+                        Unirse ahora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <section class="relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+                <div class="relative rounded-2xl overflow-hidden bg-cover bg-center min-h-[500px] flex items-center justify-center p-8 lg:p-16 shadow-2xl"
+                    style="background-image: linear-gradient(to bottom, rgba(16, 34, 16, 0.5), rgba(16, 34, 16, 0.85)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1600');">
+                    <div class="relative z-10 text-center max-w-4xl mx-auto flex flex-col gap-6">
+                        <span
+                            class="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary border border-primary/30 text-sm font-semibold tracking-wide uppercase mx-auto backdrop-blur-sm">
+                            Economía para la Vida
+                        </span>
+                        <h1 class="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight">
+                            Impulsando la Fuerza Solidaria de Esmeraldas
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-200 font-medium max-w-2xl mx-auto">
+                            Unimos asociaciones, cooperativas y emprendimientos para construir un modelo económico
+                            basado en la dignidad y el bienestar colectivo.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+                            <button
+                                class="bg-primary hover:bg-primary/90 text-slate-900 font-bold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg text-lg">
+                                Descubrir nuestra labor
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md font-bold py-4 px-8 rounded-full transition-all text-lg">
+                                Registrar Asociación
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 lg:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="flex flex-col gap-6">
+                        <div
+                            class="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
+                            <span class="material-symbols-outlined">diversity_3</span>
+                            Nuestra Identidad
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+                            Somos la voz de quienes producen con el corazón
+                        </h2>
+                        <p class="text-lg text-slate-600 leading-relaxed">
+                            La CEPSE es el organismo matriz que agrupa a los actores de la Economía Popular y Solidaria
+                            (EPS) en la provincia.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-slate-700">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary">check_circle</span>
+                                <p class="text-sm font-medium">Representación política y técnica</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary">check_circle</span>
+                                <p class="text-sm font-medium">Fortalecimiento de capacidades</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary">check_circle</span>
+                                <p class="text-sm font-medium">Comercio justo y local</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary">check_circle</span>
+                                <p class="text-sm font-medium">Sostenibilidad ambiental</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img alt="Economía Solidaria" class="rounded-3xl shadow-2xl w-full object-cover"
+                            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1000" />
+                        <div class="absolute -bottom-8 -right-8 bg-primary p-8 rounded-2xl shadow-xl hidden md:block">
+                            <p class="text-slate-900 font-black text-4xl leading-none">+120</p>
+                            <p class="text-slate-900 font-bold text-sm uppercase tracking-widest mt-2">Org. Federadas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="bg-white/80 p-10 rounded-3xl border-l-8 border-primary shadow-sm backdrop-blur-sm">
+                        <h3 class="text-2xl font-black mb-4 flex items-center gap-3 text-slate-900">
+                            <span class="material-symbols-outlined text-primary">target</span> Misión
+                        </h3>
+                        <p class="text-slate-600 text-lg leading-relaxed">
+                            Fortalecer el tejido social y económico de Esmeraldas a través de la representación legítima
+                            de los actores de la EPS, promoviendo políticas públicas que garanticen el acceso a
+                            mercados, financiamiento ético y formación continua.
+                        </p>
+                    </div>
+                    <div class="bg-white/80 p-10 rounded-3xl border-l-8 border-slate-300 shadow-sm backdrop-blur-sm">
+                        <h3 class="text-2xl font-black mb-4 flex items-center gap-3 text-slate-900">
+                            <span class="material-symbols-outlined text-primary">visibility</span> Visión
+                        </h3>
+                        <p class="text-slate-600 text-lg leading-relaxed">
+                            Para el 2030, ser el referentenacional de desarrollo provincial solidario, logrando que la
+                            producción esmeraldeña sea reconocida por su alta calidad social y ambiental, impactando
+                            directamente en la reducción de la pobreza regional. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-black mb-4 text-slate-900">¿Cómo apoyamos a tu organización?
+                    </h2>
+                    <p class="text-slate-500 max-w-2xl mx-auto">Nuestros programas están diseñados para el
+                        fortalecimiento técnico, legal y comercial de todas nuestras asociaciones federadas.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white/60 p-8 rounded-2xl shadow-sm border border-slate-100 backdrop-blur-sm hover:border-primary/50 transition-colors">
+                        <div
+                            class="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">school</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Escuela de EPS</h4>
+                        <p class="text-slate-600">Capacitación continua en gestión administrativa, contabilidad
+                            solidaria, liderazgo comunitario y marketing digital adaptado a emprendimientos rurales y
+                            urbanos.</p>
+                    </div>
+
+                    <div
+                        class="bg-white/60 p-8 rounded-2xl shadow-sm border border-slate-100 backdrop-blur-sm hover:border-primary/50 transition-colors">
+                        <div
+                            class="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">storefront</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Ferias y Mercados</h4>
+                        <p class="text-slate-600">Creamos circuitos de comercialización directa y ferias provinciales
+                            para eliminar intermediarios, garantizando que el productor reciba un pago justo y el
+                            consumidor un producto de calidad.</p>
+                    </div>
+
+                    <div
+                        class="bg-white/60 p-8 rounded-2xl shadow-sm border border-slate-100 backdrop-blur-sm hover:border-primary/50 transition-colors">
+                        <div
+                            class="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">gavel</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Asesoría Legal y Técnica</h4>
+                        <p class="text-slate-600">Acompañamiento integral en la obtención de personería jurídica ante la
+                            SEPS, cumplimiento de obligaciones tributarias y adecuación a normativas de control
+                            vigentes.</p>
+                    </div>
+
+                    <div
+                        class="bg-white/60 p-8 rounded-2xl shadow-sm border border-slate-100 backdrop-blur-sm hover:border-primary/50 transition-colors">
+                        <div
+                            class="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">payments</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Enlace Financiero</h4>
+                        <p class="text-slate-600">Facilitamos el acceso a líneas de crédito preferenciales a través de
+                            convenios con cooperativas de ahorro y crédito, enfocados en la inversión productiva de los
+                            socios.</p>
+                    </div>
+
+                    <div
+                        class="bg-white/60 p-8 rounded-2xl shadow-sm border border-slate-100 backdrop-blur-sm hover:border-primary/50 transition-colors">
+                        <div
+                            class="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">biotech</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Innovación Productiva</h4>
+                        <p class="text-slate-600">Asesoramiento en la mejora de procesos de producción, empaque y valor
+                            agregado para que los productos de la economía solidaria compitan en mercados nacionales.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-white/60 p-8 rounded-2xl shadow-sm border border-slate-100 backdrop-blur-sm hover:border-primary/50 transition-colors">
+                        <div
+                            class="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">handshake</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-slate-900">Alianzas Estratégicas</h4>
+                        <p class="text-slate-600">Gestionamos convenios con el sector público y privado para abrir
+                            nuevos canales de compra institucional y fortalecer la red de apoyo a los pequeños
+                            productores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-primary text-slate-900 overflow-hidden relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black">500+</p>
+                        <p class="font-bold uppercase tracking-widest text-sm mt-2">Familias Beneficiadas</p>
+                    </div>
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black">7</p>
+                        <p class="font-bold uppercase tracking-widest text-sm mt-2">Cantones Cubiertos</p>
+                    </div>
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black">$45k</p>
+                        <p class="font-bold uppercase tracking-widest text-sm mt-2">Inversión Social</p>
+                    </div>
+                    <div>
+                        <p class="text-5xl md:text-6xl font-black">25</p>
+                        <p class="font-bold uppercase tracking-widest text-sm mt-2">Alianzas Públicas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="max-w-3xl mx-auto px-4">
+                <h2 class="text-3xl font-black text-center mb-12 text-slate-900">Información para Afiliados</h2>
+                <div class="space-y-6">
+                    <div class="border-b border-slate-200 pb-6">
+                        <h4 class="font-bold text-lg mb-2 text-slate-900">¿Cómo puedo unirme a la Cámara?</h4>
+                        <p class="text-slate-500 italic">Debe ser un grupo organizado bajo los principios de la EPS.</p>
+                    </div>
+                    <div class="border-b border-slate-200 pb-6">
+                        <h4 class="font-bold text-lg mb-2 text-slate-900">¿Tienen costo los servicios?</h4>
+                        <p class="text-slate-500 italic">La mayoría de nuestras capacitaciones básicas son gratuitas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 lg:py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div
+                    class="bg-white/90 rounded-3xl shadow-xl overflow-hidden border border-slate-200 flex flex-col lg:flex-row backdrop-blur-md">
+                    <div
+                        class="lg:w-2/5 bg-slate-900 p-10 lg:p-12 text-white flex flex-col justify-between relative overflow-hidden">
+                        <div class="relative z-10">
+                            <h2 class="text-3xl font-black mb-6">Estamos para servirte</h2>
+                            <p class="text-slate-300 mb-10">Contáctanos para legalizar tu asociación o participar en
+                                ferias.</p>
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <span class="material-symbols-outlined text-primary">location_on</span>
+                                    <span class="text-sm">Av. Libertad y Espejo, Esmeraldas - Ecuador</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="material-symbols-outlined text-primary">mail</span>
+                                    <span class="text-sm">contacto@cepse.org.ec</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-3/5 p-10 lg:p-12">
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2 text-slate-700">Nombre Completo</label>
+                                    <input
+                                        class="w-full rounded-lg border-slate-200 bg-slate-50 px-4 py-3 focus:ring-primary"
+                                        type="text" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2 text-slate-700">Organización</label>
+                                    <input
+                                        class="w-full rounded-lg border-slate-200 bg-slate-50 px-4 py-3 focus:ring-primary"
+                                        type="text" />
+                                </div>
+                            </div>
+                            <button
+                                class="w-full bg-primary text-slate-900 font-bold py-4 rounded-xl shadow-md transition-colors">
+                                Enviar Solicitud
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-white pt-16 pb-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="img/icon.ico" alt="CEPSE Logo" class="w-10 h-10 object-contain">
+                        <span class="font-black text-2xl tracking-tight">CEPSE</span>
+                    </div>
+                    <p class="text-slate-400">Promoviendo la economía popular y solidaria.</p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+                <p>© 2026 Cámara Provincial de Economía Popular y Solidaria de Esmeraldas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById("grid-canvas");
+        const ctx = canvas.getContext("2d");
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        let mouse = { x: -9999, y: -9999 };
+        const squareSize = 80;
+        const grid = [];
+
+        function initGrid() {
+            grid.length = 0;
+            for (let x = 0; x < width; x += squareSize) {
+                for (let y = 0; y < height; y += squareSize) {
+                    grid.push({ x, y, alpha: 0, fading: false, lastTouched: 0 });
+                }
+            }
+        }
+
+        function getCellAt(x, y) {
+            return grid.find(cell => x >= cell.x && x < cell.x + squareSize && y >= cell.y && y < cell.y + squareSize);
+        }
+
+        window.addEventListener("resize", () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initGrid();
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            const cell = getCellAt(mouse.x, mouse.y);
+            if (cell && cell.alpha === 0) {
+                cell.alpha = 1;
+                cell.lastTouched = Date.now();
+                cell.fading = false;
+            }
+        });
+
+        function drawGrid() {
+            ctx.clearRect(0, 0, width, height);
+            const now = Date.now();
+
+            for (let i = 0; i < grid.length; i++) {
+                const cell = grid[i];
+                if (cell.alpha > 0 && !cell.fading && now - cell.lastTouched > 500) {
+                    cell.fading = true;
+                }
+                if (cell.fading) {
+                    cell.alpha -= 0.02;
+                    if (cell.alpha <= 0) { cell.alpha = 0; cell.fading = false; }
+                }
+
+                if (cell.alpha > 0) {
+                    const centerX = cell.x + squareSize / 2;
+                    const centerY = cell.y + squareSize / 2;
+                    const gradient = ctx.createRadialGradient(centerX, centerY, 5, centerX, centerY, squareSize);
+
+                    // Ajuste de color para fondo blanco: Verde Primario con visibilidad clara
+                    gradient.addColorStop(0, `rgba(19, 236, 19, ${cell.alpha})`);
+                    gradient.addColorStop(1, `rgba(19, 236, 19, 0)`);
+
+                    ctx.strokeStyle = gradient;
+                    ctx.lineWidth = 1.5;
+                    ctx.strokeRect(cell.x + 0.5, cell.y + 0.5, squareSize - 1, squareSize - 1);
+                }
+            }
+            requestAnimationFrame(drawGrid);
+        }
+
+        initGrid();
+        drawGrid();
+    </script>
+</body>
+
+</html>
