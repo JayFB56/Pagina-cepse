@@ -1,0 +1,138 @@
+<!-- EJEMPLO: contact.html actualizado con data-form -->
+
+<section id="contactSection" class="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50">
+    <div class="container">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <div class="inline-block mb-4 px-4 py-2 bg-primary/10 rounded-full">
+                <span class="text-sm font-bold text-primary">PONTE EN CONTACTO</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">
+                ¿Preguntas?
+                <span class="text-primary">Estamos aquí</span>
+            </h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                Contáctanos directamente y resolveremos todas tus dudas sobre nuestros servicios.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- Info Cards -->
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 hover:border-primary transition-all">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <span class="material-symbols-outlined text-primary">location_on</span>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">Ubicación</h3>
+                <p class="text-slate-600">
+                    Vía Atacames, diagonal al monumento "El Jolgorio"
+                    <br/><span class="text-sm">Esmeraldas, Ecuador</span>
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 hover:border-primary transition-all">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <span class="material-symbols-outlined text-primary">mail</span>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">Email</h3>
+                <p class="text-slate-600">
+                    <a href="mailto:contacto@cepse.org.ec" class="hover:text-primary transition-colors">
+                        contacto@cepse.org.ec
+                    </a>
+                    <br/><span class="text-sm">Respondemos en 24 horas</span>
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 hover:border-primary transition-all">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <span class="material-symbols-outlined text-primary">schedule</span>
+                </div>
+                <h3 class="font-bold text-slate-900 mb-2">Horarios</h3>
+                <p class="text-slate-600">
+                    Lunes a Viernes
+                    <br/><span class="text-sm">8:00 AM - 5:00 PM (GMT-5)</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 border border-slate-100 shadow-lg">
+            <h3 class="text-2xl font-bold text-slate-900 mb-6">Envíanos un mensaje</h3>
+            
+            <!-- Opción 1: Usar data-form para modal (recomendado) -->
+            <!-- Este botón abre un modal con validación de Google Apps Script -->
+            <button data-form="contact" class="btn-primary w-full py-4 mb-4">
+                <span class="material-symbols-outlined inline mr-2">send</span>
+                Abrir Formulario de Contacto
+            </button>
+
+            <!-- Opción 2: Mantener formulario existente (para uso local) -->
+            <!-- Si quieres mantener un formulario HTML tradicional que NO usa Google Sheets -->
+            <details class="border-t pt-6">
+                <summary class="text-slate-600 cursor-pointer hover:text-slate-900 font-semibold">
+                    ¿Prefieres un formulario en esta página?
+                </summary>
+                <form class="space-y-6 mt-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-3">Nombre Completo *</label>
+                            <input type="text" required
+                                class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all"
+                                placeholder="Tu nombre" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-3">Email *</label>
+                            <input type="email" required
+                                class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all"
+                                placeholder="tu@email.com" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-3">Asunto *</label>
+                        <input type="text" required
+                            class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all"
+                            placeholder="¿Sobre qué es tu consulta?" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-3">Mensaje *</label>
+                        <textarea rows="5" required
+                            class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all resize-none"
+                            placeholder="Cuéntanos más..."></textarea>
+                    </div>
+
+                    <button type="button" data-form="contact" class="btn-primary w-full py-4">
+                        <span class="material-symbols-outlined inline mr-2">send</span>
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!--
+CAMBIOS REALIZADOS:
+✅ Agregado: data-form="contact" a botones de contacto
+
+OPCIONES DE IMPLEMENTACIÓN:
+
+1. RECOMENDADO: Solo usa el botón data-form
+   - El modal se abre en popup
+   - Datos van a Google Sheets
+   - Mejor UX
+
+2. ALTERNATIVA: Mantén el formulario HTML
+   - El formulario en página está en <details>
+   - Puedes tener ambos (modal + forma inline)
+   - Los dos envían a Google Sheets
+
+FLUJO CON data-form="contact":
+1. Usuario click en botón
+2. Se abre modal bonito
+3. Llena email, asunto, mensaje
+4. Datos van a Google Sheets (hoja "Contactos")
+5. Aparece "✓ ¡Mensaje enviado!"
+6. Modal se cierra
+7. Tú tienes el mensaje en Sheets
+-->
