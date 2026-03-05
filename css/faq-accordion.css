@@ -1,0 +1,54 @@
+/* ============================================
+   FAQ ACCORDION STYLES
+   ============================================ */
+
+.faq-toggle {
+    cursor: pointer;
+    position: relative;
+}
+
+.faq-toggle:focus-visible {
+    outline: 2px solid #13ec13;
+    outline-offset: 2px;
+}
+
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.faq-content:not(.hidden) {
+    opacity: 1;
+}
+
+.faq-item .material-symbols-outlined {
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item .material-symbols-outlined.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* Animación de entrada del item completo */
+.faq-item {
+    animation: slideInUp 0.4s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Para navegación por teclado */
+.faq-toggle:focus-within {
+    background-color: rgba(19, 236, 19, 0.05);
+}

@@ -45,15 +45,40 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
-// FAQ TOGGLE
+// FAQ ACCORDION
 // ============================================
 
 document.querySelectorAll('.faq-toggle').forEach(toggle => {
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const faqItem = toggle.closest('.faq-item');
         const content = toggle.nextElementSibling;
         const icon = toggle.querySelector('.material-symbols-outlined');
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        
+        // Cerrar otros items abiertos (modo acordeón)
+        document.querySelectorAll('.faq-toggle').forEach(otherToggle => {
+            if (otherToggle !== toggle && otherToggle.getAttribute('aria-expanded') === 'true') {
+                const otherContent = otherToggle.nextElementSibling;
+                const otherIcon = otherToggle.querySelector('.material-symbols-outlined');
+                otherToggle.setAttribute('aria-expanded', 'false');
+                otherContent.classList.add('hidden');
+                otherContent.style.maxHeight = '0px';
+                otherIcon?.classList.remove('rotate-180');
+            }
+        });
+        
+        // Toggle el item actual
+        toggle.setAttribute('aria-expanded', !isExpanded);
         content.classList.toggle('hidden');
         icon?.classList.toggle('rotate-180');
+        
+        // Animar max-height para apertura/cierre suave
+        if (!isExpanded) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+        } else {
+            content.style.maxHeight = '0px';
+        }
     });
 });
 
