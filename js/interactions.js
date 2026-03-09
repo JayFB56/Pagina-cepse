@@ -48,37 +48,87 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // FAQ ACCORDION
 // ============================================
 
-document.querySelectorAll('.faq-toggle').forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const faqItem = toggle.closest('.faq-item');
-        const content = toggle.nextElementSibling;
-        const icon = toggle.querySelector('.material-symbols-outlined');
-        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-        
-        // Cerrar otros items abiertos (modo acordeón)
-        document.querySelectorAll('.faq-toggle').forEach(otherToggle => {
-            if (otherToggle !== toggle && otherToggle.getAttribute('aria-expanded') === 'true') {
-                const otherContent = otherToggle.nextElementSibling;
-                const otherIcon = otherToggle.querySelector('.material-symbols-outlined');
-                otherToggle.setAttribute('aria-expanded', 'false');
-                otherContent.classList.add('hidden');
-                otherContent.style.maxHeight = '0px';
-                otherIcon?.classList.remove('rotate-180');
+document.addEventListener('DOMContentLoaded', () => {
+    // Verificar que existan elementos .faq-toggle en la página
+    const faqToggles = document.querySelectorAll('.faq-toggle');
+    
+    if (faqToggles.length === 0) {
+        // Si no hay FAQ en esta página, salir silenciosamente
+        return;
+    }
+
+    faqToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Obtener elementos relacionados
+            const faqItem = toggle.closest('.faq-item');
+            const content = toggle.nextElementSibling;
+            const icon = toggle.querySelector('.material-symbols-outlined');
+
+            // Validar que los elementos críticos existan
+            if (!faqItem || !content) {
+                console.warn('Estructura FAQ incompleta detectada');
+                return;
+            }
+
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+            // Cerrar otros items abiertos (modo acordeón)
+            document.querySelectorAll('.faq-toggle').forEach(otherToggle => {
+                if (otherToggle !== toggle && otherToggle.getAttribute('aria-expanded') === 'true') {
+                    const otherContent = otherToggle.nextElementSibling;
+                    const otherIcon = otherToggle.querySelector('.material-symbols-outlined');
+
+                    // Validar que el contenido del otro item exista
+                    if (otherContent) {
+                        otherToggle.setAttribute('aria-expanded', 'false');
+                        
+                        // Animar el cierre
+                        otherContent.style.maxHeight = '0px';
+                        
+                        // Agregar hidden después de que termine la transición (300ms)
+                        setTimeout(() => {
+                            otherContent.classList.add('hidden');
+                        }, 300);
+                    }
+
+                    // Rotar el icono si existe
+                    if (otherIcon) {
+                        otherIcon.classList.remove('rotate-180');
+                    }
+                }
+            });
+
+            // Actualizar estado del item actual
+            toggle.setAttribute('aria-expanded', !isExpanded);
+
+            // Animar max-height para apertura/cierre suave
+            if (!isExpanded) {
+                // ABRIR: Remover hidden primero para que el navegador pueda calcular scrollHeight
+                content.classList.remove('hidden');
+
+                // Usar requestAnimationFrame para asegurar que el DOM se haya recalculado
+                requestAnimationFrame(() => {
+                    // Ahora calcular la altura real del contenido
+                    const scrollHeight = content.scrollHeight;
+                    content.style.maxHeight = scrollHeight + 'px';
+                });
+            } else {
+                // CERRAR: Animar la reducción de max-height
+                content.style.maxHeight = '0px';
+
+                // Agregar hidden después de que termine la transición (sincronizado con CSS 300ms)
+                setTimeout(() => {
+                    content.classList.add('hidden');
+                }, 300);
+            }
+
+            // Rotar el icono si existe
+            if (icon) {
+                icon.classList.toggle('rotate-180');
             }
         });
-        
-        // Toggle el item actual
-        toggle.setAttribute('aria-expanded', !isExpanded);
-        content.classList.toggle('hidden');
-        icon?.classList.toggle('rotate-180');
-        
-        // Animar max-height para apertura/cierre suave
-        if (!isExpanded) {
-            content.style.maxHeight = content.scrollHeight + 'px';
-        } else {
-            content.style.maxHeight = '0px';
-        }
     });
 });
 

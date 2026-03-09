@@ -12,6 +12,20 @@
     outline-offset: 2px;
 }
 
+/* Estado inicial del contenido: oculto */
+.faq-content.hidden {
+    display: none;
+    max-height: 0;
+    opacity: 0;
+}
+
+/* Estado del contenido cuando se abre */
+.faq-content:not(.hidden) {
+    display: block;
+    opacity: 1;
+}
+
+/* Transición suave para apertura y cierre */
 .faq-content {
     max-height: 0;
     overflow: hidden;
@@ -19,15 +33,13 @@
     opacity: 0;
 }
 
-.faq-content:not(.hidden) {
-    opacity: 1;
-}
-
+/* Icono de expansión */
 .faq-item .material-symbols-outlined {
     transform-origin: center;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Icono rotado cuando se expande */
 .faq-item .material-symbols-outlined.rotate-180 {
     transform: rotate(180deg);
 }

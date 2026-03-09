@@ -385,6 +385,129 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
 textarea:focus {
+    border: 2px solid var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(19, 236, 19, 0.1) !important;
+}
+
+/* ============================================
+   GALLERÍAS DE IMÁGENES
+   ============================================ */
+
+.gallery-grid {
+    display: grid;
+    grid-auto-flow: dense;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: inherit;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.95);
+}
+
+/* Galería responsive - 2 columnas en móvil, 3 en tablet, 4 en desktop */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1025px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ============================================
+   VIDEOS RESPONSIVOS
+   ============================================ */
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.video-vertical {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    aspect-ratio: 9 / 16;
+}
+
+video {
+    max-width: 100%;
+    height: auto;
+    border-radius: inherit;
+}
+
+/* Controles de video mejorados */
+video::cue {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN PARA VIDEOS Y GALERÍAS
+   ============================================ */
+
+@media (max-width: 640px) {
+    .video-container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .gallery-grid {
+        gap: 12px !important;
+    }
+    
+    .gallery-item {
+        min-height: 140px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .video-container {
+        max-width: 350px;
+    }
+    
+    .gallery-item {
+        min-height: 160px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .video-container {
+        max-width: 400px;
+    }
+    
+    .gallery-item {
+        min-height: 180px;
+    }
+}
+input[type="tel"]:focus,
+textarea:focus {
     border-color: var(--primary) !important;
     box-shadow: 0 0 0 3px rgba(19, 236, 19, 0.1);
     outline: none;
