@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Estatuto Oficial - CEPSE</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
+    <script id="tailwind-config" src="js/config.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        :root { --cepse-green: #00552b; --cepse-gold: #d4af37; }
+        ::selection { background-color: var(--cepse-green); color: white; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cepse-green); }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 99999; display: flex; align-items: center; justify-content: center; transition: opacity 0.6s ease-out, visibility 0.6s; }
+        #preloader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+        .institutional-border { border-left: 4px solid var(--cepse-green); }
+        .text-cepse { color: var(--cepse-green); }
+        .bg-cepse { background-color: var(--cepse-green); }
+    </style>
+</head>
+<body class="font-display text-slate-800 min-h-screen relative antialiased bg-white">
+    <!-- Preloader Institucional -->
+    <div id="preloader">
+        <div class="flex flex-col items-center">
+            <div class="w-16 h-16 border-4 border-emerald-100 border-t-[#00552b] rounded-full animate-spin mb-4"></div>
+            <p class="text-[0.6rem] font-black uppercase tracking-[0.3em] text-slate-400">CEPSE Oficial</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div id="header-container"></div>
+    
+    <main class="pt-32 pb-24 relative z-10 transition-all duration-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumbs -->
+            <nav class="mb-10 flex items-center gap-2 text-sm font-bold text-emerald-800/40 uppercase tracking-widest">
+                <a href="index.html" class="hover:text-[#00552b] transition-colors">Inicio</a>
+                <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                <span class="text-[#00552b]">Transparencia</span>
+                <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                <span class="text-slate-900">Estatuto Orgánico</span>
+            </nav>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Columna Izquierda: Información y Secciones (Grid 4) -->
+                <div class="lg:col-span-4 space-y-10">
+                    <div class="bg-[#00552b] rounded-[2.5rem] p-10 text-white shadow-2xl shadow-emerald-900/20 relative overflow-hidden">
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+                        <h1 class="text-4xl lg:text-5xl font-black mb-6 font-serif leading-tight">Estatuto <br/><span class="text-emerald-300">Oficial</span></h1>
+                        <p class="text-emerald-50/80 leading-relaxed font-medium mb-8">
+                            Codificación integral aprobada por la Asamblea General para la Gobernanza de la Economía Popular y Solidaria en Esmeraldas.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3 text-sm font-bold bg-white/10 p-4 rounded-2xl border border-white/10">
+                                <span class="material-symbols-outlined text-emerald-300">event</span>
+                                11 de Julio, 2017
+                            </div>
+                            <div class="flex items-center gap-3 text-sm font-bold bg-white/10 p-4 rounded-2xl border border-white/10">
+                                <span class="material-symbols-outlined text-emerald-300">description</span>
+                                Registro Único (RUOS)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de Contenidos -->
+                    <div class="bg-slate-50 rounded-[2.5rem] p-10 border border-slate-100">
+                        <h3 class="text-xl font-black text-slate-900 mb-8 font-serif flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#00552b]">format_list_bulleted</span>
+                            Índice General
+                        </h3>
+                        <ul class="space-y-4 font-bold text-slate-600">
+                            <li><a href="#cap-1" class="flex items-center justify-between group hover:text-[#00552b] transition-all"><span>Capítulo I: Naturaleza</span> <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all">north_east</span></a></li>
+                            <li class="h-px bg-slate-200"></li>
+                            <li><a href="#cap-2" class="flex items-center justify-between group hover:text-[#00552b] transition-all"><span>Capítulo II: Miembros</span> <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all">north_east</span></a></li>
+                            <li class="h-px bg-slate-200"></li>
+                            <li><a href="#cap-3" class="flex items-center justify-between group hover:text-[#00552b] transition-all"><span>Capítulo III: Directiva</span> <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all">north_east</span></a></li>
+                            <li class="h-px bg-slate-200"></li>
+                            <li><a href="#cap-4" class="flex items-center justify-between group hover:text-[#00552b] transition-all"><span>Capítulo IV: Patrimonio</span> <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all">north_east</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Soporte Técnico -->
+                    <div class="bg-emerald-50 rounded-[2.5rem] p-8 border border-emerald-100 relative group overflow-hidden">
+                        <span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl text-emerald-100 group-hover:scale-110 transition-transform">help_center</span>
+                        <h4 class="text-lg font-black text-emerald-900 mb-4 relative z-10">¿Dudas Legales?</h4>
+                        <p class="text-emerald-700/80 text-sm mb-6 relative z-10 font-medium leading-relaxed">Nuestro equipo jurídico puede aclarar interpretaciones sobre este estatuto.</p>
+                        <a href="mailto:info@cepse-esmeraldas.com" class="inline-flex items-center gap-2 text-[#00552b] font-black text-sm uppercase tracking-widest hover:gap-4 transition-all relative z-10">
+                            Consultar <span class="material-symbols-outlined text-[18px]">mail</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Visor y Resúmenes (Grid 8) -->
+                <div class="lg:col-span-8 space-y-12">
+                    
+                    <!-- Puntos Clave Destacados -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="institutional-border bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all">
+                            <h4 class="text-lg font-black text-slate-900 mb-3 font-serif">Misión Institucional</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Representar legalmente a las organizaciones del sector solidario ante entes gubernamentales y privados.</p>
+                        </div>
+                        <div class="institutional-border bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all">
+                            <h4 class="text-lg font-black text-slate-900 mb-3 font-serif">Transparencia Total</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Rendición de cuentas obligatoria y auditoría externa para garantizar la integridad financiera de la cámara.</p>
+                        </div>
+                    </div>
+
+                    <!-- Visor de PDF Integrado con Estilo "Desktop" -->
+                    <div class="bg-slate-100 rounded-[3rem] p-2 lg:p-4 shadow-inner border border-slate-200">
+                        <div class="bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col">
+                            <!-- Barra de Herramientas Premium -->
+                            <div class="bg-white border-b border-slate-100 px-8 py-5 flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-[#00552b] text-white rounded-xl flex items-center justify-center">
+                                        <span class="material-symbols-outlined">menu_book</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-[0.6rem] font-black text-slate-400 uppercase tracking-[0.2em]">Visor Oficial</p>
+                                        <h5 class="text-sm font-bold text-slate-900">Estatuto Orgánico CEPSE.pdf</h5>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <a href="assets/pdf/ESTATUTO.pdf" download class="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-all pointer-events-auto" title="Descargar">
+                                        <span class="material-symbols-outlined">download</span>
+                                    </a>
+                                    <button onclick="window.print()" class="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-all" title="Imprimir">
+                                        <span class="material-symbols-outlined">print</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Contenedor del PDF -->
+                            <div class="relative w-full aspect-[4/5] lg:aspect-auto lg:h-[900px]">
+                                <iframe src="assets/pdf/ESTATUTO.pdf" class="w-full h-full border-0" title="Documento Estatuto"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Navegación Rápida -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-6 p-10 bg-slate-900 rounded-[2.5rem] text-white overflow-hidden relative">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-black font-serif mb-2">Siguiente Documento</h3>
+                            <p class="text-slate-400 text-sm font-medium">Consulte el Acuerdo Ministerial de constitución.</p>
+                        </div>
+                        <a href="acuerdo-ministerial.html" class="bg-white text-slate-900 font-black px-10 py-5 rounded-2xl flex items-center gap-3 hover:bg-[#d4af37] hover:text-white transition-all shadow-xl active:scale-95 group relative z-10 uppercase tracking-widest text-xs">
+                            Ver Acuerdo 
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        async function loadComponent(id, path) { try { const r = await fetch(path); const h = await r.text(); document.getElementById(id).innerHTML = h; } catch (e) { console.error(e); } }
+        window.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([loadComponent('header-container', 'components/header.html'), loadComponent('footer-container', 'components/footer.html')]);
+            setTimeout(() => { if (window.initHeader) window.initHeader(); document.getElementById('preloader').classList.add('fade-out'); }, 300);
+        });
+    </script>
+</body>
+</html>

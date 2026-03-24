@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Galería de Impacto - CEPSE</title>
+    
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config" src="js/config.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/modal-forms.css">
+
+    <style>
+        ::selection { background-color: #10b981; color: white; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffffff; z-index: 99999; display: flex;
+            flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s;
+        }
+        #preloader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        .gallery-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="font-display text-slate-900 min-h-screen relative antialiased bg-slate-50">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="w-16 h-16 border-4 border-emerald-100 border-t-emerald-500 rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <main class="relative z-10 pt-32 pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Breadcrumbs -->
+            <div class="mb-8 flex items-center gap-2 text-sm font-medium text-slate-400">
+                <a href="index.html" class="hover:text-emerald-600 transition-colors">Inicio</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <span class="text-slate-900">Galería de Impacto</span>
+            </div>
+
+            <!-- Page Header -->
+            <div class="mb-20">
+                <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 font-serif">Memorias de <span class="text-emerald-600">Terreno</span></h1>
+                <p class="text-xl text-slate-600 max-w-2xl leading-relaxed">
+                    Un recorrido visual por los cantones de Esmeraldas, capturando la esencia transformadora de la Economía Popular y Solidaria.
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[300px]" id="gallery-grid">
+                <!-- Bento Layout Examples -->
+                <div class="lg:col-span-2 lg:row-span-2 relative group overflow-hidden rounded-[2.5rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-01.jpg" alt="Campo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/80 to-transparent flex flex-col justify-end p-10 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest mb-2">Agricultura</span>
+                        <h3 class="text-white text-2xl font-bold">Quinindé: Cosecha Solidaria</h3>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-[2rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-02.jpg" alt="Feria" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
+                        <p class="text-white font-bold">Ferias Provinciales de Emprendimiento</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-[2rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-03.jpg" alt="Taller" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="lg:col-span-2 relative group overflow-hidden rounded-[2.5rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-04.jpg" alt="Comunidad" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <!-- More items can be added here -->
+                <div class="relative group overflow-hidden rounded-[2rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-05.jpg" alt="Impacto" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden rounded-[2rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-06.jpg" alt="Logística" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="lg:col-span-2 lg:row-span-2 relative group overflow-hidden rounded-[2.5rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-21.jpg" alt="Liderazgo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden rounded-[2rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-22.jpg" alt="Capacitación" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden rounded-[2rem] bg-slate-200 gallery-item">
+                    <img src="assets/img/trabajo-23.jpg" alt="Equipo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+            </div>
+
+            <!-- CTA Back -->
+            <div class="mt-24 text-center">
+                <a href="index.html" class="inline-flex items-center gap-3 text-slate-900 font-bold hover:text-emerald-600 transition-colors group">
+                    <span class="material-symbols-outlined transition-transform group-hover:-translate-x-2 text-xl">keyboard_backspace</span>
+                    Volver a la Página Principal
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script>
+        async function loadComponent(containerId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                const html = await response.text();
+                document.getElementById(containerId).innerHTML = html;
+            } catch (error) {
+                console.error(`Error cargando ${filePath}:`, error);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([
+                loadComponent('header-container', 'components/header.html'),
+                loadComponent('footer-container', 'components/footer.html')
+            ]);
+            
+            setTimeout(() => {
+                if (window.initHeader) window.initHeader();
+                document.getElementById('preloader').classList.add('fade-out');
+                
+                // Animación de entrada para los items de la galería
+                const items = document.querySelectorAll('.gallery-item');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('active');
+                            }, index * 100);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                items.forEach(item => observer.observe(item));
+            }, 300);
+        });
+    </script>
+</body>
+</html>

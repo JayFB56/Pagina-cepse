@@ -1,40 +1,93 @@
-<section class="py-20 lg:py-28 bg-gradient-to-r from-primary via-secondary to-primary text-white overflow-hidden relative">
-    <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-3xl"></div>
-        <div class="absolute bottom-20 right-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-3xl"></div>
+<section id="stats-container" class="relative py-20 lg:py-28 overflow-hidden bg-[#00552b]">
+    <!-- Fondos Decorativos Institucionales (Verde CEPSE y Dorado) -->
+    <div class="absolute inset-0 z-0">
+        <!-- Resplandores dorados muy sutiles -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#d4af37]/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#006633]/80 rounded-full blur-[120px] pointer-events-none"></div>
+        <!-- Dot pattern clásico para textura -->
+        <div class="absolute inset-0 opacity-20 mix-blend-overlay" style="background-image: radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px); background-size: 32px 32px;"></div>
     </div>
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black mb-6 text-white">
-                <span class="section-title" style="border-bottom: 4px solid white;">Nuestros Números</span>
+        
+        <!-- Cabecera de la Sección de Impacto -->
+        <div class="text-center mb-16 md:mb-24 animate-slide-up">
+            <div class="inline-flex items-center gap-2.5 bg-white/10 border border-white/20 px-5 py-2 rounded-full mb-6 backdrop-blur-md shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse"></span>
+                <span class="text-xs font-bold tracking-[0.2em] text-[#d4af37] uppercase">Impacto Cuantificable</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black mb-6 text-white font-serif leading-tight drop-shadow-sm">
+                Nuestros Números Oficiales
             </h2>
-            <p class="text-lg text-white/80 max-w-2xl mx-auto">
-                Datos que demuestran nuestro impacto real en la economía solidaria de la provincia.
+            <p class="text-[1.1rem] text-white/80 max-w-2xl mx-auto font-medium leading-relaxed">
+                Datos verificados y auditables que demuestran la expansión y el alcance real de nuestro modelo de economía solidaria en Esmeraldas.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="text-center p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 card-hover">
-                <p class="text-6xl md:text-7xl font-black mb-3 text-white drop-shadow-lg">50+</p>
-                <p class="font-bold uppercase tracking-widest text-base text-white/90">Familias Beneficiadas</p>
-                <p class="text-sm text-white/70 mt-3">Directo impacto económico y social mejorando sus ingresos</p>
+        <!-- Cuadrícula de Estadísticas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0 lg:divide-x divide-white/20">
+            
+            <!-- Estadística 1 -->
+            <div class="text-center group p-6 lg:p-8 relative transform hover:-translate-y-2 transition-transform duration-500">
+                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl lg:rounded-none"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-5xl text-[#d4af37]/80 group-hover:text-[#d4af37] group-hover:scale-110 transition-all duration-300">family_home</span>
+                    </div>
+                    <p class="text-6xl lg:text-7xl font-black mb-3 text-white font-serif drop-shadow-md tracking-tighter">
+                        <span class="stat-counter" data-target="50">50</span><span class="text-[#d4af37]">+</span>
+                    </p>
+                    <p class="font-bold uppercase tracking-[0.15em] text-sm text-[#d4af37] mb-3">Familias Beneficiadas</p>
+                    <p class="text-[0.95rem] text-white/70 leading-relaxed max-w-xs mx-auto">Impacto económico y social directo mejorando sostenidamente sus ingresos.</p>
+                </div>
             </div>
-            <div class="text-center p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 card-hover">
-                <p class="text-6xl md:text-7xl font-black mb-3 text-white drop-shadow-lg">7</p>
-                <p class="font-bold uppercase tracking-widest text-base text-white/90">Cantones Cubiertos</p>
-                <p class="text-sm text-white/70 mt-3">Presencia institucional en toda la provincia</p>
+
+            <!-- Estadística 2 -->
+            <div class="text-center group p-6 lg:p-8 relative transform hover:-translate-y-2 transition-transform duration-500">
+                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl lg:rounded-none"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-5xl text-[#d4af37]/80 group-hover:text-[#d4af37] group-hover:scale-110 transition-all duration-300">map</span>
+                    </div>
+                    <p class="text-6xl lg:text-7xl font-black mb-3 text-white font-serif drop-shadow-md tracking-tighter">
+                        <span class="stat-counter" data-target="7">7</span>
+                    </p>
+                    <p class="font-bold uppercase tracking-[0.15em] text-sm text-[#d4af37] mb-3">Cantones Cubiertos</p>
+                    <p class="text-[0.95rem] text-white/70 leading-relaxed max-w-xs mx-auto">Presencia institucional plenamente articulada en toda la extensión provincial.</p>
+                </div>
             </div>
-            <div class="text-center p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 card-hover">
-                <p class="text-6xl md:text-7xl font-black mb-3 text-white drop-shadow-lg">+$5K</p>
-                <p class="font-bold uppercase tracking-widest text-base text-white/90">Transacciones Anuales</p>
-                <p class="text-sm text-white/70 mt-3">Valor comercial movido en cadenas solidarias</p>
+
+            <!-- Estadística 3 -->
+            <div class="text-center group p-6 lg:p-8 relative transform hover:-translate-y-2 transition-transform duration-500">
+                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl lg:rounded-none"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-5xl text-[#d4af37]/80 group-hover:text-[#d4af37] group-hover:scale-110 transition-all duration-300">payments</span>
+                    </div>
+                    <div class="flex items-start justify-center mb-3">
+                        <span class="text-[#d4af37] font-sans tracking-normal font-medium text-4xl mr-1 mt-2">+$</span>
+                        <span class="text-6xl lg:text-7xl font-black text-white font-serif drop-shadow-md tracking-tighter"><span class="stat-counter" data-target="5">5</span>K</span>
+                    </div>
+                    <p class="font-bold uppercase tracking-[0.15em] text-sm text-[#d4af37] mb-3">Transacciones</p>
+                    <p class="text-[0.95rem] text-white/70 leading-relaxed max-w-xs mx-auto">Volumen comercial oficial movido eficientemente en cadenas solidarias.</p>
+                </div>
             </div>
-            <div class="text-center p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 card-hover">
-                <p class="text-6xl md:text-7xl font-black mb-3 text-white drop-shadow-lg">10</p>
-                <p class="font-bold uppercase tracking-widest text-base text-white/90">Alianzas Públicas</p>
-                <p class="text-sm text-white/70 mt-3">Gobiernos, ONGs y sector privado colaborando</p>
+
+            <!-- Estadística 4 -->
+            <div class="text-center group p-6 lg:p-8 relative transform hover:-translate-y-2 transition-transform duration-500">
+                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl lg:rounded-none"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-5xl text-[#d4af37]/80 group-hover:text-[#d4af37] group-hover:scale-110 transition-all duration-300">handshake</span>
+                    </div>
+                    <p class="text-6xl lg:text-7xl font-black mb-3 text-white font-serif drop-shadow-md tracking-tighter">
+                        <span class="stat-counter" data-target="10">10</span>
+                    </p>
+                    <p class="font-bold uppercase tracking-[0.15em] text-sm text-[#d4af37] mb-3">Alianzas Inclusivas</p>
+                    <p class="text-[0.95rem] text-white/70 leading-relaxed max-w-xs mx-auto">Gobiernos locales, ONGs y sector privado colaborando en total sinergia.</p>
+                </div>
             </div>
+
         </div>
     </div>
 </section>

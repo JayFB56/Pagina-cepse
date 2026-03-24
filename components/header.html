@@ -1,20 +1,306 @@
-<header
-    class="sticky top-0 z-50 backdrop-blur-md border-b border-primary/20 bg-no-repeat bg-center banner-responsive transition-all duration-300"
-    style="background-image: url('assets/img/banner.jpeg'); background-size: contain; width: 100%; height: 16.18vw; max-height: 143px; min-height: 80px;"
-    id="main-header">
+<style>
+  :root {
+    --cepse-green: #006633;
+    --cepse-gold: #d4af37;
+  }
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div class="flex justify-between items-center h-full">
-            <div class="logo-section flex items-center gap-2">
-                <img src="assets/img/icon.ico" alt="CEPSE" class="w-8 h-8" />
-                <span class="font-black text-primary hidden sm:inline">CEPSE</span>
-            </div>
-            <div class="flex items-center gap-4">
-                <button data-form="affiliation"
-                    class="btn-primary text-sm">
-                    Unirse ahora
-                </button>
-            </div>
+  /* Transición inicial suave */
+  @keyframes headerFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .header-anim {
+    animation: headerFadeIn 0.8s ease-out forwards;
+  }
+
+  /* Estilos base del header */
+  #main-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid transparent;
+  }
+
+  /* Estilos para estado scrolled (Scroll > 80px) */
+  #main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Efecto de reducción de alto al hacer scroll */
+  #main-header.scrolled .header-container {
+    height: 5.5rem;
+    /* h-22 */
+  }
+
+  #main-header.scrolled .logo-img {
+    height: 3.5rem;
+    /* h-14 */
+  }
+
+  /* Enlaces de navegación con subrayado verde elegante */
+  .nav-link {
+    position: relative;
+    color: #475569;
+    /* slate-600 */
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--cepse-green);
+  }
+
+  /* Subrayado animado */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--cepse-green);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Botón verde "Unirse ahora" */
+  .btn-cta-green {
+    background-color: var(--cepse-green);
+    color: white;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 0.5rem;
+    /* Modern rounded corners */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 102, 51, 0.15);
+  }
+
+  .btn-cta-green:hover {
+    background-color: #004d26;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 102, 51, 0.25);
+  }
+
+  /* Dropdown Institución */
+  .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+
+  .group:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Menú móvil animaciones */
+  #mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  #mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+</style>
+
+<!-- HEADER PRINCIPAL -->
+<header id="main-header" class="header-anim sticky top-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="header-container flex items-center justify-between h-28 lg:h-32 transition-all duration-300">
+
+      <!-- LADO IZQUIERDO: Logo -->
+      <div class="flex-shrink-0 flex items-center">
+        <a href="index.html" class="block">
+          <img src="assets/img/icon.ico" alt="Logo CEPSE"
+            class="logo-img h-16 lg:h-20 w-auto object-contain transition-all duration-300">
+        </a>
+      </div>
+
+      <!-- CENTRO: Menú Horizontal -->
+      <nav class="hidden md:flex flex-1 justify-center space-x-8 lg:space-x-10">
+        <a href="index.html" class="nav-link active">Inicio</a>
+
+        <!-- Institución (Dropdown) -->
+        <div class="relative group h-full flex items-center">
+          <button class="nav-link flex items-center gap-1 focus:outline-none">
+            Institución
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Contenido Dropdown -->
+          <div
+            class="dropdown-menu absolute left-1/2 -translate-x-1/2 top-full mt-0 w-64 bg-white rounded-xl shadow-lg border border-slate-100 py-3">
+            <a href="index.html#about-container"
+              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Quiénes
+              Somos</a>
+            <a href="acuerdo-ministerial.html"
+              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Acuerdo
+              Ministerial</a>
+            <a href="estatuto.html"
+              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Estatuto
+              Oficial</a>
+            <a href="index.html#mission-vision-container"
+              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Misión
+              y Visión</a>
+          </div>
         </div>
+
+        <a href="index.html#services-container" class="nav-link">Servicios</a>
+        <a href="index.html#benefits-container" class="nav-link">Beneficios</a>
+        <a href="index.html#impact-container" class="nav-link">Impacto</a>
+        <a href="index.html#contact-container" class="nav-link">Contacto</a>
+      </nav>
+
+      <!-- LADO DERECHO: Botón CTA -->
+      <div class="hidden md:flex flex-shrink-0 items-center justify-end">
+        <button data-form="affiliation" class="btn-cta-green">
+          Unirse ahora
+        </button>
+      </div>
+
+      <!-- LADO DERECHO (Móvil): Hamburguesa -->
+      <div class="flex md:hidden items-center">
+        <button id="menu-open-btn" class="p-2 text-slate-600 hover:text-[#006633] focus:outline-none transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
     </div>
+  </div>
 </header>
+
+<!-- MENÚ MÓVIL DESPLEGABLE (OVERLAY) -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-white flex flex-col pt-6 pb-6 px-6 overflow-y-auto">
+  <!-- Cabecera de Menú Móvil -->
+  <div class="flex justify-between items-center mb-8">
+    <img src="assets/img/icon.ico" alt="Logo CEPSE" class="h-10 w-auto object-contain">
+    <button id="menu-close-btn" class="p-2 text-slate-400 hover:text-[#006633] transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Navegación Móvil -->
+  <nav class="flex flex-col space-y-1">
+    <a href="index.html"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Inicio</a>
+
+    <a href="index.html#about-container"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Institución:
+      Quiénes Somos</a>
+    <a href="acuerdo-ministerial.html"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Acuerdo
+      Ministerial</a>
+    <a href="estatuto.html"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Estatuto
+      Oficial</a>
+
+    <a href="index.html#services-container"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Servicios</a>
+    <a href="index.html#benefits-container"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Beneficios</a>
+    <a href="index.html#impact-container"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Impacto</a>
+    <a href="index.html#contact-container"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Contacto</a>
+  </nav>
+
+  <!-- CTA Móvil -->
+  <div class="mt-8 mb-4">
+    <button data-form="affiliation" class="w-full btn-cta-green py-3">
+      Unirse ahora
+    </button>
+  </div>
+</div>
+
+<!-- Lógica JavaScript Vanilla -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Detección de Scroll para el Header Sticky
+    const header = document.getElementById('main-header');
+
+    function checkScroll() {
+      // Si scrollea más de 80px, agrega la clase 'scrolled'
+      if (window.scrollY > 80) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    // Verificar en la carga por si el usuario ya recargó con la página a la mitad
+    checkScroll();
+
+    // Escuchar evento scroll
+    window.addEventListener('scroll', checkScroll);
+
+    // 2. Lógica del Menú Móvil
+    const openBtn = document.getElementById('menu-open-btn');
+    const closeBtn = document.getElementById('menu-close-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-item');
+
+    function openMobileMenu() {
+      // Quita la clase 'hidden' para habilitar display block
+      mobileMenu.classList.remove('hidden');
+
+      // Delay ínfimo para que el CSS transition capte el cambio de display
+      setTimeout(() => {
+        mobileMenu.classList.add('is-open');
+        document.body.style.overflow = 'hidden'; // Evita scrollear detrás del menú
+      }, 10);
+    }
+
+    function closeMobileMenu() {
+      // Cambia estado de visibilidad
+      mobileMenu.classList.remove('is-open');
+      document.body.style.overflow = '';
+
+      // Espera transición 300ms antes de ocultar
+      setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+      }, 300);
+    }
+
+    openBtn.addEventListener('click', openMobileMenu);
+    closeBtn.addEventListener('click', closeMobileMenu);
+
+    // Cierra el menú móvil al clickear un enlace (útil para Single Page Anchors)
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+  });
+</script>

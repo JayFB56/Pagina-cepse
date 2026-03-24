@@ -10,43 +10,18 @@ class FormManager {
         this.initializeEventListeners();
     }
 
-    // Inicializar listeners para abrir formularios
+    // Inicializar listeners mediante delegación de eventos para mayor robustez
     initializeEventListeners() {
-        this.removeOldListeners();
-        
-        document.querySelectorAll('[data-form="affiliation"]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.openForm('affiliation');
-            });
-        });
+        document.body.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-form]');
+            if (!btn) return;
 
-        document.querySelectorAll('[data-form="contact"]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.openForm('contact');
-            });
-        });
-
-        document.querySelectorAll('[data-form="consulting"]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.openForm('consulting');
-            });
-        });
-
-        document.querySelectorAll('[data-form="eventRegistration"]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.openForm('eventRegistration');
-            });
-        });
-
-        document.querySelectorAll('[data-form="fairRegistration"]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.openForm('fairRegistration');
-            });
+            e.preventDefault();
+            const formType = btn.getAttribute('data-form');
+            if (formType) {
+                console.log(`Abriendo formulario: ${formType}`);
+                this.openForm(formType);
+            }
         });
 
         document.addEventListener('keydown', (e) => {
@@ -54,12 +29,9 @@ class FormManager {
         });
     }
 
+    // Ya no es necesario con delegación de eventos
     removeOldListeners() {
-        const allButtons = document.querySelectorAll('[data-form]');
-        allButtons.forEach(btn => {
-            const newBtn = btn.cloneNode(true);
-            btn.parentNode.replaceChild(newBtn, btn);
-        });
+        // Obsoleto
     }
 
     // Abrir formulario dinámicamente
@@ -189,6 +161,7 @@ class FormManager {
         `;
     }
 
+    // Manejar envío de formulario
     async handleSubmit(e, formType) {
         e.preventDefault();
         
@@ -198,74 +171,50 @@ class FormManager {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
+        // Validar
         if (!this.validateForm(form)) return;
 
+        // Mostrar loading
         this.setFormLoading(form, true);
 
         try {
+            // Agregar timestamp y tipo de forma
+            data.timestamp = new Date().toLocaleString('es-EC');
             data.formType = formType;
-            
-            if (typeof FORMSPREE_CONFIG !== 'undefined' && FORMSPREE_CONFIG.endpoint) {
-                const formspreeData = {
-                    ...data,
-                    _subject: `Nueva ${this.getFormSubject(formType)} - CEPSE`,
-                    _replyto: data.email
-                };
 
-                try {
-                    await fetch(FORMSPREE_CONFIG.endpoint, {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formspreeData)
-                    });
-                } catch (formspreeError) {
-                    console.warn('Email delivery warning:', formspreeError);
-                }
+            // Enviar a API
+            const response = await fetch(this.apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
             }
-            
-            if (window.firebaseSubmit) {
-                const result = await window.firebaseSubmit(data);
-                
-                if (result.success) {
-                    this.showSuccess(form);
-                    form.reset();
-                    
-                    setTimeout(() => {
-                        const modal = form.closest('.modal');
-                        if (modal) this.closeModal(modal);
-                    }, 2000);
-                } else {
-                    this.showError(form, 'Error al enviar el formulario');
-                }
-            } else {
+
+            const result = await response.json();
+
+            if (result.success) {
                 this.showSuccess(form);
                 form.reset();
                 
+                // Cerrar modal después de 2 segundos
                 setTimeout(() => {
                     const modal = form.closest('.modal');
                     if (modal) this.closeModal(modal);
                 }, 2000);
+            } else {
+                this.showError(form, result.message || 'Error al enviar el formulario');
             }
         } catch (error) {
             console.error('Error:', error);
-            this.showError(form, 'No se pudo enviar el formulario. Intenta más tarde.');
+            this.showError(form, 'No se pudo conectar con el servidor. Intenta más tarde.');
         } finally {
             this.setFormLoading(form, false);
         }
-    }
-
-    getFormSubject(formType) {
-        const subjects = {
-            affiliation: 'Solicitud de Afiliación',
-            contact: 'Consulta General',
-            consulting: 'Solicitud de Consultoría',
-            eventRegistration: 'Registro de Evento',
-            fairRegistration: 'Registro de Feria'
-        };
-        return subjects[formType] || 'Solicitud';
     }
 
     // Validar campos requeridos

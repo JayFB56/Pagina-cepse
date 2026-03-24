@@ -1,101 +1,130 @@
-<section id="benefits" class="py-20 lg:py-28 bg-gradient-to-r from-slate-50 to-primary/5 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <!-- Contenido -->
-            <div class="flex flex-col gap-8">
-                <div>
-                    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-                        <span class="section-title">Beneficios de Unirse</span>
-                    </h2>
-                    <p class="text-lg text-slate-600">
-                        Las organizaciones que se unen a CEPSE acceden a una red de beneficios diseñados para su crecimiento.
-                    </p>
+<section id="benefits-container" class="py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+    <!-- Decoración geométrica sutil -->
+    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-emerald-100/40 to-transparent rounded-full blur-3xl opacity-60 transform translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Cabecera de Sección -->
+        <div class="text-center max-w-3xl mx-auto mb-20 animate-slide-up">
+            <div class="inline-flex items-center gap-2 bg-white border border-slate-200 px-5 py-2 rounded-full mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+                <span class="material-symbols-outlined text-emerald-600 text-[18px]">workspace_premium</span>
+                <span class="text-xs font-bold tracking-[0.2em] text-slate-700 uppercase">Ventajas Corporativas</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl lg:text-5xl font-black text-slate-900 mb-6 font-serif leading-tight">
+                Impulsando tu <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-emerald-500">crecimiento</span> estratégico.
+            </h2>
+            <p class="text-lg text-slate-600 leading-relaxed font-medium">
+                Las organizaciones adheridas a la Cámara Provincial acceden a una red exclusiva de beneficios y recursos técnicos diseñados estructuralmente para escalar su modelo productivo.
+            </p>
+        </div>
+
+        <!-- Layout 6 Beneficios (Grid 3 Columnas) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
+            
+            <!-- Beneficio 1 -->
+            <div class="group bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,102,51,0.08)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm border border-emerald-100/50">
+                        <span class="material-symbols-outlined text-[28px]">diversity_3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Red de Conexiones</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Conecta con cientos de asociaciones, cooperativas y emprendimientos para compartir experiencias vitales y crear alianzas estratégicas provinciales e intercomunitarias.</p>
                 </div>
-
-                <div class="space-y-6">
-                    <!-- Beneficio 1 -->
-                    <div class="group flex gap-6 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all card-hover">
-                        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
-                            <span class="material-symbols-outlined text-primary text-2xl">diversity_3</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">Red de Conexiones</h3>
-                            <p class="text-slate-600">Conecta con cientos de asociaciones, cooperativas y emprendimientos 
-                            para compartar experiencias y crear alianzas estratégicas.</p>
-                        </div>
-                    </div>
-
-                    <!-- Beneficio 2 -->
-                    <div class="group flex gap-6 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all card-hover">
-                        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
-                            <span class="material-symbols-outlined text-primary text-2xl">trending_up</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">Acceso a Mercados Ampliados</h3>
-                            <p class="text-slate-600">Participa en ferias provinciales, compras institucionales y 
-                            conexiones con distribuidores que amplían tu base de clientes.</p>
-                        </div>
-                    </div>
-
-                    <!-- Beneficio 3 -->
-                    <div class="group flex gap-6 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all card-hover">
-                        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
-                            <span class="material-symbols-outlined text-primary text-2xl">school</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">Capacitación Continua</h3>
-                            <p class="text-slate-600">Accede a talleres en gestión, contabilidad, marketing y 
-                            liderazgo diseñados específicamente para economía solidaria.</p>
-                        </div>
-                    </div>
-
-                    <!-- Beneficio 4 -->
-                    <div class="group flex gap-6 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all card-hover">
-                        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
-                            <span class="material-symbols-outlined text-primary text-2xl">gavel</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">Asesoramiento Legal</h3>
-                            <p class="text-slate-600">Soporte legal especializado para formalización, cumplimiento 
-                            tributario y adecuación normativa sin costo adicional.</p>
-                        </div>
-                    </div>
-
-                    <!-- Beneficio 5 -->
-                    <div class="group flex gap-6 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all card-hover">
-                        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
-                            <span class="material-symbols-outlined text-primary text-2xl">savings</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">Financiamiento Preferencial</h3>
-                            <p class="text-slate-600">Tasa de interés reducida en líneas de crédito a través de 
-                            nuestras cooperativas aliadas para invertir en tu crecimiento.</p>
-                        </div>
-                    </div>
-
-                    <!-- Beneficio 6 -->
-                    <div class="group flex gap-6 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all card-hover">
-                        <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
-                            <span class="material-symbols-outlined text-primary text-2xl">verified</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">Certificación y Reconocimiento</h3>
-                            <p class="text-slate-600">Sello de organización solidaria certificada que genera confianza 
-                            ante consumidores y clientes institucionales.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CTA -->
-                <button data-form="affiliation" class="btn-primary py-4 px-10 text-lg mx-auto mt-4">
-                    Solicita tu Afiliación Ahora
-                </button>
             </div>
 
-            <!-- Imagen derecha -->
-            <div class="relative hidden lg:block">
-                <img alt="Emprendimiento local apoyado por CEPSE" class="rounded-3xl shadow-2xl w-full object-cover h-[700px]"                    src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=600" />
+            <!-- Beneficio 2 -->
+            <div class="group bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,102,51,0.08)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm border border-emerald-100/50">
+                        <span class="material-symbols-outlined text-[28px]">trending_up</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Mercados Ampliados</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Participación directa en ferias orgánicas provinciales, compras públicas inclusivas y conexiones con distribuidores clave que expanden exponencialmente tu base de clientes.</p>
+                </div>
+            </div>
+
+            <!-- Beneficio 3 -->
+            <div class="group bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,102,51,0.08)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm border border-emerald-100/50">
+                        <span class="material-symbols-outlined text-[28px]">school</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Capacitación Continua</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Acceso irrestricto a programas de formación en gestión administrativa, contabilidad, posicionamiento de marca y liderazgo, configurados para la economía social.</p>
+                </div>
+            </div>
+
+            <!-- Beneficio 4 -->
+            <div class="group bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,102,51,0.08)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm border border-emerald-100/50">
+                        <span class="material-symbols-outlined text-[28px]">gavel</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Asesoramiento Legal</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Soporte jurídico y técnico especializado para formalización de personerías, cumplimiento normativo tributario y auditorías preventivas, proporcionado sin aranceles extra.</p>
+                </div>
+            </div>
+
+            <!-- Beneficio 5 -->
+            <div class="group bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,102,51,0.08)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm border border-emerald-100/50">
+                        <span class="material-symbols-outlined text-[28px]">savings</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Respaldo Financiero</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Aval institucional que facilita el acceso a tasas de financiamiento de interés reducido y líneas de crédito exclusivas mediante nuestro robusto consorcio de cooperativas aliadas.</p>
+                </div>
+            </div>
+
+            <!-- Beneficio 6 -->
+            <div class="group bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,102,51,0.08)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-0"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm border border-emerald-100/50">
+                        <span class="material-symbols-outlined text-[28px]">verified</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 font-serif">Sello de Certificación</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">Obtención oficial del Sello CEPSE como entidad u organización solidaria calificada, aumentando exponencialmente tu prestigio ante entes públicos y consumidores particulares.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Banner Inferior tipo CTA (Hero Interactivo) -->
+        <div class="mt-20 bg-emerald-900 rounded-[3rem] p-10 md:p-16 lg:p-20 relative overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-10 ring-4 ring-white">
+            <!-- Imagen de fondo oscura con mezcla -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
+                <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=1200" alt="Networking" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="relative z-10 md:max-w-2xl">
+                <h3 class="text-3xl md:text-4xl font-serif font-black text-white mb-5 leading-tight">¿Dispuesto a potenciar su organización?</h3>
+                <p class="text-emerald-100/90 mb-10 text-[1.1rem] leading-[1.8] font-medium max-w-xl">Únase de inmediato a la matriz que respalda, representa y eleva legalmente a cientos de emprendedores de la economía popular y solidaria dentro de toda la provincia de Esmeraldas.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button data-form="affiliation" class="inline-flex items-center justify-center gap-3 bg-white text-emerald-900 hover:bg-emerald-50 font-bold px-8 py-5 rounded-2xl transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                        <span class="text-lg">Solicitar Afiliación Oficial</span>
+                        <span class="material-symbols-outlined text-xl">arrow_forward</span>
+                    </button>
+                    <a href="acuerdo-ministerial.html" class="inline-flex items-center justify-center gap-3 bg-transparent border-2 border-emerald-400/30 text-emerald-50 hover:bg-emerald-800/50 hover:border-emerald-400 font-bold px-8 py-5 rounded-2xl transition-all">
+                        <span class="text-lg text-center">Ver Aprobación Legal</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Decoración Derecha -->
+            <div class="relative z-10 hidden lg:flex items-center justify-center">
+                 <div class="w-56 h-56 rounded-full border border-emerald-400/20 flex items-center justify-center">
+                     <div class="w-40 h-40 rounded-full bg-emerald-800/50 backdrop-blur-sm flex items-center justify-center shadow-inner">
+                         <span class="material-symbols-outlined text-[80px] text-emerald-300">account_balance</span>
+                     </div>
+                 </div>
             </div>
         </div>
+
     </div>
 </section>

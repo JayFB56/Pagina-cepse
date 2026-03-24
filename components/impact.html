@@ -1,86 +1,229 @@
-<section id="impact" class="py-20 lg:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
-    <div class="decorative-element" style="width: 500px; height: 500px; top: -250px; right: -250px; background: radial-gradient(circle, var(--primary) 0%, transparent 70%); opacity: 0.05;"></div>
-    
+<section id="impact" class="py-24 lg:py-32 bg-slate-950 text-white relative overflow-hidden">
+    <!-- Efectos de Luces de Fondo (Premium Blur) -->
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <div class="absolute -top-48 -left-48 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-900/10 rounded-full blur-[100px]"></div>
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black mb-6" style="color: #ffffff;">
-                <span class="section-title" style="border-bottom-color: var(--primary);">Nuestro Impacto en la Comunidad</span>
+        <!-- Cabecera de Impacto -->
+        <div class="text-center mb-24">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8 animate-fade-in">
+                <span class="text-xs font-black text-emerald-400 uppercase tracking-[0.2em]">Resultados Tangibles</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black mb-8 tracking-tight font-serif">
+                Métricas que <span class="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">Trascienden</span>
             </h2>
-            <p class="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                A través de nuestras iniciativas y programas, hemos logrado transformar la realidad económica y social 
-                de cientos de familias en toda la provincia de Esmeraldas.
+            <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed font-light">
+                Nuestro compromiso no es una promesa, es una realidad estadística. Transformamos la estructura 
+                económica de Esmeraldas a través de la asociatividad inteligente.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <!-- Impacto 1 -->
-            <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 card-hover">
-                <div class="text-4xl font-black text-primary mb-4">100+</div>
-                <h3 class="text-xl font-bold mb-3">Familias Beneficiadas</h3>
-                <p class="text-slate-300 leading-relaxed">
-                    Hemos mejorado directamente el ingreso y las oportunidades económicas de más de 100 familias 
-                    a través de nuestros programas de formación y acceso a mercados.
-                </p>
+        <!-- Grid de Estadísticas con Contadores Animados -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+            <!-- Stat 1 -->
+            <div class="impact-stat-card group p-10 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:border-emerald-500/30">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-500">
+                        <span class="material-symbols-outlined text-emerald-400 group-hover:text-white transition-colors">groups</span>
+                    </div>
+                    <span class="text-xs font-bold text-slate-500 tracking-widest uppercase">Beneficiarios</span>
+                </div>
+                <div class="flex items-baseline gap-1 mb-4">
+                    <span class="text-5xl font-black text-white" data-impact-counter="1200">+</span>
+                    <span class="text-5xl font-black text-white" data-impact-counter="1200">0</span>
+                </div>
+                <h4 class="text-lg font-bold text-slate-200 mb-2">Familias en territorio</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Impacto directo en la canasta básica y escolaridad a través de ingresos dignos.</p>
             </div>
 
-            <!-- Impacto 2 -->
-            <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 card-hover">
-                <div class="text-4xl font-black text-primary mb-4">7</div>
-                <h3 class="text-xl font-bold mb-3">Cantones Cubiertos</h3>
-                <p class="text-slate-300 leading-relaxed">
-                    Nuestro trabajo se extiende a toda la provincia, llegando a zonas rurales y urbanas con 
-                    oportunidades de desarrollo económico y organización.
-                </p>
+            <!-- Stat 2 -->
+            <div class="impact-stat-card group p-10 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:border-emerald-500/30">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-500">
+                        <span class="material-symbols-outlined text-emerald-400 group-hover:text-white transition-colors">account_balance</span>
+                    </div>
+                    <span class="text-xs font-bold text-slate-500 tracking-widest uppercase">Territorio</span>
+                </div>
+                <div class="flex items-baseline gap-1 mb-4">
+                    <span class="text-5xl font-black text-white" data-impact-counter="7">0</span>
+                    <span class="text-2xl font-bold text-emerald-500">Cantones</span>
+                </div>
+                <h4 class="text-lg font-bold text-slate-200 mb-2">Presencia Provincial</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Operación activa en todos los cantones de la provincia de Esmeraldas.</p>
             </div>
 
-            <!-- Impacto 3 -->
-            <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 card-hover">
-                <div class="text-4xl font-black text-primary mb-4">+$5K</div>
-                <h3 class="text-xl font-bold mb-3">Transacciones Impulsadas</h3>
-                <p class="text-slate-300 leading-relaxed">
-                    Facilitamos conexiones comerciales que generan millones en transacciones económicas 
-                    directando beneficios a productores solidarios.
-                </p>
-            </div>
-
-            <!-- Impacto 4 -->
-            <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 card-hover">
-                <div class="text-4xl font-black text-primary mb-4">5+</div>
-                <h3 class="text-xl font-bold mb-3">Talleres Anuales</h3>
-                <p class="text-slate-300 leading-relaxed">
-                    Capacitamos continuamente en temas como gestión administrativa, marketing digital, 
-                    sostenibilidad y liderazgo comunitario.
-                </p>
-            </div>
-
-            <!-- Impacto 5 -->
-            <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 card-hover">
-                <div class="text-4xl font-black text-primary mb-4">10</div>
-                <h3 class="text-xl font-bold mb-3">Alianzas Estratégicas</h3>
-                <p class="text-slate-300 leading-relaxed">
-                    Hemos generado alianzas con gobiernos locales, ONGs, empresa privada y otras redes 
-                    para fortalecer el ecosistema solidario.
-                </p>
-            </div>
-
-            <!-- Impacto 6 -->
-            <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 card-hover">
-                <div class="text-4xl font-black text-primary mb-4">↓25%</div>
-                <h3 class="text-xl font-bold mb-3">Reducción de Pobreza</h3>
-                <p class="text-slate-300 leading-relaxed">
-                    En las zonas donde operamos, hemos contribuido a reducir indicadores de pobreza 
-                    a través de generación de ingresos dignos.
-                </p>
+            <!-- Stat 3 -->
+            <div class="impact-stat-card group p-10 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:border-emerald-500/30">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-500">
+                        <span class="material-symbols-outlined text-emerald-400 group-hover:text-white transition-colors">payments</span>
+                    </div>
+                    <span class="text-xs font-bold text-slate-500 tracking-widest uppercase">Inyección</span>
+                </div>
+                <div class="flex items-baseline gap-1 mb-4">
+                    <span class="text-2xl font-bold text-emerald-500">$</span>
+                    <span class="text-5xl font-black text-white" data-impact-counter="500">0</span>
+                    <span class="text-5xl font-black text-white">K+</span>
+                </div>
+                <h4 class="text-lg font-bold text-slate-200 mb-2">Transacciones Directas</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Capital movilizado sin intermediación comercial parasitaria.</p>
             </div>
         </div>
 
-        <!-- Testimonio -->
-        <div class="bg-white/15 backdrop-blur-md border border-white/20 rounded-2xl p-10 text-center">
-            <p class="text-xl italic text-slate-200 mb-4">
-                "La CEPSE nos ayudó a formalizarnos y acceder a mercados que no conocíamos. Hoy podemos vivir dignamente 
-                de nuestro trabajo mientras ayudamos a otras asociaciones a crecer."
-            </p>
-            <p class="text-lg font-bold text-primary">—Carmen Joutieaux, Emprendedora y miembro de la economía popular</p>
+        <!-- Mapa de Acción Estilizado -->
+        <div class="mb-32">
+            <div class="bg-gradient-to-br from-slate-900 to-black p-12 lg:p-20 rounded-[3rem] border border-white/5 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-12 opacity-5">
+                    <span class="material-symbols-outlined text-[15rem]">map</span>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="lg:w-1/2">
+                        <h3 class="text-3xl lg:text-4xl font-bold text-white mb-8 font-serif leading-tight">
+                            Despliegue Estratégico en <br>
+                            <span class="text-emerald-400">Esmeraldas</span>
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 transition-transform hover:translate-x-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+                                <span class="text-slate-300 font-medium">Quinindé</span>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 transition-transform hover:translate-x-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+                                <span class="text-slate-300 font-medium">Esmeraldas</span>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 transition-transform hover:translate-x-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+                                <span class="text-slate-300 font-medium">Atacames</span>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 transition-transform hover:translate-x-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+                                <span class="text-slate-300 font-medium">Muisne</span>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 transition-transform hover:translate-x-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+                                <span class="text-slate-300 font-medium">Eloy Alfaro</span>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 transition-transform hover:translate-x-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+                                <span class="text-slate-300 font-medium">San Lorenzo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex items-center justify-center">
+                        <div class="relative w-full aspect-square max-w-sm">
+                            <!-- Círculos concéntricos de impacto -->
+                            <div class="absolute inset-0 border border-emerald-500/20 rounded-full animate-ping"></div>
+                            <div class="absolute inset-4 border border-emerald-500/30 rounded-full"></div>
+                            <div class="absolute inset-16 border border-emerald-500/40 rounded-full"></div>
+                            <div class="h-full w-full bg-emerald-500/10 rounded-full flex flex-col items-center justify-center p-8 backdrop-blur-xl border border-emerald-500/20 shadow-[0_0_60px_rgba(16,185,129,0.15)]">
+                                <span class="text-6xl font-black text-white mb-2">100%</span>
+                                <span class="text-emerald-400 font-bold tracking-[0.2em] text-sm uppercase">Cobertura</span>
+                                <p class="text-center text-slate-400 text-xs mt-4 leading-relaxed">
+                                    Monitorie en tiempo real el despliegue de brigadas de capacitación en territorio.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carrusel de Testimonios (Refactorizado) -->
+        <div class="mb-32 overflow-hidden">
+            <h3 class="text-center text-3xl font-bold mb-16 font-serif">Voces de la <span class="text-emerald-500">Transformación</span></h3>
+            
+            <div id="testimonial-carousel" class="relative max-w-4xl mx-auto">
+                <!-- Slide 1 -->
+                <div class="testimonial-slide active transition-all duration-700">
+                    <div class="bg-gradient-to-br from-white/10 to-transparent p-12 lg:p-20 rounded-[3rem] border border-white/10 relative">
+                        <span class="absolute top-10 left-10 text-8xl font-serif text-emerald-500/20 leading-none">“</span>
+                        <div class="relative z-10 text-center">
+                            <p class="text-2xl lg:text-3xl italic text-slate-200 mb-12 leading-relaxed">
+                                La CEPSE nos ayudó a formalizarnos y acceder a mercados que no conocíamos. Hoy podemos vivir dignamente de nuestro trabajo mientras apoyamos a otras asociaciones a crecer.
+                            </p>
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-emerald-500 mb-4 flex items-center justify-center text-slate-900 font-black text-xl">CJ</div>
+                                <h5 class="text-xl font-bold text-white uppercase tracking-widest">Carmen Joutieaux</h5>
+                                <p class="text-emerald-400 font-medium text-sm mt-1">Líder de Asociación Artesanal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portafolio Impacto: Ecosistema de Logros (Bento Box SIN Imágenes) -->
+        <div>
+            <div class="flex items-end justify-between mb-16">
+                <div>
+                    <h3 class="text-3xl lg:text-5xl font-black mb-4 font-serif">Ecosistema de <span class="text-emerald-500">Logros</span></h3>
+                    <p class="text-slate-500 max-w-xl">Hitos clave alcanzados a través de la gestión técnica y el fortalecimiento de la Economía Popular y Solidaria.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[280px]">
+                <!-- Logro 1 (Grande) -->
+                <div class="md:col-span-3 md:row-span-2 rounded-[2.5rem] bg-gradient-to-br from-emerald-500/20 to-slate-900 border border-emerald-500/20 p-12 flex flex-col justify-between items-start impact-reveal group hover:border-emerald-500/40 transition-all duration-500">
+                    <div class="w-20 h-20 rounded-[2rem] bg-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-900/40">
+                        <span class="material-symbols-outlined text-4xl text-white">diversity_3</span>
+                    </div>
+                    <div>
+                        <span class="inline-block px-4 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-widest mb-6">Social</span>
+                        <h4 class="text-3xl font-black text-white mb-6 leading-tight">Fortalecimiento de la Cohesión Asociativa</h4>
+                        <p class="text-slate-400 text-lg leading-relaxed">
+                            Logramos que más de 50 grupos dispersos se constituyan en asociaciones legales, habilitándolos para contratación pública.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Logro 2 -->
+                <div class="md:col-span-3 rounded-[2.5rem] bg-slate-900 border border-white/5 p-10 flex flex-col justify-between impact-reveal group hover:bg-slate-800/50 transition-all">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl text-amber-500">verified_user</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">Certificación de Calidad EPS</h4>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Implementación de estándares técnicos en 12 centros de acopio provinciales, mejorando la competitividad.
+                    </p>
+                </div>
+
+                <!-- Logro 3 -->
+                <div class="md:col-span-3 rounded-[2.5rem] bg-slate-900 border border-white/5 p-10 flex flex-col justify-between impact-reveal group hover:bg-slate-800/50 transition-all">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl text-blue-500">trending_up</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">Incremento de Ingreso Familiar</h4>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        Reducción del 40% en costos de intermediación, inyectando liquidez directa al pequeño productor.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-20 flex flex-wrap justify-center gap-8 opacity-40">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-slate-500">SEPS</span>
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-slate-500">CONAFIPS</span>
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-slate-500">MIES</span>
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-slate-500">IEPS</span>
+            </div>
         </div>
     </div>
 </section>
+
+<style>
+    .impact-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .impact-reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>

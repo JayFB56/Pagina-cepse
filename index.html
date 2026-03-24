@@ -1,46 +1,89 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>CEPSE - Cámara Provincial de Economía Popular y Solidaria de Esmeraldas</title>
+    
+    <!-- SEO & Metadata -->
+    <meta name="description" content="CEPSE es la entidad líder que agrupa y fortalece a la Economía Popular y Solidaria en Esmeraldas, impulsando el desarrollo sostenible y el comercio justo.">
+    <meta name="keywords" content="CEPSE, Economía Popular, Solidaria, Esmeraldas, Cooperativas, Asociaciones, Emprendimiento, Ecuador">
+    <meta name="author" content="CEPSE Tech Team">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="CEPSE - Cámara Provincial de Economía Popular y Solidaria">
+    <meta property="og:description" content="Uniendo fuerzas para el desarrollo económico y social de Esmeraldas.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cepse.org.ec">
+    <meta property="og:image" content="assets/img/icon.ico">
+
     <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
 
     <!-- Configuración de Tailwind -->
     <script id="tailwind-config" src="js/config.js"></script>
 
     <!-- Estilos principales -->
     <link rel="stylesheet" href="css/main.css">
-    
-    <!-- Estilos para modales de formularios -->
     <link rel="stylesheet" href="css/modal-forms.css">
-    
-    <!-- Estilos para acordeón FAQ -->
     <link rel="stylesheet" href="css/faq-accordion.css">
 
     <style>
-        /* Estilos críticos para carga rápida */
-        body {
-            background-color: #ffffff;
+        /* Refinamientos Globales Premium */
+        ::selection { background-color: #10b981; color: white; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; border: 2px solid #f1f5f9; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+        /* Preloader System */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffffff; z-index: 99999; display: flex;
+            flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s;
         }
+        #preloader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        .loader-logo { width: 80px; height: 80px; margin-bottom: 24px; position: relative; }
+        .loader-logo img { width: 100%; height: 100%; object-fit: contain; }
+        .loader-ring {
+            position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 3px solid transparent; border-top-color: #10b981; border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .loader-text {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3em;
+            color: #64748b; text-transform: uppercase; animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
     </style>
 </head>
 
-<body class="font-display text-slate-900 min-h-screen relative">
+<body class="font-display text-slate-900 min-h-screen relative antialiased">
 
-    <canvas id="grid-canvas"></canvas>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">
+            <div class="loader-ring"></div>
+            <img src="assets/img/icon.ico" alt="CEPSE">
+        </div>
+        <div class="loader-text">Cargando Experiencia</div>
+    </div>
+
+    <canvas id="grid-canvas" class="fixed inset-0 pointer-events-none opacity-20 z-0"></canvas>
 
     <!-- Header -->
     <div id="header-container"></div>
 
     <!-- Main Content -->
-    <main class="relative z-10">
+    <main class="relative z-10 overflow-x-hidden">
         <!-- Hero Section -->
         <div id="hero-container"></div>
 
@@ -73,9 +116,6 @@
 
         <!-- Contact Section -->
         <div id="contact-container"></div>
-
-        <!-- ASOSERLISER Section -->
-        <div id="asoserliser-container"></div>
     </main>
 
     <!-- Footer -->
@@ -83,18 +123,21 @@
 
     <!-- Scripts de componentes -->
     <script>
-        // Función para cargar archivos HTML
         async function loadComponent(containerId, filePath) {
             try {
                 const response = await fetch(filePath);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const html = await response.text();
                 document.getElementById(containerId).innerHTML = html;
             } catch (error) {
                 console.error(`Error cargando ${filePath}:`, error);
+                document.getElementById(containerId).innerHTML = `<div class='p-8 text-center text-slate-400'>Error cargando modulo</div>`;
             }
         }
 
         window.addEventListener('DOMContentLoaded', async () => {
+            const startTime = Date.now();
+            
             await Promise.all([
                 loadComponent('header-container', 'components/header.html'),
                 loadComponent('hero-container', 'components/hero.html'),
@@ -108,31 +151,44 @@
                 loadComponent('stats-container', 'components/stats.html'),
                 loadComponent('faq-container', 'components/faq.html'),
                 loadComponent('contact-container', 'components/contact.html'),
-                loadComponent('asoserliser-container', 'components/asoserliser.html'),
                 loadComponent('footer-container', 'components/footer.html')
             ]);
             
+            // Aseguramos que los scripts se inicialicen después de cargar todo el HTML
             setTimeout(() => {
-                if (window.FormManager && window.formManager) {
-                    window.formManager.initializeEventListeners();
-                }
-            }, 100);
+                if (window.FormManager && window.formManager) window.formManager.initializeEventListeners();
+                if (window.initHeader) window.initHeader();
+                if (window.initStats) window.initStats();
+                if (window.initFAQ) window.initFAQ();
+                if (window.initServices) window.initServices();
+                if (window.initWhatWeDo) window.initWhatWeDo();
+                if (window.initImpact) window.initImpact();
+                
+                // Ocultar preloader con un delay mínimo para evitar parpadeos
+                const elapsedTime = Date.now() - startTime;
+                const minLoaderTime = 1200; 
+                const remainingTime = Math.max(0, minLoaderTime - elapsedTime);
+                
+                setTimeout(() => {
+                    document.getElementById('preloader').classList.add('fade-out');
+                    document.body.classList.remove('overflow-hidden');
+                }, remainingTime);
+
+            }, 200);
         });
+
+        // Prevenir scroll mientras carga
+        document.body.classList.add('overflow-hidden');
     </script>
 
-    <!-- Script del Grid Interactivo -->
+    <!-- Core Scripts -->
     <script src="js/grid.js"></script>
-
-    <!-- Scripts de Interacción -->
     <script src="js/interactions.js"></script>
-
-    <!-- Configuración de Firebase -->
-    <script type="module" src="js/firebase-config.js"></script>
-
-    <!-- Configuración de Formularios -->
     <script src="js/forms-config.js"></script>
     <script src="js/forms-handler.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/what-we-do.js"></script>
+    <script src="js/impact.js"></script>
 
 </body>
-
 </html>

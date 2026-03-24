@@ -50,7 +50,7 @@ const FORMS_CONFIG = {
     contact: {
         id: 'contact-modal',
         title: '📧 Contáctanos',
-        subtitle: 'Envía tu mensaje y nos pondremos en contacto a la brevedad.',
+        subtitle: 'Envía tu mensaje directamente a info@cepse-esmeraldas.com y te responderemos pronto.',
         fields: [
             { name: 'nombre', label: 'Nombre Completo *', type: 'text', required: true, placeholder: 'Tu nombre' },
             { name: 'email', label: 'Email *', type: 'email', required: true, placeholder: 'tu@email.com' },

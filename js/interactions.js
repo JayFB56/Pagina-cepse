@@ -45,92 +45,59 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
-// FAQ ACCORDION
+// FAQ ACCORDION (Refactored for async loading)
 // ============================================
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Verificar que existan elementos .faq-toggle en la página
-    const faqToggles = document.querySelectorAll('.faq-toggle');
-    
-    if (faqToggles.length === 0) {
-        // Si no hay FAQ en esta página, salir silenciosamente
-        return;
-    }
+window.initFAQ = function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (faqItems.length === 0) return;
 
-    faqToggles.forEach(toggle => {
-        toggle.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            // Obtener elementos relacionados
-            const faqItem = toggle.closest('.faq-item');
-            const content = toggle.nextElementSibling;
-            const icon = toggle.querySelector('.material-symbols-outlined');
-
-            // Validar que los elementos críticos existan
-            if (!faqItem || !content) {
-                console.warn('Estructura FAQ incompleta detectada');
-                return;
-            }
-
-            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-
-            // Cerrar otros items abiertos (modo acordeón)
-            document.querySelectorAll('.faq-toggle').forEach(otherToggle => {
-                if (otherToggle !== toggle && otherToggle.getAttribute('aria-expanded') === 'true') {
-                    const otherContent = otherToggle.nextElementSibling;
-                    const otherIcon = otherToggle.querySelector('.material-symbols-outlined');
-
-                    // Validar que el contenido del otro item exista
-                    if (otherContent) {
-                        otherToggle.setAttribute('aria-expanded', 'false');
-                        
-                        // Animar el cierre
-                        otherContent.style.maxHeight = '0px';
-                        
-                        // Agregar hidden después de que termine la transición (300ms)
-                        setTimeout(() => {
-                            otherContent.classList.add('hidden');
-                        }, 300);
-                    }
-
-                    // Rotar el icono si existe
-                    if (otherIcon) {
-                        otherIcon.classList.remove('rotate-180');
+    faqItems.forEach(item => {
+        const toggleButton = item.querySelector('.faq-toggle');
+        const content = item.querySelector('.faq-content');
+        const icon = item.querySelector('.faq-icon');
+        if (!toggleButton || !content || !icon) return;
+        
+        toggleButton.addEventListener('click', () => {
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+            
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    const otherBtn = otherItem.querySelector('.faq-toggle');
+                    const otherContent = otherItem.querySelector('.faq-content');
+                    const otherIcon = otherItem.querySelector('.faq-icon');
+                    
+                    if(otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                    otherItem.classList.remove('border-emerald-300', 'shadow-[0_10px_30px_rgba(0,102,51,0.08)]', 'ring-1', 'ring-emerald-500/10');
+                    if(otherContent) otherContent.style.maxHeight = null;
+                    if(otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                        otherIcon.classList.remove('text-emerald-600');
                     }
                 }
             });
-
-            // Actualizar estado del item actual
-            toggle.setAttribute('aria-expanded', !isExpanded);
-
-            // Animar max-height para apertura/cierre suave
+            
             if (!isExpanded) {
-                // ABRIR: Remover hidden primero para que el navegador pueda calcular scrollHeight
-                content.classList.remove('hidden');
-
-                // Usar requestAnimationFrame para asegurar que el DOM se haya recalculado
-                requestAnimationFrame(() => {
-                    // Ahora calcular la altura real del contenido
-                    const scrollHeight = content.scrollHeight;
-                    content.style.maxHeight = scrollHeight + 'px';
-                });
+                toggleButton.setAttribute('aria-expanded', 'true');
+                item.classList.add('border-emerald-300', 'shadow-[0_10px_30px_rgba(0,102,51,0.08)]', 'ring-1', 'ring-emerald-500/10');
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = 'rotate(180deg)';
+                icon.classList.add('text-emerald-600');
             } else {
-                // CERRAR: Animar la reducción de max-height
-                content.style.maxHeight = '0px';
-
-                // Agregar hidden después de que termine la transición (sincronizado con CSS 300ms)
-                setTimeout(() => {
-                    content.classList.add('hidden');
-                }, 300);
-            }
-
-            // Rotar el icono si existe
-            if (icon) {
-                icon.classList.toggle('rotate-180');
+                toggleButton.setAttribute('aria-expanded', 'false');
+                item.classList.remove('border-emerald-300', 'shadow-[0_10px_30px_rgba(0,102,51,0.08)]', 'ring-1', 'ring-emerald-500/10');
+                content.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+                icon.classList.remove('text-emerald-600');
             }
         });
+        
+        window.addEventListener('resize', () => {
+            const isExp = toggleButton.getAttribute('aria-expanded') === 'true';
+            if (isExp) content.style.maxHeight = content.scrollHeight + "px";
+        });
     });
-});
+};
 
 // ============================================
 // ANIMACIONES AL SCROLL
@@ -155,178 +122,143 @@ document.querySelectorAll('section').forEach(section => {
 });
 
 // ============================================
-// SCROLL COUNTER PARA STATS
+// SCROLL COUNTER PARA STATS (Refactored setup)
 // ============================================
 
-const statsSection = document.querySelector('[style*="bg-primary"]');
-const stats = document.querySelectorAll('[style*="text-6xl"]');
+window.initStats = function() {
+    const counters = document.querySelectorAll('.stat-counter');
+    if (counters.length === 0) return;
+    
+    const speed = 50; 
+    const animateCounters = () => {
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const updateCount = () => {
+                const count = +counter.innerText;
+                const inc = target / speed;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 40);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+    };
 
-if (statsSection && stats.length > 0) {
-    const statsObserver = new IntersectionObserver((entries) => {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                entry.target.classList.add('counted');
-                stats.forEach(stat => {
-                    animateCounter(stat);
-                });
+            if (entry.isIntersecting) {
+                counters.forEach(c => c.innerText = '0');
+                animateCounters();
+                observer.unobserve(entry.target); 
             }
         });
-    });
+    }, observerOptions);
 
-    statsObserver.observe(statsSection);
-}
+    const statsSection = document.getElementById('stats-container');
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
+};
 
-function animateCounter(element) {
-    const text = element.textContent;
-    const isPercentage = text.includes('%');
-    const isMoney = text.includes('$');
-    const isNumber = text.includes('+');
-    
-    let finalValue;
-    if (isPercentage) finalValue = parseInt(text) || 30;
-    else if (isMoney) finalValue = 5;
-    else if (isNumber) finalValue = parseInt(text) || 100;
-    else finalValue = parseInt(text) || 7;
+// ============================================
+// VALIDACIÓN DE FORMULARIOS
+// ============================================
 
-    let currentValue = 0;
-    const increment = finalValue / 50;
-
-    const counter = setInterval(() => {
-        currentValue += increment;
-        if (currentValue >= finalValue) {
-            currentValue = finalValue;
-            clearInterval(counter);
-        }
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
         
-        if (isPercentage) element.textContent = Math.floor(currentValue) + '%';
-        else if (isMoney) element.textContent = '$' + Math.floor(currentValue) + 'M';
-        else if (isNumber) element.textContent = Math.floor(currentValue) + '+';
-        else element.textContent = Math.floor(currentValue);
-    }, 30);
-}
+        // Validar campos requeridos
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
 
-// ============================================
-// VALIDACIÓN DE FORMULARIOS Y ENVÍO A FIREBASE
-// ============================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const requiredFields = contactForm.querySelectorAll('[required]');
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('border-red-500');
-                    isValid = false;
-                } else {
-                    field.classList.remove('border-red-500');
-                }
-            });
-
-            if (!isValid) {
-                alert('Por favor completa todos los campos requeridos');
-                return;
-            }
-
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            data.formType = 'contact';
-
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
-
-            try {
-                if (window.firebaseSubmit) {
-                    const result = await window.firebaseSubmit(data);
-                    
-                    if (result.success) {
-                        const successMsg = document.createElement('div');
-                        successMsg.className = 'fixed top-6 right-6 bg-primary text-slate-900 px-6 py-3 rounded-lg shadow-lg font-bold z-50';
-                        successMsg.innerHTML = '<span class="material-symbols-outlined inline mr-2">check_circle</span>¡Solicitud enviada con éxito!';
-                        document.body.appendChild(successMsg);
-
-                        contactForm.reset();
-
-                        setTimeout(() => {
-                            successMsg.remove();
-                        }, 4000);
-                    }
-                } else {
-                    alert('Sistema de almacenamiento no disponible. Intenta más tarde.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('No se pudo enviar el formulario. Intenta más tarde.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('border-red-500');
+                isValid = false;
+            } else {
+                field.classList.remove('border-red-500');
             }
         });
-    }
 
-    document.querySelectorAll('form:not(#contact-form)').forEach(form => {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
+        if (isValid) {
+            // Mostrar mensaje de éxito
+            const successMsg = document.createElement('div');
+            successMsg.className = 'fixed top-6 right-6 bg-primary text-slate-900 px-6 py-3 rounded-lg shadow-lg font-bold z-50';
+            successMsg.textContent = '✓ Solicitud enviada exitosamente';
+            document.body.appendChild(successMsg);
 
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('border-red-500');
-                    isValid = false;
-                } else {
-                    field.classList.remove('border-red-500');
-                }
-            });
+            // Limpiar formulario
+            form.reset();
 
-            if (isValid) {
-                const successMsg = document.createElement('div');
-                successMsg.className = 'fixed top-6 right-6 bg-primary text-slate-900 px-6 py-3 rounded-lg shadow-lg font-bold z-50';
-                successMsg.textContent = '✓ Solicitud enviada exitosamente';
-                document.body.appendChild(successMsg);
+            // Remover mensaje después de 4 segundos
+            setTimeout(() => {
+                successMsg.remove();
+            }, 4000);
 
-                form.reset();
-
-                setTimeout(() => {
-                    successMsg.remove();
-                }, 4000);
-
-                const modal = form.closest('.modal');
-                if (modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-        });
+            // Cerrar modal if open
+            modal?.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     });
 });
 
 // ============================================
-// HEADER SCROLL EFFECT
+// HEADER SCROLL EFFECT & MOBILE MENU (Refactored)
 // ============================================
 
-const header = document.getElementById('main-header');
-let lastScrollTop = 0;
-
-window.addEventListener('scroll', () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+window.initHeader = function() {
+    const header = document.getElementById('main-header');
+    if (!header) return;
     
-    if (scrollTop > 100) {
-        header?.classList.add('shadow-lg');
-    } else {
-        header?.classList.remove('shadow-lg');
+    function checkScroll() {
+        if (window.scrollY > 80) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
     }
+    
+    checkScroll();
+    window.addEventListener('scroll', checkScroll);
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
+    // Menu Móvil
+    const openBtn = document.getElementById('menu-open-btn');
+    const closeBtn = document.getElementById('menu-close-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-item');
+
+    if(openBtn && closeBtn && mobileMenu) {
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.add('is-open');
+                document.body.style.overflow = 'hidden'; 
+            }, 10);
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('is-open');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        openBtn.addEventListener('click', openMobileMenu);
+        closeBtn.addEventListener('click', closeMobileMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+    }
+};
 
 // ============================================
 // BOTÓN SCROLL TO TOP

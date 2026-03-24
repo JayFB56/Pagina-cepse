@@ -1,125 +1,163 @@
-<section id="contact" class="py-20 lg:py-28 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl shadow-2xl overflow-hidden border border-slate-700 flex flex-col lg:flex-row backdrop-blur-md">
-            <!-- Información de contacto izquierda -->
-            <div
-                class="lg:w-2/5 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-12 text-white flex flex-col justify-between relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full -mr-20 -mt-20"></div>
+<section id="contact-container" class="py-24 lg:py-32 relative bg-slate-50 overflow-hidden">
+    <!-- Decoración de fondo abstracta -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-[100px] opacity-60 pointer-events-none transform translate-x-1/3 -translate-y-1/3"></div>
+    <div class="absolute bottom-0 left-0 w-[800px] h-[800px] bg-white rounded-full blur-[120px] opacity-80 pointer-events-none transform -translate-x-1/3 translate-y-1/3"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Cabecera de Sección -->
+        <div class="text-center max-w-3xl mx-auto mb-16 animate-slide-up">
+            <div class="inline-flex items-center gap-2 bg-white border border-slate-200 px-5 py-2 rounded-full mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+                <span class="material-symbols-outlined text-emerald-600 text-[18px]">support_agent</span>
+                <span class="text-xs font-bold tracking-[0.2em] text-slate-700 uppercase">Atención Institucional</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl lg:text-5xl font-black text-slate-900 mb-6 font-serif leading-tight">
+                Estamos aquí para <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-emerald-500">ayudarte</span>.
+            </h2>
+            <p class="text-lg text-slate-600 leading-relaxed font-medium">
+                Nuestro equipo técnico y directivo está a tu entera disposición para resolver consultas, gestionar afiliaciones y brindarte el apoyo legal y organizativo que necesitas.
+            </p>
+        </div>
+
+        <!-- Contenedor Principal (Tarjeta Dividida) -->
+        <div class="bg-white rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.06)] ring-1 ring-slate-100 flex flex-col lg:flex-row overflow-hidden max-w-6xl mx-auto">
+            
+            <!-- Panel Izquierdo (Información de Contacto) -->
+            <div class="lg:w-2/5 p-10 lg:p-14 text-white flex flex-col justify-between relative overflow-hidden bg-gradient-to-br from-emerald-800 via-emerald-900 to-slate-900">
+                <!-- Círculos decorativos internos -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-400/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+                <div class="absolute bottom-0 right-0 w-40 h-40 border-2 border-emerald-500/20 rounded-full blur-sm -mr-16 -mb-16 pointer-events-none"></div>
+
                 <div class="relative z-10">
-                    <h2 class="text-4xl font-black mb-8">Contáctanos</h2>
-                    <p class="text-slate-300 mb-12 text-lg leading-relaxed">
-                        ¿Tienes preguntas sobre cómo afiliarte? ¿Necesitas más información sobre nuestros servicios? 
-                        Estamos aquí para ayudarte y acompañar el crecimiento de tu organización.
+                    <h3 class="text-3xl font-serif font-bold mb-5 text-white drop-shadow-sm">Contáctanos</h3>
+                    <p class="text-emerald-100/90 mb-12 text-[1.05rem] leading-relaxed font-medium">
+                        ¿Tienes preguntas sobre el proceso de afiliación? ¿Deseas obtener los beneficios y certificaciones de nuestra cámara? Escríbenos directamente.
                     </p>
                     
-                    <div class="space-y-8 mb-12">
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/40 transition-colors">
-                                <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+                    <div class="space-y-10 mb-8 lg:mb-0">
+                        <!-- Ubicación -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors duration-300 shadow-inner">
+                                <span class="material-symbols-outlined text-emerald-300 text-[28px]">location_on</span>
                             </div>
                             <div>
-                                <h3 class="font-bold text-white mb-1">Ubicación</h3>
-                                <p class="text-slate-300 text-sm leading-relaxed">Vía Atacames, diagonal al monumento "El Jolgorio"<br/>Esmeraldas - Ecuador</p>
+                                <h4 class="font-bold text-white mb-1.5 tracking-wide text-lg">Ubicación Central</h4>
+                                <p class="text-emerald-100/80 text-sm leading-relaxed font-medium">Vía Atacames, diagonal al monumento "El Jolgorio"<br/>Esmeraldas - Ecuador</p>
                             </div>
                         </div>
                         
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/40 transition-colors">
-                                <span class="material-symbols-outlined text-primary text-2xl">mail</span>
+                        <!-- Correo -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors duration-300 shadow-inner">
+                                <span class="material-symbols-outlined text-emerald-300 text-[28px]">mail</span>
                             </div>
                             <div>
-                                <h3 class="font-bold text-white mb-1">Correo Electrónico</h3>
-                                <p class="text-slate-300 text-sm">
-                                    <a href="mailto:info@cepse-esmeraldas.com" class="hover:text-primary transition-colors">info@cepse-esmeraldas.com</a>
+                                <h4 class="font-bold text-white mb-1.5 tracking-wide text-lg">Correo Electrónico</h4>
+                                <p class="text-emerald-100/80 text-sm font-medium">
+                                    <a href="mailto:info@cepse-esmeraldas.com" class="hover:text-white transition-colors underline decoration-emerald-500/50 underline-offset-4">info@cepse-esmeraldas.com</a>
                                 </p>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-4 group">
-                            <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/40 transition-colors">
-                                <span class="material-symbols-outlined text-primary text-2xl">schedule</span>
+                        <!-- Horario -->
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-14 h-14 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors duration-300 shadow-inner">
+                                <span class="material-symbols-outlined text-emerald-300 text-[28px]">schedule</span>
                             </div>
                             <div>
-                                <h3 class="font-bold text-white mb-1">Horario de Atención</h3>
-                                <p class="text-slate-300 text-sm">Lunes a Viernes: 8:00 AM - 5:00 PM<br/>Sábado: 9:00 AM - 1:00 PM</p>
+                                <h4 class="font-bold text-white mb-1.5 tracking-wide text-lg">Horario de Atención</h4>
+                                <p class="text-emerald-100/80 text-sm leading-relaxed font-medium">Lunes a Viernes: 8:00 AM - 5:00 PM<br/>Sábado: 9:00 AM - 1:00 PM</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Formulario derecha -->
-            <div class="lg:w-3/5 p-12 bg-white/80 backdrop-blur-sm">
-                <h3 class="text-2xl font-black text-slate-900 mb-8">Envía tu Solicitud</h3>
-                <form id="contact-form" class="space-y-6">
+            <!-- Panel Derecho (Formulario) -->
+            <div class="lg:w-3/5 p-10 lg:p-14 bg-white">
+                <h3 class="text-3xl font-black text-slate-900 mb-8 font-serif">Envía tu Solicitud</h3>
+                <form id="contact-form" class="space-y-7">
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-3">Nombre Completo *</label>
+                            <label class="block text-sm font-bold text-slate-700 mb-2.5">Nombre Completo <span class="text-emerald-600">*</span></label>
                             <input
                                 type="text"
                                 name="name"
                                 required
-                                class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all font-display"
-                                placeholder="Tu nombre completo" />
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-5 py-4 focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-500 focus:bg-white outline-none transition-all text-slate-800 placeholder:text-slate-400 font-medium"
+                                placeholder="Tu nombre y apellido" />
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-3">Organización *</label>
+                            <label class="block text-sm font-bold text-slate-700 mb-2.5">Organización <span class="text-emerald-600">*</span></label>
                             <input
                                 type="text"
                                 name="organization"
                                 required
-                                class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all font-display"
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-5 py-4 focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-500 focus:bg-white outline-none transition-all text-slate-800 placeholder:text-slate-400 font-medium"
                                 placeholder="Nombre de tu organización" />
                         </div>
                     </div>
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-3">Email *</label>
+                            <label class="block text-sm font-bold text-slate-700 mb-2.5">Email corporativo <span class="text-emerald-600">*</span></label>
                             <input
                                 type="email"
                                 name="email"
                                 required
-                                class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all font-display"
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-5 py-4 focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-500 focus:bg-white outline-none transition-all text-slate-800 placeholder:text-slate-400 font-medium"
                                 placeholder="tu@email.com" />
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-3">Teléfono</label>
+                            <label class="block text-sm font-bold text-slate-700 mb-2.5">Teléfono Celular <span class="text-emerald-600">*</span></label>
                             <input
                                 type="tel"
                                 name="phone"
-                                class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all font-display"
-                                placeholder="+593 987 654 321" />
+                                required
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-5 py-4 focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-500 focus:bg-white outline-none transition-all text-slate-800 placeholder:text-slate-400 font-medium"
+                                placeholder="+593 9 XXXXXXXX" />
                         </div>
                     </div>
+                    
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-3">Tipo de Organización *</label>
-                        <select name="type" required class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary font-display">
-                            <option value="">Selecciona una opción</option>
-                            <option value="asociacion">Asociación</option>
-                            <option value="cooperativa">Cooperativa</option>
-                            <option value="emprendimiento">Emprendimiento</option>
-                            <option value="otro">Otro</option>
-                        </select>
+                        <label class="block text-sm font-bold text-slate-700 mb-2.5">Tipo de Organización Institucional <span class="text-emerald-600">*</span></label>
+                        <div class="relative">
+                            <select name="type" required class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-5 py-4 focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-500 focus:bg-white outline-none transition-all text-slate-800 font-medium appearance-none cursor-pointer">
+                                <option value="" disabled selected>Selecciona una clasificación</option>
+                                <option value="asociacion">Asociación Gremial</option>
+                                <option value="cooperativa">Cooperativa (Ahorro, Producción, etc.)</option>
+                                <option value="emprendimiento">Emprendimiento Comunitario Solitario</option>
+                                <option value="otro">Otro Modelo Jurídico</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+                        </div>
                     </div>
+                    
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-3">Mensaje (Opcional)</label>
+                        <label class="block text-sm font-bold text-slate-700 mb-2.5">Mensaje o Requerimientos (Opcional)</label>
                         <textarea
                             name="message"
                             rows="4"
-                            class="w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all font-display resize-none"
-                            placeholder="Cuéntanos sobre tu organización..."></textarea>
+                            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-5 py-4 focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-500 focus:bg-white outline-none transition-all text-slate-800 placeholder:text-slate-400 font-medium resize-none shadow-sm"
+                            placeholder="Descríbenos brevemente los objetivos de tu organización o el tipo de asesoramiento legal que necesitas..."></textarea>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <input type="checkbox" id="terms" name="terms" required class="w-4 h-4 accent-primary rounded"/>
-                        <label for="terms" class="text-sm text-slate-600">
-                            He leído y acepto los términos de confidencialidad de CEPSE
+                    
+                    <div class="flex items-center gap-3 pt-2">
+                        <input type="checkbox" id="terms" name="terms" required class="w-5 h-5 accent-emerald-600 rounded cursor-pointer border-slate-300"/>
+                        <label for="terms" class="text-sm font-medium text-slate-600 cursor-pointer">
+                            He leído y acepto los <a href="privacidad.html" class="text-emerald-700 hover:text-emerald-800 underline decoration-emerald-500/30">términos de confidencialidad</a> y tratamiento de datos de CEPSE.
                         </label>
                     </div>
+                    
                     <button
-                        type="submit"
-                        class="btn-primary w-full py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all">
-                        Enviar Solicitud
+                        type="button"
+                        data-form="contact"
+                        class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-4 px-8 text-[1.1rem] font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all mt-6 flex justify-center items-center gap-3">
+                        <span>Enviar Solicitud Oficial</span>
+                        <span class="material-symbols-outlined text-xl">send</span>
                     </button>
+                    
                 </form>
             </div>
         </div>

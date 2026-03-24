@@ -1,103 +1,123 @@
-<footer
-    class="bg-gradient-to-b from-slate-900 to-slate-950 text-white pt-20 pb-8 relative z-10 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            <!-- Logo y descripción -->
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <img src="assets/img/icon.ico" alt="CEPSE Logo" class="w-12 h-12 object-contain filter drop-shadow-lg">
-                    <span class="font-black text-2xl tracking-tight text-primary">CEPSE</span>
+<footer class="relative bg-slate-950 text-white pt-24 pb-12 z-10 border-t border-emerald-900 overflow-hidden">
+    <!-- Fondos Decorativos Institucionales -->
+    <div class="absolute inset-0 pointer-events-none z-0">
+        <div class="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-emerald-950/40 rounded-full blur-[120px]"></div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#d4af37]/5 rounded-full blur-[100px]"></div>
+        <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay" style="background-image: radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Main Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+            
+            <!-- Columna 1: Branding Estratégico (ocupa 4/12) -->
+            <div class="lg:col-span-4 pr-0 lg:pr-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="assets/img/icon.ico" alt="CEPSE Logo" class="w-14 h-14 object-contain filter drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                    <div class="flex flex-col">
+                        <span class="font-black text-2xl tracking-tighter text-white font-serif leading-none">CEPSE</span>
+                        <span class="text-[0.65rem] tracking-[0.2em] text-[#d4af37] uppercase font-bold mt-1.5">Cámara Provincial</span>
+                    </div>
                 </div>
-                <p class="text-slate-400 leading-relaxed mb-6">
-                    Impulsando la economía popular y solidaria en Esmeraldas.
+                <p class="text-slate-400 leading-relaxed mb-8 text-[0.95rem]">
+                    Estructurando formalmente el modelo económico productivo de Esmeraldas, fundamentado en la dignidad, el progreso mutuo y la solidaridad corporativa.
                 </p>
                 <div class="flex gap-4">
-                    <a href="#"
-                        class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary/40 transition-colors">
-                        <span class="material-symbols-outlined text-primary">facebook</span>
+                    <a href="https://facebook.com/CEPSE" target="_blank" class="w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 group shadow-inner">
+                        <span class="material-symbols-outlined text-slate-300 group-hover:text-white text-[20px]">public</span>
                     </a>
-                    <a href="#"
-                        class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary/40 transition-colors">
-                        <span class="material-symbols-outlined text-primary">public</span>
+                    <a href="https://instagram.com/CEPSE" target="_blank" class="w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-[#E4405F] hover:border-[#E4405F] transition-all duration-300 group shadow-inner">
+                        <span class="material-symbols-outlined text-slate-300 group-hover:text-white text-[20px]">hub</span>
                     </a>
-                    <a href="#"
-                        class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary/40 transition-colors">
-                        <span class="material-symbols-outlined text-primary">mail</span>
+                    <a href="mailto:info@cepse-esmeraldas.com" class="w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-emerald-600 hover:border-emerald-600 transition-all duration-300 group shadow-inner">
+                        <span class="material-symbols-outlined text-slate-300 group-hover:text-white text-[20px]">mail</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Enlaces rápidos -->
-            <div>
-                <h4 class="font-bold text-white text-lg mb-6">Navegación</h4>
-                <ul class="space-y-3 text-slate-400">
-                    <li><a href="#about" class="hover:text-primary transition-colors">Sobre Nosotros</a></li>
-                    <li><a href="#what-we-do" class="hover:text-primary transition-colors">Qué Hacemos</a></li>
-                    <li><a href="#services" class="hover:text-primary transition-colors">Servicios</a></li>
-                    <li><a href="#contact" class="hover:text-primary transition-colors">Contacto</a></li>
-                    <li><a href="#benefits" class="hover:text-primary transition-colors">Beneficios</a></li>
+            <!-- Columna 2: Navegación Institucional (ocupa 2/12) -->
+            <div class="lg:col-span-2">
+                <h4 class="font-bold text-white text-lg mb-8 font-serif tracking-wide relative inline-block">
+                    Institución
+                    <span class="absolute -bottom-3 left-0 w-1/2 h-[2px] bg-[#d4af37]"></span>
+                </h4>
+                <ul class="space-y-4 text-[0.95rem] text-slate-400">
+                    <li><a href="index.html#about-container" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Sobre Nosotros</a></li>
+                    <li><a href="acuerdo-ministerial.html" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Acuerdo Ministerial</a></li>
+                    <li><a href="estatuto.html" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Estatuto Oficial</a></li>
+                    <li><a href="index.html#services-container" class="hover:text-white hover:translate-x-1 inline-block transition-all duration-300">Nuestros Servicios</a></li>
                 </ul>
             </div>
 
-            <!-- Información -->
-            <div>
-                <h4 class="font-bold text-white text-lg mb-6">Información</h4>
-                <ul class="space-y-3 text-slate-400 text-sm">
-                    <li class="flex gap-2">
-                        <span class="material-symbols-outlined text-primary text-base flex-shrink-0">location_on</span>
-                        <span>Vía Atacames, diagonal al monumento "El Jolgorio"</span>
+            <!-- Columna 3: Directorio y Contacto (ocupa 3/12) -->
+            <div class="lg:col-span-3">
+                <h4 class="font-bold text-white text-lg mb-8 font-serif tracking-wide relative inline-block">
+                    Directorio
+                    <span class="absolute -bottom-3 left-0 w-1/2 h-[2px] bg-[#d4af37]"></span>
+                </h4>
+                <ul class="space-y-4 text-slate-400 text-[0.95rem]">
+                    <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-[#d4af37] text-[20px] mt-0.5 flex-shrink-0">location_on</span>
+                        <span class="leading-relaxed">Sede Ejecutiva:<br/>Vía Atacames, diagonal al monumento "El Jolgorio"</span>
                     </li>
-                    <li class="flex gap-2">
-                        <span class="material-symbols-outlined text-primary text-base flex-shrink-0">mail</span>
-                        <span>info@cepse-esmeraldas.com</span>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-[#d4af37] text-[20px] flex-shrink-0">mail</span>
+                        <a href="mailto:info@cepse-esmeraldas.com" class="hover:text-white transition-colors">info@cepse-esmeraldas.com</a>
                     </li>
-                    <li class="flex gap-2">
-                        <span class="material-symbols-outlined text-primary text-base flex-shrink-0">schedule</span>
-                        <span>Lun-Vie: 8:00 AM - 5:00 PM</span>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-[#d4af37] text-[20px] flex-shrink-0">schedule</span>
+                        <span>Lun-Vie: 08:00 AM - 17:00 PM</span>
                     </li>
                 </ul>
             </div>
 
-            <!-- Boletín -->
-            <div>
-                <h4 class="font-bold text-white text-lg mb-6">Newsletter</h4>
-                <p class="text-slate-400 text-sm mb-4">
-                    Recibe actualizaciones sobre nuestros programas y oportunidades.
+            <!-- Columna 4: Suscripción y Alertas (ocupa 3/12) -->
+            <div class="lg:col-span-3 bg-white/[0.03] p-6 lg:p-7 rounded-2xl border border-white/5 shadow-inner backdrop-blur-sm">
+                <h4 class="font-bold text-white text-lg mb-4 font-serif tracking-wide flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[#d4af37]">notifications_active</span>
+                    Boletín de Afiliados
+                </h4>
+                <p class="text-slate-400 text-[0.85rem] mb-6 leading-relaxed">
+                    Recibe notificaciones prioritarias sobre nuevas mesas de trabajo, ferias y resoluciones.
                 </p>
-                <form id="newsletter-form" class="space-y-3">
-                    <input type="email" placeholder="Tu email" required
-                        class="w-full rounded-lg bg-slate-800 text-white px-4 py-2 border border-slate-700 focus:border-primary outline-none transition-colors text-sm" />
-                    <button type="submit" class="btn-primary w-full py-2 text-sm">
-                        Suscribirse
+                <form id="newsletter-form" class="space-y-3 relative">
+                    <input type="email" placeholder="Correo corporativo" required
+                        class="w-full rounded-xl bg-slate-900 border border-slate-700 text-white px-4 py-3 text-sm focus:border-[#006633] focus:ring-1 focus:ring-[#006633] outline-none transition-all placeholder:text-slate-600 shadow-inner" />
+                    <button type="submit" class="w-full bg-[#00552b] hover:bg-emerald-700 text-white font-bold py-3 text-sm rounded-xl transition-all duration-300 shadow-[0_5px_15px_rgba(0,102,51,0.3)] hover:-translate-y-0.5 border border-emerald-600/50">
+                        Suscribir Entidad
                     </button>
                 </form>
             </div>
         </div>
 
-        <!-- Divisor -->
-        <div class="pt-8 border-t border-slate-800">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-                <p class="text-slate-500 text-sm">
-                    © 2026 Cámara Provincial de Economía Popular y Solidaria de Esmeraldas. Todos los derechos
-                    reservados.
+        <!-- Divisor y Footer Legal -->
+        <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-4 text-center md:text-left">
+                <span class="material-symbols-outlined text-[#d4af37] text-[32px] hidden md:block">verified_user</span>
+                <p class="text-slate-500 text-[0.85rem] leading-relaxed">
+                    © 2026 Cámara Provincial de Economía Popular y Solidaria de Esmeraldas.<br class="hidden md:block"/> 
+                    Acuerdo Ministerial y Estatuto Oficial. Todos los derechos reservados.
                 </p>
-                <div class="flex gap-6 text-sm text-slate-500">
-                    <a href="#" class="hover:text-primary transition-colors">Política de Privacidad</a>
-                    <a href="#" class="hover:text-primary transition-colors">Términos de Uso</a>
-                    <a href="#" class="hover:text-primary transition-colors">Contacto Legal</a>
-                </div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 text-[0.85rem] text-slate-500 font-medium">
+                <a href="estatuto.html" class="hover:text-emerald-400 transition-colors">Términos Estatutarios</a>
+                <a href="privacidad.html" class="hover:text-emerald-400 transition-colors">Privacidad</a>
+                <a href="index.html#contact-container" class="hover:text-emerald-400 transition-colors">Contacto Legal</a>
             </div>
         </div>
     </div>
 
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/593XXXXXXXXX" target="_blank"
-        class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all z-50">
-
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-7 h-7 fill-white">
-            <path
-                d="M16 .396C7.163.396 0 7.559 0 16.396c0 2.89.754 5.61 2.074 7.984L0 32l7.86-2.064A15.92 15.92 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837.396 16 .396zm0 29.18c-2.47 0-4.79-.66-6.79-1.81l-.49-.29-4.66 1.22 1.24-4.54-.32-.51A13.52 13.52 0 0 1 2.48 16c0-7.44 6.08-13.52 13.52-13.52S29.52 8.56 29.52 16 23.44 29.576 16 29.576zm7.39-10.11c-.4-.2-2.36-1.16-2.73-1.29-.37-.14-.64-.2-.91.2-.27.4-1.05 1.29-1.28 1.56-.23.27-.46.3-.86.1-.4-.2-1.7-.63-3.23-2-.12-.11-.23-.23-.34-.35-.86-.93-1.43-2.08-1.6-2.43-.17-.35-.02-.54.18-.73.18-.17.4-.46.6-.69.2-.23.27-.4.4-.66.13-.27.07-.5-.03-.69-.1-.2-.9-2.18-1.24-2.98-.33-.8-.66-.69-.91-.7h-.77c-.27 0-.69.1-1.05.5-.36.4-1.38 1.35-1.38 3.29s1.42 3.82 1.62 4.08c.2.27 2.8 4.27 6.79 5.99.95.41 1.69.65 2.27.83.95.3 1.82.26 2.5.16.76-.11 2.36-.97 2.69-1.91.33-.94.33-1.75.23-1.91-.1-.16-.37-.26-.77-.46z" />
+    <!-- Botón flotante de WhatsApp Modernizado -->
+    <a href="https://wa.me/593967845123" target="_blank"
+        class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(37,211,102,0.4)] hover:shadow-[0_15px_40px_rgba(37,211,102,0.6)] hover:scale-105 transition-all duration-300 z-50 group border-[3px] border-white">
+        
+        <!-- Efecto Pulso Ping (CSS) -->
+        <div class="absolute inset-0 rounded-full border-2 border-[#25D366] animate-pulse scale-150 opacity-0 group-hover:opacity-40 transition-opacity"></div>
+        
+        <!-- Icono WhatsApp Original -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-8 h-8 fill-white relative z-10 transition-transform group-hover:-rotate-12 duration-300">
+            <path d="M16 .396C7.163.396 0 7.559 0 16.396c0 2.89.754 5.61 2.074 7.984L0 32l7.86-2.064A15.92 15.92 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837.396 16 .396zm0 29.18c-2.47 0-4.79-.66-6.79-1.81l-.49-.29-4.66 1.22 1.24-4.54-.32-.51A13.52 13.52 0 0 1 2.48 16c0-7.44 6.08-13.52 13.52-13.52S29.52 8.56 29.52 16 23.44 29.576 16 29.576zm7.39-10.11c-.4-.2-2.36-1.16-2.73-1.29-.37-.14-.64-.2-.91.2-.27.4-1.05 1.29-1.28 1.56-.23.27-.46.3-.86.1-.4-.2-1.7-.63-3.23-2-.12-.11-.23-.23-.34-.35-.86-.93-1.43-2.08-1.6-2.43-.17-.35-.02-.54.18-.73.18-.17.4-.46.6-.69.2-.23.27-.4.4-.66.13-.27.07-.5-.03-.69-.1-.2-.9-2.18-1.24-2.98-.33-.8-.66-.69-.91-.7h-.77c-.27 0-.69.1-1.05.5-.36.4-1.38 1.35-1.38 3.29s1.42 3.82 1.62 4.08c.2.27 2.8 4.27 6.79 5.99.95.41 1.69.65 2.27.83.95.3 1.82.26 2.5.16.76-.11 2.36-.97 2.69-1.91.33-.94.33-1.75.23-1.91-.1-.16-.37-.26-.77-.46z" />
         </svg>
-
     </a>
 </footer>

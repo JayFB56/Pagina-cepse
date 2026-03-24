@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Servicios Corporativos - CEPSE</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
+    <script id="tailwind-config" src="js/config.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        ::selection { background-color: #10b981; color: white; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 99999; display: flex; align-items: center; justify-content: center; transition: opacity 0.6s ease-out, visibility 0.6s; }
+        #preloader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+    </style>
+</head>
+<body class="font-display text-slate-900 min-h-screen relative antialiased bg-slate-50">
+    <div id="preloader"><div class="w-12 h-12 border-4 border-emerald-100 border-t-emerald-500 rounded-full animate-spin"></div></div>
+    <div id="header-container"></div>
+    <main class="pt-32 pb-24 relative z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 flex items-center gap-2 text-sm font-medium text-slate-400">
+                <a href="index.html" class="hover:text-emerald-600">Inicio</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <span class="text-slate-900">Servicios Corporativos</span>
+            </div>
+            
+            <div class="text-center mb-16">
+                <h1 class="text-5xl lg:text-7xl font-black text-slate-900 mb-6 font-serif leading-tight">Portafolio <span class="text-emerald-600">Integral</span> de Servicios</h1>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
+                    Explora en detalle cada una de nuestras líneas de acción diseñadas para el fortalecimiento de la Economía Popular y Solidaria en Esmeraldas.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Servicio Detallado 1 -->
+                <div class="bg-white rounded-[2.5rem] p-10 shadow-xl border border-slate-100 group hover:border-emerald-500 transition-all">
+                    <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-3xl">school</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4 font-serif">Escuela de Formación EPS</h2>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Nuestro programa insignia de capacitación técnica. No solo enseñamos, acompañamos a las organizaciones en la implementación de procesos administrativos modernos.</p>
+                    <ul class="space-y-3 mb-8 text-slate-700 font-medium">
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>Diplomado en Liderazgo Solidario</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>Taller de Contabilidad para Cooperativas</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>Marketing para Emprendimientos Sociales</li>
+                    </ul>
+                    <button data-form="consulting" class="w-full bg-slate-950 text-white font-bold py-4 rounded-2xl hover:bg-emerald-800 transition-all">Solicitar Malla Curricular</button>
+                </div>
+
+                <!-- Servicio Detallado 2 -->
+                <div class="bg-white rounded-[2.5rem] p-10 shadow-xl border border-slate-100 group hover:border-[#d4af37] transition-all">
+                    <div class="w-16 h-16 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#d4af37] group-hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-3xl">payments</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4 font-serif">Gestión de Micro-Créditos</h2>
+                    <p class="text-slate-600 mb-6 leading-relaxed">Facilitamos el acceso a recursos financieros mediante convenios con el sistema financiero popular y solidario, garantizando tasas justas.</p>
+                    <ul class="space-y-3 mb-8 text-slate-700 font-medium">
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-[#d4af37]"></span>Créditos de Producción Agrícola</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-[#d4af37]"></span>Financiamiento para Maquinaria</li>
+                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-[#d4af37]"></span>Líneas de Capital de Trabajo</li>
+                    </ul>
+                    <button data-form="consulting" class="w-full bg-slate-950 text-white font-bold py-4 rounded-2xl hover:bg-[#b3922d] transition-all">Consultar Requisitos</button>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <p class="text-slate-500 mb-6 font-medium">¿Necesitas algo más específico?</p>
+                <button data-form="contact" class="inline-flex items-center gap-3 bg-emerald-600 text-white font-bold px-10 py-5 rounded-full hover:bg-emerald-700 transition-all shadow-lg hover:shadow-emerald-900/20">
+                    Hablar con un Asesor Técnico
+                    <span class="material-symbols-outlined">support_agent</span>
+                </button>
+            </div>
+        </div>
+    </main>
+    <div id="footer-container"></div>
+    <script>
+        async function loadComponent(id, path) { try { const r = await fetch(path); const h = await r.text(); document.getElementById(id).innerHTML = h; } catch (e) { console.error(e); } }
+        window.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([loadComponent('header-container', 'components/header.html'), loadComponent('footer-container', 'components/footer.html')]);
+            setTimeout(() => { if (window.initHeader) window.initHeader(); document.getElementById('preloader').classList.add('fade-out'); }, 300);
+        });
+    </script>
+</body>
+</html>

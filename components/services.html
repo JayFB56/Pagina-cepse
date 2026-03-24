@@ -1,165 +1,582 @@
-<section id="services" class="py-20 lg:py-28 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black mb-6 text-slate-900">
-                <span class="section-title">Nuestros Servicios Integrados</span>
+<section id="services-container" class="py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+
+    <!-- Decoración de Fondo Institucional -->
+    <div class="absolute inset-0 pointer-events-none z-0">
+        <div class="absolute top-0 right-0 w-[900px] h-[900px] bg-[#d4af37]/5 rounded-full blur-[140px] transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-1/4 left-0 w-[700px] h-[700px] bg-emerald-100/40 rounded-full blur-[120px] transform -translate-x-1/3"></div>
+        <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay" style="background-image: radial-gradient(#00552b 1px, transparent 1px); background-size: 40px 40px;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <!-- Cabecera de la Sección -->
+        <div class="text-center mb-12 animate-slide-up">
+            <div class="inline-flex items-center gap-2.5 bg-white border border-slate-200 px-5 py-2 rounded-full mb-6 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-xs font-bold tracking-[0.2em] text-slate-700 uppercase">Soluciones Corporativas</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl lg:text-5xl font-black text-slate-900 mb-6 font-serif leading-tight">
+                Nuestro Portafolio de <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00552b] to-emerald-500">Servicios</span>
             </h2>
-            <p class="text-lg text-slate-600 max-w-3xl mx-auto">
-                Un ecosistema completo de servicios diseñados para apoyar cada etapa del crecimiento de tu organización solidaria.
+            <p class="text-[1.1rem] text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
+                Un ecosistema fiduciario integral, diseñado milimétricamente para potenciar financieramente y operativamente
+                cada etapa cronológica de su organización solidaria.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Servicio 1 -->
-            <div class="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-md border border-slate-200 hover:border-primary/50 transition-all card-hover group">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl text-white">school</span>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-slate-900">Escuela de EPS</h4>
-                <p class="text-slate-600 mb-6">Capacitación continua y especializada en todos los aspectos de la gestión solidaria.</p>
-                <ul class="space-y-2 text-sm text-slate-700 mb-6">
-                    <li>📚 Gestión administrativa avanzada</li>
-                    <li>💰 Contabilidad solidaria</li>
-                    <li>🎯 Marketing digital para EPS</li>
-                    <li>👥 Liderazgo comunitario</li>
-                </ul>
-                <p class="text-xs text-primary font-bold">Talleres anuales | Certificación </p>
+        <!-- ─── MÉTRICAS RÁPIDAS ──────────────────────────────── -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
+            <div class="services-metric bg-white rounded-2xl border border-slate-100 shadow-sm p-5 text-center">
+                <p class="text-3xl font-black text-[#00552b] font-serif" data-services-counter="6">0</p>
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Servicios activos</p>
             </div>
-
-            <!-- Servicio 2 -->
-            <div class="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-md border border-slate-200 hover:border-primary/50 transition-all card-hover group">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl text-white">storefront</span>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-slate-900">Ferias y Mercados</h4>
-                <p class="text-slate-600 mb-6">Acceso directo a mercados, compradores institucionales y consumidores finales.</p>
-                <ul class="space-y-2 text-sm text-slate-700 mb-6">
-                    <li>🎪 Ferias provinciales mensuales</li>
-                    <li>🏢 Compras institucionales directas</li>
-                    <li>🚚 Distribuidores mayoristas certificados</li>
-                    <li>🌐 Eliminación de intermediarios</li>
-                </ul>
-                <p class="text-xs text-primary font-bold">Ferias anuales | 1000+ compradores potenciales</p>
+            <div class="services-metric bg-white rounded-2xl border border-slate-100 shadow-sm p-5 text-center">
+                <p class="text-3xl font-black text-[#d4af37] font-serif" data-services-counter="850">0</p>
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Socios beneficiados</p>
             </div>
-
-            <!-- Servicio 3 -->
-            <div class="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-md border border-slate-200 hover:border-primary/50 transition-all card-hover group">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl text-white">gavel</span>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-slate-900">Asesoría Legal y Técnica</h4>
-                <p class="text-slate-600 mb-6">Apoyo integral para formalización, cumplimiento normativo y legalización.</p>
-                <ul class="space-y-2 text-sm text-slate-700 mb-6">
-                    <li>📋 Personería jurídica ante SEPS</li>
-                    <li>🏛️ Cumplimiento tributario</li>
-                    <li>✅ Auditoría interna</li>
-                    <li>⚖️ Asesoramiento legal especializado</li>
-                </ul>
-                <p class="text-xs text-primary font-bold">Servicios Gratuitos | Respuesta 2-5 días</p>
+            <div class="services-metric bg-white rounded-2xl border border-slate-100 shadow-sm p-5 text-center">
+                <p class="text-3xl font-black text-[#00552b] font-serif" data-services-counter="120">0</p>
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Proyectos ejecutados</p>
             </div>
-
-            <!-- Servicio 4 -->
-            <div class="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-md border border-slate-200 hover:border-primary/50 transition-all card-hover group">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl text-white">payments</span>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-slate-900">Enlace Financiero</h4>
-                <p class="text-slate-600 mb-6">Acceso a crédito justo con tasas preferenciales para inversión productiva.</p>
-                <ul class="space-y-2 text-sm text-slate-700 mb-6">
-                    <li>🏦 Líneas de crédito 8-12%</li>
-                    <li>📊 Evaluación de solvencia</li>
-                    <li>💳 Microcrédito inmediato</li>
-                    <li>📈 Asesoramiento financiero</li>
-                </ul>
-                <p class="text-xs text-primary font-bold">Tasa reducida vs mercado | Sin colateral excesivo</p>
-            </div>
-
-            <!-- Servicio 5 -->
-            <div class="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-md border border-slate-200 hover:border-primary/50 transition-all card-hover group">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl text-white">biotech</span>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-slate-900">Innovación Productiva</h4>
-                <p class="text-slate-600 mb-6">Mejora continua de procesos, productos y competitividad en mercados.</p>
-                <ul class="space-y-2 text-sm text-slate-700 mb-6">
-                    <li>🔬 Diagnóstico de procesos</li>
-                    <li>📦 Diseño de empaque ecológico</li>
-                    <li>🏅 Certificaciones de calidad</li>
-                    <li>🎨 Diseño de marca</li>
-                </ul>
-                <p class="text-xs text-primary font-bold">Acompañamiento técnico | Muestras gratuitas</p>
-            </div>
-
-            <!-- Servicio 6 -->
-            <div class="bg-gradient-to-br from-white to-slate-50 p-8 rounded-2xl shadow-md border border-slate-200 hover:border-primary/50 transition-all card-hover group">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl text-white">handshake</span>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-slate-900">Alianzas Estratégicas</h4>
-                <p class="text-slate-600 mb-6">Conexión con gobierno, empresas y organizaciones para ampliar oportunidades.</p>
-                <ul class="space-y-2 text-sm text-slate-700 mb-6">
-                    <li>🤝 Convenios público-privados</li>
-                    <li>🛍️ Acuerdos de compra institucional</li>
-                    <li>🌍 Redes solidarias nacionales</li>
-                    <li>📱 Plataforma digital de comercio</li>
-                </ul>
-                <p class="text-xs text-primary font-bold">Red de 10+ organizaciones aliadas</p>
+            <div class="services-metric bg-white rounded-2xl border border-slate-100 shadow-sm p-5 text-center">
+                <p class="text-3xl font-black text-[#d4af37] font-serif" data-services-counter="15">0</p>
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Años de trayectoria</p>
             </div>
         </div>
 
-        <!-- Galería: Proyectos en Acción -->
-        <div class="mt-20 pt-20 border-t-2 border-slate-200">
-            <h3 class="text-3xl font-black text-slate-900 mb-4 text-center">
-                Proyectos en Acción
-            </h3>
-            <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
-                Vemos el impacto real de nuestros servicios en cada proyecto apoyado
-            </p>
-            
-            <div class="gallery-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-11.jpg" alt="Proyecto 1" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+        <!-- ─── BARRA DE BÚSQUEDA + FILTROS ─────────────────────── -->
+        <div class="mb-10 flex flex-col md:flex-row items-center gap-4">
+            <!-- Buscador -->
+            <div class="relative flex-1 w-full">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl pointer-events-none">search</span>
+                <input
+                    id="services-search"
+                    type="text"
+                    placeholder="Buscar servicio…"
+                    class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-white shadow-sm text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition"
+                    autocomplete="off"
+                />
+                <button id="services-search-clear" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500 transition hidden">
+                    <span class="material-symbols-outlined text-lg">close</span>
+                </button>
+            </div>
+
+            <!-- Tabs de Filtrado -->
+            <div class="flex flex-wrap justify-center gap-2" id="services-filter-tabs" role="tablist" aria-label="Filtrar servicios por categoría">
+                <button
+                    class="services-tab active-tab px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide border transition-all duration-200 bg-[#00552b] text-white border-[#00552b]"
+                    data-filter="all"
+                    role="tab" aria-selected="true"
+                >Todos</button>
+                <button
+                    class="services-tab px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide border border-slate-200 text-slate-600 bg-white hover:border-[#00552b] hover:text-[#00552b] transition-all duration-200"
+                    data-filter="formacion"
+                    role="tab" aria-selected="false"
+                >Formación</button>
+                <button
+                    class="services-tab px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide border border-slate-200 text-slate-600 bg-white hover:border-[#d4af37] hover:text-[#d4af37] transition-all duration-200"
+                    data-filter="comercial"
+                    role="tab" aria-selected="false"
+                >Comercial</button>
+                <button
+                    class="services-tab px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide border border-slate-200 text-slate-600 bg-white hover:border-[#00552b] hover:text-[#00552b] transition-all duration-200"
+                    data-filter="legal"
+                    role="tab" aria-selected="false"
+                >Legal</button>
+                <button
+                    class="services-tab px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide border border-slate-200 text-slate-600 bg-white hover:border-[#d4af37] hover:text-[#d4af37] transition-all duration-200"
+                    data-filter="financiero"
+                    role="tab" aria-selected="false"
+                >Financiero</button>
+            </div>
+        </div>
+
+        <!-- ─── MENSAJE "SIN RESULTADOS" (oculto por defecto) ───── -->
+        <div id="services-empty" class="hidden text-center py-20">
+            <span class="material-symbols-outlined text-6xl text-slate-200 mb-4">search_off</span>
+            <p class="text-slate-400 font-semibold text-lg">No se encontraron servicios</p>
+            <p class="text-slate-300 text-sm mt-1">Intente con otro término o categoría</p>
+        </div>
+
+        <!-- ─── GRID PRINCIPAL DE SERVICIOS (6 Tarjetas) ──────── -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-24" id="services-grid">
+
+            <!-- Servicio 1 · Escuela de EPS -->
+            <div class="service-card group bg-white p-8 lg:p-10 rounded-[2rem] border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,102,51,0.10)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col h-full z-10 cursor-pointer"
+                 data-category="formacion"
+                 data-service-id="escuela"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Ver detalles: Escuela de EPS">
+                <!-- Badge Categoría -->
+                <span class="absolute top-5 right-5 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-emerald-100">Formación</span>
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#00552b] group-hover:to-emerald-600 group-hover:border-emerald-500 transition-colors duration-500 shadow-sm relative z-20">
+                    <span class="material-symbols-outlined text-3xl text-[#00552b] group-hover:text-white transition-colors duration-500">school</span>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-12.jpg" alt="Proyecto 2" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <h4 class="text-2xl font-bold mb-4 text-slate-900 font-serif tracking-tight group-hover:text-emerald-700 transition-colors">Escuela de EPS</h4>
+                <p class="text-slate-600 mb-8 text-[0.95rem] leading-relaxed flex-grow">
+                    Formación corporativa continua y altamente especializada en modelos de gestión, enfocada en blindar la resiliencia administrativa.
+                </p>
+                <div class="space-y-3 relative z-20">
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Gestión Empresarial</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Contabilidad Tributaria</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Estrategia Comercial</span></div>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-13.jpg" alt="Proyecto 3" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <div class="mt-8 pt-6 border-t border-slate-100 relative z-20 flex items-center justify-between">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#00552b]">Certificados de Aprobación</p>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all duration-300 text-lg">arrow_forward</span>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-14.jpg" alt="Proyecto 4" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <!-- Decoración Fondo -->
+                <span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[180px] text-slate-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">school</span>
+            </div>
+
+            <!-- Servicio 2 · Posicionamiento -->
+            <div class="service-card group bg-white p-8 lg:p-10 rounded-[2rem] border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.10)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col h-full z-10 cursor-pointer"
+                 data-category="comercial"
+                 data-service-id="posicionamiento"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Ver detalles: Posicionamiento">
+                <span class="absolute top-5 right-5 bg-amber-50 text-amber-700 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-amber-100">Comercial</span>
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#d4af37] group-hover:to-[#b3922d] group-hover:border-[#d4af37] transition-colors duration-500 shadow-sm relative z-20">
+                    <span class="material-symbols-outlined text-3xl text-[#d4af37] group-hover:text-white transition-colors duration-500">storefront</span>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-15.jpg" alt="Proyecto 5" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <h4 class="text-2xl font-bold mb-4 text-slate-900 font-serif tracking-tight group-hover:text-[#b3922d] transition-colors">Posicionamiento</h4>
+                <p class="text-slate-600 mb-8 text-[0.95rem] leading-relaxed flex-grow">
+                    Conexión directa, blindada y sin intermediación parasitaria hacia licitaciones institucionales y mercados élite finales.
+                </p>
+                <div class="space-y-3 relative z-20">
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#00552b]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Catálogo SERCOP</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#00552b]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Ruedas de Negocio</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#00552b]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Contratos a Futuro</span></div>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-16.jpg" alt="Proyecto 6" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <div class="mt-8 pt-6 border-t border-slate-100 relative z-20 flex items-center justify-between">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#d4af37]">Cadenas Formales</p>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-[#d4af37] group-hover:translate-x-1 transition-all duration-300 text-lg">arrow_forward</span>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-17.jpg" alt="Proyecto 7" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[180px] text-slate-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">storefront</span>
+            </div>
+
+            <!-- Servicio 3 · Auditoría Legal -->
+            <div class="service-card group bg-white p-8 lg:p-10 rounded-[2rem] border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,102,51,0.10)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col h-full z-10 cursor-pointer"
+                 data-category="legal"
+                 data-service-id="auditoria"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Ver detalles: Auditoría Legal">
+                <span class="absolute top-5 right-5 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-emerald-100">Legal</span>
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#00552b] group-hover:to-emerald-600 group-hover:border-emerald-500 transition-colors duration-500 shadow-sm relative z-20">
+                    <span class="material-symbols-outlined text-3xl text-[#00552b] group-hover:text-white transition-colors duration-500">gavel</span>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-18.jpg" alt="Proyecto 8" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <h4 class="text-2xl font-bold mb-4 text-slate-900 font-serif tracking-tight group-hover:text-emerald-700 transition-colors">Auditoría Legal</h4>
+                <p class="text-slate-600 mb-8 text-[0.95rem] leading-relaxed flex-grow">
+                    Soporte estructurado para obtención de personerías jurídicas, cumplimiento normativo (SRI, IESS) y resolución de disputas.
+                </p>
+                <div class="space-y-3 relative z-20">
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Personería Jurídica SEPS</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Estatutos Notariados</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Gestión Tributaria</span></div>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-19.jpg" alt="Proyecto 9" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <div class="mt-8 pt-6 border-t border-slate-100 relative z-20 flex items-center justify-between">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#00552b]">Protección Fiduciaria</p>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all duration-300 text-lg">arrow_forward</span>
                 </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <img src="assets/img/trabajo-20.jpg" alt="Proyecto 10" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
+                <span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[180px] text-slate-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">gavel</span>
+            </div>
+
+            <!-- Servicio 4 · Inyección de Capital -->
+            <div class="service-card group bg-white p-8 lg:p-10 rounded-[2rem] border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.10)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col h-full z-10 cursor-pointer"
+                 data-category="financiero"
+                 data-service-id="capital"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Ver detalles: Inyección de Capital">
+                <span class="absolute top-5 right-5 bg-amber-50 text-amber-700 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-amber-100">Financiero</span>
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#d4af37] group-hover:to-[#b3922d] group-hover:border-[#d4af37] transition-colors duration-500 shadow-sm relative z-20">
+                    <span class="material-symbols-outlined text-3xl text-[#d4af37] group-hover:text-white transition-colors duration-500">payments</span>
+                </div>
+                <h4 class="text-2xl font-bold mb-4 text-slate-900 font-serif tracking-tight group-hover:text-[#b3922d] transition-colors">Inyección de Capital</h4>
+                <p class="text-slate-600 mb-8 text-[0.95rem] leading-relaxed flex-grow">
+                    Nivelación y acceso prioritario a líneas de crédito fiduciario con colateral simplificado y métricas de tasa preferencial.
+                </p>
+                <div class="space-y-3 relative z-20">
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#00552b]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Financiamiento Activos</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#00552b]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Líneas de Producción</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#00552b]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Crédito Cooperativo</span></div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-100 relative z-20 flex items-center justify-between">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#d4af37]">Capital de Riesgo</p>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-[#d4af37] group-hover:translate-x-1 transition-all duration-300 text-lg">arrow_forward</span>
+                </div>
+                <span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[180px] text-slate-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">payments</span>
+            </div>
+
+            <!-- Servicio 5 · I+D Certificado -->
+            <div class="service-card group bg-white p-8 lg:p-10 rounded-[2rem] border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,102,51,0.10)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col h-full z-10 cursor-pointer"
+                 data-category="formacion"
+                 data-service-id="id"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Ver detalles: I+D Certificado">
+                <span class="absolute top-5 right-5 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-emerald-100">Formación</span>
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-[#00552b] group-hover:to-emerald-600 group-hover:border-emerald-500 transition-colors duration-500 shadow-sm relative z-20">
+                    <span class="material-symbols-outlined text-3xl text-[#00552b] group-hover:text-white transition-colors duration-500">biotech</span>
+                </div>
+                <h4 class="text-2xl font-bold mb-4 text-slate-900 font-serif tracking-tight group-hover:text-emerald-700 transition-colors">I+D Certificado</h4>
+                <p class="text-slate-600 mb-8 text-[0.95rem] leading-relaxed flex-grow">
+                    Estandarización química e industrial de procesos para obtener BPM y trazabilidad exigida por mercados europeos o norteamericanos.
+                </p>
+                <div class="space-y-3 relative z-20">
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Notificación Sanitaria (ARCSA)</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Manuales BPM</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-slate-700 font-medium tracking-wide">Auditoría ISO 9001</span></div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-100 relative z-20 flex items-center justify-between">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#00552b]">Estándares Globales</p>
+                    <span class="material-symbols-outlined text-slate-300 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all duration-300 text-lg">arrow_forward</span>
+                </div>
+                <span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[180px] text-slate-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">biotech</span>
+            </div>
+
+            <!-- Servicio 6 · Macro Alianzas (tarjeta destacada) -->
+            <div class="service-card group bg-[#00552b] p-8 lg:p-10 rounded-[2rem] border border-emerald-800 shadow-[0_15px_40px_rgba(0,102,51,0.25)] hover:shadow-[0_25px_60px_rgba(0,102,51,0.4)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden flex flex-col h-full z-10 cursor-pointer"
+                 data-category="comercial"
+                 data-service-id="alianzas"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Ver detalles: Macro Alianzas">
+                <!-- Badge especial -->
+                <span class="absolute top-5 right-5 bg-[#d4af37] text-[#00552b] text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full">★ Destacado</span>
+                <div class="w-16 h-16 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center mb-8 relative z-20 backdrop-blur-sm">
+                    <span class="material-symbols-outlined text-3xl text-[#d4af37]">handshake</span>
+                </div>
+                <h4 class="text-2xl font-bold mb-4 text-white font-serif tracking-tight">Macro Alianzas</h4>
+                <p class="text-emerald-100 mb-8 text-[0.95rem] leading-relaxed flex-grow">
+                    La Cámara CEPSE lidera frentes supra-nacionales, tejiendo convenios con ministerios y ONGs extranjeras para apalancar masivamente a nuestras bases.
+                </p>
+                <div class="space-y-3 relative z-20">
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-emerald-50 font-medium tracking-wide">Bilateralismo Estatal</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-emerald-50 font-medium tracking-wide">Fondos No Reembolsables</span></div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span><span class="text-[0.9rem] text-emerald-50 font-medium tracking-wide">Gremio Confederado</span></div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-white/20 relative z-20 flex items-center justify-between">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#d4af37]">Representatividad</p>
+                    <span class="material-symbols-outlined text-white/40 group-hover:text-[#d4af37] group-hover:translate-x-1 transition-all duration-300 text-lg">arrow_forward</span>
+                </div>
+                <!-- Decoración -->
+                <div class="absolute -top-32 -right-32 w-64 h-64 bg-emerald-500/30 rounded-full blur-3xl pointer-events-none"></div>
+                <span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[180px] text-white/5 pointer-events-none z-0">handshake</span>
+            </div>
+
+        </div><!-- /grid -->
+
+        <!-- ─── PORTAFOLIO EJECUTADO ─────────────────────────────── -->
+        <div class="pt-24 border-t border-slate-200/60 relative">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl lg:text-4xl font-black text-slate-900 mb-4 font-serif inline-block relative">
+                    Portafolio <span class="text-[#00552b]">Ejecutado</span>
+                    <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#d4af37] rounded-full"></span>
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+                <div class="group relative rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                    <img src="assets/img/trabajo-11.jpg" alt="Caso de Éxito 1" class="w-full h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-5">
+                        <p class="text-white text-sm font-bold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">Proyecto Ejecutado</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                    <img src="assets/img/trabajo-12.jpg" alt="Caso de Éxito 2" class="w-full h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-5">
+                        <p class="text-white text-sm font-bold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">Proyecto Ejecutado</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                    <img src="assets/img/trabajo-13.jpg" alt="Caso de Éxito 3" class="w-full h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-5">
+                        <p class="text-white text-sm font-bold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">Proyecto Ejecutado</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                    <img src="assets/img/trabajo-14.jpg" alt="Caso de Éxito 4" class="w-full h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-5">
+                        <p class="text-white text-sm font-bold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">Proyecto Ejecutado</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hidden md:block">
+                    <img src="assets/img/trabajo-15.jpg" alt="Caso de Éxito 5" class="w-full h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-5">
+                        <p class="text-white text-sm font-bold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">Proyecto Ejecutado</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hidden md:block">
+                    <img src="assets/img/trabajo-16.jpg" alt="Caso de Éxito 6" class="w-full h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-5">
+                        <p class="text-white text-sm font-bold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">Proyecto Ejecutado</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- CTA adicional -->
-        <div class="mt-16 bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-12 text-white text-center">
-            <h3 class="text-3xl font-black mb-4">¿Necesitas un servicio específico?</h3>
-            <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
-                Contáctanos para una consultoría personalizada y diseñaremos un plan de apoyo adaptado a las 
-                necesidades específicas de tu organización.
-            </p>
-            <button data-form="consulting" class="btn-primary py-4 px-10 text-lg">
-                Solicitar Consultoría
-            </button>
+        <!-- ─── SIMULADOR DE SERVICIOS ──────────────────────────── -->
+        <div class="mt-28 relative" id="simulador-servicios">
+            <!-- Cabecera -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2.5 bg-white border border-slate-200 px-5 py-2 rounded-full mb-6 shadow-sm">
+                    <span class="material-symbols-outlined text-[#d4af37] text-[18px]">auto_awesome</span>
+                    <span class="text-xs font-bold tracking-[0.2em] text-slate-700 uppercase">Herramienta Interactiva</span>
+                </div>
+                <h3 class="text-3xl lg:text-4xl font-black text-slate-900 mb-4 font-serif leading-tight">
+                    ¿Qué servicios necesita <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00552b] to-emerald-500">su organización?</span>
+                </h3>
+                <p class="text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
+                    Responda 3 preguntas y le mostraremos los servicios CEPSE más adecuados para su etapa y perfil organizacional.
+                </p>
+            </div>
+
+            <!-- Tarjeta del simulador -->
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden max-w-3xl mx-auto">
+
+                <!-- Barra de progreso -->
+                <div class="h-1.5 bg-slate-100 relative">
+                    <div id="sim-progress-bar" class="h-full bg-gradient-to-r from-[#00552b] to-emerald-400 transition-all duration-500 rounded-full" style="width:33%"></div>
+                </div>
+
+                <div class="p-8 lg:p-12">
+                    <!-- Indicador de paso -->
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex gap-2">
+                            <span id="sim-dot-1" class="w-2.5 h-2.5 rounded-full bg-[#00552b] transition-colors duration-300"></span>
+                            <span id="sim-dot-2" class="w-2.5 h-2.5 rounded-full bg-slate-200 transition-colors duration-300"></span>
+                            <span id="sim-dot-3" class="w-2.5 h-2.5 rounded-full bg-slate-200 transition-colors duration-300"></span>
+                        </div>
+                        <span id="sim-step-label" class="text-xs font-bold text-slate-400 uppercase tracking-widest">Paso 1 de 3</span>
+                    </div>
+
+                    <!-- ── PASO 1: Tipo de organización ── -->
+                    <div id="sim-step-1" class="sim-step">
+                        <h4 class="text-xl font-black text-slate-900 font-serif mb-2">¿Qué tipo de organización lidera?</h4>
+                        <p class="text-slate-500 text-sm mb-7">Seleccione la que mejor describe su entidad.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="sim-q1">
+                            <label class="sim-option group cursor-pointer" data-value="cooperativa">
+                                <input type="radio" name="q1" value="cooperativa" class="sr-only">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200 peer-checked:border-[#00552b]">
+                                    <span class="material-symbols-outlined text-2xl text-[#00552b]">account_balance</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Cooperativa de Ahorro</p><p class="text-slate-400 text-xs">Crédito y ahorro comunitario</p></div>
+                                </div>
+                            </label>
+                            <label class="sim-option group cursor-pointer" data-value="asociacion">
+                                <input type="radio" name="q1" value="asociacion" class="sr-only">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-2xl text-[#00552b]">groups</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Asociación Productiva</p><p class="text-slate-400 text-xs">Agricultura, artesanía, servicios</p></div>
+                                </div>
+                            </label>
+                            <label class="sim-option group cursor-pointer" data-value="emprendimiento">
+                                <input type="radio" name="q1" value="emprendimiento" class="sr-only">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-2xl text-[#d4af37]">rocket_launch</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Emprendimiento Familiar</p><p class="text-slate-400 text-xs">Negocio comunitario emergente</p></div>
+                                </div>
+                            </label>
+                            <label class="sim-option group cursor-pointer" data-value="federacion">
+                                <input type="radio" name="q1" value="federacion" class="sr-only">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-2xl text-[#d4af37]">hub</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Federación / Red</p><p class="text-slate-400 text-xs">Agrupa múltiples organizaciones</p></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- ── PASO 2: Necesidad principal ── -->
+                    <div id="sim-step-2" class="sim-step hidden">
+                        <h4 class="text-xl font-black text-slate-900 font-serif mb-2">¿Cuál es su necesidad más urgente?</h4>
+                        <p class="text-slate-500 text-sm mb-7">Elija el área prioritaria de su organización ahora.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="sim-q2">
+                            <label class="sim-option group cursor-pointer" data-value="legal">
+                                <input type="radio" name="q2" value="legal" class="sr-only">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-2xl text-[#00552b]">gavel</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Respaldo Legal</p><p class="text-slate-400 text-xs">Personería, estatutos, SEPS</p></div>
+                                </div>
+                            </label>
+                            <label class="sim-option group cursor-pointer" data-value="financiero">
+                                <input type="radio" name="q2" value="financiero" class="sr-only">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-2xl text-[#d4af37]">payments</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Acceso a Capital</p><p class="text-slate-400 text-xs">Crédito, financiamiento productivo</p></div>
+                                </div>
+                            </label>
+                            <label class="sim-option group cursor-pointer" data-value="mercado">
+                                <input type="radio" name="q2" value="mercado" class="sr-only">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-2xl text-[#00552b]">storefront</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Acceso a Mercados</p><p class="text-slate-400 text-xs">Licitaciones, SERCOP, clientes</p></div>
+                                </div>
+                            </label>
+                            <label class="sim-option group cursor-pointer" data-value="formacion">
+                                <input type="radio" name="q2" value="formacion" class="sr-only">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-2xl text-[#d4af37]">school</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Formación Técnica</p><p class="text-slate-400 text-xs">Gestión, contabilidad, liderazgo</p></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- ── PASO 3: Etapa ── -->
+                    <div id="sim-step-3" class="sim-step hidden">
+                        <h4 class="text-xl font-black text-slate-900 font-serif mb-2">¿En qué etapa está su organización?</h4>
+                        <p class="text-slate-500 text-sm mb-7">Nos ayuda a afinar la recomendación.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="sim-q3">
+                            <label class="sim-option group cursor-pointer" data-value="inicio">
+                                <input type="radio" name="q3" value="inicio" class="sr-only">
+                                <div class="flex flex-col items-center text-center gap-3 p-5 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-3xl text-slate-400">seedling</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Inicio</p><p class="text-slate-400 text-xs">Menos de 2 años</p></div>
+                                </div>
+                            </label>
+                            <label class="sim-option group cursor-pointer" data-value="crecimiento">
+                                <input type="radio" name="q3" value="crecimiento" class="sr-only">
+                                <div class="flex flex-col items-center text-center gap-3 p-5 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-3xl text-[#00552b]">trending_up</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Crecimiento</p><p class="text-slate-400 text-xs">2 a 6 años activos</p></div>
+                                </div>
+                            </label>
+                            <label class="sim-option group cursor-pointer" data-value="consolidado">
+                                <input type="radio" name="q3" value="consolidado" class="sr-only">
+                                <div class="flex flex-col items-center text-center gap-3 p-5 rounded-2xl border-2 border-slate-100 group-hover:border-emerald-300 group-hover:bg-emerald-50/50 transition-all duration-200">
+                                    <span class="material-symbols-outlined text-3xl text-[#d4af37]">verified</span>
+                                    <div><p class="font-bold text-slate-800 text-sm">Consolidado</p><p class="text-slate-400 text-xs">Más de 6 años</p></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- ── RESULTADO ── -->
+                    <div id="sim-result" class="hidden">
+                        <div class="text-center mb-7">
+                            <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <span class="material-symbols-outlined text-[#00552b] text-3xl">check_circle</span>
+                            </div>
+                            <h4 class="text-xl font-black text-slate-900 font-serif mb-1">Su plan personalizado CEPSE</h4>
+                            <p class="text-slate-500 text-sm">Basado en su perfil, estos son los servicios más relevantes para usted:</p>
+                        </div>
+                        <div id="sim-result-cards" class="space-y-3 mb-7"></div>
+                        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                            <span class="material-symbols-outlined text-[#d4af37] text-3xl flex-shrink-0">workspace_premium</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-slate-800 text-sm mb-0.5">¿Listo para dar el siguiente paso?</p>
+                                <p class="text-slate-500 text-xs">Solicite su expediente de afiliación y un asesor CEPSE le contactará en 48h.</p>
+                            </div>
+                            <button data-form="consulting" class="flex-shrink-0 inline-flex items-center gap-2 bg-[#00552b] text-white font-bold text-sm px-5 py-3 rounded-full hover:bg-emerald-700 transition-colors whitespace-nowrap">
+                                Solicitar asesoría
+                                <span class="material-symbols-outlined text-base">arrow_forward</span>
+                            </button>
+                        </div>
+                        <button id="sim-restart" class="mt-5 w-full text-center text-slate-400 hover:text-slate-600 text-sm font-medium transition-colors flex items-center justify-center gap-1">
+                            <span class="material-symbols-outlined text-base">refresh</span>Reiniciar simulador
+                        </button>
+                    </div>
+
+                    <!-- Botón Siguiente / Calcular -->
+                    <div id="sim-nav" class="mt-8 flex items-center justify-between">
+                        <button id="sim-back" class="hidden text-slate-400 hover:text-slate-700 text-sm font-bold flex items-center gap-1 transition-colors">
+                            <span class="material-symbols-outlined text-base">arrow_back</span> Anterior
+                        </button>
+                        <div></div><!-- spacer -->
+                        <button id="sim-next" class="inline-flex items-center gap-2 bg-[#00552b] text-white font-bold text-sm px-7 py-3.5 rounded-full hover:bg-emerald-700 hover:shadow-[0_0_25px_rgba(0,102,51,0.3)] transition-all disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+                            Siguiente
+                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón ver página completa de servicios -->
+            <div class="text-center mt-8">
+                <a href="servicios.html" class="inline-flex items-center gap-2 text-[#00552b] font-bold text-sm hover:underline underline-offset-4 transition">
+                    <span class="material-symbols-outlined text-base">open_in_new</span>
+                    Ver ficha técnica completa de todos los servicios
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── BANNER CALL TO ACTION ───────────────────────────── -->
+        <div class="mt-28 bg-slate-950 rounded-[3rem] p-10 lg:p-16 text-center relative overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-800">
+            <!-- Rayos Decorativos -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-emerald-900/30 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+                <span class="material-symbols-outlined text-[#d4af37] text-6xl mb-6">workspace_premium</span>
+                <h3 class="text-3xl lg:text-5xl font-black text-white mb-6 font-serif tracking-tight">
+                    ¿Requiere un portafolio <span class="text-[#d4af37]">estructurado?</span>
+                </h3>
+                <p class="text-lg text-slate-400 mb-10 leading-relaxed max-w-2xl mx-auto font-light">
+                    Agende una sesión fiduciaria con nuestro directorio. Estableceremos la viabilidad,
+                    el alcance normativo y el potencial de mercado para anexar formalmente su asociación a la Cámara.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button data-form="consulting" class="group relative inline-flex items-center justify-center px-10 py-5 font-bold text-white transition-all duration-200 bg-[#00552b] font-serif rounded-full hover:bg-emerald-700 hover:shadow-[0_0_40px_rgba(0,102,51,0.6)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600 focus:ring-offset-slate-900 overflow-hidden">
+                        <span class="absolute inset-0 w-full h-full -mt-1 rounded-full opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
+                        <span class="relative flex items-center gap-3 text-lg tracking-wide">
+                            Solicitar Expediente Especial
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+                        </span>
+                    </button>
+                    <button id="services-view-all-btn" class="inline-flex items-center justify-center px-8 py-5 font-bold text-slate-300 border border-slate-700 rounded-full hover:border-slate-400 hover:text-white transition-all duration-200 gap-2">
+                        <span class="material-symbols-outlined text-lg">grid_view</span>
+                        Ver todos los servicios
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /container -->
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  MODAL DE DETALLE DE SERVICIO                                   -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="service-detail-modal"
+     class="fixed inset-0 z-[9999] flex items-center justify-center p-4 hidden"
+     role="dialog" aria-modal="true" aria-labelledby="sdm-title">
+    <!-- Overlay -->
+    <div id="sdm-overlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+    <!-- Panel -->
+    <div class="sdm-panel relative bg-white rounded-[2rem] shadow-2xl max-w-lg w-full overflow-hidden z-10 scale-95 opacity-0 transition-all duration-300">
+        <!-- Header color band -->
+        <div id="sdm-header" class="h-2 w-full bg-gradient-to-r from-[#00552b] to-emerald-400"></div>
+        <!-- Close -->
+        <button id="sdm-close" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition" aria-label="Cerrar">
+            <span class="material-symbols-outlined text-slate-600 text-lg">close</span>
+        </button>
+        <!-- Content -->
+        <div class="p-8 pt-7">
+            <div class="flex items-start gap-5 mb-6">
+                <div id="sdm-icon-wrap" class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <span id="sdm-icon" class="material-symbols-outlined text-2xl text-white"></span>
+                </div>
+                <div>
+                    <span id="sdm-badge" class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border inline-block mb-2"></span>
+                    <h3 id="sdm-title" class="text-2xl font-black text-slate-900 font-serif leading-tight"></h3>
+                </div>
+            </div>
+            <p id="sdm-desc" class="text-slate-600 text-[0.95rem] leading-relaxed mb-6"></p>
+            <!-- Ítems detallados -->
+            <ul id="sdm-items" class="space-y-2.5 mb-6"></ul>
+            <!-- Pie de modal -->
+            <div id="sdm-footer" class="pt-5 border-t border-slate-100 flex items-center justify-between gap-3">
+                <p id="sdm-label" class="text-xs font-bold uppercase tracking-widest"></p>
+                <button data-form="consulting" id="sdm-cta" class="sdm-cta-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-white bg-[#00552b] hover:bg-emerald-700 transition-colors">
+                    Solicitar información
+                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </button>
+            </div>
         </div>
     </div>
-</section>
+</div>
+

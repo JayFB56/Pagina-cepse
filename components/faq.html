@@ -1,181 +1,212 @@
-<section class="py-20 lg:py-28 bg-gradient-to-b from-slate-50 to-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-                <span class="section-title">Preguntas Frecuentes</span>
+<section id="faq-container" class="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <!-- Decoración de Fondo Refinada -->
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
+        <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-100 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-50 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Cabecera de la Sección -->
+        <div class="text-center mb-20 animate-slide-up">
+            <div class="inline-flex items-center gap-2.5 bg-emerald-50 border border-emerald-100 px-5 py-2 rounded-full mb-6 shadow-sm">
+                <span class="material-symbols-outlined text-emerald-600 text-[18px]">quiz</span>
+                <span class="text-xs font-bold tracking-[0.2em] text-emerald-700 uppercase">Centro de Resoluciones</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-8 font-serif leading-tight">
+                Preguntas <span class="text-emerald-600">Fundamentales</span>
             </h2>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-                Encuentra respuestas a las preguntas más comunes sobre cómo unirse y beneficiarte de CEPSE.
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto font-light leading-relaxed">
+                Claridad absoluta sobre nuestro modelo de gestión asociativa y los beneficios institucionales.
             </p>
         </div>
 
-        <div class="space-y-6">
-            <!-- FAQ Item 1 -->
-            <div class="faq-item bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all">
-                <button class="faq-toggle w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors group" aria-expanded="false" aria-controls="faq-answer-1">
-                    <div class="text-left">
-                        <h3 class="text-lg font-bold text-slate-900">¿Cómo puedo unirme a la CEPSE?</h3>
+        <!-- Grid: FAQ + Formulario -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            
+            <!-- Acordeón de Preguntas (8 cols) -->
+            <div class="lg:col-span-12 space-y-4" id="faq-accordion">
+                <!-- Item 1 -->
+                <div class="faq-item bg-slate-50 rounded-3xl border border-slate-200/60 overflow-hidden transition-all duration-500 hover:border-emerald-300/50">
+                    <button class="faq-toggle w-full p-8 flex items-center justify-between group text-left focus:outline-none" aria-expanded="false">
+                        <h3 class="text-xl font-bold text-slate-800 group-hover:text-emerald-700 transition-colors pr-8">¿Cómo puedo adherirme oficialmente a la Cámara Provincial?</h3>
+                        <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 faq-icon-box">
+                            <span class="material-symbols-outlined transition-transform duration-500 faq-icon">expand_more</span>
+                        </div>
+                    </button>
+                    <div class="faq-content overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-8 pt-0 border-t border-slate-200/60">
+                            <div class="pt-8 space-y-6">
+                                <p class="text-slate-600 text-lg leading-relaxed">
+                                    El proceso de formalización requiere que su organización cumpla con los principios de la Economía Popular y Solidaria:
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="flex gap-4 p-4 bg-white rounded-2xl border border-slate-100">
+                                        <span class="material-symbols-outlined text-emerald-500">verified</span>
+                                        <span class="text-sm text-slate-600 font-medium">Mínimo 5 miembros articulados formalmente.</span>
+                                    </div>
+                                    <div class="flex gap-4 p-4 bg-white rounded-2xl border border-slate-100">
+                                        <span class="material-symbols-outlined text-emerald-500">verified</span>
+                                        <span class="text-sm text-slate-600 font-medium">Voluntad de legalización bajo tutela CEPSE.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <span class="material-symbols-outlined text-primary text-2xl transition-transform duration-300">expand_more</span>
-                </button>
-                <div id="faq-answer-1" class="faq-content hidden px-6 pb-6 border-t border-slate-200 bg-slate-50/50 overflow-hidden transition-all duration-300">
-                    <p class="text-slate-700 leading-relaxed mb-4">
-                        Para unirte a CEPSE, tu organización debe cumplir con los siguientes requisitos:
-                    </p>
-                    <ul class="space-y-2 text-slate-700 ml-4">
-                        <li>✓ Ser un grupo organizado bajo los principios de la Economía Popular y Solidaria</li>
-                        <li>✓ Contar con al menos 5 miembros activos</li>
-                        <li>✓ Tener acta constitutiva o documento formal de registro</li>
-                        <li>✓ Compartir nuestros valores de cooperación, equidad y sostenibilidad</li>
-                    </ul>
-                    <p class="text-slate-700 mt-4">
-                        El proceso es simple: completa el formulario de solicitud, nos ponemos en contacto contigo y 
-                        agendamos una reunión de presentación. Generalmente el proceso toma 2-3 semanas.
-                    </p>
                 </div>
-            </div>
 
-            <!-- FAQ Item 2 -->
-            <div class="faq-item bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all">
-                <button class="faq-toggle w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors group" aria-expanded="false" aria-controls="faq-answer-2">
-                    <div class="text-left">
-                        <h3 class="text-lg font-bold text-slate-900">¿Tienen costo los servicios de CEPSE?</h3>
+                <!-- Item 2 -->
+                <div class="faq-item bg-slate-50 rounded-3xl border border-slate-200/60 overflow-hidden transition-all duration-500 hover:border-emerald-300/50">
+                    <button class="faq-toggle w-full p-8 flex items-center justify-between group text-left focus:outline-none" aria-expanded="false">
+                        <h3 class="text-xl font-bold text-slate-800 group-hover:text-emerald-700 transition-colors pr-8">¿Tienen costo los programas de capacitación especializados?</h3>
+                        <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 faq-icon-box">
+                            <span class="material-symbols-outlined transition-transform duration-500 faq-icon">expand_more</span>
+                        </div>
+                    </button>
+                    <div class="faq-content overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-8 pt-0 border-t border-slate-200/60">
+                            <div class="pt-8">
+                                <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                                    Nuestras mesas técnicas son subvencionadas institucionalmente para los integrantes oficiales. Esto incluye:
+                                </p>
+                                <ul class="list-none space-y-3">
+                                    <li class="flex items-center gap-3 text-slate-600 font-medium">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        Escuela de Gestión Tributaria y Contable.
+                                    </li>
+                                    <li class="flex items-center gap-3 text-slate-600 font-medium">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        Representación Legal ante la SEPS.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <span class="material-symbols-outlined text-primary text-2xl transition-transform duration-300">expand_more</span>
-                </button>
-                <div id="faq-answer-2" class="faq-content hidden px-6 pb-6 border-t border-slate-200 bg-slate-50/50 overflow-hidden transition-all duration-300">
-                    <p class="text-slate-700 leading-relaxed mb-4">
-                        <strong>La mayoría de nuestras capacitaciones básicas son gratuitas para nuestros asociados.</strong>
-                    </p>
-                    <p class="text-slate-700 mb-4">
-                        Nuestro modelo es que CEPSE funciona como un bien colectivo. Los servicios fundamentales como:
-                    </p>
-                    <ul class="space-y-2 text-slate-700 ml-4 mb-4">
-                        <li>✓ Talleres de capacitación básica</li>
-                        <li>✓ Asesoramiento legal inicial</li>
-                        <li>✓ Participación en ferias provinciales</li>
-                        <li>✓ Acompañamiento técnico</li>
-                    </ul>
-                    <p class="text-slate-700">
-                        Son <strong>sin costo adicional</strong> para nuestros miembros. Solo los servicios especializados 
-                        o consultoría avanzada pueden tener un costo, que es muy accesible.
-                    </p>
                 </div>
-            </div>
 
-            <!-- FAQ Item 3 -->
-            <div class="faq-item bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all">
-                <button class="faq-toggle w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors group" aria-expanded="false" aria-controls="faq-answer-3">
-                    <div class="text-left">
-                        <h3 class="text-lg font-bold text-slate-900">¿Qué beneficios comerciales obtengo al afiliarse?</h3>
+                <!-- Item 3 -->
+                <div class="faq-item bg-slate-50 rounded-3xl border border-slate-200/60 overflow-hidden transition-all duration-500 hover:border-emerald-300/50">
+                    <button class="faq-toggle w-full p-8 flex items-center justify-between group text-left focus:outline-none" aria-expanded="false">
+                        <h3 class="text-xl font-bold text-slate-800 group-hover:text-emerald-700 transition-colors pr-8">¿Qué ventajas obtengo frente a mercados comerciales y el gobierno?</h3>
+                        <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 faq-icon-box">
+                            <span class="material-symbols-outlined transition-transform duration-500 faq-icon">expand_more</span>
+                        </div>
+                    </button>
+                    <div class="faq-content overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-8 pt-0 border-t border-slate-200/60">
+                            <div class="pt-8 space-y-4">
+                                <div class="p-6 bg-white rounded-2xl">
+                                    <h4 class="font-bold text-slate-900 mb-2 italic">Licitaciones Preferenciales:</h4>
+                                    <p class="text-slate-600">Te habilitamos para participar en catálogos inclusivos del estado con estatus de proveedor prioritario.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <span class="material-symbols-outlined text-primary text-2xl transition-transform duration-300">expand_more</span>
-                </button>
-                <div id="faq-answer-3" class="faq-content hidden px-6 pb-6 border-t border-slate-200 bg-slate-50/50 overflow-hidden transition-all duration-300">
-                    <p class="text-slate-700 leading-relaxed mb-4">
-                        Los beneficios comerciales incluyen:
-                    </p>
-                    <ul class="space-y-3 text-slate-700 ml-4">
-                        <li><strong>Acceso a Ferias:</strong> Participación en 12+ ferias provinciales anuales con asistencia de miles de compradores</li>
-                        <li><strong>Compras Directas:</strong> Conexión con gobiernos locales que compran directamente a organizaciones solidarias</li>
-                        <li><strong>Mayoristas Certificados:</strong> Acceso a red de distribuidores que respetan precios justos</li>
-                        <li><strong>Sello CEPSE:</strong> Certificación que aumenta tu credibilidad ante clientes</li>
-                        <li><strong>Eliminación de Intermediarios:</strong> Vender directamente y recibir mejor precio</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- FAQ Item 4 -->
-            <div class="faq-item bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all">
-                <button class="faq-toggle w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors group" aria-expanded="false" aria-controls="faq-answer-4">
-                    <div class="text-left">
-                        <h3 class="text-lg font-bold text-slate-900">¿Cómo accedo a líneas de crédito?</h3>
-                    </div>
-                    <span class="material-symbols-outlined text-primary text-2xl transition-transform duration-300">expand_more</span>
-                </button>
-                <div id="faq-answer-4" class="faq-content hidden px-6 pb-6 border-t border-slate-200 bg-slate-50/50 overflow-hidden transition-all duration-300">
-                    <p class="text-slate-700 leading-relaxed mb-4">
-                        A través de nuestras <strong>alianzas con cooperativas de ahorro y crédito</strong>, nuestros asociados 
-                        acceden a tasas de interés preferenciales.
-                    </p>
-                    <p class="text-slate-700 mb-4">
-                        El proceso es sencillo:
-                    </p>
-                    <ul class="space-y-2 text-slate-700 ml-4 mb-4">
-                        <li>1. CEPSE realiza un diagnóstico de tu capacidad de pago</li>
-                        <li>2. Te presentamos ante la cooperativa aliada</li>
-                        <li>3. Realizas tu solicitud directamente con tasas reducidas</li>
-                        <li>4. Con los fondos inviertes en el crecimiento de tu emprendimiento</li>
-                    </ul>
-                    <p class="text-slate-700">
-                        <strong>Tasa típica para CEPSE:</strong> Entre 8-12% anual (versus 18-24% en banca comercial regular)
-                    </p>
-                </div>
-            </div>
-
-            <!-- FAQ Item 5 -->
-            <div class="faq-item bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all">
-                <button class="faq-toggle w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors group" aria-expanded="false" aria-controls="faq-answer-5">
-                    <div class="text-left">
-                        <h3 class="text-lg font-bold text-slate-900">¿Puedo participar en ferias si mi producto está en desarrollo?</h3>
-                    </div>
-                    <span class="material-symbols-outlined text-primary text-2xl transition-transform duration-300">expand_more</span>
-                </button>
-                <div id="faq-answer-5" class="faq-content hidden px-6 pb-6 border-t border-slate-200 bg-slate-50/50 overflow-hidden transition-all duration-300">
-                    <p class="text-slate-700 leading-relaxed mb-4">
-                        <strong>¡Sí, absolutamente!</strong> De hecho, una de nuestras funciones es acompañarte en el proceso 
-                        de desarrollo y mejora de tu producto.
-                    </p>
-                    <p class="text-slate-700">
-                        Ofrecemos asesoramiento técnico en:
-                    </p>
-                    <ul class="space-y-2 text-slate-700 ml-4 mt-4">
-                        <li>✓ Mejora de procesos de producción</li>
-                        <li>✓ Diseño y mejora de empaque</li>
-                        <li>✓ Etiquetado y cumplimiento normativo</li>
-                        <li>✓ Estrategia comercial y posicionamiento</li>
-                    </ul>
-                    <p class="text-slate-700 mt-4">
-                        Contacta a nuestro equipo de innovación productiva para que evaluemos cómo podemos apoyarte.
-                    </p>
-                </div>
-            </div>
-
-            <!-- FAQ Item 6 -->
-            <div class="faq-item bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all">
-                <button class="faq-toggle w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors group" aria-expanded="false" aria-controls="faq-answer-6">
-                    <div class="text-left">
-                        <h3 class="text-lg font-bold text-slate-900">¿Cuál es el compromiso de membresía con CEPSE?</h3>
-                    </div>
-                    <span class="material-symbols-outlined text-primary text-2xl transition-transform duration-300">expand_more</span>
-                </button>
-                <div id="faq-answer-6" class="faq-content hidden px-6 pb-6 border-t border-slate-200 bg-slate-50/50 overflow-hidden transition-all duration-300">
-                    <p class="text-slate-700 leading-relaxed mb-4">
-                        Los compromisos son mínimos y claros:
-                    </p>
-                    <ul class="space-y-2 text-slate-700 ml-4 mb-4">
-                        <li>✓ Participación activa en al menos una asamblea anual</li>
-                        <li>✓ Seguimiento de lineamientos de calidad y sostenibilidad</li>
-                        <li>✓ Comunicación honesta sobre tu desempeño productivo</li>
-                        <li>✓ Disponibilidad para intercambio de experiencias con otros miembros</li>
-                    </ul>
-                    <p class="text-slate-700">
-                        <strong>No hay contrato vinculante forzoso.</strong> Puedes dejar la CEPSE cuando lo decidas, 
-                        aunque esperamos que el crecimiento compartido te motive a permanecer.
-                    </p>
                 </div>
             </div>
         </div>
 
-        <!-- Contacto para más preguntas -->
-        <div class="mt-16 p-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl border-2 border-primary/30 text-center">
-            <h3 class="text-2xl font-bold text-slate-900 mb-3">¿Tienes otra pregunta?</h3>
-            <p class="text-slate-700 mb-6">
-                Nuestro equipo está disponible para responder cualquier duda adicional que tengas.
-            </p>
-            <a href="#contact" class="btn-primary inline-block">
-                Contáctanos Ahora
-            </a>
+        <!-- Banner de Contacto Directo con Formulario Integrado -->
+        <div class="mt-24 p-1 rounded-[3rem] bg-gradient-to-br from-emerald-500 via-emerald-600 to-slate-900 shadow-2xl">
+            <div class="bg-slate-900 rounded-[2.8rem] p-10 lg:p-20 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80')] bg-cover"></div>
+                
+                <div class="flex flex-col lg:flex-row gap-16 relative z-10">
+                    <!-- Info -->
+                    <div class="lg:w-1/2">
+                        <div class="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-8 border border-emerald-500/30 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-emerald-400 text-3xl">alternate_email</span>
+                        </div>
+                        <h3 class="text-3xl lg:text-5xl font-black text-white mb-8 font-serif leading-tight">¿Alguna consulta <span class="text-emerald-400">específica</span>?</h3>
+                        <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+                            Nuestro equipo jurídico y técnico responde directamente a través de <span class="text-white font-bold">info@cepse-esmeraldas.com</span>. Completa el formulario y priorizaremos tu solicitud.
+                        </p>
+                        
+                        <div class="flex items-center gap-6 pt-4 border-t border-slate-800">
+                            <div class="flex -space-x-3">
+                                <div class="w-12 h-12 rounded-full border-2 border-slate-900 bg-emerald-500 flex items-center justify-center text-xs font-bold text-white uppercase">V1</div>
+                                <div class="w-12 h-12 rounded-full border-2 border-slate-900 bg-slate-700 flex items-center justify-center text-xs font-bold text-white uppercase">V2</div>
+                            </div>
+                            <span class="text-sm text-slate-500 font-medium">Vocales disponibles ahora</span>
+                        </div>
+                    </div>
+
+                    <!-- Formulario Rápido -->
+                    <div class="lg:w-1/2">
+                        <form id="faq-direct-form" class="bg-white/5 backdrop-blur-xl p-8 lg:p-12 rounded-[2rem] border border-white/10">
+                            <div class="space-y-6">
+                                <div>
+                                    <input type="text" name="name" placeholder="Tu Nombre Completo" class="w-full bg-white/10 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-all font-medium">
+                                </div>
+                                <div>
+                                    <input type="email" name="email" placeholder="Correo Electrónico" class="w-full bg-white/10 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-all font-medium">
+                                </div>
+                                <div>
+                                    <textarea name="message" rows="3" placeholder="Describe tu consulta puntual..." class="w-full bg-white/10 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-all font-medium resize-none"></textarea>
+                                </div>
+                                <button type="button" data-form="contact" class="w-full py-5 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-black rounded-xl transition-all shadow-lg hover:shadow-emerald-500/20 active:scale-95 flex items-center justify-center gap-3">
+                                    Enviar a info@cepse-esmeraldas.com
+                                    <span class="material-symbols-outlined">send</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script>
+    // Inicializar Acordeón FAQ
+    function initFAQ() {
+        const toggles = document.querySelectorAll('.faq-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const item = toggle.parentElement;
+                const content = item.querySelector('.faq-content');
+                const isOpen = item.classList.contains('active');
+                
+                // Cerrar otros
+                document.querySelectorAll('.faq-item').forEach(other => {
+                    if (other !== item) {
+                        other.classList.remove('active');
+                        other.querySelector('.faq-content').style.maxHeight = null;
+                    }
+                });
+
+                // Alternar actual
+                if (isOpen) {
+                    item.classList.remove('active');
+                    content.style.maxHeight = null;
+                } else {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+    }
+
+    // Exponer para index.html si es necesario
+    window.initFAQ = initFAQ;
+    initFAQ();
+</script>
+
+<style>
+    .faq-item.active {
+        background-color: #ffffff;
+        border-color: #10b981;
+        box-shadow: 0 15px 40px rgba(16, 185, 129, 0.08);
+    }
+    .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+    }
+    .faq-item.active .faq-icon-box {
+        background: #10b981;
+        color: white;
+    }
+    .faq-content {
+        max-height: 0;
+        transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+</style>
