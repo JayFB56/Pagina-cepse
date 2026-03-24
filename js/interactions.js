@@ -206,45 +206,106 @@ function animateCounter(element) {
 }
 
 // ============================================
-// VALIDACIÓN DE FORMULARIOS
+// VALIDACIÓN DE FORMULARIOS Y ENVÍO A FIREBASE
 // ============================================
 
-document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Validar campos requeridos
-        const requiredFields = form.querySelectorAll('[required]');
-        let isValid = true;
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const requiredFields = contactForm.querySelectorAll('[required]');
+            let isValid = true;
 
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                field.classList.add('border-red-500');
-                isValid = false;
-            } else {
-                field.classList.remove('border-red-500');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+
+            if (!isValid) {
+                alert('Por favor completa todos los campos requeridos');
+                return;
+            }
+
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            data.formType = 'contact';
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            try {
+                if (window.firebaseSubmit) {
+                    const result = await window.firebaseSubmit(data);
+                    
+                    if (result.success) {
+                        const successMsg = document.createElement('div');
+                        successMsg.className = 'fixed top-6 right-6 bg-primary text-slate-900 px-6 py-3 rounded-lg shadow-lg font-bold z-50';
+                        successMsg.innerHTML = '<span class="material-symbols-outlined inline mr-2">check_circle</span>¡Solicitud enviada con éxito!';
+                        document.body.appendChild(successMsg);
+
+                        contactForm.reset();
+
+                        setTimeout(() => {
+                            successMsg.remove();
+                        }, 4000);
+                    }
+                } else {
+                    alert('Sistema de almacenamiento no disponible. Intenta más tarde.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('No se pudo enviar el formulario. Intenta más tarde.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
             }
         });
+    }
 
-        if (isValid) {
-            // Mostrar mensaje de éxito
-            const successMsg = document.createElement('div');
-            successMsg.className = 'fixed top-6 right-6 bg-primary text-slate-900 px-6 py-3 rounded-lg shadow-lg font-bold z-50';
-            successMsg.textContent = '✓ Solicitud enviada exitosamente';
-            document.body.appendChild(successMsg);
+    document.querySelectorAll('form:not(#contact-form)').forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
 
-            // Limpiar formulario
-            form.reset();
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
 
-            // Remover mensaje después de 4 segundos
-            setTimeout(() => {
-                successMsg.remove();
-            }, 4000);
+            if (isValid) {
+                const successMsg = document.createElement('div');
+                successMsg.className = 'fixed top-6 right-6 bg-primary text-slate-900 px-6 py-3 rounded-lg shadow-lg font-bold z-50';
+                successMsg.textContent = '✓ Solicitud enviada exitosamente';
+                document.body.appendChild(successMsg);
 
-            // Cerrar modal if open
-            modal?.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+                form.reset();
+
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 4000);
+
+                const modal = form.closest('.modal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
     });
 });
 

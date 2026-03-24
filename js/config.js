@@ -15,3 +15,10 @@ tailwind.config = {
         },
     },
 }
+
+// Configuración de Formspree para envío de emails
+const FORMSPREE_CONFIG = {
+    endpoint: 'https://formspree.io/f/mkgnzqzq',
+    email: 'info@cepse-esmeraldas.com'
+};
+

@@ -189,7 +189,6 @@ class FormManager {
         `;
     }
 
-    // Manejar envío de formulario
     async handleSubmit(e, formType) {
         e.preventDefault();
         
@@ -199,50 +198,74 @@ class FormManager {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
-        // Validar
         if (!this.validateForm(form)) return;
 
-        // Mostrar loading
         this.setFormLoading(form, true);
 
         try {
-            // Agregar timestamp y tipo de forma
-            data.timestamp = new Date().toLocaleString('es-EC');
             data.formType = formType;
+            
+            if (typeof FORMSPREE_CONFIG !== 'undefined' && FORMSPREE_CONFIG.endpoint) {
+                const formspreeData = {
+                    ...data,
+                    _subject: `Nueva ${this.getFormSubject(formType)} - CEPSE`,
+                    _replyto: data.email
+                };
 
-            // Enviar a API
-            const response = await fetch(this.apiEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`);
+                try {
+                    await fetch(FORMSPREE_CONFIG.endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formspreeData)
+                    });
+                } catch (formspreeError) {
+                    console.warn('Email delivery warning:', formspreeError);
+                }
             }
-
-            const result = await response.json();
-
-            if (result.success) {
+            
+            if (window.firebaseSubmit) {
+                const result = await window.firebaseSubmit(data);
+                
+                if (result.success) {
+                    this.showSuccess(form);
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        const modal = form.closest('.modal');
+                        if (modal) this.closeModal(modal);
+                    }, 2000);
+                } else {
+                    this.showError(form, 'Error al enviar el formulario');
+                }
+            } else {
                 this.showSuccess(form);
                 form.reset();
                 
-                // Cerrar modal después de 2 segundos
                 setTimeout(() => {
                     const modal = form.closest('.modal');
                     if (modal) this.closeModal(modal);
                 }, 2000);
-            } else {
-                this.showError(form, result.message || 'Error al enviar el formulario');
             }
         } catch (error) {
             console.error('Error:', error);
-            this.showError(form, 'No se pudo conectar con el servidor. Intenta más tarde.');
+            this.showError(form, 'No se pudo enviar el formulario. Intenta más tarde.');
         } finally {
             this.setFormLoading(form, false);
         }
+    }
+
+    getFormSubject(formType) {
+        const subjects = {
+            affiliation: 'Solicitud de Afiliación',
+            contact: 'Consulta General',
+            consulting: 'Solicitud de Consultoría',
+            eventRegistration: 'Registro de Evento',
+            fairRegistration: 'Registro de Feria'
+        };
+        return subjects[formType] || 'Solicitud';
     }
 
     // Validar campos requeridos

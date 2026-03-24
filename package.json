@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/JayFB56/Pagina-cepse/issues"
   },
-  "homepage": "https://github.com/JayFB56/Pagina-cepse#readme"
+  "homepage": "https://github.com/JayFB56/Pagina-cepse#readme",
+  "dependencies": {
+    "firebase": "^12.10.0"
+  }
 }
