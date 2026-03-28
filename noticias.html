@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Noticias y Actualidad - CEPSE</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config" src="js/config.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        :root {
+            --cepse-green: #00552b;
+            --cepse-gold: #d4af37;
+            --cepse-accent: #13ec13;
+        }
+
+        ::selection {
+            background-color: var(--cepse-green);
+            color: white;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 1.75rem;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.75rem;
+        }
+
+        .news-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+        }
+
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(90deg, var(--cepse-green), #006d38);
+            color: white;
+            padding: 12px 0;
+            border-radius: 9999px;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .animate-ticker {
+            animation: scroll 35s linear infinite;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body class="font-display text-slate-800 min-h-screen relative antialiased bg-slate-50">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="flex flex-col items-center">
+            <div class="w-20 h-20 border-4 border-emerald-100 border-t-[#00552b] rounded-full animate-spin mb-6"></div>
+            <p class="text-xs font-black uppercase tracking-[0.4em] text-slate-400">CEPSE • Boletín Informativo</p>
+        </div>
+    </div>
+
+    <div id="header-container"></div>
+
+    <main class="pt-32 pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Header Sección -->
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div class="space-y-4">
+                    <nav
+                        class="flex items-center gap-2 text-sm font-bold text-emerald-800/60 uppercase tracking-widest">
+                        <a href="index.html" class="hover:text-[#00552b] transition-colors">Inicio</a>
+                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                        <span class="text-[#00552b]">Noticias y Actualidad</span>
+                    </nav>
+                    <h1 class="text-5xl md:text-6xl font-black text-slate-900 font-serif leading-none">
+                        Boletín <span class="text-emerald-600">Informativo</span>
+                    </h1>
+                    <p class="text-slate-600 max-w-md">Actualizaciones del sector productivo, emprendimiento y economía
+                        popular y solidaria en Ecuador.</p>
+                </div>
+                <div id="last-update" class="text-sm font-medium text-slate-500"></div>
+            </div>
+
+            <!-- Contenido Principal -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+
+                <!-- Video + Noticia Principal -->
+                <div class="lg:col-span-8 space-y-6">
+                    <div id="main-news-video" class="video-container bg-slate-900"></div>
+
+                    <div id="main-news-content" class="glass-card p-8 md:p-10 rounded-3xl">
+                        <h2 id="main-news-title"
+                            class="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-6">
+                            Cargando boletín principal...
+                        </h2>
+                        <div id="main-news-summary" class="text-slate-600 leading-relaxed text-[17px] space-y-4"></div>
+                    </div>
+                </div>
+
+                <!-- Sidebar - Locución -->
+                <div class="lg:col-span-4 space-y-6">
+                    <div class="glass-card p-6 rounded-3xl shadow-xl border border-emerald-100">
+                        <div class="aspect-video bg-slate-900 rounded-2xl overflow-hidden relative"
+                            id="presenter-container">
+                            <!-- Locución placeholder -->
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-emerald-900 to-emerald-950 text-white p-8 rounded-3xl shadow-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="material-symbols-outlined text-3xl">live_tv</span>
+                            <h3 class="font-black uppercase tracking-widest text-sm opacity-75">En Vivo • CEPSE</h3>
+                        </div>
+                        <p class="font-bold text-xl leading-tight">Reporte Especial de Emprendimiento y Economía Popular
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ticker de Titulares -->
+            <div class="ticker-wrap mb-16 shadow-inner">
+                <div id="ticker-content" class="whitespace-nowrap inline-block animate-ticker text-sm font-semibold">
+                </div>
+            </div>
+
+            <!-- Archivo de Noticias -->
+            <div class="space-y-8">
+                <div class="flex items-center gap-4">
+                    <div class="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent flex-grow"></div>
+                    <h3 class="text-xl font-bold text-slate-400 uppercase tracking-[0.125em]">Archivo de Noticias</h3>
+                    <div class="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent flex-grow"></div>
+                </div>
+
+                <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Cards generadas dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+        // ==================== CONFIGURACIÓN INSTITUCIONAL ====================
+        const CONFIG = {
+            YOUTUBE_FEATURED_ID: '0eBv-Qh7G_w',   // ← Cambia este ID fácilmente
+            SEARCH_KEYWORDS: 'Economia+Ecuador+OR+Emprendimiento+Ecuador+OR+Agricultura+Ecuador+OR+Economia+Popular',
+            DEFAULT_IMAGES: [
+                "https://images.unsplash.com/photo-1542601906990-b4d3fb773b09?w=1200&q=80",
+                "https://images.unsplash.com/photo-1591115711435-059a53775821?w=1200&q=80",
+                "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80",
+                "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80",
+                "https://images.unsplash.com/photo-1556761175-5973b0f62e7e?w=1200&q=80",
+                "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200&q=80",
+                "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1200&q=80",
+                "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1200&q=80"
+            ]
+        };
+
+        const RSS_URL = `https://news.google.com/rss/search?q=${CONFIG.SEARCH_KEYWORDS}&hl=es-419&gl=EC&ceid=EC:es-419`;
+        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+
+        let loadedNews = [];
+        let firstLoad = true;
+
+        // ==================== CARGAR NOTICIAS ====================
+        async function fetchNews() {
+            try {
+                const res = await fetch(API_URL);
+                const json = await res.json();
+
+                if (json.status === 'ok' && json.items && json.items.length > 0) {
+                    loadedNews = json.items.slice(0, 12).map((item, index) => {
+                        const div = document.createElement("div");
+                        div.innerHTML = item.description || item.content || "";
+                        let summary = div.textContent || div.innerText || "Información relevante del sector productivo ecuatoriano.";
+                        summary = summary.substring(0, 220) + '...';
+
+                        return {
+                            id: index,
+                            title: item.title,
+                            summary: summary,
+                            created_at: item.pubDate,
+                            thumbnail: CONFIG.DEFAULT_IMAGES[index % CONFIG.DEFAULT_IMAGES.length]
+                        };
+                    });
+
+                    renderMainNews(0);
+                    renderNewsGrid(loadedNews.slice(1));
+                    renderTicker(loadedNews);
+
+                    document.getElementById('last-update').innerHTML = `
+                        Actualizado: <span class="font-medium">${new Date().toLocaleDateString('es-EC', { weekday: 'long', day: 'numeric', month: 'long' })} - ${new Date().toLocaleTimeString('es-EC')}</span>
+                    `;
+                }
+            } catch (err) {
+                console.error('Error al cargar noticias:', err);
+                document.getElementById('main-news-title').innerText = "Boletín en actualización. Consulte más tarde.";
+            }
+        }
+
+        // ==================== NOTICIA PRINCIPAL CON VIDEO ====================
+        function renderMainNews(index) {
+            const news = loadedNews[index];
+            if (!news) return;
+
+            const videoHtml = `
+                <iframe src="https://www.youtube.com/embed/${CONFIG.YOUTUBE_FEATURED_ID}?rel=0&modestbranding=1" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>`;
+
+            document.getElementById('main-news-video').innerHTML = videoHtml;
+
+            document.getElementById('main-news-title').innerText = news.title;
+            document.getElementById('main-news-summary').innerHTML = `
+                <p>${news.summary}</p>
+                <p class="pt-4 text-emerald-700 font-medium text-sm">CEPSE • ${new Date(news.created_at).toLocaleDateString('es-EC')}</p>
+            `;
+
+            // Actualizar locutora
+            updatePresenter(news);
+        }
+
+        function updatePresenter(news) {
+            document.getElementById('presenter-container').innerHTML = `
+                <div onclick="playNewsText(${news.id})" class="w-full h-full bg-gradient-to-br from-emerald-900 to-slate-900 flex flex-col items-center justify-center cursor-pointer hover:brightness-110 transition-all group">
+                    <div class="w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center mb-6 group-active:scale-95 transition-transform">
+                        <span class="material-symbols-outlined text-6xl text-white">volume_up</span>
+                    </div>
+                    <p class="text-white font-bold text-lg tracking-wide">Locución Institucional</p>
+                    <p class="text-emerald-300 text-xs mt-1">Haga clic para escuchar el boletín</p>
+                </div>
+            `;
+        }
+
+        // ==================== GRID DE NOTICIAS ====================
+        function renderNewsGrid(list) {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = list.map((item, idx) => `
+                <div onclick="renderMainNews(${idx + 1})" class="news-card glass-card rounded-3xl overflow-hidden cursor-pointer border border-white/60">
+                    <div class="h-60 bg-slate-200 overflow-hidden">
+                        <img src="${item.thumbnail}" 
+                             loading="lazy" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-7">
+                        <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-600 mb-3">
+                            ${new Date(item.created_at).toLocaleDateString('es-EC')}
+                        </div>
+                        <h4 class="font-bold text-slate-900 leading-tight line-clamp-3 mb-4 group-hover:text-emerald-700 transition-colors">
+                            ${item.title}
+                        </h4>
+                        <p class="text-slate-500 text-sm line-clamp-3">${item.summary}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ==================== TICKER ====================
+        function renderTicker(list) {
+            const ticker = document.getElementById('ticker-content');
+            ticker.innerHTML = list.map(item => `
+                <span class="ticker-item inline-block px-10">${item.title}</span>
+            `).join('');
+        }
+
+        // ==================== LOCUCIÓN (SIN REFERENCIAS A IA) ====================
+        let currentUtterance = null;
+
+        function playNewsText(id) {
+            const news = loadedNews[id];
+            if (!news || !('speechSynthesis' in window)) return;
+
+            if (currentUtterance) speechSynthesis.cancel();
+
+            const text = `Boletín Informativo CEPSE. ${news.title}. ${news.summary}`;
+            currentUtterance = new SpeechSynthesisUtterance(text);
+
+            currentUtterance.lang = 'es-ES';
+            currentUtterance.rate = 0.96;
+            currentUtterance.pitch = 1.05;
+
+            speechSynthesis.speak(currentUtterance);
+        }
+
+        // ==================== CARGAR COMPONENTES ====================
+        async function loadComponent(id, path) {
+            try {
+                const r = await fetch(path);
+                const html = await r.text();
+                document.getElementById(id).innerHTML = r.ok ? html : `<p class="text-center text-slate-400 py-8">Error cargando módulo</p>`;
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // ==================== INICIO ====================
+        window.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([
+                loadComponent('header-container', 'components/header.html'),
+                loadComponent('footer-container', 'components/footer.html')
+            ]);
+
+            await fetchNews();
+
+            setTimeout(() => {
+                if (window.initHeader) window.initHeader();
+                document.getElementById('preloader').classList.add('fade-out');
+            }, 800);
+        });
+    </script>
+</body>
+
+</html>

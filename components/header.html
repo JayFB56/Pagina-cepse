@@ -172,10 +172,40 @@
             <a href="index.html#mission-vision-container"
               class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Misión
               y Visión</a>
+            
+            <!-- Featured: Perfil del Presidente -->
+            <div class="px-3 pt-2 pb-1">
+              <a href="presidente.html" class="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-emerald-50 to-white border border-emerald-100/50 hover:border-emerald-200 hover:shadow-md transition-all group/pres">
+                <div class="w-10 h-10 rounded-lg bg-[#006633] text-white flex items-center justify-center shadow-sm group-hover/pres:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-xl">account_circle</span>
+                </div>
+                <div>
+                  <p class="text-[0.65rem] font-black text-emerald-800/60 uppercase tracking-widest leading-none mb-1">Directorio</p>
+                  <p class="text-sm font-bold text-[#006633]">Perfil del Presidente</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
 
-        <a href="index.html#services-container" class="nav-link">Servicios</a>
+        <!-- Servicios (Dropdown) -->
+        <div class="relative group h-full flex items-center">
+          <button class="nav-link flex items-center gap-1 focus:outline-none">
+            Servicios
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <!-- Contenido Dropdown -->
+          <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 top-full mt-0 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-3">
+            <a href="index.html#services-container"
+              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Todos los Servicios</a>
+            <a href="noticias.html"
+              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Noticias</a>
+          </div>
+        </div>
         <a href="index.html#benefits-container" class="nav-link">Beneficios</a>
         <a href="index.html#impact-container" class="nav-link">Impacto</a>
         <a href="index.html#contact-container" class="nav-link">Contacto</a>
@@ -227,9 +257,24 @@
     <a href="estatuto.html"
       class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Estatuto
       Oficial</a>
+    
+    <!-- Mobile Featured: Perfil del Presidente -->
+    <div class="py-4">
+      <a href="presidente.html" class="flex items-center gap-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-100">
+        <div class="w-12 h-12 rounded-xl bg-[#006633] text-white flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">account_circle</span>
+        </div>
+        <div>
+          <p class="text-xs font-black text-emerald-800/60 uppercase tracking-widest leading-none mb-1">Directorio</p>
+          <p class="text-lg font-bold text-[#006633]">Perfil del Presidente</p>
+        </div>
+      </a>
+    </div>
 
     <a href="index.html#services-container"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Servicios</a>
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Todos los Servicios</a>
+    <a href="noticias.html"
+      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Noticias</a>
     <a href="index.html#benefits-container"
       class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Beneficios</a>
     <a href="index.html#impact-container"
