@@ -58,15 +58,13 @@
         <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 border border-slate-100 shadow-lg">
             <h3 class="text-2xl font-bold text-slate-900 mb-6">Envíanos un mensaje</h3>
             
-            <!-- Opción 1: Usar data-form para modal (recomendado) -->
-            <!-- Este botón abre un modal con validación de Google Apps Script -->
+         
             <button data-form="contact" class="btn-primary w-full py-4 mb-4">
                 <span class="material-symbols-outlined inline mr-2">send</span>
                 Abrir Formulario de Contacto
             </button>
 
-            <!-- Opción 2: Mantener formulario existente (para uso local) -->
-            <!-- Si quieres mantener un formulario HTML tradicional que NO usa Google Sheets -->
+         
             <details class="border-t pt-6">
                 <summary class="text-slate-600 cursor-pointer hover:text-slate-900 font-semibold">
                     ¿Prefieres un formulario en esta página?
@@ -111,28 +109,3 @@
     </div>
 </section>
 
-<!--
-CAMBIOS REALIZADOS:
-✅ Agregado: data-form="contact" a botones de contacto
-
-OPCIONES DE IMPLEMENTACIÓN:
-
-1. RECOMENDADO: Solo usa el botón data-form
-   - El modal se abre en popup
-   - Datos van a Google Sheets
-   - Mejor UX
-
-2. ALTERNATIVA: Mantén el formulario HTML
-   - El formulario en página está en <details>
-   - Puedes tener ambos (modal + forma inline)
-   - Los dos envían a Google Sheets
-
-FLUJO CON data-form="contact":
-1. Usuario click en botón
-2. Se abre modal bonito
-3. Llena email, asunto, mensaje
-4. Datos van a Google Sheets (hoja "Contactos")
-5. Aparece "✓ ¡Mensaje enviado!"
-6. Modal se cierra
-7. Tú tienes el mensaje en Sheets
--->

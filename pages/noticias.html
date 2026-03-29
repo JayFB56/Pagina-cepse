@@ -5,15 +5,15 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Noticias y Actualidad - CEPSE</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/img/icon.ico">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
         rel="stylesheet" />
-    <script id="tailwind-config" src="js/config.js"></script>
-    <link rel="stylesheet" href="css/main.css">
+    <script id="tailwind-config" src="../js/config.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
 
     <style>
         :root {
@@ -116,7 +116,7 @@
 
     <div id="header-container"></div>
 
-    <main class="pt-32 pb-24">
+    <main class="pt-6 lg:pt-8 pb-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Header Sección -->
@@ -124,7 +124,7 @@
                 <div class="space-y-4">
                     <nav
                         class="flex items-center gap-2 text-sm font-bold text-emerald-800/60 uppercase tracking-widest">
-                        <a href="index.html" class="hover:text-[#00552b] transition-colors">Inicio</a>
+                        <a href="../index.html" class="hover:text-[#00552b] transition-colors">Inicio</a>
                         <span class="material-symbols-outlined text-[14px]">chevron_right</span>
                         <span class="text-[#00552b]">Noticias y Actualidad</span>
                     </nav>
@@ -217,6 +217,18 @@
         const RSS_URL = `https://news.google.com/rss/search?q=${CONFIG.SEARCH_KEYWORDS}&hl=es-419&gl=EC&ceid=EC:es-419`;
         const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
 
+        const NEWS_LINKS = {
+            "Nueva cooperativa entra en liquidación en Ecuador; la segunda, en lo que va del año": "https://www.expreso.ec/actualidad/economia/una-nueva-cooperativa-entra-en-liquidacion-la-segunda-en-lo-que-va-del-ano-279696.html",
+            "Resultados consulta popular: Por qué Daniel Noboa sufrió en Ecuador un masivo revés electoral 7 meses después de ganar": "https://www.bbc.com/mundo/articles/cjd0m4931ngo",
+            "Mujeres en Ecuador realizan el 75 % del trabajo doméstico sin pago": "https://www.elcomercio.com/actualidad/ecuador/mujeres-en-ecuador-realizan-el-75-del-trabajo-domestico-sin-pago/",
+            "Gobierno de Ecuador entrega más de $ 7 millones para proyectos de economía popular y solidaria": "https://www.eluniverso.com/noticias/ecuador/gobierno-de-ecuador-entrega-mas-de-7-millones-para-proyectos-de-economia-popular-y-solidaria-nota/",
+            "Ecuador presenta su plan económico a bancos en Nueva York en medio de un paro nacional": "https://www.bloomberglinea.com/latinoamerica/ecuador/ecuador-presenta-su-plan-economico-a-bancos-en-nueva-york-en-medio-de-un-paro-nacional/",
+            "EL 60% DE EMPLEO EN EL ECUADOR LO GENERA LA ECONOMÍA POPULAR Y SOLIDARIA": "https://www.desarrollohumano.gob.ec/el-60-de-empleo-en-el-ecuador-lo-genera-la-economia-popular-y-solidaria/",
+            "Ecuador enfrenta consulta popular para convocar Asamblea Constituyente que preocupa a expertos ambientales": "https://es.mongabay.com/2025/11/consulta-popular-ecuador-preocupa-expertos-ambientales/",
+            "Tras la recesión de 2024, la economía de Ecuador creció 3,7% en 2025, según el Banco Central": "https://www.primicias.ec/economia/pib-ecuador-crecimiento-banco-central-bce-recuperacion-recesion-118902/",
+            "Milei en el ecuador de su mandato: del recorte del Estado argentino con motosierra al rescate de Trump": "https://elpais.com/argentina/2025-12-08/milei-en-el-ecuador-de-su-mandato-del-recorte-del-estado-argentino-con-motosierra-al-rescate-de-trump.html"
+        };
+
         let loadedNews = [];
         let firstLoad = true;
 
@@ -233,12 +245,23 @@
                         let summary = div.textContent || div.innerText || "Información relevante del sector productivo ecuatoriano.";
                         summary = summary.substring(0, 220) + '...';
 
+                        let assignedLink = "javascript:void(0)";
+                        const fetchedTitle = item.title.toLowerCase();
+                        for (const key in NEWS_LINKS) {
+                            // Comprobar coincidencia parcial, omitiendo el nombre del medio que Google News a veces anexa al final
+                            if (fetchedTitle.includes(key.toLowerCase().substring(0, 40)) || key.toLowerCase().includes(fetchedTitle.substring(0, 40))) {
+                                assignedLink = NEWS_LINKS[key];
+                                break;
+                            }
+                        }
+
                         return {
                             id: index,
                             title: item.title,
                             summary: summary,
                             created_at: item.pubDate,
-                            thumbnail: CONFIG.DEFAULT_IMAGES[index % CONFIG.DEFAULT_IMAGES.length]
+                            thumbnail: CONFIG.DEFAULT_IMAGES[index % CONFIG.DEFAULT_IMAGES.length],
+                            link: assignedLink
                         };
                     });
 
@@ -295,8 +318,10 @@
         // ==================== GRID DE NOTICIAS ====================
         function renderNewsGrid(list) {
             const grid = document.getElementById('news-grid');
-            grid.innerHTML = list.map((item, idx) => `
-                <div onclick="renderMainNews(${idx + 1})" class="news-card glass-card rounded-3xl overflow-hidden cursor-pointer border border-white/60">
+            grid.innerHTML = list.map((item, idx) => {
+                const targetAttr = item.link !== "javascript:void(0)" ? 'target="_blank" rel="noopener noreferrer"' : '';
+                return `
+                <a href="${item.link}" ${targetAttr} onclick="renderMainNews(${idx + 1})" class="news-card glass-card rounded-3xl overflow-hidden cursor-pointer border border-white/60 block">
                     <div class="h-60 bg-slate-200 overflow-hidden">
                         <img src="${item.thumbnail}" 
                              loading="lazy" 
@@ -311,8 +336,9 @@
                         </h4>
                         <p class="text-slate-500 text-sm line-clamp-3">${item.summary}</p>
                     </div>
-                </div>
-            `).join('');
+                </a>
+                `;
+            }).join('');
         }
 
         // ==================== TICKER ====================
@@ -343,15 +369,7 @@
         }
 
         // ==================== CARGAR COMPONENTES ====================
-        async function loadComponent(id, path) {
-            try {
-                const r = await fetch(path);
-                const html = await r.text();
-                document.getElementById(id).innerHTML = r.ok ? html : `<p class="text-center text-slate-400 py-8">Error cargando módulo</p>`;
-            } catch (e) {
-                console.error(e);
-            }
-        }
+        async function loadComponent(id, filePath) { try { const r = await fetch('../' + filePath); let html = await r.text(); html = html.replace(/(src|href)="assets\//g, '$1="../assets/'); html = html.replace(/href="index\.html/g, 'href="../index.html'); html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html)/g, 'href="$1'); document.getElementById(id).innerHTML = html; } catch (e) { console.error(e); } }
 
         // ==================== INICIO ====================
         window.addEventListener('DOMContentLoaded', async () => {

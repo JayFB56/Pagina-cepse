@@ -123,11 +123,25 @@
 
     <!-- Scripts de componentes -->
     <script>
-        async function loadComponent(containerId, filePath) {
+        async function loadComponent(containerId, filePath, level = 0) {
             try {
                 const response = await fetch(filePath);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const html = await response.text();
+                let html = await response.text();
+                
+                // Ajustar rutas relativas según el nivel de profundidad
+                const prefix = level === 1 ? '../' : './';
+                const pagesPrefix = level === 1 ? '' : 'pages/';
+                
+                // Fix image paths
+                html = html.replace(/(src|href)="assets\//g, `$1="${prefix}assets/`);
+                
+                // Fix links to index
+                html = html.replace(/href="index\.html/g, `href="${prefix}index.html`);
+                
+                // Fix links to pages
+                html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html)/g, `href="${pagesPrefix}$1`);
+
                 document.getElementById(containerId).innerHTML = html;
             } catch (error) {
                 console.error(`Error cargando ${filePath}:`, error);

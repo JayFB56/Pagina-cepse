@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Acuerdo Ministerial Oficial - CEPSE</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/img/icon.ico">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
-    <script id="tailwind-config" src="js/config.js"></script>
-    <link rel="stylesheet" href="css/main.css">
+    <script id="tailwind-config" src="../js/config.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
     <style>
         :root { --cepse-green: #00552b; --cepse-gold: #d4af37; }
         ::selection { background-color: var(--cepse-green); color: white; }
@@ -34,12 +34,12 @@
     <!-- Header -->
     <div id="header-container"></div>
     
-    <main class="pt-32 pb-24 relative z-10 transition-all duration-700">
+    <main class="pt-6 lg:pt-8 pb-24 relative z-10 transition-all duration-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- Breadcrumbs -->
             <nav class="mb-10 flex items-center gap-2 text-sm font-bold text-emerald-800/40 uppercase tracking-widest">
-                <a href="index.html" class="hover:text-[#00552b] transition-colors">Inicio</a>
+                <a href="../index.html" class="hover:text-[#00552b] transition-colors">Inicio</a>
                 <span class="material-symbols-outlined text-[14px]">chevron_right</span>
                 <span class="text-[#00552b]">Legalidad</span>
                 <span class="material-symbols-outlined text-[14px]">chevron_right</span>
@@ -114,14 +114,14 @@
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-3">
-                                    <a href="assets/pdf/ACUERDO MINISTERIAL.pdf" download class="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-all pointer-events-auto" title="Descargar">
+                                    <a href="../assets/pdf/ACUERDO MINISTERIAL.pdf" download class="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-all pointer-events-auto" title="Descargar">
                                         <span class="material-symbols-outlined">download</span>
                                     </a>
                                 </div>
                             </div>
                             <!-- Iframe -->
                             <div class="relative w-full aspect-[4/5] lg:aspect-auto lg:h-[900px]">
-                                <iframe src="assets/pdf/ACUERDO MINISTERIAL.pdf" class="w-full h-full border-0" title="Documento Acuerdo"></iframe>
+                                <iframe src="../assets/pdf/ACUERDO MINISTERIAL.pdf" class="w-full h-full border-0" title="Documento Acuerdo"></iframe>
                             </div>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
     <div id="footer-container"></div>
 
     <script>
-        async function loadComponent(id, path) { try { const r = await fetch(path); const h = await r.text(); document.getElementById(id).innerHTML = h; } catch (e) { console.error(e); } }
+        async function loadComponent(id, filePath) { try { const r = await fetch('../' + filePath); let html = await r.text(); html = html.replace(/(src|href)="assets\//g, '$1="../assets/'); html = html.replace(/href="index\.html/g, 'href="../index.html'); html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html)/g, 'href="$1'); document.getElementById(id).innerHTML = html; } catch (e) { console.error(e); } }
         window.addEventListener('DOMContentLoaded', async () => {
             await Promise.all([loadComponent('header-container', 'components/header.html'), loadComponent('footer-container', 'components/footer.html')]);
             setTimeout(() => { if (window.initHeader) window.initHeader(); document.getElementById('preloader').classList.add('fade-out'); }, 300);

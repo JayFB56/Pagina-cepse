@@ -9,10 +9,10 @@ const FORMS_CONFIG = {
         title: '📝 Solicitar Afiliación',
         subtitle: 'Completa el formulario para que nos pongamos en contacto contigo.',
         fields: [
-            { name: 'nombre', label: 'Nombre Completo *', type: 'text', required: true, placeholder: 'Tu nombre completo' },
-            { name: 'organizacion', label: 'Nombre de tu Organización *', type: 'text', required: true, placeholder: 'Nombre de la organización' },
-            { name: 'email', label: 'Email *', type: 'email', required: true, placeholder: 'tu@email.com' },
-            { name: 'telefono', label: 'Teléfono *', type: 'tel', required: true, placeholder: '+593 9 XXXXXXXX' },
+            { name: 'nombre', label: 'Nombre Completo *', type: 'text', required: true, placeholder: 'Juan Pérez' },
+            { name: 'organizacion', label: 'Nombre de tu Organización *', type: 'text', required: true, placeholder: 'Empresa ABC' },
+            { name: 'email', label: 'Email *', type: 'email', required: true, placeholder: 'nombre@empresa.com' },
+            { name: 'telefono', label: 'Teléfono *', type: 'tel', required: true, placeholder: '+593 99 123 4567' },
             { 
                 name: 'tipoOrganizacion', 
                 label: 'Tipo de Organización *', 
@@ -52,9 +52,9 @@ const FORMS_CONFIG = {
         title: '📧 Contáctanos',
         subtitle: 'Envía tu mensaje directamente a info@cepse-esmeraldas.com y te responderemos pronto.',
         fields: [
-            { name: 'nombre', label: 'Nombre Completo *', type: 'text', required: true, placeholder: 'Tu nombre' },
-            { name: 'email', label: 'Email *', type: 'email', required: true, placeholder: 'tu@email.com' },
-            { name: 'telefono', label: 'Teléfono (opcional)', type: 'tel', required: false, placeholder: '+593 9 XXXXXXXX' },
+            { name: 'nombre', label: 'Nombre Completo *', type: 'text', required: true, placeholder: 'Juan Pérez' },
+            { name: 'email', label: 'Email *', type: 'email', required: true, placeholder: 'nombre@empresa.com' },
+            { name: 'telefono', label: 'Teléfono (opcional)', type: 'tel', required: false, placeholder: '+593 99 123 4567' },
             { name: 'asunto', label: 'Asunto *', type: 'text', required: true, placeholder: 'Ej: Solicitud de asesoramiento' },
             { name: 'mensaje', label: 'Mensaje *', type: 'textarea', required: true, placeholder: 'Escribe tu mensaje aquí...', rows: 5 }
         ],
