@@ -6,7 +6,7 @@ const dbService = require('../services/db_service');
 
 require('dotenv').config();
 
-console.log('--- 🚀 Iniciando Sistema de Automatización CEPSE ---');
+console.log('---  Iniciando Sistema de Automatización CEPSE ---');
 
 async function runAutomation() {
     console.log('[CRON] Buscando nuevas noticias...');
