@@ -10,7 +10,6 @@
       opacity: 0;
       transform: translateY(-10px);
     }
-
     to {
       opacity: 1;
       transform: translateY(0);
@@ -21,40 +20,19 @@
     animation: headerFadeIn 0.8s ease-out forwards;
   }
 
-  /* Estilos base del header */
+  /* Estilos base del header de dos filas */
   #main-header {
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid transparent;
-  }
-
-  /* Estilos para estado scrolled (Scroll > 80px) */
-  #main-header.scrolled {
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  }
-
-  /* Efecto de reducción de alto al hacer scroll */
-  #main-header.scrolled .header-container {
-    height: 5.5rem;
-    /* h-22 */
-  }
-
-  #main-header.scrolled .logo-img {
-    height: 3.5rem;
-    /* h-14 */
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Sombra elegante consolidada */
   }
 
   /* Enlaces de navegación con subrayado verde elegante */
   .nav-link {
     position: relative;
-    color: #475569;
-    /* slate-600 */
-    font-weight: 500;
-    font-size: 1.1rem;
+    color: #475569; /* slate-600 */
+    font-weight: 600;
+    font-size: 1.05rem;
     padding: 0.5rem 0;
     transition: color 0.3s ease;
   }
@@ -82,15 +60,14 @@
     width: 100%;
   }
 
-  /* Botón verde "Unirse ahora" */
+  /* Botón verde "Unirse ahora" alineado y refinado */
   .btn-cta-green {
     background-color: var(--cepse-green);
     color: white;
     font-weight: 600;
-    font-size: 1.05rem;
-    padding: 0.8rem 1.8rem;
-    border-radius: 0.5rem;
-    /* Modern rounded corners */
+    font-size: 0.95rem;
+    padding: 0.6rem 1.6rem;
+    border-radius: 0.5rem; /* Modern rounded corners */
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 102, 51, 0.15);
   }
@@ -115,7 +92,7 @@
     transform: translateY(0);
   }
 
-  /* Menú móvil animaciones */
+  /* Menú móvil animaciones (usado abajo en el div separado) */
   #mobile-menu {
     opacity: 0;
     visibility: hidden;
@@ -131,102 +108,90 @@
 </style>
 
 <!-- HEADER PRINCIPAL -->
-<header id="main-header" class="header-anim sticky top-0 z-50 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="header-container flex items-center justify-between h-28 lg:h-32 transition-all duration-300">
+<!-- HEADER PRINCIPAL: LAYOUT DE DOS FILAS -->
+<header id="main-header" class="header-anim sticky top-0 z-50 transition-all duration-300 flex flex-col w-full bg-white shadow-sm">
+  
+  <!-- FILA 1: BANNER INSTITUCIONAL FULL WIDTH -->
+  <div class="w-full bg-[#fdfdfd] border-b border-slate-100 relative z-20 flex justify-center overflow-hidden">
+    <!-- El banner ocupa el 100% del ancho, ajustando su tamaño sin deformar y sin ser exageradamente alto -->
+    <img src="assets/img/banner.jpeg" alt="Banner Institucional CEPSE" class="w-full h-auto max-h-[140px] md:max-h-[180px] lg:max-h-[220px] object-contain object-center">
+  </div>
 
-      <!-- LADO IZQUIERDO: Logo -->
-      <div class="flex-shrink-0 flex items-center">
-        <a href="index.html" class="block">
-          <img src="assets/img/icon.ico" alt="Logo CEPSE"
-            class="logo-img h-16 lg:h-20 w-auto object-contain transition-all duration-300">
-        </a>
-      </div>
+  <!-- FILA 2: BARRA DE NAVEGACIÓN COMPLETA (SIN LOGO) -->
+  <div class="w-full relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14 md:h-16">
+        
+        <!-- Menú Horizontal (Escritorio) -->
+        <nav class="hidden md:flex flex-1 justify-start items-center space-x-6 lg:space-x-8">
+          <a href="index.html" class="nav-link active">Inicio</a>
 
-      <!-- CENTRO: Menú Horizontal -->
-      <nav class="hidden md:flex flex-1 justify-center space-x-8 lg:space-x-10">
-        <a href="index.html" class="nav-link active">Inicio</a>
-
-        <!-- Institución (Dropdown) -->
-        <div class="relative group h-full flex items-center">
-          <button class="nav-link flex items-center gap-1 focus:outline-none">
-            Institución
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <!-- Contenido Dropdown -->
-          <div
-            class="dropdown-menu absolute left-1/2 -translate-x-1/2 top-full mt-0 w-64 bg-white rounded-xl shadow-lg border border-slate-100 py-3">
-            <a href="index.html#about-container"
-              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Quiénes
-              Somos</a>
-            <a href="acuerdo-ministerial.html"
-              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Acuerdo
-              Ministerial</a>
-            <a href="estatuto.html"
-              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Estatuto
-              Oficial</a>
-            <a href="index.html#mission-vision-container"
-              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Misión
-              y Visión</a>
-            
-            <!-- Featured: Perfil del Presidente -->
-            <div class="px-3 pt-2 pb-1">
-              <a href="presidente.html" class="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-emerald-50 to-white border border-emerald-100/50 hover:border-emerald-200 hover:shadow-md transition-all group/pres">
-                <div class="w-10 h-10 rounded-lg bg-[#006633] text-white flex items-center justify-center shadow-sm group-hover/pres:scale-110 transition-transform">
-                  <span class="material-symbols-outlined text-xl">account_circle</span>
-                </div>
-                <div>
-                  <p class="text-[0.65rem] font-black text-emerald-800/60 uppercase tracking-widest leading-none mb-1">Autoridad</p>
-                  <p class="text-sm font-bold text-[#006633]">Perfil del Presidente</p>
-                </div>
-              </a>
+          <!-- Institución (Dropdown) -->
+          <div class="relative group h-full flex items-center">
+            <button class="nav-link flex items-center gap-1 focus:outline-none">
+              Institución
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="dropdown-menu absolute left-0 top-full mt-0 w-64 bg-white rounded-xl shadow-lg border border-slate-100 py-3">
+              <a href="index.html#about-container" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Quiénes Somos</a>
+              <a href="acuerdo-ministerial.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Acuerdo Ministerial</a>
+              <a href="estatuto.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Estatuto Oficial</a>
+              <a href="index.html#mission-vision-container" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Misión y Visión</a>
+              
+              <!-- Featured: Perfil del Presidente -->
+              <div class="px-3 pt-2 pb-1">
+                <a href="presidente.html" class="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-emerald-50 to-white border border-emerald-100/50 hover:border-emerald-200 hover:shadow-md transition-all group/pres">
+                  <div class="w-10 h-10 rounded-lg bg-[#006633] text-white flex items-center justify-center shadow-sm group-hover/pres:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-xl">account_circle</span>
+                  </div>
+                  <div>
+                    <p class="text-[0.65rem] font-black text-emerald-800/60 uppercase tracking-widest leading-none mb-1">Autoridad</p>
+                    <p class="text-sm font-bold text-[#006633]">Perfil del Presidente</p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
+
+          <!-- Servicios (Dropdown) -->
+          <div class="relative group h-full flex items-center">
+            <button class="nav-link flex items-center gap-1 focus:outline-none">
+              Servicios
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="dropdown-menu absolute left-0 top-full mt-0 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-3">
+              <a href="index.html#services-container" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Todos los Servicios</a>
+              <a href="noticias.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Noticias</a>
+            </div>
+          </div>
+          
+          <a href="index.html#benefits-container" class="nav-link">Beneficios</a>
+          <a href="index.html#impact-container" class="nav-link">Impacto</a>
+          <a href="index.html#contact-container" class="nav-link">Contacto</a>
+        </nav>
+
+        <!-- LADO DERECHO: Botón CTA -->
+        <div class="hidden md:flex flex-shrink-0 items-center justify-end">
+          <button data-form="affiliation" class="btn-cta-green hover:-translate-y-0.5">
+            Unirse ahora
+          </button>
         </div>
 
-        <!-- Servicios (Dropdown) -->
-        <div class="relative group h-full flex items-center">
-          <button class="nav-link flex items-center gap-1 focus:outline-none">
-            Servicios
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        <!-- LADO DERECHO (Móvil): Hamburguesa y Contexto Menú -->
+        <div class="flex md:hidden w-full items-center justify-between">
+          <span class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-widest ml-1">Menú Navegación</span>
+          <button id="menu-open-btn" class="p-2 text-slate-600 hover:text-[#006633] focus:outline-none transition-colors mr-[-8px]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          
-          <!-- Contenido Dropdown -->
-          <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 top-full mt-0 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-3">
-            <a href="index.html#services-container"
-              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Todos los Servicios</a>
-            <a href="noticias.html"
-              class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Noticias</a>
-          </div>
         </div>
-        <a href="index.html#benefits-container" class="nav-link">Beneficios</a>
-        <a href="index.html#impact-container" class="nav-link">Impacto</a>
-        <a href="index.html#contact-container" class="nav-link">Contacto</a>
-      </nav>
 
-      <!-- LADO DERECHO: Botón CTA -->
-      <div class="hidden md:flex flex-shrink-0 items-center justify-end">
-        <button data-form="affiliation" class="btn-cta-green">
-          Unirse ahora
-        </button>
       </div>
-
-      <!-- LADO DERECHO (Móvil): Hamburguesa -->
-      <div class="flex md:hidden items-center">
-        <button id="menu-open-btn" class="p-2 text-slate-600 hover:text-[#006633] focus:outline-none transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-
     </div>
   </div>
 </header>
