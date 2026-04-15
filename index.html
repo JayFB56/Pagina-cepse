@@ -87,6 +87,9 @@
         <!-- Hero Section -->
         <div id="hero-container"></div>
 
+        <!-- SEPS Anuncios Section -->
+        <div id="seps-container"></div>
+
         <!-- What We Do Section -->
         <div id="what-we-do-container"></div>
 
@@ -137,6 +140,7 @@
             await Promise.all([
                 loadComponent('header-container', 'components/header.html'),
                 loadComponent('hero-container', 'components/hero.html'),
+                loadComponent('seps-container', 'components/seps-anuncios.html'),
                 loadComponent('what-we-do-container', 'components/what-we-do.html'),
                 loadComponent('process-container', 'components/process.html'),
                 loadComponent('stats-container', 'components/stats.html'),
@@ -153,6 +157,7 @@
                 if (window.initServices) window.initServices();
                 if (window.initWhatWeDo) window.initWhatWeDo();
                 if (window.initImpact) window.initImpact();
+                if (window.initSepsAnuncios) window.initSepsAnuncios();
                 
                 // Ocultar preloader con un delay mínimo para evitar parpadeos
                 const elapsedTime = Date.now() - startTime;
@@ -179,6 +184,7 @@
     <script src="js/services.js"></script>
     <script src="js/what-we-do.js"></script>
     <script src="js/impact.js"></script>
+    <script src="js/seps-anuncios.js"></script>
 
 </body>
 </html>

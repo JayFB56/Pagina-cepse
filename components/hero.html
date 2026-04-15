@@ -1,64 +1,109 @@
-<section id="hero" class="relative overflow-hidden pt-6 pb-16 lg:pt-8 lg:pb-24 bg-slate-50">
-    
-    <!-- Filtro Superior Suave -->
-    <div class="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
+<section id="hero" class="relative overflow-hidden bg-slate-50">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <!-- Contenedor Premium Hero -->
-        <div class="relative rounded-[2.5rem] overflow-hidden min-h-[600px] lg:min-h-[650px] flex items-center justify-center p-8 md:p-16 lg:p-24 shadow-[0_20px_60px_rgba(0,102,51,0.15)] ring-1 ring-slate-900/5 group"
-             style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1600'); background-size: cover; background-position: center;">
-            
-            <!-- Overlay Fino con Gradiente Institucional -->
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-950/95 via-emerald-900/85 to-slate-900/80 group-hover:scale-105 transition-transform duration-[20s] ease-out pointer-events-none"></div>
-            
-            <!-- Patrón superpuesto sutil estilo arquitectónico -->
-            <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="relative">
+        <!-- Carousel container -->
+        <div id="hero-carousel" class="relative w-full h-[60vh] min-h-[360px] md:h-[72vh] lg:h-[80vh] overflow-hidden md:rounded-[2rem]">
 
-            <!-- Contenido Principal -->
-            <div class="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center gap-8 animate-slide-up">
-                
-                <!-- Badge Institucional Glassmorphism -->
-                <div class="inline-flex items-center gap-2.5 py-2 px-5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-emerald-50 mb-2 shadow-inner">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span class="text-xs md:text-sm font-bold tracking-[0.25em] uppercase">Red Provincial Activa</span>
+            <!-- Slides -->
+            <div class="absolute inset-0">
+                <div class="hero-slides relative w-full h-full">
+                    <div class="hero-slide absolute inset-0 bg-cover bg-center" data-index="0" style="background-image: url('assets/img2/hero1.jpg');"></div>
+                    <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" data-index="1" style="background-image: url('assets/img2/hero2.jpg');"></div>
+                    <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" data-index="2" style="background-image: url('assets/img2/hero3.jpg');"></div>
                 </div>
-                
-                <!-- Titular Principal -->
-                <h1 class="text-5xl md:text-6xl lg:text-[4.5rem] font-black text-white leading-[1.1] tracking-tight font-serif drop-shadow-lg">
-                    Impulsando la <br class="hidden md:block"/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-emerald-100">Economía Popular y Solidaria</span> en Esmeraldas
-                </h1>
-                
-                <!-- Subtítulo Descriptor -->
-                <p class="text-[1.1rem] md:text-xl text-emerald-50/90 font-medium max-w-3xl mx-auto leading-relaxed">
-                    Unimos formalmente asociaciones, cooperativas y emprendimientos para estructurar un modelo económico productivo fundamentado en la dignidad, el progreso mutuo y el bienestar colectivo.
-                </p>
-                
-                <!-- Botones de Acción Múltiple -->
-                <div class="flex flex-col sm:flex-row gap-5 justify-center mt-8 w-full sm:w-auto">
-                    <a href="#services-container"
-                        class="inline-flex justify-center items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white text-lg font-bold py-4 px-10 rounded-[1rem] shadow-[0_10px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_30px_rgba(0,102,51,0.4)] hover:-translate-y-1 transition-all duration-300">
-                        <span>Descubrir Trabajo</span>
-                        <span class="material-symbols-outlined">south</span>
-                    </a>
-                    
-                    <button data-form="affiliation"
-                        class="inline-flex justify-center items-center gap-3 bg-white/10 hover:bg-white/20 border border-white/30 backdrop-blur-md text-white text-lg font-bold py-4 px-10 rounded-[1rem] transition-all duration-300 hover:-translate-y-1 shadow-sm">
-                        <span>Registrar Entidad</span>
-                        <span class="material-symbols-outlined">how_to_reg</span>
-                    </button>
+                <!-- Overlay for contrast -->
+                <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/45 pointer-events-none"></div>
+            </div>
+
+            <!-- Content centered -->
+            <div class="absolute inset-0 flex items-center justify-center z-10 px-6">
+                <div class="max-w-3xl text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">Impulsando la Economía Popular y Solidaria en Esmeraldas</h1>
+                    <p class="text-sm sm:text-base md:text-lg text-emerald-100/90 mb-6">Unimos a cooperativas, asociaciones y emprendimientos para fortalecer el desarrollo local con enfoque solidario y productivo.</p>
+                    <a href="#what-we-do" class="inline-block px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-md font-semibold">Ver más</a>
                 </div>
             </div>
-            
-            <!-- Elemento Decorativo Flotante Inferior Derecho -->
-            <div class="absolute bottom-8 right-8 hidden md:flex items-center gap-3 opacity-[0.55]">
-                <div class="text-right">
-                    <div class="text-emerald-100 font-bold text-[11px] tracking-[0.2em] uppercase">Cámara Provincial</div>
-                    <div class="text-emerald-200/60 text-[10px] tracking-widest uppercase mt-0.5">Ecuador</div>
+
+            <!-- Floating card (z controlled) -->
+            <div class="relative md:absolute left-4 right-4 md:left-auto md:right-12 bottom-6 md:bottom-12 mx-auto md:mx-0 md:w-[360px] mt-6 md:mt-0 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 flex items-start gap-3 z-10" style="z-index:var(--z-hero-card); pointer-events:auto;">
+                <div class="w-12 h-12 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
+                    <span class="material-symbols-outlined">support_agent</span>
                 </div>
-                <span class="material-symbols-outlined text-[40px] text-emerald-400">public</span>
+                <div class="flex-1">
+                    <h3 class="text-lg font-bold text-slate-800">Trámites y Consultas</h3>
+                    <p class="text-sm text-slate-600 mt-1">Accede a servicios, reglamentos y solicitudes de manera ágil.</p>
+                    <div class="mt-3">
+                        <a href="servicios.html" class="inline-block px-3 py-2 bg-emerald-600 text-white rounded-md text-sm">Consultar</a>
+                    </div>
+                </div>
             </div>
-            
+
+            <!-- Controls / Indicators -->
+            <button id="hero-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 text-white hidden md:flex items-center justify-center" aria-label="Anterior">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button id="hero-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 text-white hidden md:flex items-center justify-center" aria-label="Siguiente">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+
+            <div id="hero-indicators" class="absolute left-1/2 -translate-x-1/2 bottom-4 z-20 flex gap-2"></div>
+
         </div>
     </div>
+
+    <script>
+        (function(){
+            const slides = Array.from(document.querySelectorAll('#hero-carousel .hero-slide'));
+            const indicators = document.getElementById('hero-indicators');
+            const prevBtn = document.getElementById('hero-prev');
+            const nextBtn = document.getElementById('hero-next');
+            let current = 0;
+            const total = slides.length;
+            const intervalTime = 6000; // autoplay
+            let autoplayId = null;
+
+            function showSlide(index){
+                slides.forEach((s,i)=>{
+                    s.style.transition = 'opacity 800ms ease';
+                    s.style.opacity = (i===index)? '1':'0';
+                    s.setAttribute('aria-hidden', i===index ? 'false' : 'true');
+                });
+                const dots = indicators.querySelectorAll('button');
+                dots.forEach((d,i)=> d.classList.toggle('opacity-60', i!==index));
+                current = index;
+            }
+
+            function next(){ showSlide((current+1)%total); }
+            function prev(){ showSlide((current-1+total)%total); }
+
+            // build indicators
+            for(let i=0;i<total;i++){
+                const btn = document.createElement('button');
+                btn.className = 'w-3 h-3 rounded-full bg-white/80';
+                btn.setAttribute('aria-label', 'Slide '+(i+1));
+                btn.addEventListener('click', ()=>{ showSlide(i); resetAutoplay(); });
+                indicators.appendChild(btn);
+            }
+
+            // controls
+            if(nextBtn) nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
+            if(prevBtn) prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
+
+            // swipe support
+            let startX = 0; let dist = 0;
+            const carousel = document.getElementById('hero-carousel');
+            carousel.addEventListener('touchstart', (e)=>{ startX = e.touches[0].clientX; });
+            carousel.addEventListener('touchmove', (e)=>{ dist = e.touches[0].clientX - startX; });
+            carousel.addEventListener('touchend', ()=>{ if(dist > 40) { prev(); } else if(dist < -40) { next(); } dist = 0; resetAutoplay(); });
+
+            function startAutoplay(){ autoplayId = setInterval(next, intervalTime); }
+            function stopAutoplay(){ if(autoplayId){ clearInterval(autoplayId); autoplayId = null; } }
+            function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+            // init
+            showSlide(0);
+            startAutoplay();
+        })();
+    </script>
+
 </section>

@@ -105,16 +105,60 @@
     visibility: visible;
     transform: translateY(0);
   }
+
+  /* Topbar pequeño con redes y búsqueda */
+  .topbar {
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+    border-bottom: 1px solid rgba(15,23,42,0.03);
+  }
+
+  .social-icon {
+    color: var(--gray-700);
+    transition: color .2s ease;
+  }
+
+  .social-icon:hover { color: var(--cepse-green); }
+
+  .search-input { max-width: 340px; }
+  
+  /* Asegurar stacking del header */
+  #main-header { position: relative; z-index: var(--z-header); }
 </style>
 
 <!-- HEADER PRINCIPAL -->
 <!-- HEADER PRINCIPAL: LAYOUT DE DOS FILAS -->
 <header id="main-header" class="header-anim sticky top-0 z-50 transition-all duration-300 flex flex-col w-full bg-white shadow-sm">
-  
+  <!-- TOPBAR: redes sociales, logo pequeño y búsqueda -->
+  <div class="topbar w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-10 text-sm">
+        <div class="flex items-center gap-3">
+          <a href="#" class="social-icon flex items-center gap-2 hover:underline" aria-label="Facebook"><span class="material-symbols-outlined">facebook</span></a>
+          <a href="#" class="social-icon flex items-center gap-2 hover:underline" aria-label="Twitter"><span class="material-symbols-outlined">twitter</span></a>
+          <a href="#" class="social-icon flex items-center gap-2 hover:underline" aria-label="YouTube"><span class="material-symbols-outlined">videocam</span></a>
+        </div>
+        <div class="hidden sm:flex items-center justify-center">
+          <!-- Logo reducido en topbar -->
+          <img src="assets/img/icon.ico" alt="CEPSE" class="h-8 w-auto object-contain">
+        </div>
+        <div class="flex items-center justify-end">
+          <form class="hidden md:flex items-center gap-2" role="search" action="/" method="get">
+            <input type="text" name="q" placeholder="Buscar en el sitio..." class="search-input px-3 py-1.5 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200">
+            <button type="submit" class="px-3 py-1.5 rounded-md bg-emerald-600 text-white text-sm">Buscar</button>
+          </form>
+          <!-- Mobile: icono búsqueda -->
+          <button id="mobile-search-btn" class="md:hidden p-1 text-slate-600 ml-2 focus:outline-none" aria-label="Buscar">
+            <span class="material-symbols-outlined">search</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FILA 1: BANNER INSTITUCIONAL FULL WIDTH -->
   <div class="w-full bg-[#fdfdfd] border-b border-slate-100 relative z-20 flex justify-center overflow-hidden">
     <!-- El banner ocupa el 100% del ancho, ajustando su tamaño sin deformar y sin ser exageradamente alto -->
-    <img src="assets/img/banner.jpeg" alt="Banner Institucional CEPSE" class="w-full h-auto max-h-[140px] md:max-h-[180px] lg:max-h-[220px] object-contain object-center">
+    <img src="assets/img/banner.jpeg" alt="Banner Institucional CEPSE" class="w-full h-auto max-h-[120px] md:max-h-[160px] lg:max-h-[180px] object-contain object-center">
   </div>
 
   <!-- FILA 2: BARRA DE NAVEGACIÓN COMPLETA (SIN LOGO) -->
@@ -172,10 +216,15 @@
           <a href="beneficios.html" class="nav-link">Beneficios</a>
           <a href="impacto.html" class="nav-link">Impacto</a>
           <a href="contacto.html" class="nav-link">Contacto</a>
+          <a href="noticias.html" class="ml-3 inline-flex items-center px-4 py-2 rounded-lg border border-emerald-600 text-emerald-700 font-bold bg-emerald-50 hover:bg-emerald-100">DESTACADOS</a>
         </nav>
 
-        <!-- LADO DERECHO: Botón CTA -->
-        <div class="hidden md:flex flex-shrink-0 items-center justify-end">
+        <!-- LADO DERECHO: Buscador y Botón CTA -->
+        <div class="hidden md:flex flex-shrink-0 items-center justify-end gap-3">
+          <form class="flex items-center bg-white/60 rounded-md px-2 py-1 border border-slate-100 search-input" role="search" action="/" method="get">
+            <input type="text" name="q" placeholder="Buscar..." class="w-44 text-sm outline-none px-2 py-1 bg-transparent" />
+            <button type="submit" class="text-slate-600 px-2"><span class="material-symbols-outlined">search</span></button>
+          </form>
           <button data-form="affiliation" class="btn-cta-green hover:-translate-y-0.5">
             Unirse ahora
           </button>
@@ -312,5 +361,42 @@
     mobileLinks.forEach(link => {
       link.addEventListener('click', closeMobileMenu);
     });
+
+    // 3. Búsqueda móvil: overlay simple
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+    if (mobileSearchBtn) {
+      mobileSearchBtn.addEventListener('click', () => {
+        // Crear overlay si no existe
+        let overlay = document.getElementById('mobile-search-overlay');
+        if (!overlay) {
+          overlay = document.createElement('div');
+          overlay.id = 'mobile-search-overlay';
+          overlay.className = 'fixed inset-0 z-[120] bg-white/95 flex items-start pt-20 px-6';
+          overlay.innerHTML = `
+            <div class="w-full">
+              <div class="flex items-center gap-3">
+                <input id="mobile-search-input" type="search" placeholder="Buscar en el sitio..." class="w-full px-4 py-3 border border-slate-200 rounded-md text-lg focus:outline-none" />
+                <button id="mobile-search-close" class="p-3 text-slate-600"><span class="material-symbols-outlined">close</span></button>
+              </div>
+            </div>`;
+          document.body.appendChild(overlay);
+
+          const closeBtnSearch = document.getElementById('mobile-search-close');
+          closeBtnSearch.addEventListener('click', () => {
+            overlay.remove();
+          });
+
+          const input = document.getElementById('mobile-search-input');
+          input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              // Redirigir a resultados (simple submit a la raíz con query)
+              const q = input.value.trim();
+              if (q.length) window.location.href = `/?q=${encodeURIComponent(q)}`;
+            }
+          });
+          setTimeout(() => input.focus(), 50);
+        }
+      });
+    }
   });
 </script>
