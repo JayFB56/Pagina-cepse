@@ -124,7 +124,7 @@
     <div id="footer-container"></div>
 
     <script>
-        async function loadComponent(id, filePath) { try { const r = await fetch('../' + filePath); let html = await r.text(); html = html.replace(/(src|href)="assets\//g, '$1="../assets/'); html = html.replace(/href="index\.html/g, 'href="../index.html'); html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html)/g, 'href="$1'); document.getElementById(id).innerHTML = html; } catch (e) { console.error(e); } }
+        async function loadComponent(id, filePath) { try { const r = await fetch('../' + filePath); let html = await r.text(); html = html.replace(/(src|href)="assets\//g, '$1="../assets/'); html = html.replace(/href="index\.html/g, 'href="../index.html'); html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html|quienes-somos\.html|mision-vision\.html|beneficios\.html|impacto\.html|contacto\.html)/g, 'href="$1'); document.getElementById(id).innerHTML = html; } catch (e) { console.error(e); } }
 
         window.addEventListener('DOMContentLoaded', async () => {
             await Promise.all([

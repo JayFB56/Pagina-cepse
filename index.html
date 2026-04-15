@@ -87,35 +87,17 @@
         <!-- Hero Section -->
         <div id="hero-container"></div>
 
-        <!-- About Section -->
-        <div id="about-container"></div>
-
         <!-- What We Do Section -->
         <div id="what-we-do-container"></div>
 
-        <!-- Services Section -->
-        <div id="services-container"></div>
-
-        <!-- Benefits Section -->
-        <div id="benefits-container"></div>
-
-        <!-- Impact Section -->
-        <div id="impact-container"></div>
-
         <!-- Work Process Section -->
         <div id="process-container"></div>
-
-        <!-- Mission Vision Section -->
-        <div id="mission-vision-container"></div>
 
         <!-- Stats Section -->
         <div id="stats-container"></div>
 
         <!-- FAQ Section -->
         <div id="faq-container"></div>
-
-        <!-- Contact Section -->
-        <div id="contact-container"></div>
     </main>
 
     <!-- Footer -->
@@ -140,7 +122,7 @@
                 html = html.replace(/href="index\.html/g, `href="${prefix}index.html`);
                 
                 // Fix links to pages
-                html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html)/g, `href="${pagesPrefix}$1`);
+                html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html|quienes-somos\.html|mision-vision\.html|beneficios\.html|impacto\.html|contacto\.html)/g, `href="${pagesPrefix}$1`);
 
                 document.getElementById(containerId).innerHTML = html;
             } catch (error) {
@@ -155,16 +137,10 @@
             await Promise.all([
                 loadComponent('header-container', 'components/header.html'),
                 loadComponent('hero-container', 'components/hero.html'),
-                loadComponent('about-container', 'components/about.html'),
                 loadComponent('what-we-do-container', 'components/what-we-do.html'),
-                loadComponent('services-container', 'components/services.html'),
-                loadComponent('benefits-container', 'components/benefits.html'),
-                loadComponent('impact-container', 'components/impact.html'),
                 loadComponent('process-container', 'components/process.html'),
-                loadComponent('mission-vision-container', 'components/mission-vision.html'),
                 loadComponent('stats-container', 'components/stats.html'),
                 loadComponent('faq-container', 'components/faq.html'),
-                loadComponent('contact-container', 'components/contact.html'),
                 loadComponent('footer-container', 'components/footer.html')
             ]);
             

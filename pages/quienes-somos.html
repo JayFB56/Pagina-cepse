@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Servicios - CEPSE</title>
+    <title>Quiénes Somos - CEPSE</title>
     <link rel="icon" type="image/x-icon" href="../assets/img/icon.ico">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
@@ -25,7 +25,7 @@
     <div id="header-container"></div>
     
     <main class="relative z-10">
-        <div id="services-container"></div>
+        <div id="about-container"></div>
     </main>
     
     <div id="footer-container"></div>
@@ -46,17 +46,23 @@
             const promises = [
                 loadComponent('header-container', 'components/header.html'),
                 loadComponent('footer-container', 'components/footer.html'),
-                loadComponent('services-container', 'components/services.html')
+                loadComponent('about-container', 'components/about.html')
             ];
             await Promise.all(promises);
             setTimeout(() => { 
                 if (window.initHeader) window.initHeader(); 
+                if (window.initStats) window.initStats();
+                if (window.initFAQ) window.initFAQ();
                 if (window.initServices) window.initServices();
+                if (window.initWhatWeDo) window.initWhatWeDo();
+                if (window.initImpact) window.initImpact();
                 document.getElementById('preloader').classList.add('fade-out'); 
             }, 300);
         });
     </script>
     <script src="../js/interactions.js"></script>
     <script src="../js/services.js"></script>
+    <script src="../js/what-we-do.js"></script>
+    <script src="../js/impact.js"></script>
 </body>
 </html>
