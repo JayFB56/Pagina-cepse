@@ -7,9 +7,11 @@
             <!-- Slides -->
             <div class="absolute inset-0">
                 <div class="hero-slides relative w-full h-full">
-                    <div class="hero-slide absolute inset-0 bg-cover bg-center" data-index="0" style="background-image: url('assets/img2/hero1.jpg');"></div>
-                    <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" data-index="1" style="background-image: url('assets/img2/hero2.jpg');"></div>
-                    <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" data-index="2" style="background-image: url('assets/img2/hero3.jpg');"></div>
+                      <div class="hero-slide absolute inset-0 bg-cover bg-center" data-index="0" style="background-image: url('assets/img2/img-a.png');"></div>
+                      <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" data-index="1" style="background-image: url('assets/img2/img-b.png');"></div>
+                      <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" data-index="2" style="background-image: url('assets/img2/img-c.png');"></div>
+                      <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" data-index="3" style="background-image: url('assets/img2/img-d.png');"></div>
+                      <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" data-index="4" style="background-image: url('assets/img2/img-e.png');"></div>
                 </div>
                 <!-- Overlay for contrast -->
                 <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/45 pointer-events-none"></div>
@@ -50,60 +52,7 @@
 
         </div>
     </div>
-
-    <script>
-        (function(){
-            const slides = Array.from(document.querySelectorAll('#hero-carousel .hero-slide'));
-            const indicators = document.getElementById('hero-indicators');
-            const prevBtn = document.getElementById('hero-prev');
-            const nextBtn = document.getElementById('hero-next');
-            let current = 0;
-            const total = slides.length;
-            const intervalTime = 6000; // autoplay
-            let autoplayId = null;
-
-            function showSlide(index){
-                slides.forEach((s,i)=>{
-                    s.style.transition = 'opacity 800ms ease';
-                    s.style.opacity = (i===index)? '1':'0';
-                    s.setAttribute('aria-hidden', i===index ? 'false' : 'true');
-                });
-                const dots = indicators.querySelectorAll('button');
-                dots.forEach((d,i)=> d.classList.toggle('opacity-60', i!==index));
-                current = index;
-            }
-
-            function next(){ showSlide((current+1)%total); }
-            function prev(){ showSlide((current-1+total)%total); }
-
-            // build indicators
-            for(let i=0;i<total;i++){
-                const btn = document.createElement('button');
-                btn.className = 'w-3 h-3 rounded-full bg-white/80';
-                btn.setAttribute('aria-label', 'Slide '+(i+1));
-                btn.addEventListener('click', ()=>{ showSlide(i); resetAutoplay(); });
-                indicators.appendChild(btn);
-            }
-
-            // controls
-            if(nextBtn) nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
-            if(prevBtn) prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
-
-            // swipe support
-            let startX = 0; let dist = 0;
-            const carousel = document.getElementById('hero-carousel');
-            carousel.addEventListener('touchstart', (e)=>{ startX = e.touches[0].clientX; });
-            carousel.addEventListener('touchmove', (e)=>{ dist = e.touches[0].clientX - startX; });
-            carousel.addEventListener('touchend', ()=>{ if(dist > 40) { prev(); } else if(dist < -40) { next(); } dist = 0; resetAutoplay(); });
-
-            function startAutoplay(){ autoplayId = setInterval(next, intervalTime); }
-            function stopAutoplay(){ if(autoplayId){ clearInterval(autoplayId); autoplayId = null; } }
-            function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
-
-            // init
-            showSlide(0);
-            startAutoplay();
-        })();
+    <!-- Carousel initialization moved to js/hero.js -->
     </script>
 
 </section>
