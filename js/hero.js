@@ -58,6 +58,17 @@
     // init
     showSlide(0);
     startAutoplay();
+    // Close button for the floating hero card
+    const closeBtn = document.getElementById('hero-card-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        const card = document.getElementById('hero-card');
+        if (!card) return;
+        card.style.transition = 'opacity 200ms ease';
+        card.style.opacity = '0';
+        setTimeout(() => { card.style.display = 'none'; }, 220);
+      });
+    }
 
     return true;
   }

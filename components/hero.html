@@ -27,7 +27,10 @@
             </div>
 
             <!-- Floating card (z controlled) -->
-            <div class="relative md:absolute left-4 right-4 md:left-auto md:right-12 bottom-6 md:bottom-12 mx-auto md:mx-0 md:w-[360px] mt-6 md:mt-0 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 flex items-start gap-3 z-10" style="z-index:var(--z-hero-card); pointer-events:auto;">
+            <div id="hero-card" class="relative md:absolute left-4 right-4 md:left-auto md:right-12 bottom-6 md:bottom-12 mx-auto md:mx-0 md:w-[360px] mt-6 md:mt-0 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 flex items-start gap-3 z-10" style="z-index:var(--z-hero-card); pointer-events:auto;">
+                <button id="hero-card-close" aria-label="Cerrar tarjeta" class="absolute top-3 right-3 bg-white/90 text-slate-700 rounded-full p-1 hover:bg-white/100 shadow-sm">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
                 <div class="w-12 h-12 rounded-lg bg-emerald-600 text-white flex items-center justify-center">
                     <span class="material-symbols-outlined">support_agent</span>
                 </div>
@@ -53,6 +56,5 @@
         </div>
     </div>
     <!-- Carousel initialization moved to js/hero.js -->
-    </script>
 
 </section>
