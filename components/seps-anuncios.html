@@ -8,9 +8,13 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <!-- Banner Superior Llamativo -->
-        <div class="bg-gradient-to-r from-emerald-700 to-emerald-900 rounded-[2rem] p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 reveal">
+        <div class="rounded-[2rem] p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 reveal" style="background-size: cover; background-position: center;">
+            <!-- Background image (uses src so component loader can rewrite paths) -->
+            <img src="assets/img2/banner-seps.png" alt="Banner SEPS" class="absolute inset-0 w-full h-full object-cover -z-10 pointer-events-none">
+            <!-- Overlay for legibility -->
+            <div class="absolute inset-0 bg-black/40 pointer-events-none"></div>
             <!-- Glow Effect interno -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-400 rounded-full blur-[80px] opacity-40"></div>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-400 rounded-full blur-[80px] opacity-30"></div>
             
             <div class="relative z-10 text-center md:text-left flex-1">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm shadow-sm mb-4">
@@ -26,9 +30,7 @@
             </div>
             
             <div class="relative z-10 flex-shrink-0 flex flex-col items-center">
-                <img src="https://www.seps.gob.ec/wp-content/uploads/2022/02/LOGO_SEPS-1024x267.png" alt="Logo SEPS" class="h-10 md:h-12 object-contain brightness-0 invert opacity-90 drop-shadow-md mb-6">
-                <!-- SEPS section specific logo (from assets/img2) placed above the button -->
-                <img src="assets/img2/image.icon" alt="SEPS Icon" class="h-12 w-auto object-contain mb-3">
+                <img src="https://www.seps.gob.ec/wp-content/uploads/2021/07/Logo_SEPS.svg" class="h-10 md:h-12 object-contain brightness-0 invert opacity-90 drop-shadow-md mb-6">
                 <a href="https://www.seps.gob.ec/" target="_blank" rel="noopener noreferrer" 
                    class="inline-flex items-center gap-2 px-6 py-3 bg-white text-emerald-900 rounded-full font-bold hover:bg-emerald-50 hover:scale-105 transition-all shadow-lg text-sm">
                     Ir al Portal Oficial SEPS

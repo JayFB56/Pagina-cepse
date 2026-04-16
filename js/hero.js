@@ -58,16 +58,35 @@
     // init
     showSlide(0);
     startAutoplay();
-    // Close button for the floating hero card
+    // Close handling for the floating hero card (click + keyboard + Escape)
+    function closeCard() {
+      const card = document.getElementById('hero-card');
+      if (!card) return;
+      card.style.transition = 'opacity 200ms ease';
+      card.style.opacity = '0';
+      setTimeout(() => { card.style.display = 'none'; }, 220);
+    }
+
     const closeBtn = document.getElementById('hero-card-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        const card = document.getElementById('hero-card');
-        if (!card) return;
-        card.style.transition = 'opacity 200ms ease';
-        card.style.opacity = '0';
-        setTimeout(() => { card.style.display = 'none'; }, 220);
+    if (closeBtn && !closeBtn.dataset.heroCloseBound) {
+      closeBtn.addEventListener('click', closeCard);
+      closeBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          closeCard();
+        }
       });
+      closeBtn.dataset.heroCloseBound = '1';
+    }
+
+    if (!window.__hero_keybound) {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const card = document.getElementById('hero-card');
+          if (card && card.style.display !== 'none') closeCard();
+        }
+      });
+      window.__hero_keybound = true;
     }
 
     return true;
