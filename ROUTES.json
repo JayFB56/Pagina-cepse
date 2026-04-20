@@ -1,0 +1,384 @@
+{
+  "proyecto": "Pagina-cepse",
+  "version": "2.0",
+  "actualizado": "2024",
+  "rutas_navbar": {
+    "inicio": {
+      "label": "Inicio",
+      "ruta": "/",
+      "archivo": "index.html"
+    },
+    "nosotros": {
+      "label": "Nosotros",
+      "ruta": "/nosotros",
+      "carpeta": "pages/nosotros",
+      "items": [
+        {
+          "label": "Quiénes Somos",
+          "ruta": "/nosotros/quienes-somos",
+          "archivo": "quienes-somos.html"
+        },
+        {
+          "label": "Base Legal",
+          "ruta": "/nosotros/base-legal",
+          "archivo": "base-legal.html"
+        },
+        {
+          "label": "Misión, Visión y Objetivos",
+          "ruta": "/nosotros/mision-vision-objetivos",
+          "archivo": "mision-vision-objetivos.html"
+        },
+        {
+          "label": "Autoridades",
+          "ruta": "/nosotros/autoridades",
+          "archivo": "autoridades.html"
+        },
+        {
+          "label": "Presidente",
+          "ruta": "/nosotros/presidente",
+          "archivo": "presidente.html"
+        },
+        {
+          "label": "Historia Institucional",
+          "ruta": "/nosotros/historia-institucional",
+          "archivo": "historia-institucional.html"
+        },
+        {
+          "label": "Estatuto",
+          "ruta": "/nosotros/estatuto",
+          "archivo": "estatuto.html"
+        }
+      ]
+    },
+    "asociaciones_y_miembros": {
+      "label": "Asociaciones y Miembros",
+      "ruta": "/asociaciones-y-miembros",
+      "carpeta": "pages/asociaciones-y-miembros",
+      "items": [
+        {
+          "label": "Asociaciones Afiliadas",
+          "ruta": "/asociaciones-y-miembros/asociaciones-afiliadas",
+          "archivo": "asociaciones-afiliadas.html"
+        },
+        {
+          "label": "Beneficios para Miembros",
+          "ruta": "/asociaciones-y-miembros/beneficios-para-miembros",
+          "archivo": "beneficios-para-miembros.html"
+        },
+        {
+          "label": "Requisitos de Afiliación",
+          "ruta": "/asociaciones-y-miembros/requisitos-de-afiliacion",
+          "archivo": "requisitos-de-afiliacion.html"
+        },
+        {
+          "label": "Afiliarse Ahora",
+          "ruta": "/asociaciones-y-miembros/afiliarse",
+          "archivo": "afiliarse.html"
+        }
+      ]
+    },
+    "servicios": {
+      "label": "Servicios",
+      "ruta": "/servicios",
+      "carpeta": "pages/servicios",
+      "subsecciones": {
+        "areas_productivas": {
+          "label": "Áreas Productivas",
+          "carpeta": "pages/servicios/areas-productivas",
+          "items": [
+            {
+              "label": "Textil",
+              "ruta": "/servicios/areas-productivas/textil",
+              "archivo": "textil.html"
+            },
+            {
+              "label": "Alimentación",
+              "ruta": "/servicios/areas-productivas/alimentacion",
+              "archivo": "alimentacion.html"
+            },
+            {
+              "label": "Construcción",
+              "ruta": "/servicios/areas-productivas/construccion",
+              "archivo": "construccion.html"
+            },
+            {
+              "label": "Limpieza",
+              "ruta": "/servicios/areas-productivas/limpieza",
+              "archivo": "limpieza.html"
+            },
+            {
+              "label": "Canales de Promoción y Comercialización",
+              "ruta": "/servicios/areas-productivas/canales-de-promocion-y-comercializacion",
+              "archivo": "canales-de-promocion-y-comercializacion.html"
+            }
+          ]
+        },
+        "formacion": {
+          "label": "Formación y Capacitación",
+          "carpeta": "pages/servicios/formacion",
+          "items": [
+            {
+              "label": "Escuela de EPS",
+              "ruta": "/servicios/formacion/escuela-de-eps",
+              "archivo": "escuela-de-eps.html"
+            },
+            {
+              "label": "Gestión Empresarial",
+              "ruta": "/servicios/formacion/gestion-empresarial",
+              "archivo": "gestion-empresarial.html"
+            },
+            {
+              "label": "Contabilidad Tributaria",
+              "ruta": "/servicios/formacion/contabilidad-tributaria",
+              "archivo": "contabilidad-tributaria.html"
+            },
+            {
+              "label": "Estrategia Comercial",
+              "ruta": "/servicios/formacion/estrategia-comercial",
+              "archivo": "estrategia-comercial.html"
+            },
+            {
+              "label": "Certificados de Aprobación",
+              "ruta": "/servicios/formacion/certificados-de-aprobacion",
+              "archivo": "certificados-de-aprobacion.html"
+            },
+            {
+              "label": "I+D Certificado",
+              "ruta": "/servicios/formacion/id-certificado",
+              "archivo": "id-certificado.html"
+            }
+          ]
+        },
+        "comercializacion": {
+          "label": "Comercialización",
+          "carpeta": "pages/servicios/comercializacion",
+          "items": [
+            {
+              "label": "Posicionamiento",
+              "ruta": "/servicios/comercializacion/posicionamiento",
+              "archivo": "posicionamiento.html"
+            },
+            {
+              "label": "Catálogo SERCOP",
+              "ruta": "/servicios/comercializacion/catalogo-sercop",
+              "archivo": "catalogo-sercop.html"
+            },
+            {
+              "label": "Ruedas de Negocio",
+              "ruta": "/servicios/comercializacion/ruedas-de-negocio",
+              "archivo": "ruedas-de-negocio.html"
+            },
+            {
+              "label": "Contratos a Futuro",
+              "ruta": "/servicios/comercializacion/contratos-a-futuro",
+              "archivo": "contratos-a-futuro.html"
+            },
+            {
+              "label": "Cadenas Formales",
+              "ruta": "/servicios/comercializacion/cadenas-formales",
+              "archivo": "cadenas-formales.html"
+            },
+            {
+              "label": "Macro Alianzas",
+              "ruta": "/servicios/comercializacion/macro-alianzas",
+              "archivo": "macro-alianzas.html"
+            }
+          ]
+        },
+        "legal": {
+          "label": "Legal",
+          "carpeta": "pages/servicios/legal",
+          "items": [
+            {
+              "label": "Auditoría Legal",
+              "ruta": "/servicios/legal/auditoria-legal",
+              "archivo": "auditoria-legal.html"
+            },
+            {
+              "label": "Personería Jurídica SEPS",
+              "ruta": "/servicios/legal/personeria-juridica-seps",
+              "archivo": "personeria-juridica-seps.html"
+            },
+            {
+              "label": "Estatutos Notariados",
+              "ruta": "/servicios/legal/estatutos-notariados",
+              "archivo": "estatutos-notariados.html"
+            },
+            {
+              "label": "Gestión Tributaria",
+              "ruta": "/servicios/legal/gestion-tributaria",
+              "archivo": "gestion-tributaria.html"
+            },
+            {
+              "label": "Protección Fiduciaria",
+              "ruta": "/servicios/legal/proteccion-fiduciaria",
+              "archivo": "proteccion-fiduciaria.html"
+            }
+          ]
+        }
+      }
+    },
+    "proyectos_e_impacto": {
+      "label": "Proyectos e Impacto",
+      "ruta": "/proyectos-e-impacto",
+      "carpeta": "pages/proyectos-e-impacto",
+      "items": [
+        {
+          "label": "Impacto Social",
+          "ruta": "/proyectos-e-impacto/impacto-social",
+          "archivo": "impacto-social.html"
+        },
+        {
+          "label": "Proyectos",
+          "ruta": "/proyectos-e-impacto/proyectos",
+          "archivo": "proyectos.html"
+        },
+        {
+          "label": "Resultados",
+          "ruta": "/proyectos-e-impacto/resultados",
+          "archivo": "resultados.html"
+        },
+        {
+          "label": "Cobertura",
+          "ruta": "/proyectos-e-impacto/cobertura",
+          "archivo": "cobertura.html"
+        }
+      ]
+    },
+    "gestion_institucional": {
+      "label": "Gestión Institucional",
+      "ruta": "/gestion-institucional/gestion-institucional",
+      "carpeta": "pages/gestion-institucional",
+      "items": [
+        {
+          "label": "Gestión Institucional Completa",
+          "ruta": "/gestion-institucional/gestion-institucional",
+          "archivo": "gestion-institucional.html"
+        }
+      ]
+    },
+    "noticias_y_comunicados": {
+      "label": "Noticias y Comunicados",
+      "ruta": "/noticias-y-comunicados",
+      "carpeta": "pages/noticias-y-comunicados",
+      "items": [
+        {
+          "label": "Noticias",
+          "ruta": "/noticias-y-comunicados/noticias",
+          "archivo": "noticias.html"
+        },
+        {
+          "label": "Comunicados",
+          "ruta": "/noticias-y-comunicados/comunicados",
+          "archivo": "comunicados.html"
+        },
+        {
+          "label": "Eventos",
+          "ruta": "/noticias-y-comunicados/eventos",
+          "archivo": "eventos.html"
+        },
+        {
+          "label": "Destacados",
+          "ruta": "/noticias-y-comunicados/destacados",
+          "archivo": "destacados.html"
+        }
+      ]
+    },
+    "contacto": {
+      "label": "Contacto",
+      "ruta": "/contacto",
+      "archivo": "pages/contacto.html"
+    },
+    "galeria": {
+      "label": "Galería",
+      "ruta": "/galeria",
+      "archivo": "pages/galeria.html"
+    },
+    "privacidad": {
+      "label": "Privacidad",
+      "ruta": "/privacidad",
+      "archivo": "pages/privacidad.html"
+    }
+  },
+  "carpetas_ocultas": {
+    "descripcion": "Carpetas que existen pero NO aparecen en el navbar",
+    "financiero": {
+      "ruta": "pages/servicios/financiero",
+      "estado": "Eliminada del menú navbar",
+      "archivos": [
+        "capital-de-riesgo.html",
+        "credito-cooperativo.html",
+        "financiamiento-activos.html",
+        "inyeccion-de-capital.html",
+        "lineas-de-produccion.html"
+      ]
+    },
+    "alianzas_y_representacion": {
+      "ruta": "pages/servicios/alianzas-y-representacion",
+      "estado": "Eliminada del menú navbar",
+      "nota": "Esta carpeta puede haber sido removida completamente"
+    }
+  },
+  "estructura_archivo": {
+    "root": "c:\\Users\\USER\\Music\\Pagina-cepse",
+    "pages_base": "c:\\Users\\USER\\Music\\Pagina-cepse\\pages",
+    "components": "c:\\Users\\USER\\Music\\Pagina-cepse\\components",
+    "assets": "c:\\Users\\USER\\Music\\Pagina-cepse\\assets",
+    "css": "c:\\Users\\USER\\Music\\Pagina-cepse\\css",
+    "js": "c:\\Users\\USER\\Music\\Pagina-cepse\\js"
+  },
+  "estadisticas": {
+    "total_paginas": 64,
+    "secciones_navbar": 8,
+    "subsecciones_servicios": 4,
+    "carpetas_contenido": 11,
+    "archivos_servicios": 21
+  },
+  "cambios_recientes": [
+    {
+      "fecha": "Reciente",
+      "cambio": "Renombrada carpeta la-cepse a nosotros",
+      "estado": "Completado"
+    },
+    {
+      "fecha": "Reciente",
+      "cambio": "Actualizado navbar: La CEPSE → Nosotros",
+      "estado": "Completado"
+    },
+    {
+      "fecha": "Reciente",
+      "cambio": "Eliminada sección Alianzas y Representación",
+      "estado": "Completado"
+    },
+    {
+      "fecha": "Reciente",
+      "cambio": "Eliminada sección Financiero del navbar",
+      "estado": "Completado"
+    },
+    {
+      "fecha": "Reciente",
+      "cambio": "Eliminada sección Calidad y Regulación del navbar",
+      "estado": "Completado"
+    },
+    {
+      "fecha": "Reciente",
+      "cambio": "Convertidas 6 páginas principales a inline HTML",
+      "estado": "Completado"
+    },
+    {
+      "fecha": "Reciente",
+      "cambio": "Creada nueva página de Gestión Institucional",
+      "estado": "Completado"
+    },
+    {
+      "fecha": "Reciente",
+      "cambio": "Reorganizado home: ahora resumido con enlaces a Gestión Institucional",
+      "estado": "Completado"
+    },
+    {
+      "fecha": "Reciente",
+      "cambio": "Agregada opción Gestión Institucional al navbar",
+      "estado": "Completado"
+    }
+  ]
+}

@@ -6,7 +6,7 @@ template = '''<!DOCTYPE html>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>TITLE - CEPSE</title>
-    <link rel="icon" type="image/x-icon" href="../assets/img/icon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />

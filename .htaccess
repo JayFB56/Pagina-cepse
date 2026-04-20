@@ -1,0 +1,31 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Don't rewrite actual files or directories
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Preserve index.html
+  RewriteRule ^index\.html$ - [L]
+
+  # Exclude static directories from rewriting
+  RewriteCond %{REQUEST_URI} !^/assets/
+  RewriteCond %{REQUEST_URI} !^/css/
+  RewriteCond %{REQUEST_URI} !^/js/
+  RewriteCond %{REQUEST_URI} !^/components/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Rewrite all requests to pages directory with .html extension
+  RewriteRule ^(.+?)/?$ /pages/$1.html [L,QSA]
+
+  # Fallback for root-level routes
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(nosotros|asociaciones-y-miembros|servicios|proyectos-e-impacto|noticias-y-comunicados|contacto|galeria|privacidad|afiliarse)/?$ /pages/$1.html [L,QSA]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=3600"
+</IfModule>

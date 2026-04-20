@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadenas Formales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    <main class="flex items-center justify-center min-h-screen bg-gray-50">
+        <h1 class="text-6xl font-bold text-center text-gray-800">Cadenas Formales</h1>
+    </main>
+    <div id="footer-container"></div>
+    <script src="/js/interactions.js"></script>
+    <script>
+        function loadComponent(containerId, filePath, level = 0) {
+            const adjustPath = (path, level) => {
+                // Ya no necesitamos path relativo, usar absoluto
+                return path.startsWith('/') ? path : '/' + path;
+            };
+            fetch(adjustPath(filePath, level))
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(containerId).innerHTML = data;
+                })
+                .catch(error => console.error('Error loading component:', error));
+        }
+        loadComponent('header-container', 'components/header.html', 3);
+        loadComponent('footer-container', 'components/footer.html', 3);
+    </script>
+</body>
+</html>

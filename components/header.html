@@ -4,7 +4,6 @@
     --cepse-gold: #d4af37;
   }
 
-  /* Transición inicial suave */
   @keyframes headerFadeIn {
     from {
       opacity: 0;
@@ -20,19 +19,20 @@
     animation: headerFadeIn 0.8s ease-out forwards;
   }
 
-  /* Estilos base del header de dos filas */
   #main-header {
-    background-color: transparent;
-    border-bottom: none;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Sombra elegante consolidada */
+    background-color: white;
+    border-bottom: 1px solid #f1f5f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 40;
   }
 
-  /* Enlaces de navegación con subrayado verde elegante */
   .nav-link {
     position: relative;
-    color: #475569; /* slate-600 */
+    color: #475569;
     font-weight: 600;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     padding: 0.5rem 0;
     transition: color 0.3s ease;
   }
@@ -42,7 +42,6 @@
     color: var(--cepse-green);
   }
 
-  /* Subrayado animado */
   .nav-link::after {
     content: '';
     position: absolute;
@@ -52,7 +51,6 @@
     height: 2px;
     background-color: var(--cepse-green);
     transition: width 0.3s ease;
-    border-radius: 2px;
   }
 
   .nav-link:hover::after,
@@ -60,16 +58,16 @@
     width: 100%;
   }
 
-  /* Botón verde "Unirse ahora" alineado y refinado */
   .btn-cta-green {
     background-color: var(--cepse-green);
     color: white;
     font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.6rem 1.6rem;
-    border-radius: 0.5rem; /* Modern rounded corners */
+    font-size: 0.9rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.5rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 102, 51, 0.15);
+    border: none;
+    cursor: pointer;
   }
 
   .btn-cta-green:hover {
@@ -78,173 +76,263 @@
     box-shadow: 0 6px 12px rgba(0, 102, 51, 0.25);
   }
 
-  /* Dropdown Institución */
   .dropdown-menu {
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 50;
   }
 
-  .group:hover .dropdown-menu {
+  .nav-dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
 
-  /* Menú móvil animaciones (usado abajo en el div separado) */
+  .mega-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 50;
+  }
+
+  .nav-services:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .seps-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 100%;
+    right: -50px;
+    z-index: 50;
+  }
+
+  .seps-trigger:hover .seps-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
   #mobile-menu {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
     transition: all 0.3s ease;
   }
 
   #mobile-menu.is-open {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
   }
 
-  /* Topbar pequeño con redes y búsqueda */
-  .topbar {
-    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
-    border-bottom: 1px solid rgba(15,23,42,0.03);
+  .search-input {
+    max-width: 340px;
   }
-
-  .social-icon {
-    color: var(--gray-700);
-    transition: color .2s ease;
-  }
-
-  .social-icon:hover { color: var(--cepse-green); }
-
-  .search-input { max-width: 340px; }
-  
-  /* Asegurar stacking del header */
-  #main-header { position: relative; z-index: var(--z-header); }
 </style>
 
-<!-- HEADER PRINCIPAL -->
-<!-- HEADER PRINCIPAL: LAYOUT DE DOS FILAS -->
-<header id="main-header" class="header-anim sticky top-0 z-50 transition-all duration-300 flex flex-col w-full bg-white shadow-sm">
-  <!-- TOPBAR: redes sociales, logo pequeño y búsqueda -->
-  <div class="topbar w-full">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-10 text-sm">
-        <div class="flex items-center gap-3">
-          <a href="#" class="social-icon flex items-center gap-2 hover:underline" aria-label="Facebook"><span class="material-symbols-outlined">facebook</span></a>
-          <a href="#" class="social-icon flex items-center gap-2 hover:underline" aria-label="YouTube"><span class="material-symbols-outlined">videocam</span></a>
-        </div>
-        <div class="flex items-center justify-end">
-          <form class="hidden md:flex items-center gap-2" role="search" action="/" method="get">
-            <input type="text" name="q" placeholder="Buscar en el sitio..." class="search-input px-3 py-1.5 rounded-md border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200">
-            <button type="submit" class="px-3 py-1.5 rounded-md bg-emerald-600 text-white text-sm">Buscar</button>
-          </form>
-          <!-- Mobile: icono búsqueda -->
-          <button id="mobile-search-btn" class="md:hidden p-1 text-slate-600 ml-2 focus:outline-none" aria-label="Buscar">
-            <span class="material-symbols-outlined">search</span>
+<header id="main-header" class="header-anim w-full bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20 md:h-24">
+      
+      <!-- Logo -->
+      <a href="/" class="flex-shrink-0 mr-4 lg:mr-8">
+        <img src="assets/img/favicon.ico" alt="Logo CEPSE" class="h-12 md:h-16 w-auto object-contain hover:opacity-80 transition-opacity">
+      </a>
+      
+      <!-- Menú Horizontal Desktop -->
+      <nav class="hidden lg:flex flex-1 justify-start items-center space-x-2">
+        <a href="/" class="nav-link active px-3 py-2">Inicio</a>
+
+        <!-- Nosotros Dropdown -->
+        <div class="nav-dropdown relative group px-3 py-2">
+          <button class="nav-link flex items-center gap-1 focus:outline-none">
+            Nosotros
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
+          <div class="dropdown-menu w-64 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+            <a href="/nosotros/quienes-somos" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Quiénes Somos</a>
+            <a href="/nosotros/base-legal" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Base Legal</a>
+            <a href="/nosotros/mision-vision-objetivos" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Misión, Visión y Objetivos</a>
+            <a href="/nosotros/autoridades" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Autoridades</a>
+            <a href="/nosotros/presidente" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Presidente</a>
+            <a href="/nosotros/historia-institucional" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Historia Institucional</a>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- FILA 1: BANNER INSTITUCIONAL FULL WIDTH -->
-  <div class="w-full bg-[#fdfdfd] border-b border-slate-100 relative z-20 flex justify-center overflow-hidden">
-    <!-- El banner ocupa el 100% del ancho, ajustando su tamaño sin deformar y sin ser exageradamente alto -->
-    <img src="assets/img/banner.jpeg" alt="Banner Institucional CEPSE" class="w-full h-auto max-h-[120px] md:max-h-[160px] lg:max-h-[180px] object-contain object-center">
-  </div>
+        <!-- Asociaciones y Miembros Dropdown -->
+        <div class="nav-dropdown relative group px-3 py-2">
+          <button class="nav-link flex items-center gap-1 focus:outline-none">
+            Asociaciones y Miembros
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="dropdown-menu w-64 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+            <a href="/asociaciones-y-miembros/asociaciones-afiliadas" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Asociaciones Afiliadas</a>
+            <a href="/asociaciones-y-miembros/beneficios-para-miembros" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Beneficios para Miembros</a>
+            <a href="/asociaciones-y-miembros/requisitos-de-afiliacion" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Requisitos de Afiliación</a>
+            <div class="border-t border-slate-100 mt-2 pt-2">
+              <button data-form="affiliation" class="block w-full text-left px-4 py-2 text-sm font-bold text-white bg-[#006633] hover:bg-[#004d26] transition-colors rounded-md mx-2 px-3">Afiliarse Ahora</button>
+            </div>
+          </div>
+        </div>
 
-  <!-- FILA 2: BARRA DE NAVEGACIÓN COMPLETA (SIN LOGO) -->
-  <div class="w-full relative z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-14 md:h-16">
-        
-        <!-- Menú Horizontal (Escritorio) -->
-        <nav class="hidden md:flex flex-1 justify-start items-center space-x-6 lg:space-x-8">
-          <a href="index.html" class="nav-link active">Inicio</a>
-
-          <!-- Institución (Dropdown) -->
-          <div class="relative group h-full flex items-center">
-            <button class="nav-link flex items-center gap-1 focus:outline-none">
-              Institución
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="dropdown-menu absolute left-0 top-full mt-0 w-64 bg-white rounded-xl shadow-lg border border-slate-100 py-3">
-              <a href="quienes-somos.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Quiénes Somos</a>
-              <a href="acuerdo-ministerial.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Acuerdo Ministerial</a>
-              <a href="estatuto.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Estatuto Oficial</a>
-              <a href="mision-vision.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Misión y Visión</a>
-              
-              <!-- Featured: Perfil del Presidente -->
-              <div class="px-3 pt-2 pb-1">
-                <a href="presidente.html" class="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-emerald-50 to-white border border-emerald-100/50 hover:border-emerald-200 hover:shadow-md transition-all group/pres">
-                  <div class="w-10 h-10 rounded-lg bg-[#006633] text-white flex items-center justify-center shadow-sm group-hover/pres:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-xl">account_circle</span>
-                  </div>
-                  <div>
-                    <p class="text-[0.65rem] font-black text-emerald-800/60 uppercase tracking-widest leading-none mb-1">Autoridad</p>
-                    <p class="text-sm font-bold text-[#006633]">Perfil del Presidente</p>
-                  </div>
-                </a>
+        <!-- Servicios Mega Menú -->
+        <div class="nav-services relative group px-3 py-2">
+          <button class="nav-link flex items-center gap-1 focus:outline-none">
+            Servicios
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="mega-menu w-screen max-w-4xl left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-2xl border border-slate-100 p-6">
+            <div class="grid grid-cols-4 gap-6">
+              <div>
+                <h4 class="font-bold text-[#006633] text-sm mb-3 uppercase tracking-wider">Áreas Productivas</h4>
+                <ul class="space-y-2 text-sm">
+                  <li><a href="/servicios/areas-productivas/textil" class="text-slate-600 hover:text-[#006633] transition">Textil</a></li>
+                  <li><a href="/servicios/areas-productivas/alimentacion" class="text-slate-600 hover:text-[#006633] transition">Alimentación</a></li>
+                  <li><a href="/servicios/areas-productivas/construccion" class="text-slate-600 hover:text-[#006633] transition">Construcción</a></li>
+                  <li><a href="/servicios/areas-productivas/limpieza" class="text-slate-600 hover:text-[#006633] transition">Limpieza</a></li>
+                  <li><a href="/servicios/areas-productivas/canales-de-promocion-y-comercializacion" class="text-slate-600 hover:text-[#006633] transition">Canales de Promoción</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-bold text-[#006633] text-sm mb-3 uppercase tracking-wider">Formación y Capacitación</h4>
+                <ul class="space-y-2 text-sm">
+                  <li><a href="/servicios/formacion/escuela-de-eps" class="text-slate-600 hover:text-[#006633] transition">Escuela de EPS</a></li>
+                  <li><a href="/servicios/formacion/gestion-empresarial" class="text-slate-600 hover:text-[#006633] transition">Gestión Empresarial</a></li>
+                  <li><a href="/servicios/formacion/contabilidad-tributaria" class="text-slate-600 hover:text-[#006633] transition">Contabilidad Tributaria</a></li>
+                  <li><a href="/servicios/formacion/estrategia-comercial" class="text-slate-600 hover:text-[#006633] transition">Estrategia Comercial</a></li>
+                  <li><a href="/servicios/formacion/certificados-de-aprobacion" class="text-slate-600 hover:text-[#006633] transition">Certificados</a></li>
+                  <li><a href="/servicios/formacion/id-certificado" class="text-slate-600 hover:text-[#006633] transition">I+D Certificado</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-bold text-[#006633] text-sm mb-3 uppercase tracking-wider">Comercialización</h4>
+                <ul class="space-y-2 text-sm">
+                  <li><a href="/servicios/comercializacion/posicionamiento" class="text-slate-600 hover:text-[#006633] transition">Posicionamiento</a></li>
+                  <li><a href="/servicios/comercializacion/catalogo-sercop" class="text-slate-600 hover:text-[#006633] transition">Catálogo SERCOP</a></li>
+                  <li><a href="/servicios/comercializacion/ruedas-de-negocio" class="text-slate-600 hover:text-[#006633] transition">Ruedas de Negocio</a></li>
+                  <li><a href="/servicios/comercializacion/contratos-a-futuro" class="text-slate-600 hover:text-[#006633] transition">Contratos a Futuro</a></li>
+                  <li><a href="/servicios/comercializacion/cadenas-formales" class="text-slate-600 hover:text-[#006633] transition">Cadenas Formales</a></li>
+                  <li><a href="/servicios/comercializacion/macro-alianzas" class="text-slate-600 hover:text-[#006633] transition">Macro Alianzas</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 gap-6 mt-4 pt-4 border-t border-slate-100">
+              <div>
+                <h4 class="font-bold text-[#006633] text-sm mb-3 uppercase tracking-wider">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                  <li><a href="/servicios/legal/auditoria-legal" class="text-slate-600 hover:text-[#006633] transition">Auditoría Legal</a></li>
+                  <li><a href="/servicios/legal/personeria-juridica-seps" class="text-slate-600 hover:text-[#006633] transition">Personería Jurídica SEPS</a></li>
+                  <li><a href="/servicios/legal/estatutos-notariados" class="text-slate-600 hover:text-[#006633] transition">Estatutos Notariados</a></li>
+                  <li><a href="/servicios/legal/gestion-tributaria" class="text-slate-600 hover:text-[#006633] transition">Gestión Tributaria</a></li>
+                  <li><a href="/servicios/legal/proteccion-fiduciaria" class="text-slate-600 hover:text-[#006633] transition">Protección Fiduciaria</a></li>
+                </ul>
               </div>
             </div>
           </div>
-
-          <!-- Servicios (Dropdown) -->
-          <div class="relative group h-full flex items-center">
-            <button class="nav-link flex items-center gap-1 focus:outline-none">
-              Servicios
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="dropdown-menu absolute left-0 top-full mt-0 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-3">
-              <a href="servicios.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Todos los Servicios</a>
-              <a href="noticias.html" class="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Noticias</a>
-            </div>
-          </div>
-          
-          <a href="beneficios.html" class="nav-link">Beneficios</a>
-          <a href="impacto.html" class="nav-link">Impacto</a>
-          <a href="contacto.html" class="nav-link">Contacto</a>
-          <a href="noticias.html" class="ml-3 inline-flex items-center px-4 py-2 rounded-lg border border-emerald-600 text-emerald-700 font-bold bg-emerald-50 hover:bg-emerald-100">DESTACADOS</a>
-        </nav>
-
-        <!-- LADO DERECHO: Buscador y Botón CTA -->
-        <div class="hidden md:flex flex-shrink-0 items-center justify-end gap-3">
-          <form class="flex items-center bg-white/60 rounded-md px-2 py-1 border border-slate-100 search-input" role="search" action="/" method="get">
-            <input type="text" name="q" placeholder="Buscar..." class="w-44 text-sm outline-none px-2 py-1 bg-transparent" />
-            <button type="submit" class="text-slate-600 px-2"><span class="material-symbols-outlined">search</span></button>
-          </form>
-          <button data-form="affiliation" class="btn-cta-green hover:-translate-y-0.5">
-            Unirse ahora
-          </button>
         </div>
 
-        <!-- LADO DERECHO (Móvil): Hamburguesa y Contexto Menú -->
-        <div class="flex md:hidden w-full items-center justify-between">
-          <span class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-widest ml-1">Menú Navegación</span>
-          <button id="menu-open-btn" class="p-2 text-slate-600 hover:text-[#006633] focus:outline-none transition-colors mr-[-8px]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <!-- Consultas SEPS Dropdown -->
+        <div class="seps-trigger relative group px-3 py-2">
+          <button class="nav-link flex items-center gap-1 focus:outline-none text-[#d4af37] hover:text-[#006633]">
+            Consultas SEPS
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
+          <div class="seps-dropdown w-80 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+            <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/reserva-de-denominacion-para-oeps/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Reserva de denominación</a>
+            <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/constitucion-de-organizaciones-de-la-economia-popular-y-solidaria/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Constitución de organizaciones</a>
+            <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/registro-universal-de-directivas-de-las-oeps/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Registro universal de directivas</a>
+            <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/actualizacion-de-directivos-de-las-oeps/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Actualización de directivos</a>
+            <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/registro-de-ingreso-de-socios-asociados-de-las-organizaciones-de-la-economia-popular-y-solidaria/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Registro de ingreso de socios</a>
+            <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/registro-de-salida-voluntaria-de-socios-asociados-de-oeps/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Registro de salida voluntaria</a>
+            <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/registro-de-salida-por-exclusion-de-socios-o-asociados-de-oeps/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Registro de salida por exclusión</a>
+            <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/atencion-de-reclamos-a-las-organizaciones-de-la-economia-popular-y-solidaria/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Atención de reclamos</a>
+          </div>
         </div>
 
+        <!-- Proyectos e Impacto Dropdown -->
+        <div class="nav-dropdown relative group px-3 py-2">
+          <button class="nav-link flex items-center gap-1 focus:outline-none">
+            Proyectos e Impacto
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="dropdown-menu w-64 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+            <a href="/proyectos-e-impacto/proyectos" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Proyectos</a>
+            <a href="/proyectos-e-impacto/impacto-social" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Impacto Social</a>
+            <a href="/proyectos-e-impacto/cobertura" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Cobertura</a>
+            <a href="/proyectos-e-impacto/resultados" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Resultados</a>
+          </div>
+        </div>
+
+        <!-- Gestión Institucional Link -->
+        <a href="/gestion-institucional/gestion-institucional" class="nav-link px-3 py-2">Gestión Institucional</a>
+
+        <!-- Noticias y Comunicados Dropdown -->
+        <div class="nav-dropdown relative group px-3 py-2">
+          <button class="nav-link flex items-center gap-1 focus:outline-none">
+            Noticias y Comunicados
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="dropdown-menu w-64 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+            <a href="/noticias-y-comunicados/noticias" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Noticias</a>
+            <a href="/noticias-y-comunicados/comunicados" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Comunicados</a>
+            <a href="/noticias-y-comunicados/eventos" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Eventos</a>
+            <a href="/noticias-y-comunicados/destacados" class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Destacados</a>
+          </div>
+        </div>
+
+        <a href="/contacto" class="nav-link px-3 py-2">Contacto</a>
+      </nav>
+
+      <!-- Botón CTA Desktop -->
+      <div class="hidden lg:flex items-center gap-4">
+        <button data-form="affiliation" class="btn-cta-green">
+          Afiliarse Ahora
+        </button>
       </div>
+
+      <!-- Hamburger Mobile -->
+      <div class="lg:hidden flex items-center gap-2">
+        <button id="menu-open-btn" class="p-2 text-slate-600 hover:text-[#006633] focus:outline-none transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
     </div>
   </div>
 </header>
 
-<!-- MENÚ MÓVIL DESPLEGABLE (OVERLAY) -->
-<div id="mobile-menu" class="hidden fixed inset-0 z-[100] bg-white flex flex-col pt-6 pb-6 px-6 overflow-y-auto">
-  <!-- Cabecera de Menú Móvil -->
+<!-- MENÚ MÓVIL DESPLEGABLE -->
+<div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col pt-6 pb-6 px-6 overflow-y-auto hidden">
+  <!-- Cabecera Mobile -->
   <div class="flex justify-between items-center mb-8">
-    <img src="assets/img/icon.ico" alt="Logo CEPSE" class="h-10 w-auto object-contain">
+    <img src="assets/img/favicon.ico" alt="Logo CEPSE" class="h-10 w-auto object-contain">
     <button id="menu-close-btn" class="p-2 text-slate-400 hover:text-[#006633] transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -252,98 +340,143 @@
     </button>
   </div>
 
-  <!-- Navegación Móvil -->
-  <nav class="flex flex-col space-y-1">
-    <a href="index.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Inicio</a>
+  <!-- Navegación Mobile -->
+  <nav class="flex flex-col space-y-3">
+    <a href="/" class="mobile-link block py-3 text-lg font-semibold text-slate-700 border-b border-slate-100 hover:text-[#006633]">Inicio</a>
 
-    <a href="quienes-somos.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Institución:
-      Quiénes Somos</a>
-    <a href="acuerdo-ministerial.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Acuerdo
-      Ministerial</a>
-    <a href="estatuto.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Estatuto
-      Oficial</a>
-    
-    <!-- Mobile Featured: Perfil del Presidente -->
-    <div class="py-4">
-      <a href="presidente.html" class="flex items-center gap-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-100">
-        <div class="w-12 h-12 rounded-xl bg-[#006633] text-white flex items-center justify-center">
-          <span class="material-symbols-outlined text-2xl">account_circle</span>
-        </div>
-        <div>
-          <p class="text-xs font-black text-emerald-800/60 uppercase tracking-widest leading-none mb-1">Autoridad</p>
-          <p class="text-lg font-bold text-[#006633]">Perfil del Presidente</p>
-        </div>
-      </a>
-    </div>
+    <!-- Nosotros Mobile -->
+    <details class="border-b border-slate-100">
+      <summary class="py-3 text-lg font-semibold text-slate-700 cursor-pointer hover:text-[#006633]">Nosotros</summary>
+      <div class="pl-4 py-2 space-y-2">
+        <a href="/nosotros/quienes-somos" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Quiénes Somos</a>
+        <a href="/nosotros/base-legal" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Base Legal</a>
+        <a href="/nosotros/mision-vision-objetivos" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Misión, Visión y Objetivos</a>
+        <a href="/nosotros/autoridades" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Autoridades</a>
+        <a href="/nosotros/presidente" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Presidente</a>
+        <a href="/nosotros/historia-institucional" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Historia Institucional</a>
+      </div>
+    </details>
 
-    <a href="servicios.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Todos los Servicios</a>
-    <a href="noticias.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Noticias</a>
-    <a href="beneficios.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Beneficios</a>
-    <a href="impacto.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Impacto</a>
-    <a href="contacto.html"
-      class="mobile-item block py-3 text-[1.1rem] font-medium text-slate-700 border-b border-slate-100 hover:text-[#006633]">Contacto</a>
+    <!-- Asociaciones y Miembros Mobile -->
+    <details class="border-b border-slate-100">
+      <summary class="py-3 text-lg font-semibold text-slate-700 cursor-pointer hover:text-[#006633]">Asociaciones y Miembros</summary>
+      <div class="pl-4 py-2 space-y-2">
+        <a href="/asociaciones-y-miembros/asociaciones-afiliadas" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Asociaciones Afiliadas</a>
+        <a href="/asociaciones-y-miembros/beneficios-para-miembros" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Beneficios para Miembros</a>
+        <a href="/asociaciones-y-miembros/requisitos-de-afiliacion" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Requisitos de Afiliación</a>
+        <button data-form="affiliation" class="mobile-link block w-full text-left py-2 text-sm font-bold text-white bg-[#006633] hover:bg-[#004d26] transition-colors rounded px-3 mt-2">Afiliarse Ahora</button>
+      </div>
+    </details>
+
+    <!-- Servicios Mobile -->
+    <details class="border-b border-slate-100">
+      <summary class="py-3 text-lg font-semibold text-slate-700 cursor-pointer hover:text-[#006633]">Servicios</summary>
+      <div class="pl-4 py-2 space-y-3">
+        <details>
+          <summary class="py-2 font-semibold text-slate-600 cursor-pointer hover:text-[#006633]">Áreas Productivas</summary>
+          <div class="pl-3 py-1 space-y-1">
+            <a href="/servicios/areas-productivas/textil" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Textil</a>
+            <a href="/servicios/areas-productivas/alimentacion" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Alimentación</a>
+            <a href="/servicios/areas-productivas/construccion" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Construcción</a>
+            <a href="/servicios/areas-productivas/limpieza" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Limpieza</a>
+            <a href="/servicios/areas-productivas/canales-de-promocion-y-comercializacion" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Canales de Promoción</a>
+          </div>
+        </details>
+        <details>
+          <summary class="py-2 font-semibold text-slate-600 cursor-pointer hover:text-[#006633]">Formación y Capacitación</summary>
+          <div class="pl-3 py-1 space-y-1">
+            <a href="/servicios/formacion/escuela-de-eps" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Escuela de EPS</a>
+            <a href="/servicios/formacion/gestion-empresarial" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Gestión Empresarial</a>
+            <a href="/servicios/formacion/contabilidad-tributaria" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Contabilidad Tributaria</a>
+            <a href="/servicios/formacion/estrategia-comercial" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Estrategia Comercial</a>
+            <a href="/servicios/formacion/certificados-de-aprobacion" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Certificados</a>
+            <a href="/servicios/formacion/id-certificado" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">I+D Certificado</a>
+          </div>
+        </details>
+        <details>
+          <summary class="py-2 font-semibold text-slate-600 cursor-pointer hover:text-[#006633]">Comercialización</summary>
+          <div class="pl-3 py-1 space-y-1">
+            <a href="/servicios/comercializacion/posicionamiento" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Posicionamiento</a>
+            <a href="/servicios/comercializacion/catalogo-sercop" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Catálogo SERCOP</a>
+            <a href="/servicios/comercializacion/ruedas-de-negocio" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Ruedas de Negocio</a>
+            <a href="/servicios/comercializacion/contratos-a-futuro" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Contratos a Futuro</a>
+            <a href="/servicios/comercializacion/cadenas-formales" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Cadenas Formales</a>
+            <a href="/servicios/comercializacion/macro-alianzas" class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Macro Alianzas</a>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- Consultas SEPS Mobile -->
+    <details class="border-b border-slate-100">
+      <summary class="py-3 text-lg font-semibold text-[#d4af37] cursor-pointer hover:text-[#006633]">Consultas SEPS</summary>
+      <div class="pl-4 py-2 space-y-2">
+        <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/reserva-de-denominacion-para-oeps/" target="_blank" rel="noopener noreferrer" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Reserva de denominación</a>
+        <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/constitucion-de-organizaciones-de-la-economia-popular-y-solidaria/" target="_blank" rel="noopener noreferrer" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Constitución de organizaciones</a>
+        <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/registro-universal-de-directivas-de-las-oeps/" target="_blank" rel="noopener noreferrer" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Registro universal de directivas</a>
+        <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/actualizacion-de-directivos-de-las-oeps/" target="_blank" rel="noopener noreferrer" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Actualización de directivos</a>
+        <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/registro-de-ingreso-de-socios-asociados-de-las-organizaciones-de-la-economia-popular-y-solidaria/" target="_blank" rel="noopener noreferrer" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Registro de ingreso de socios</a>
+        <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/registro-de-salida-voluntaria-de-socios-asociados-de-oeps/" target="_blank" rel="noopener noreferrer" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Registro de salida voluntaria</a>
+        <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/registro-de-salida-por-exclusion-de-socios-o-asociados-de-oeps/" target="_blank" rel="noopener noreferrer" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Registro de salida por exclusión</a>
+        <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/atencion-de-reclamos-a-las-organizaciones-de-la-economia-popular-y-solidaria/" target="_blank" rel="noopener noreferrer" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Atención de reclamos</a>
+      </div>
+    </details>
+
+    <!-- Proyectos e Impacto Mobile -->
+    <details class="border-b border-slate-100">
+      <summary class="py-3 text-lg font-semibold text-slate-700 cursor-pointer hover:text-[#006633]">Proyectos e Impacto</summary>
+      <div class="pl-4 py-2 space-y-2">
+        <a href="/proyectos-e-impacto/proyectos" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Proyectos</a>
+        <a href="/proyectos-e-impacto/impacto-social" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Impacto Social</a>
+        <a href="/proyectos-e-impacto/cobertura" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Cobertura</a>
+        <a href="/proyectos-e-impacto/resultados" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Resultados</a>
+      </div>
+    </details>
+
+    <!-- Gestión Institucional Mobile -->
+    <a href="/gestion-institucional/gestion-institucional" class="block py-3 text-lg font-semibold text-slate-700 hover:text-[#006633] border-b border-slate-100">Gestión Institucional</a>
+
+    <!-- Noticias y Comunicados Mobile -->
+    <details class="border-b border-slate-100">
+      <summary class="py-3 text-lg font-semibold text-slate-700 cursor-pointer hover:text-[#006633]">Noticias y Comunicados</summary>
+      <div class="pl-4 py-2 space-y-2">
+        <a href="/noticias-y-comunicados/noticias" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Noticias</a>
+        <a href="/noticias-y-comunicados/comunicados" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Comunicados</a>
+        <a href="/noticias-y-comunicados/eventos" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Eventos</a>
+        <a href="/noticias-y-comunicados/destacados" class="mobile-link block py-2 text-slate-600 hover:text-[#006633]">Destacados</a>
+      </div>
+    </details>
+
+    <a href="/contacto" class="mobile-link block py-3 text-lg font-semibold text-slate-700 border-b border-slate-100 hover:text-[#006633]">Contacto</a>
   </nav>
 
-  <!-- CTA Móvil -->
-  <div class="mt-8 mb-4">
-    <button data-form="affiliation" class="w-full btn-cta-green py-3">
-      Unirse ahora
+  <!-- CTA Mobile -->
+  <div class="mt-8">
+    <button data-form="affiliation" class="w-full btn-cta-green py-3 text-lg">
+      Afiliarse Ahora
     </button>
   </div>
 </div>
 
-<!-- Lógica JavaScript Vanilla -->
+<!-- Lógica JavaScript -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // 1. Detección de Scroll para el Header Sticky
-    const header = document.getElementById('main-header');
-
-    function checkScroll() {
-      // Si scrollea más de 80px, agrega la clase 'scrolled'
-      if (window.scrollY > 80) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    }
-
-    // Verificar en la carga por si el usuario ya recargó con la página a la mitad
-    checkScroll();
-
-    // Escuchar evento scroll
-    window.addEventListener('scroll', checkScroll);
-
-    // 2. Lógica del Menú Móvil
     const openBtn = document.getElementById('menu-open-btn');
     const closeBtn = document.getElementById('menu-close-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-item');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
 
     function openMobileMenu() {
-      // Quita la clase 'hidden' para habilitar display block
       mobileMenu.classList.remove('hidden');
-
-      // Delay ínfimo para que el CSS transition capte el cambio de display
       setTimeout(() => {
         mobileMenu.classList.add('is-open');
-        document.body.style.overflow = 'hidden'; // Evita scrollear detrás del menú
+        document.body.style.overflow = 'hidden';
       }, 10);
     }
 
     function closeMobileMenu() {
-      // Cambia estado de visibilidad
       mobileMenu.classList.remove('is-open');
       document.body.style.overflow = '';
-
-      // Espera transición 300ms antes de ocultar
       setTimeout(() => {
         mobileMenu.classList.add('hidden');
       }, 300);
@@ -352,46 +485,8 @@
     openBtn.addEventListener('click', openMobileMenu);
     closeBtn.addEventListener('click', closeMobileMenu);
 
-    // Cierra el menú móvil al clickear un enlace (útil para Single Page Anchors)
     mobileLinks.forEach(link => {
       link.addEventListener('click', closeMobileMenu);
     });
-
-    // 3. Búsqueda móvil: overlay simple
-    const mobileSearchBtn = document.getElementById('mobile-search-btn');
-    if (mobileSearchBtn) {
-      mobileSearchBtn.addEventListener('click', () => {
-        // Crear overlay si no existe
-        let overlay = document.getElementById('mobile-search-overlay');
-        if (!overlay) {
-          overlay = document.createElement('div');
-          overlay.id = 'mobile-search-overlay';
-          overlay.className = 'fixed inset-0 z-[120] bg-white/95 flex items-start pt-20 px-6';
-          overlay.innerHTML = `
-            <div class="w-full">
-              <div class="flex items-center gap-3">
-                <input id="mobile-search-input" type="search" placeholder="Buscar en el sitio..." class="w-full px-4 py-3 border border-slate-200 rounded-md text-lg focus:outline-none" />
-                <button id="mobile-search-close" class="p-3 text-slate-600"><span class="material-symbols-outlined">close</span></button>
-              </div>
-            </div>`;
-          document.body.appendChild(overlay);
-
-          const closeBtnSearch = document.getElementById('mobile-search-close');
-          closeBtnSearch.addEventListener('click', () => {
-            overlay.remove();
-          });
-
-          const input = document.getElementById('mobile-search-input');
-          input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-              // Redirigir a resultados (simple submit a la raíz con query)
-              const q = input.value.trim();
-              if (q.length) window.location.href = `/?q=${encodeURIComponent(q)}`;
-            }
-          });
-          setTimeout(() => input.focus(), 50);
-        }
-      });
-    }
   });
 </script>

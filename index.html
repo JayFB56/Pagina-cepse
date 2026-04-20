@@ -16,9 +16,9 @@
     <meta property="og:description" content="Uniendo fuerzas para el desarrollo económico y social de Esmeraldas.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cepse.org.ec">
-    <meta property="og:image" content="assets/img/icon.ico">
+    <meta property="og:image" content="assets/img/favicon.ico">
 
-    <link rel="icon" type="image/x-icon" href="assets/img/icon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
@@ -72,7 +72,7 @@
     <div id="preloader">
         <div class="loader-logo">
             <div class="loader-ring"></div>
-            <img src="assets/img/icon.ico" alt="CEPSE">
+            <img src="assets/img/favicon.ico" alt="CEPSE">
         </div>
         <div class="loader-text">Cargando Experiencia</div>
     </div>
@@ -87,20 +87,58 @@
         <!-- Hero Section -->
         <div id="hero-container"></div>
 
-        <!-- SEPS Anuncios Section -->
+        <!-- Presentación Resumida -->
+        <section class="py-24 lg:py-32 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <!-- Tarjeta 1: Ejes Primordiales -->
+                    <div class="group relative bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-emerald-500 rounded-xl flex items-center justify-center mb-6 text-white shadow-lg">
+                            <span class="material-symbols-outlined text-2xl">hub</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3 font-serif">Ejes Primordiales</h3>
+                        <p class="text-slate-600 mb-6 leading-relaxed">Conoce los tres pilares fundamentales que sustentan nuestro modelo de gestión institucional.</p>
+                        <a href="pages/gestion-institucional/gestion-institucional.html#ejes" class="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition-colors">
+                            Ver más <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </a>
+                    </div>
+
+                    <!-- Tarjeta 2: Metodología Operativa -->
+                    <div class="group relative bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center mb-6 text-white shadow-lg">
+                            <span class="material-symbols-outlined text-2xl">timeline</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3 font-serif">Metodología Operativa</h3>
+                        <p class="text-slate-600 mb-6 leading-relaxed">Descubre nuestro proceso de 5 pasos para potencializar organizaciones solidarias.</p>
+                        <a href="pages/gestion-institucional/gestion-institucional.html#metodologia" class="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition-colors">
+                            Ver más <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </a>
+                    </div>
+
+                    <!-- Tarjeta 3: Nuestro Impacto -->
+                    <div class="group relative bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-amber-500 rounded-xl flex items-center justify-center mb-6 text-white shadow-lg">
+                            <span class="material-symbols-outlined text-2xl">trending_up</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3 font-serif">Nuestro Impacto</h3>
+                        <p class="text-slate-600 mb-6 leading-relaxed">Cifras que reflejan nuestro compromiso con la Economía Popular y Solidaria.</p>
+                        <a href="pages/gestion-institucional/gestion-institucional.html#impacto" class="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition-colors">
+                            Ver más <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CTA Section -->
+                <div class="mt-16 text-center">
+                    <a href="pages/gestion-institucional/gestion-institucional.html" class="inline-block px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-lg transition-all hover:shadow-xl">
+                        Explorar Gestión Institucional Completa
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEPS Section -->
         <div id="seps-container"></div>
-
-        <!-- What We Do Section -->
-        <div id="what-we-do-container"></div>
-
-        <!-- Work Process Section -->
-        <div id="process-container"></div>
-
-        <!-- Stats Section -->
-        <div id="stats-container"></div>
-
-        <!-- FAQ Section -->
-        <div id="faq-container"></div>
     </main>
 
     <!-- Footer -->
@@ -141,22 +179,12 @@
                 loadComponent('header-container', 'components/header.html'),
                 loadComponent('hero-container', 'components/hero.html'),
                 loadComponent('seps-container', 'components/seps-anuncios.html'),
-                loadComponent('what-we-do-container', 'components/what-we-do.html'),
-                loadComponent('process-container', 'components/process.html'),
-                loadComponent('stats-container', 'components/stats.html'),
-                loadComponent('faq-container', 'components/faq.html'),
                 loadComponent('footer-container', 'components/footer.html')
             ]);
             
             // Aseguramos que los scripts se inicialicen después de cargar todo el HTML
             setTimeout(() => {
-                if (window.FormManager && window.formManager) window.formManager.initializeEventListeners();
                 if (window.initHeader) window.initHeader();
-                if (window.initStats) window.initStats();
-                if (window.initFAQ) window.initFAQ();
-                if (window.initServices) window.initServices();
-                if (window.initWhatWeDo) window.initWhatWeDo();
-                if (window.initImpact) window.initImpact();
                 if (window.initSepsAnuncios) window.initSepsAnuncios();
                 
                 // Ocultar preloader con un delay mínimo para evitar parpadeos
@@ -176,14 +204,9 @@
         document.body.classList.add('overflow-hidden');
     </script>
 
-    <!-- Core Scripts -->
+    <!-- Core Scripts (Simplified) -->
     <script src="js/grid.js"></script>
     <script src="js/interactions.js"></script>
-    <script src="js/forms-config.js"></script>
-    <script src="js/forms-handler.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/what-we-do.js"></script>
-    <script src="js/impact.js"></script>
     <script src="js/seps-anuncios.js"></script>
     <script src="js/hero.js"></script>
 

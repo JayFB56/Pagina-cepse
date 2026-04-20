@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Contacto - CEPSE</title>
-    <link rel="icon" type="image/x-icon" href="../assets/img/icon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet" />
-    <script id="tailwind-config" src="../js/config.js"></script>
-    <link rel="stylesheet" href="../css/main.css">
+    <script id="tailwind-config" src="./js/config.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
     <style>
         ::selection { background-color: #10b981; color: white; }
         ::-webkit-scrollbar { width: 8px; }
@@ -33,11 +33,9 @@
     <script>
         async function loadComponent(id, filePath) { 
             try { 
-                const r = await fetch('../' + filePath); 
+                const r = await fetch('./' + filePath); 
                 let html = await r.text(); 
-                html = html.replace(/(src|href)="assets\//g, '$1="../assets/'); 
-                html = html.replace(/href="index\.html/g, 'href="../index.html'); 
-                html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html|quienes-somos\.html|mision-vision\.html|beneficios\.html|impacto\.html|contacto\.html)/g, 'href="$1'); 
+                html = html.replace(/(src|href)="assets\//g, '$1="./assets/'); 
                 document.getElementById(id).innerHTML = html; 
             } catch (e) { 
                 console.error(e); 
@@ -53,18 +51,13 @@
             await Promise.all(promises);
             setTimeout(() => { 
                 if (window.initHeader) window.initHeader(); 
-                if (window.initStats) window.initStats();
                 if (window.initFAQ) window.initFAQ();
-                if (window.initServices) window.initServices();
-                if (window.initWhatWeDo) window.initWhatWeDo();
-                if (window.initImpact) window.initImpact();
                 document.getElementById('preloader').classList.add('fade-out'); 
             }, 300);
         });
     </script>
-    <script src="../js/interactions.js"></script>
-    <script src="../js/services.js"></script>
-    <script src="../js/what-we-do.js"></script>
-    <script src="../js/impact.js"></script>
+    <script src="./js/interactions.js"></script>
+    <script src="./js/forms-handler.js"></script>
+    <script src="./js/faq-accordion.js"></script>
 </body>
 </html>
