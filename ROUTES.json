@@ -246,12 +246,12 @@
       ]
     },
     "gestion_institucional": {
-      "label": "Gestión Institucional",
+      "label": "Manejo interno",
       "ruta": "/gestion-institucional/gestion-institucional",
       "carpeta": "pages/gestion-institucional",
       "items": [
         {
-          "label": "Gestión Institucional Completa",
+          "label": "Manejo interno Completa",
           "ruta": "/gestion-institucional/gestion-institucional",
           "archivo": "gestion-institucional.html"
         }
@@ -367,17 +367,17 @@
     },
     {
       "fecha": "Reciente",
-      "cambio": "Creada nueva página de Gestión Institucional",
+      "cambio": "Creada nueva página de Manejo interno",
       "estado": "Completado"
     },
     {
       "fecha": "Reciente",
-      "cambio": "Reorganizado home: ahora resumido con enlaces a Gestión Institucional",
+      "cambio": "Reorganizado home: ahora resumido con enlaces a Manejo interno",
       "estado": "Completado"
     },
     {
       "fecha": "Reciente",
-      "cambio": "Agregada opción Gestión Institucional al navbar",
+      "cambio": "Agregada opción Manejo interno al navbar",
       "estado": "Completado"
     }
   ]

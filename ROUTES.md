@@ -141,14 +141,14 @@ Pagina-cepse/
 
 ---
 
-## 6. � GESTIÓN INSTITUCIONAL
+## 6. � Manejo interno
 
 **Ubicación**: `/gestion-institucional/`
 **Carpeta**: `c:\Users\USER\Music\Pagina-cepse\pages\gestion-institucional/`
 
 | Sección | Ruta URL | Archivo |
 |--------|----------|---------|
-| **Gestión Institucional** | `/gestion-institucional/gestion-institucional` | `gestion-institucional.html` |
+| **Manejo interno** | `/gestion-institucional/gestion-institucional` | `gestion-institucional.html` |
 
 **Contenido**:
 - Ejes Primordiales (Representación Política, Escuela de Excelencia, Oportunidades de Mercado)
