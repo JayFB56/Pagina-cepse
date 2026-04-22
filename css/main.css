@@ -275,7 +275,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-divider {
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    margin: 60px 0;
+    margin: 32px 0;
 }
 
 .decorative-element {
@@ -577,3 +577,32 @@ textarea:focus {
         font-size: 24px !important;
     }
 }
+/* ============================================
+   INSTITUTIONAL SPACING SYSTEM
+   Compact, professional, consistent.
+   ============================================ */
+
+/* Reduce excessive vertical padding on generic section wrappers */
+.section-compact { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+.section-compact-lg { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+@media (min-width: 1024px) {
+    .section-compact-lg { padding-top: 5rem; padding-bottom: 5rem; }
+}
+
+/* Tighten global h-spacing in subpages */
+.subpage-main section,
+.subpage-main > div > section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+@media (min-width: 1024px) {
+    .subpage-main section,
+    .subpage-main > div > section {
+        padding-top: 4.5rem;
+        padding-bottom: 4.5rem;
+    }
+}
+
+/* Card groups: tighter gap on desktop */
+.card-grid-compact { gap: 1.25rem; }
+@media (min-width: 1024px) { .card-grid-compact { gap: 1.5rem; } }

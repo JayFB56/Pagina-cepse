@@ -102,7 +102,7 @@
         <!-- ═══════════════════════════════════════
              HERO SECTION
         ═══════════════════════════════════════ -->
-        <div class="hero-gradient relative overflow-hidden">
+        <div class="hero-gradient relative overflow-hidden flex items-center">
             <!-- Decorative pattern -->
             <div class="absolute inset-0 opacity-[0.04]"
                  style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 32px 32px;">
@@ -111,44 +111,56 @@
             <div class="absolute -top-32 -right-32 w-96 h-96 bg-emerald-400/20 rounded-full blur-[80px]"></div>
             <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-yellow-400/10 rounded-full blur-[100px]"></div>
 
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[500px]">
+                    <!-- Left: Content -->
+                    <div class="py-12 lg:py-20 animate-fade-up">
+                        <!-- Breadcrumb -->
+                        <nav class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-8 opacity-70">
+                            <a href="/" class="text-emerald-200 hover:text-white transition-colors">Inicio</a>
+                            <span class="material-symbols-outlined text-emerald-400/60" style="font-size:14px">chevron_right</span>
+                            <span class="text-emerald-200">Base Legal</span>
+                            <span class="material-symbols-outlined text-emerald-400/60" style="font-size:14px">chevron_right</span>
+                            <span class="text-white">Autoridades</span>
+                        </nav>
 
-                <!-- Breadcrumb -->
-                <nav class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-8 opacity-70">
-                    <a href="/" class="text-emerald-200 hover:text-white transition-colors">Inicio</a>
-                    <span class="material-symbols-outlined text-emerald-400/60" style="font-size:14px">chevron_right</span>
-                    <span class="text-emerald-200">Base Legal</span>
-                    <span class="material-symbols-outlined text-emerald-400/60" style="font-size:14px">chevron_right</span>
-                    <span class="text-white">Autoridades</span>
-                </nav>
+                        <!-- Badge -->
+                        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full mb-6">
+                            <span class="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse"></span>
+                            <span class="text-xs font-bold text-emerald-100 tracking-[0.2em] uppercase">Estructura Directiva</span>
+                        </div>
 
-                <div class="max-w-3xl animate-fade-up">
-                    <!-- Badge -->
-                    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full mb-6">
-                        <span class="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse"></span>
-                        <span class="text-xs font-bold text-emerald-100 tracking-[0.2em] uppercase">Estructura Directiva</span>
+                        <h1 class="text-5xl lg:text-7xl font-black text-white font-serif leading-tight mb-6">
+                            Autoridades
+                        </h1>
+                        <p class="text-lg lg:text-xl text-emerald-100/80 leading-relaxed max-w-2xl">
+                            Conoce la estructura directiva y organizativa que guía el funcionamiento institucional de la Cámara Provincial de Economía Popular y Solidaria de Esmeraldas.
+                        </p>
+
+                        <!-- Stats row -->
+                        <div class="flex flex-wrap gap-8 mt-10 pt-10 border-t border-white/10">
+                            <div>
+                                <div class="text-3xl font-black text-white font-serif">8</div>
+                                <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Cargos Directivos</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-black text-white font-serif">2026</div>
+                                <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Período Vigente</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-black text-white font-serif">EPS</div>
+                                <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Sector Representado</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <h1 class="text-5xl lg:text-7xl font-black text-white font-serif leading-tight mb-6">
-                        Autoridades
-                    </h1>
-                    <p class="text-lg lg:text-xl text-emerald-100/80 leading-relaxed max-w-2xl">
-                        Conoce la estructura directiva y organizativa que guía el funcionamiento institucional de la Cámara Provincial de Economía Popular y Solidaria de Esmeraldas.
-                    </p>
-
-                    <!-- Stats row -->
-                    <div class="flex flex-wrap gap-8 mt-10 pt-10 border-t border-white/10">
-                        <div>
-                            <div class="text-3xl font-black text-white font-serif">8</div>
-                            <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Cargos Directivos</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-black text-white font-serif">2026</div>
-                            <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Período Vigente</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-black text-white font-serif">EPS</div>
-                            <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Sector Representado</div>
+                    <!-- Right: Image -->
+                    <div class="relative h-full flex items-end justify-center lg:justify-end animate-fade-in">
+                        <div class="relative group">
+                            <!-- Shadow glow for the image -->
+                            <div class="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full scale-75 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <img src="../../assets/img2/banner-autoridades-cepse.png" alt="Autoridades CEPSE" 
+                                 class="relative z-10 w-full max-w-[550px] h-auto object-contain object-bottom transition-all duration-700 hover:scale-[1.02] drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                         </div>
                     </div>
                 </div>
@@ -159,7 +171,7 @@
              INTRO SECTION
         ═══════════════════════════════════════ -->
         <section class="bg-white border-b border-slate-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <div class="flex flex-col lg:flex-row lg:items-center gap-8">
                     <div class="flex-1">
                         <div class="section-divider mb-6"></div>
@@ -186,11 +198,11 @@
         <!-- ═══════════════════════════════════════
              AUTORIDADES GRID
         ═══════════════════════════════════════ -->
-        <section class="py-20 lg:py-28">
+        <section class="py-14 lg:py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <!-- Section header -->
-                <div class="text-center mb-16">
+                <div class="text-center mb-10">
                     <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 px-4 py-1.5 rounded-full mb-4">
                         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                         <span class="text-xs font-bold text-emerald-800 uppercase tracking-widest">Directorio Institucional</span>
@@ -338,7 +350,7 @@
         <!-- ═══════════════════════════════════════
              NORMATIVA / CTA SECTION
         ═══════════════════════════════════════ -->
-        <section class="py-16 bg-white border-t border-slate-100">
+        <section class="py-12 bg-white border-t border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
