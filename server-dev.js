@@ -39,6 +39,17 @@ app.use((req, res, next) => {
     return res.sendFile(filePath);
   }
   
+  // Si la ruta es una carpeta de sección (ej: /nosotros/), buscar la primera subpágina
+  const dirPath = path.join(__dirname, 'pages', url);
+  if (fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory()) {
+    const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.html')).sort();
+    if (files.length > 0) {
+      // Redirigir a la primera página de esa sección
+      const cleanUrl = url.replace(/\/$/, '');
+      return res.redirect(301, `${cleanUrl}/${files[0].replace('.html', '')}`);
+    }
+  }
+  
   // Si no existe, intentar con index.html (para carpetas)
   filePath = path.join(__dirname, 'pages', url, 'index.html');
   if (fs.existsSync(filePath)) {

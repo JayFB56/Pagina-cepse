@@ -8,7 +8,6 @@
 
 ### 2. Nosotros (/nosotros)
 - Quiénes Somos → `/nosotros/quienes-somos`
-- Base Legal → `/nosotros/base-legal`
 - Misión, Visión y Objetivos → `/nosotros/mision-vision-objetivos`
 - Autoridades → `/nosotros/autoridades`
 - Presidente → `/nosotros/perfil-del-presidente`
@@ -98,7 +97,6 @@
 /pages/
 ├── nosotros/
 │   ├── quienes-somos.html
-│   ├── base-legal.html
 │   ├── mision-vision-objetivos.html
 │   ├── autoridades.html
 │   ├── perfil-del-presidente.html

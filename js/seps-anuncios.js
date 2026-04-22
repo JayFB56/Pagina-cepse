@@ -26,8 +26,8 @@ window.initSepsAnuncios = function() {
             icon: 'gavel',
             iconColor: 'bg-emerald-600',
             title: 'Resoluciones Ley EPS',
-            description: 'Accede a la base legal, resoluciones, y reglamentos actualizados.',
-            date: 'Base Legal',
+            description: 'Accede a resoluciones y reglamentos actualizados de la SEPS.',
+            date: 'Normativa',
             url: 'https://www.seps.gob.ec/normativa/'
         },
         {

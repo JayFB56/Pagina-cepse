@@ -10,7 +10,7 @@ Pagina-cepse/
 │   ├── galeria.html
 │   ├── privacidad.html
 │   ├── servicios.html
-│   ├── nosotros/
+│   ├── base legal/
 │   ├── asociaciones-y-miembros/
 │   ├── proyectos-e-impacto/
 │   ├── servicios/
@@ -32,20 +32,20 @@ Pagina-cepse/
 
 ---
 
-## 2. 👥 NOSOTROS
+## 2. 👥 BASE LEGAL
 
-**Ubicación**: `/nosotros/`
-**Carpeta**: `c:\Users\USER\Music\Pagina-cepse\pages\nosotros/`
+**Ubicación**: `/base legal/`
+**Carpeta**: `c:\Users\USER\Music\Pagina-cepse\pages\base legal/`
 
 | Opción | Ruta URL | Archivo |
 |--------|----------|---------|
-| **Quiénes Somos** | `/nosotros/quienes-somos` | `quienes-somos.html` |
-| **Base Legal** | `/nosotros/base-legal` | `base-legal.html` |
-| **Misión, Visión y Objetivos** | `/nosotros/mision-vision-objetivos` | `mision-vision-objetivos.html` |
-| **Autoridades** | `/nosotros/autoridades` | `autoridades.html` |
-| **Presidente** | `/nosotros/perfil-del-presidente` | `presidente.html` |
-| **Historia Institucional** | `/nosotros/historia-institucional` | `historia-institucional.html` |
-| **Estatuto** | `/nosotros/estatuto` | `estatuto.html` |
+| **Quiénes Somos** | `/base legal/quienes-somos` | `quienes-somos.html` |
+
+| **Misión, Visión y Objetivos** | `/base legal/mision-vision-objetivos` | `mision-vision-objetivos.html` |
+| **Autoridades** | `/base legal/autoridades` | `autoridades.html` |
+| **Presidente** | `/base legal/perfil-del-presidente` | `presidente.html` |
+| **Historia Institucional** | `/base legal/historia-institucional` | `historia-institucional.html` |
+| **Estatuto** | `/base legal/estatuto` | `estatuto.html` |
 
 ---
 
@@ -211,9 +211,9 @@ c:\Users\USER\Music\Pagina-cepse\
 │   ├── 📄 privacidad.html
 │   ├── 📄 servicios.html
 │   │
-│   ├── 📁 nosotros/
+│   ├── 📁 base legal/
 │   │   ├── 📄 autoridades.html
-│   │   ├── 📄 base-legal.html
+
 │   │   ├── 📄 estatuto.html
 │   │   ├── 📄 historia-institucional.html
 │   │   ├── 📄 mision-vision-objetivos.html
@@ -327,8 +327,8 @@ c:\Users\USER\Music\Pagina-cepse\
 
 # 🔄 CAMBIOS REALIZADOS (Historial)
 
-1. ✅ **Renombrada carpeta**: `la-cepse` → `nosotros`
-2. ✅ **Actualizado navbar**: "La CEPSE" → "Nosotros"
+1. ✅ **Renombrada carpeta**: `la-cepse` → `base legal`
+2. ✅ **Actualizado navbar**: "La CEPSE" → "Base legal"
 3. ✅ **Eliminada sección**: "Alianzas y Representación"
 4. ✅ **Eliminada sección**: "Financiero" (del navbar)
 5. ✅ **Eliminada sección**: "Calidad y Regulación" (del navbar)

@@ -19,11 +19,6 @@
           "archivo": "quienes-somos.html"
         },
         {
-          "label": "Base Legal",
-          "ruta": "/nosotros/base-legal",
-          "archivo": "base-legal.html"
-        },
-        {
           "label": "Misión, Visión y Objetivos",
           "ruta": "/nosotros/mision-vision-objetivos",
           "archivo": "mision-vision-objetivos.html"
@@ -337,12 +332,12 @@
   "cambios_recientes": [
     {
       "fecha": "Reciente",
-      "cambio": "Renombrada carpeta la-cepse a nosotros",
+      "cambio": "Renombrada carpeta la-cepse a base legal",
       "estado": "Completado"
     },
     {
       "fecha": "Reciente",
-      "cambio": "Actualizado navbar: La CEPSE → Nosotros",
+      "cambio": "Actualizado navbar: La CEPSE → Base legal",
       "estado": "Completado"
     },
     {

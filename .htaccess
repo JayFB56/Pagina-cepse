@@ -23,7 +23,7 @@
   # Fallback for root-level routes
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(nosotros|asociaciones-y-miembros|servicios|proyectos-e-impacto|noticias-y-comunicados|contacto|galeria|privacidad|afiliarse)/?$ /pages/$1.html [L,QSA]
+  RewriteRule ^(base legal|asociaciones-y-miembros|servicios|proyectos-e-impacto|noticias-y-comunicados|contacto|galeria|privacidad|afiliarse)/?$ /pages/$1.html [L,QSA]
 </IfModule>
 
 <IfModule mod_headers.c>
