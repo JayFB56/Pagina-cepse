@@ -1,34 +1,441 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autoridades</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Autoridades - CEPSE</title>
+    <meta name="description" content="Estructura directiva y organizativa de la Cámara Provincial de Economía Popular y Solidaria de Esmeraldas.">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
+    <script id="tailwind-config" src="../../js/config.js"></script>
     <link rel="stylesheet" href="../../css/main.css">
-</head>
-<body>
-    <div id="header-container"></div>
-    <main class="flex items-center justify-center min-h-screen bg-gray-50">
-        <h1 class="text-6xl font-bold text-center text-gray-800">Autoridades</h1>
-    </main>
-    <div id="footer-container"></div>
-    <script src="../../js/interactions.js"></script>
-    <script>
-        function loadComponent(containerId, filePath, level = 0) {
-            const adjustPath = (path, level) => {
-                const prefix = '../'.repeat(level);
-                return prefix + path;
-            };
-            fetch(adjustPath(filePath, level))
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(containerId).innerHTML = data;
-                })
-                .catch(error => console.error('Error loading component:', error));
+    <style>
+        :root { --cepse-green: #00552b; --cepse-gold: #d4af37; }
+        ::selection { background-color: var(--cepse-green); color: white; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cepse-green); }
+
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffffff; z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s;
         }
-        loadComponent('header-container', 'components/header.html', 2);
-        loadComponent('footer-container', 'components/footer.html', 2);
+        #preloader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #00261a 0%, #00552b 50%, #006633 100%);
+        }
+
+        /* Card hover effect */
+        .authority-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .authority-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 85, 43, 0.12);
+        }
+
+        /* Avatar ring animation */
+        .avatar-ring {
+            position: relative;
+        }
+        .avatar-ring::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cepse-green), var(--cepse-gold));
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Badge chip */
+        .badge-chip {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+        }
+
+        /* Divider line */
+        .section-divider {
+            height: 3px;
+            width: 48px;
+            background: linear-gradient(90deg, var(--cepse-green), var(--cepse-gold));
+            border-radius: 9999px;
+        }
+
+        /* Slide animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeUp 0.6s ease forwards; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="font-display text-slate-800 min-h-screen relative antialiased bg-slate-50">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="flex flex-col items-center">
+            <div class="w-16 h-16 border-4 border-emerald-100 border-t-[#00552b] rounded-full animate-spin mb-4"></div>
+            <p class="text-[0.6rem] font-black uppercase tracking-[0.3em] text-slate-400">CEPSE Oficial</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <main class="relative z-10">
+
+        <!-- ═══════════════════════════════════════
+             HERO SECTION
+        ═══════════════════════════════════════ -->
+        <div class="hero-gradient relative overflow-hidden">
+            <!-- Decorative pattern -->
+            <div class="absolute inset-0 opacity-[0.04]"
+                 style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 32px 32px;">
+            </div>
+            <!-- Glow blobs -->
+            <div class="absolute -top-32 -right-32 w-96 h-96 bg-emerald-400/20 rounded-full blur-[80px]"></div>
+            <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-yellow-400/10 rounded-full blur-[100px]"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+
+                <!-- Breadcrumb -->
+                <nav class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-8 opacity-70">
+                    <a href="/" class="text-emerald-200 hover:text-white transition-colors">Inicio</a>
+                    <span class="material-symbols-outlined text-emerald-400/60" style="font-size:14px">chevron_right</span>
+                    <span class="text-emerald-200">Base Legal</span>
+                    <span class="material-symbols-outlined text-emerald-400/60" style="font-size:14px">chevron_right</span>
+                    <span class="text-white">Autoridades</span>
+                </nav>
+
+                <div class="max-w-3xl animate-fade-up">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full mb-6">
+                        <span class="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse"></span>
+                        <span class="text-xs font-bold text-emerald-100 tracking-[0.2em] uppercase">Estructura Directiva</span>
+                    </div>
+
+                    <h1 class="text-5xl lg:text-7xl font-black text-white font-serif leading-tight mb-6">
+                        Autoridades
+                    </h1>
+                    <p class="text-lg lg:text-xl text-emerald-100/80 leading-relaxed max-w-2xl">
+                        Conoce la estructura directiva y organizativa que guía el funcionamiento institucional de la Cámara Provincial de Economía Popular y Solidaria de Esmeraldas.
+                    </p>
+
+                    <!-- Stats row -->
+                    <div class="flex flex-wrap gap-8 mt-10 pt-10 border-t border-white/10">
+                        <div>
+                            <div class="text-3xl font-black text-white font-serif">8</div>
+                            <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Cargos Directivos</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white font-serif">2026</div>
+                            <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Período Vigente</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white font-serif">EPS</div>
+                            <div class="text-xs text-emerald-200/60 font-bold uppercase tracking-widest mt-1">Sector Representado</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             INTRO SECTION
+        ═══════════════════════════════════════ -->
+        <section class="bg-white border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex flex-col lg:flex-row lg:items-center gap-8">
+                    <div class="flex-1">
+                        <div class="section-divider mb-6"></div>
+                        <p class="text-slate-600 text-lg leading-relaxed">
+                            La Cámara Provincial de Economía Popular y Solidaria de Esmeraldas cuenta con una
+                            estructura directiva orientada a la <strong class="text-slate-800">representación, coordinación, control
+                            y fortalecimiento</strong> de sus procesos institucionales. A continuación se presenta
+                            su equipo de autoridades y roles principales.
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0 flex items-center gap-4 bg-emerald-50 border border-emerald-100 rounded-2xl px-8 py-6">
+                        <div class="w-14 h-14 bg-[#00552b] rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-white text-2xl">account_balance</span>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-emerald-700/60 uppercase tracking-widest mb-1">Ente Rector</div>
+                            <div class="font-bold text-slate-800 text-sm leading-snug">Superintendencia de Economía<br>Popular y Solidaria (SEPS)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+             AUTORIDADES GRID
+        ═══════════════════════════════════════ -->
+        <section class="py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Section header -->
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 px-4 py-1.5 rounded-full mb-4">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span class="text-xs font-bold text-emerald-800 uppercase tracking-widest">Directorio Institucional</span>
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-black text-slate-900 font-serif">
+                        Equipo de Autoridades
+                    </h2>
+                    <p class="text-slate-500 mt-3 max-w-xl mx-auto">Cargos designados conforme al Estatuto Oficial de la CEPSE y la normativa de la economía popular y solidaria.</p>
+                </div>
+
+                <!-- Grid cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                    <!-- ── Card 1: Presidente ── -->
+                    <div class="authority-card bg-white rounded-[2rem] border border-slate-100 shadow-md p-7 flex flex-col group animate-fade-up delay-100">
+                        <!-- Avatar -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="avatar-ring w-16 h-16 rounded-full bg-gradient-to-br from-[#00552b] to-emerald-400 flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1">person</span>
+                            </div>
+                            <span class="badge-chip bg-emerald-50 text-emerald-700 border border-emerald-200">Dirección</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-slate-900 font-serif mb-1">Presidente/a</h3>
+                            <p class="text-sm font-bold text-[#00552b] mb-3">Dr. Damián Vera Valencia</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Representación legal y dirección institucional. Preside sesiones, impulsa decisiones y representa a la cámara ante entidades públicas y privadas.</p>
+                        </div>
+                        <!-- Bottom link -->
+                        <a href="/nosotros/presidente" class="mt-6 flex items-center gap-2 text-xs font-bold text-emerald-600 hover:text-emerald-800 transition-colors group-hover:gap-3">
+                            Ver perfil completo
+                            <span class="material-symbols-outlined text-base transition-all">arrow_forward</span>
+                        </a>
+                    </div>
+
+                    <!-- ── Card 2: Vicepresidente ── -->
+                    <div class="authority-card bg-white rounded-[2rem] border border-slate-100 shadow-md p-7 flex flex-col animate-fade-up delay-100">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="avatar-ring w-16 h-16 rounded-full bg-gradient-to-br from-slate-700 to-slate-500 flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1">manage_accounts</span>
+                            </div>
+                            <span class="badge-chip bg-slate-100 text-slate-600 border border-slate-200">Dirección</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-slate-900 font-serif mb-1">Vicepresidente/a</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-3 italic">Por designar</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Sustituye al presidente en ausencia. Apoya coordinación general y seguimiento de acuerdos institucionales.</p>
+                        </div>
+                    </div>
+
+                    <!-- ── Card 3: Secretaria General ── -->
+                    <div class="authority-card bg-white rounded-[2rem] border border-slate-100 shadow-md p-7 flex flex-col animate-fade-up delay-200">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="avatar-ring w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1">description</span>
+                            </div>
+                            <span class="badge-chip bg-blue-50 text-blue-700 border border-blue-200">Apoyo</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-slate-900 font-serif mb-1">Secretario/a General</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-3 italic">Por designar</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Redacción y custodia de actas, oficios y resoluciones. Apoyo documental y administrativo integral.</p>
+                        </div>
+                    </div>
+
+                    <!-- ── Card 4: Tesorero/a ── -->
+                    <div class="authority-card bg-white rounded-[2rem] border border-slate-100 shadow-md p-7 flex flex-col animate-fade-up delay-200">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="avatar-ring w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-yellow-400 flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1">account_balance_wallet</span>
+                            </div>
+                            <span class="badge-chip bg-amber-50 text-amber-700 border border-amber-200">Control</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-slate-900 font-serif mb-1">Tesorero/a</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-3 italic">Por designar</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Control financiero y seguimiento presupuestario. Registro y supervisión de recursos económicos de la cámara.</p>
+                        </div>
+                    </div>
+
+                    <!-- ── Card 5: Vocal Principal ── -->
+                    <div class="authority-card bg-white rounded-[2rem] border border-slate-100 shadow-md p-7 flex flex-col animate-fade-up delay-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="avatar-ring w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-purple-400 flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1">groups</span>
+                            </div>
+                            <span class="badge-chip bg-purple-50 text-purple-700 border border-purple-200">Representación</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-slate-900 font-serif mb-1">Vocal Principal</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-3 italic">Por designar</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Participación en decisiones y apoyo estratégico. Representación en comisiones o comités internos de la cámara.</p>
+                        </div>
+                    </div>
+
+                    <!-- ── Card 6: Vocal Suplente ── -->
+                    <div class="authority-card bg-white rounded-[2rem] border border-slate-100 shadow-md p-7 flex flex-col animate-fade-up delay-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="avatar-ring w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-300 flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1">group_add</span>
+                            </div>
+                            <span class="badge-chip bg-pink-50 text-pink-700 border border-pink-200">Representación</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-slate-900 font-serif mb-1">Vocal Suplente</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-3 italic">Por designar</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Reemplazo de vocal principal cuando se requiera. Apoyo en funciones de coordinación y representación interna.</p>
+                        </div>
+                    </div>
+
+                    <!-- ── Card 7: Gerencia Administrativa ── -->
+                    <div class="authority-card bg-white rounded-[2rem] border border-slate-100 shadow-md p-7 flex flex-col animate-fade-up delay-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="avatar-ring w-16 h-16 rounded-full bg-gradient-to-br from-teal-600 to-emerald-400 flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1">corporate_fare</span>
+                            </div>
+                            <span class="badge-chip bg-teal-50 text-teal-700 border border-teal-200">Operativo</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-slate-900 font-serif mb-1">Gerencia Administrativa</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-3 italic">Por designar</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Ejecución operativa y seguimiento de procesos internos. Coordinación con áreas de apoyo y servicios de la institución.</p>
+                        </div>
+                    </div>
+
+                    <!-- ── Card 8: Asesoría Jurídica ── -->
+                    <div class="authority-card bg-white rounded-[2rem] border border-slate-100 shadow-md p-7 flex flex-col animate-fade-up delay-300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="avatar-ring w-16 h-16 rounded-full bg-gradient-to-br from-red-700 to-red-400 flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1">gavel</span>
+                            </div>
+                            <span class="badge-chip bg-red-50 text-red-700 border border-red-200">Fiscalización</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black text-slate-900 font-serif mb-1">Asesoría Jurídica</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-3 italic">Por designar</p>
+                            <p class="text-slate-500 text-sm leading-relaxed">Revisión del cumplimiento normativo y estatutario. Apoyo legal y control interno conforme a la ley de la EPS.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════
+             NORMATIVA / CTA SECTION
+        ═══════════════════════════════════════ -->
+        <section class="py-16 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                    <!-- Marco legal -->
+                    <div class="bg-slate-50 rounded-[2rem] border border-slate-100 p-10">
+                        <div class="w-14 h-14 bg-[#00552b]/10 rounded-2xl flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-[#00552b] text-2xl">menu_book</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-900 font-serif mb-3">Marco Normativo</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                            Las autoridades de la CEPSE son designadas conforme al Estatuto Oficial aprobado
+                            y bajo los lineamientos de la Ley Orgánica de Economía Popular y Solidaria (LOEPS)
+                            y su reglamento.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-sm font-medium text-slate-600">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span>
+                                Ley Orgánica de Economía Popular y Solidaria
+                            </div>
+                            <div class="flex items-center gap-3 text-sm font-medium text-slate-600">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span>
+                                Reglamento General de la LOEPS
+                            </div>
+                            <div class="flex items-center gap-3 text-sm font-medium text-slate-600">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37]"></span>
+                                Estatuto Oficial CEPSE — Acuerdo Ministerial
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacto institucional -->
+                    <div class="bg-[#00552b] rounded-[2rem] p-10 text-white relative overflow-hidden">
+                        <div class="absolute -top-8 -right-8 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-emerald-300/10 rounded-full blur-3xl"></div>
+                        <div class="relative z-10">
+                            <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6 border border-white/10">
+                                <span class="material-symbols-outlined text-[#d4af37] text-2xl">contact_mail</span>
+                            </div>
+                            <h3 class="text-xl font-black font-serif mb-3">Contacto Institucional</h3>
+                            <p class="text-emerald-100/70 text-sm mb-8 leading-relaxed">
+                                Para comunicaciones oficiales dirigidas a las autoridades de la Cámara.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 bg-white/10 border border-white/10 rounded-2xl p-4">
+                                    <span class="material-symbols-outlined text-emerald-300">mail</span>
+                                    <div>
+                                        <p class="text-[0.6rem] text-emerald-200/50 font-bold uppercase tracking-widest mb-0.5">Correo Oficial</p>
+                                        <p class="text-sm font-bold">info@cepse-esmeraldas.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-white/10 border border-white/10 rounded-2xl p-4">
+                                    <span class="material-symbols-outlined text-emerald-300">location_on</span>
+                                    <div>
+                                        <p class="text-[0.6rem] text-emerald-200/50 font-bold uppercase tracking-widest mb-0.5">Sede Ejecutiva</p>
+                                        <p class="text-sm font-bold leading-snug">Vía Atacames, diagonal al<br>monumento "El Jolgorio"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Component loader — mismo patrón que presidente.html -->
+    <script>
+        async function loadComponent(id, filePath) {
+            try {
+                const r = await fetch('../../' + filePath);
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                let html = await r.text();
+                html = html.replace(/(src|href)="assets\//g, '$1="../../assets/');
+                html = html.replace(/href="index\.html/g, 'href="../../index.html');
+                document.getElementById(id).innerHTML = html;
+            } catch (e) {
+                console.error('Error cargando componente:', e);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([
+                loadComponent('header-container', 'components/header.html'),
+                loadComponent('footer-container', 'components/footer.html')
+            ]);
+            setTimeout(() => {
+                if (window.initHeader) window.initHeader();
+                document.getElementById('preloader').classList.add('fade-out');
+            }, 300);
+        });
     </script>
+    <script src="../../js/interactions.js"></script>
+
 </body>
 </html>
