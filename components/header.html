@@ -86,6 +86,8 @@
     top: 100%;
     left: 0;
     z-index: 50;
+    overflow: hidden;
+    border-radius: 0.75rem; /* rounded-xl for a smoother look */
   }
 
   .nav-dropdown:hover .dropdown-menu {
@@ -103,6 +105,8 @@
     top: 100%;
     left: 0;
     z-index: 50;
+    overflow: hidden;
+    border-radius: 1rem;
   }
 
   .nav-services:hover .mega-menu {
@@ -120,6 +124,8 @@
     top: 100%;
     right: -50px;
     z-index: 50;
+    overflow: hidden;
+    border-radius: 0.75rem;
   }
 
   .seps-trigger:hover .seps-dropdown {
@@ -167,7 +173,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="dropdown-menu w-64 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+          <div class="dropdown-menu w-64 bg-white shadow-lg border border-slate-100">
             <a href="/nosotros/quienes-somos"
               class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Quiénes Somos</a>
             <a href="/nosotros/mision-vision-objetivos"
@@ -190,7 +196,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="dropdown-menu w-64 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+          <div class="dropdown-menu w-64 bg-white shadow-lg border border-slate-100">
             <a href="/asociaciones-y-miembros/asociaciones-afiliadas"
               class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Asociaciones
               Afiliadas</a>
@@ -200,7 +206,7 @@
             <a href="/asociaciones-y-miembros/requisitos-de-afiliacion"
               class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Requisitos
               de Afiliación</a>
-            <div class="border-t border-slate-100 mt-2 pt-2">
+            <div class="border-t border-slate-100 pt-2 pb-3">
               <button data-form="affiliation"
                 class="block w-full text-left px-4 py-2 text-sm font-bold text-white bg-[#006633] hover:bg-[#004d26] transition-colors rounded-md mx-2 px-3">Afiliarse
                 Ahora</button>
@@ -229,7 +235,7 @@
                       class="text-slate-600 hover:text-[#006633] transition">Alimentación</a></li>
                   <li><a href="/servicios/areas-productivas/construccion"
                       class="text-slate-600 hover:text-[#006633] transition">Construcción</a></li>
-                  <li><a href="/servicios/areas-productivas/limpieza"
+                  <li><a href="https://asoserliser.cepse-esmeraldas.com"
                       class="text-slate-600 hover:text-[#006633] transition">Limpieza</a></li>
                   <li><a href="/servicios/areas-productivas/canales-de-promocion-y-comercializacion"
                       class="text-slate-600 hover:text-[#006633] transition">Canales de Promoción</a></li>
@@ -299,7 +305,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="seps-dropdown w-80 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+          <div class="seps-dropdown w-80 bg-white shadow-lg border border-slate-100">
             <a href="https://www.seps.gob.ec/catalogo-de-servicios/oeps/reserva-de-denominacion-para-oeps/"
               target="_blank" rel="noopener noreferrer"
               class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Reserva
@@ -344,7 +350,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="dropdown-menu w-64 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+          <div class="dropdown-menu w-64 bg-white shadow-lg border border-slate-100">
             <a href="/proyectos-e-impacto/proyectos"
               class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Proyectos</a>
             <a href="/proyectos-e-impacto/impacto-social"
@@ -369,7 +375,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="dropdown-menu w-64 bg-white rounded-lg shadow-lg border border-slate-100 py-2">
+          <div class="dropdown-menu w-64 bg-white shadow-lg border border-slate-100">
             <a href="/noticias-y-comunicados/noticias"
               class="block px-4 py-2 text-sm font-medium text-slate-600 hover:text-[#006633] hover:bg-slate-50 transition-colors">Noticias</a>
             <a href="/noticias-y-comunicados/comunicados"
@@ -381,7 +387,7 @@
           </div>
         </div>
 
-        <a href="/contacto" class="nav-link px-3 py-2">Contacto</a>
+
       </nav>
 
       <!-- Botón CTA Desktop -->
@@ -468,7 +474,7 @@
               class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Alimentación</a>
             <a href="/servicios/areas-productivas/construccion"
               class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Construcción</a>
-            <a href="/servicios/areas-productivas/limpieza"
+            <a href="https://asoserliser.cepse-esmeraldas.com"
               class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Limpieza</a>
             <a href="/servicios/areas-productivas/canales-de-promocion-y-comercializacion"
               class="mobile-link block py-1 text-sm text-slate-600 hover:text-[#006633]">Canales de Promoción</a>
@@ -582,8 +588,7 @@
       </div>
     </details>
 
-    <a href="/contacto"
-      class="mobile-link block py-3 text-lg font-semibold text-slate-700 border-b border-slate-100 hover:text-[#006633]">Contacto</a>
+
   </nav>
 
   <!-- CTA Mobile -->
