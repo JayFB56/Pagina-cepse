@@ -163,7 +163,9 @@
             try { 
                 const r = await fetch('../../' + filePath); 
                 let html = await r.text(); 
-                html = html.replace(/(src|href)="assets\//g, '$1="../../assets/'); 
+                // No reemplazar rutas absolutas (/assets/) que ya están correctas
+                // Solo reemplazar rutas relativas si las hubiera
+                html = html.replace(/(src|href)="(?!\/|https?:)assets\//g, '$1="/assets/'); 
                 document.getElementById(id).innerHTML = html; 
             } catch (e) { 
                 console.error(e); 

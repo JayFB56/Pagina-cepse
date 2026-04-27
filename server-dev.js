@@ -66,9 +66,17 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`\n✅ Servidor CEPSE iniciado en http://localhost:${PORT}`);
-  console.log(`📁 Directorio: ${__dirname}`);
-  console.log(`🔗 Accede a: http://192.168.1.16:${PORT}`);
-  console.log(`❌ Para detener: Ctrl + C\n`);
-});
+// Exportar para Vercel
+module.exports = app;
+
+// Ejecutar en local (no en Vercel)
+if (!process.env.VERCEL) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`\n✅ Servidor CEPSE iniciado en http://localhost:${PORT}`);
+    console.log(`📁 Directorio: ${__dirname}`);
+    console.log(`🔗 Accede a: http://0.0.0.0:${PORT} (todas las interfaces)`);
+    console.log(`🔗 Local: http://localhost:${PORT}`);
+    console.log(`🔗 Red local: http://192.168.1.16:${PORT}`);
+    console.log(`❌ Para detener: Ctrl + C\n`);
+  });
+}
