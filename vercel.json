@@ -8,14 +8,7 @@
   ],
   "functions": {
     "server-dev.js": {
-      "includeFiles": [
-        "pages/**",
-        "components/**",
-        "css/**",
-        "js/**",
-        "assets/**",
-        "index.html"
-      ]
+      "includeFiles": "{pages/**,components/**,css/**,js/**,assets/**,index.html}"
     }
   },
   "routes": [
