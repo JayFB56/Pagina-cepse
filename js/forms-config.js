@@ -36,11 +36,11 @@ const FORMS_CONFIG = {
                     { value: 'agricultura', label: 'Agricultura' },
                     { value: 'artesania', label: 'Artesanía' },
                     { value: 'comercio', label: 'Comercio y Servicios' },
-                    { value: 'transformacion', label: 'Transformación de Productos' },
+                    { value: 'transformacion', label: 'Ventas de Productos' },
                     { value: 'otro', label: 'Otro' }
                 ]
             },
-            { name: 'ciudad', label: 'Ciudad *', type: 'text', required: true, placeholder: 'Ej: Esmeraldas, Atacames' },
+            { name: 'ciudad', label: 'Ciudad *', type: 'text', required: true, placeholder: 'Ej: Esmeraldas, Manabi, Quito' },
             { name: 'metodologia', label: 'Descripción breve de tu actividad económica', type: 'textarea', required: false, placeholder: 'Cuéntanos sobre tu organización...' }
         ],
         sheetName: 'Afiliaciones'

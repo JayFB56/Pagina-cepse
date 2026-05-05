@@ -49,9 +49,9 @@ class FormManager {
         // Animar modal
         setTimeout(() => modal.classList.add('active'), 10);
 
-        // Manejar submit
+        // Manejar submit - PASAR TAMBIÉN CONFIG
         const form = modal.querySelector('form');
-        form.addEventListener('submit', (e) => this.handleSubmit(e, formType));
+        form.addEventListener('submit', (e) => this.handleSubmit(e, formType, config));
 
         // Cerrar modal
         const closeBtn = modal.querySelector('[data-close-modal]');
@@ -66,7 +66,7 @@ class FormManager {
     // Crear modal HTML dinámicamente
     createModal(config) {
         const modal = document.createElement('div');
-        modal.className = 'modal';
+        modal.className = 'modal p-4 sm:p-6';
         modal.id = config.id;
 
         let fieldsHTML = '';
@@ -74,38 +74,69 @@ class FormManager {
             fieldsHTML += this.createField(field);
         });
 
+        // Extract title without emoji if present
+        let displayTitle = config.title;
+        const emojiMatch = config.title.match(/^([\uD800-\uDBFF][\uDC00-\uDFFF]|\S)\s+(.*)$/);
+        if (emojiMatch) {
+            displayTitle = emojiMatch[2];
+        }
+
         modal.innerHTML = `
-            <div class="modal-content max-w-2xl">
-                <button data-close-modal class="modal-close">
-                    <span class="material-symbols-outlined">close</span>
+            <div class="modal-content w-full max-w-xl relative">
+                <button data-close-modal class="modal-close" aria-label="Cerrar modal">
+                    <span class="material-symbols-outlined pointer-events-none">close</span>
                 </button>
                 
-                <h2 class="text-3xl font-black text-slate-900 mb-2">${config.title}</h2>
-                <p class="text-slate-600 mb-8">${config.subtitle}</p>
+                <!-- Logo / Marca -->
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                        C
+                    </div>
+                    <span class="font-bold text-slate-800 text-sm tracking-wide">CEPSE</span>
+                </div>
 
-                <form class="space-y-6" data-form-type="${config.id}">
-                    ${fieldsHTML}
+                <div class="mb-8 pr-8">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-3 leading-tight">
+                        ${displayTitle}
+                    </h2>
+                    <p class="text-sm md:text-base text-slate-500 font-medium">
+                        ${config.subtitle}
+                    </p>
+                </div>
 
-                    <div class="flex items-center gap-3">
-                        <input type="checkbox" id="form-terms" name="terms" required class="w-4 h-4 accent-primary rounded"/>
-                        <label for="form-terms" class="text-sm text-slate-600">
-                            Acepto que mis datos se almacenen en los registros de CEPSE
+                <form class="space-y-4" data-form-type="${config.id}">
+                    <div class="space-y-2">
+                        ${fieldsHTML}
+                    </div>
+
+                    <div class="flex items-start gap-3 mt-6 pt-6 border-t border-slate-100">
+                        <div class="flex items-center h-5 mt-0.5">
+                            <input type="checkbox" id="form-terms" name="terms" required class="w-4 h-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer form-checkbox transition-all"/>
+                        </div>
+                        <label for="form-terms" class="text-sm text-slate-500 leading-relaxed cursor-pointer select-none">
+                            Acepto que mis datos se almacenen en los registros de CEPSE.
                         </label>
                     </div>
 
-                    <button
-                        type="submit"
-                        class="btn-primary w-full py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all"
-                        id="form-submit-btn">
-                        <span class="submit-text">Enviar Solicitud</span>
-                        <span class="submit-loading hidden">
-                            <span class="inline-block animate-spin">⏳</span> Enviando...
-                        </span>
-                    </button>
+                    <div class="pt-4">
+                        <button
+                            type="submit"
+                            class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-6 rounded-xl text-base font-bold shadow-[0_4px_14px_0_rgba(5,150,105,0.39)] hover:shadow-[0_6px_20px_rgba(5,150,105,0.23)] hover:-translate-y-0.5 transition-all duration-300"
+                            id="form-submit-btn">
+                            <span class="submit-text">Enviar solicitud</span>
+                            <span class="submit-loading hidden flex items-center gap-2">
+                                <span class="material-symbols-outlined animate-spin text-xl">progress_activity</span> 
+                                Procesando...
+                            </span>
+                        </button>
+                    </div>
                 </form>
 
-                <div class="mt-4 text-center text-xs text-slate-500">
-                    Tus datos son seguros y confidenciales
+                <div class="mt-6 text-center">
+                    <span class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400">
+                        <span class="material-symbols-outlined text-[14px]">lock</span>
+                        Información cifrada y segura
+                    </span>
                 </div>
             </div>
         `;
@@ -115,8 +146,22 @@ class FormManager {
 
     // Crear campo individual
     createField(field) {
-        const baseClasses = 'w-full rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-3 focus:border-primary focus:bg-white transition-all';
+        const baseClasses = 'w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-slate-700 outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all shadow-sm';
         const required = field.required ? ' required' : '';
+
+        // Determinar icono basado en nombre o tipo
+        let iconName = '';
+        const nameLower = field.name.toLowerCase();
+        if (nameLower.includes('nombre')) iconName = 'person';
+        else if (nameLower.includes('organizacion') || nameLower.includes('empresa') || nameLower.includes('sector')) iconName = 'domain';
+        else if (field.type === 'email' || nameLower.includes('email')) iconName = 'mail';
+        else if (field.type === 'tel' || nameLower.includes('telefono')) iconName = 'call';
+        else if (nameLower.includes('ciudad')) iconName = 'location_on';
+        else if (field.type === 'select') iconName = 'list';
+        else if (field.type === 'textarea') iconName = 'edit_note';
+        else iconName = 'edit';
+
+        const inputClasses = iconName ? `${baseClasses} pl-11` : baseClasses;
 
         if (field.type === 'select') {
             let options = '';
@@ -126,43 +171,52 @@ class FormManager {
                 ).join('');
             }
             return `
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-3">${field.label}</label>
-                    <select name="${field.name}" class="${baseClasses}"${required}>
-                        ${options}
-                    </select>
+                <div class="mb-5">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">${field.label}</label>
+                    <div class="input-with-icon relative flex items-center">
+                        <span class="material-symbols-outlined input-icon absolute left-3.5 text-slate-400 pointer-events-none transition-colors">${iconName}</span>
+                        <select name="${field.name}" class="${inputClasses}"${required}>
+                            ${options}
+                        </select>
+                    </div>
                 </div>
             `;
         }
 
         if (field.type === 'textarea') {
-            const rows = field.rows || 4;
+            const rows = field.rows || 3;
             return `
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-3">${field.label}</label>
-                    <textarea
-                        name="${field.name}"
-                        rows="${rows}"
-                        placeholder="${field.placeholder || ''}"
-                        class="${baseClasses} resize-none"${required}></textarea>
+                <div class="mb-5">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">${field.label}</label>
+                    <div class="input-with-icon relative flex items-start">
+                        <span class="material-symbols-outlined input-icon absolute left-3.5 top-3.5 text-slate-400 pointer-events-none transition-colors">${iconName}</span>
+                        <textarea
+                            name="${field.name}"
+                            rows="${rows}"
+                            placeholder="${field.placeholder || ''}"
+                            class="${inputClasses} resize-none"${required}></textarea>
+                    </div>
                 </div>
             `;
         }
 
         return `
-            <div>
-                <label class="block text-sm font-bold text-slate-700 mb-3">${field.label}</label>
-                <input
-                    type="${field.type}"
-                    name="${field.name}"
-                    placeholder="${field.placeholder || ''}"
-                    class="${baseClasses}"${required} />
+            <div class="mb-5">
+                <label class="block text-sm font-semibold text-slate-700 mb-2">${field.label}</label>
+                <div class="input-with-icon relative flex items-center">
+                    <span class="material-symbols-outlined input-icon absolute left-3.5 text-slate-400 pointer-events-none transition-colors">${iconName}</span>
+                    <input
+                        type="${field.type}"
+                        name="${field.name}"
+                        placeholder="${field.placeholder || ''}"
+                        class="${inputClasses}"${required} />
+                </div>
             </div>
         `;
     }
 
     // Manejar envío de formulario
-    async handleSubmit(e, formType) {
+    async handleSubmit(e, formType, config) {
         e.preventDefault();
         
         if (this.isLoading) return;
@@ -178,9 +232,9 @@ class FormManager {
         this.setFormLoading(form, true);
 
         try {
-            // Agregar timestamp y tipo de forma
+            // Agregar timestamp y tipo de forma - USAR EL ID DEL CONFIG, NO LA CLAVE
             data.timestamp = new Date().toLocaleString('es-EC');
-            data.formType = formType;
+            data.formType = config.id; // Usar el ID del modal, no formType
 
             // Enviar a API
             const response = await fetch(this.apiEndpoint, {

@@ -5,14 +5,15 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(15, 23, 42, 0.65); /* Oscurece fondo para más contraste */
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: var(--z-modal);
+    z-index: 100; /* Asegurar z-index siempre por encima */
     opacity: 0;
     transition: opacity 0.3s ease;
     backdrop-filter: blur(4px);
+    padding: 1rem;
 }
 
 .modal.active {
@@ -21,32 +22,44 @@
 
 .modal-content {
     background: white;
-    border-radius: 1.5rem;
+    border-radius: 1.25rem; /* 20px */
     padding: 2.5rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    animation: slideUp 0.3s ease;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(5, 150, 105, 0.05); /* Sombra suave y profesional */
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
+    border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 .modal-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 50%;
+    font-size: 1.25rem;
     cursor: pointer;
     color: #64748b;
-    transition: color 0.2s;
+    transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 50; /* Siempre clickeable */
 }
 
 .modal-close:hover {
-    color: #13ec13;
+    color: #0f172a;
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+}
+
+/* Icon focus styles */
+.input-with-icon:focus-within .input-icon {
+    color: #059669; /* emerald-600 */
 }
 
 /* Animación */
