@@ -1,38 +1,22 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": "pages/**,components/**,css/**,js/**,assets/**,index.html"
-      }
-    }
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/nosotros/:path*", "destination": "/pages/nosotros/:path*" },
+    { "source": "/asociaciones-y-miembros/:path*", "destination": "/pages/asociaciones-y-miembros/:path*" },
+    { "source": "/servicios/:path*", "destination": "/pages/servicios/:path*" },
+    { "source": "/proyectos-e-impacto/:path*", "destination": "/pages/proyectos-e-impacto/:path*" },
+    { "source": "/gestion-institucional/:path*", "destination": "/pages/gestion-institucional/:path*" },
+    { "source": "/noticias-y-comunicados/:path*", "destination": "/pages/noticias-y-comunicados/:path*" },
+    { "source": "/contacto", "destination": "/pages/contacto" },
+    { "source": "/galeria", "destination": "/pages/galeria" },
+    { "source": "/privacidad", "destination": "/pages/privacidad" }
   ],
-  "routes": [
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/css/(.*)",
-      "dest": "/css/$1"
-    },
-    {
-      "src": "/js/(.*)",
-      "dest": "/js/$1"
-    },
-    {
-      "src": "/components/(.*)",
-      "dest": "/components/$1"
-    },
-    {
-      "src": "/pages/(.*)",
-      "dest": "/pages/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api"
-    }
+  "redirects": [
+    { "source": "/nosotros/?", "destination": "/nosotros/quienes-somos", "permanent": true },
+    { "source": "/asociaciones-y-miembros/?", "destination": "/asociaciones-y-miembros/asociaciones-afiliadas", "permanent": true },
+    { "source": "/servicios/?", "destination": "/servicios/areas-productivas/textil", "permanent": true },
+    { "source": "/proyectos-e-impacto/?", "destination": "/proyectos-e-impacto/impacto-social", "permanent": true },
+    { "source": "/gestion-institucional/?", "destination": "/gestion-institucional/gestion-institucional", "permanent": true },
+    { "source": "/noticias-y-comunicados/?", "destination": "/noticias-y-comunicados/noticias", "permanent": true }
   ]
 }
