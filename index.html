@@ -148,53 +148,77 @@
     <script>
         async function loadComponent(containerId, filePath, level = 0) {
             try {
+                console.log(`[LOAD] Iniciando carga de: ${filePath}`);
+                
                 const response = await fetch(filePath);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                console.log(`[FETCH] Respuesta para ${filePath}: status ${response.status}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+                }
+                
                 let html = await response.text();
+                console.log(`[SUCCESS] Componente ${filePath} cargado exitosamente`);
                 
-                // Ajustar rutas relativas según el nivel de profundidad
-                const prefix = level === 1 ? '../' : './';
-                const pagesPrefix = level === 1 ? '' : 'pages/';
-                
-                // Fix image paths
-                html = html.replace(/(src|href)="assets\//g, `$1="${prefix}assets/`);
-                
-                // Fix links to index
-                html = html.replace(/href="index\.html/g, `href="${prefix}index.html`);
-                
-                // Fix links to pages
-                html = html.replace(/href="(acuerdo-ministerial\.html|estatuto\.html|galeria\.html|noticias\.html|presidente\.html|privacidad\.html|servicios\.html|quienes-somos\.html|mision-vision\.html|beneficios\.html|impacto\.html|contacto\.html)/g, `href="${pagesPrefix}$1`);
-
+                // NO modificar rutas - los archivos HTML ya tienen rutas correctas
                 document.getElementById(containerId).innerHTML = html;
+                
             } catch (error) {
-                console.error(`Error cargando ${filePath}:`, error);
-                document.getElementById(containerId).innerHTML = `<div class='p-8 text-center text-slate-400'>Error cargando modulo</div>`;
+                console.error(`[ERROR] Falló al cargar ${filePath}:`, error.message, error);
+                
+                // Mostrar error de forma legible
+                const errorDiv = document.getElementById(containerId);
+                if (errorDiv) {
+                    errorDiv.innerHTML = `
+                        <div class='p-8 text-center'>
+                            <p class='text-red-500 font-bold'>⚠️ Error cargando: ${filePath}</p>
+                            <p class='text-slate-400 text-sm mt-2'>${error.message}</p>
+                        </div>
+                    `;
+                }
             }
         }
 
         window.addEventListener('DOMContentLoaded', async () => {
+            console.log('[INIT] Iniciando carga de componentes...');
             const startTime = Date.now();
             
-            await Promise.all([
-                loadComponent('header-container', 'components/header.html'),
-                loadComponent('hero-container', 'components/hero.html'),
-                loadComponent('seps-container', 'components/seps-anuncios.html'),
-                loadComponent('footer-container', 'components/footer.html')
-            ]);
+            try {
+                await Promise.all([
+                    loadComponent('header-container', '/components/header.html'),
+                    loadComponent('hero-container', '/components/hero.html'),
+                    loadComponent('seps-container', '/components/seps-anuncios.html'),
+                    loadComponent('footer-container', '/components/footer.html')
+                ]);
+                
+                console.log('[LOADED] Todos los componentes cargados');
+            } catch (error) {
+                console.error('[CRITICAL ERROR] Error al cargar componentes:', error);
+            }
             
             // Aseguramos que los scripts se inicialicen después de cargar todo el HTML
             setTimeout(() => {
-                if (window.initHeader) window.initHeader();
-                if (window.initSepsAnuncios) window.initSepsAnuncios();
+                console.log('[INIT] Inicializando scripts...');
+                if (window.initHeader) {
+                    console.log('[INIT] Ejecutando initHeader');
+                    window.initHeader();
+                }
+                if (window.initSepsAnuncios) {
+                    console.log('[INIT] Ejecutando initSepsAnuncios');
+                    window.initSepsAnuncios();
+                }
                 
                 // Ocultar preloader con un delay mínimo para evitar parpadeos
                 const elapsedTime = Date.now() - startTime;
                 const minLoaderTime = 1200; 
                 const remainingTime = Math.max(0, minLoaderTime - elapsedTime);
                 
+                console.log(`[PRELOADER] Ocultando preloader en ${remainingTime}ms`);
+                
                 setTimeout(() => {
                     document.getElementById('preloader').classList.add('fade-out');
                     document.body.classList.remove('overflow-hidden');
+                    console.log('[READY] Página lista');
                 }, remainingTime);
 
             }, 200);
