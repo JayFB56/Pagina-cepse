@@ -2,11 +2,10 @@
   "version": 2,
   "builds": [
     {
-      "src": "server-dev.js",
+      "src": "api/index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": "pages/**,components/**,css/**,js/**,assets/**,index.html",
-        "excludeFiles": "node_modules/**"
+        "includeFiles": "pages/**,components/**,css/**,js/**,assets/**,index.html"
       }
     }
   ],
@@ -33,10 +32,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/server-dev.js"
+      "dest": "/api"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
