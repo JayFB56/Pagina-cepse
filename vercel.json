@@ -12,11 +12,11 @@
     { "source": "/privacidad", "destination": "/pages/privacidad" }
   ],
   "redirects": [
-    { "source": "/nosotros/?", "destination": "/nosotros/quienes-somos", "permanent": true },
-    { "source": "/asociaciones-y-miembros/?", "destination": "/asociaciones-y-miembros/asociaciones-afiliadas", "permanent": true },
-    { "source": "/servicios/?", "destination": "/servicios/areas-productivas/textil", "permanent": true },
-    { "source": "/proyectos-e-impacto/?", "destination": "/proyectos-e-impacto/impacto-social", "permanent": true },
-    { "source": "/gestion-institucional/?", "destination": "/gestion-institucional/gestion-institucional", "permanent": true },
-    { "source": "/noticias-y-comunicados/?", "destination": "/noticias-y-comunicados/noticias", "permanent": true }
+    { "source": "/nosotros", "destination": "/nosotros/quienes-somos", "permanent": true },
+    { "source": "/asociaciones-y-miembros", "destination": "/asociaciones-y-miembros/asociaciones-afiliadas", "permanent": true },
+    { "source": "/servicios", "destination": "/servicios/areas-productivas/textil", "permanent": true },
+    { "source": "/proyectos-e-impacto", "destination": "/proyectos-e-impacto/impacto-social", "permanent": true },
+    { "source": "/gestion-institucional", "destination": "/gestion-institucional/gestion-institucional", "permanent": true },
+    { "source": "/noticias-y-comunicados", "destination": "/noticias-y-comunicados/noticias", "permanent": true }
   ]
 }
