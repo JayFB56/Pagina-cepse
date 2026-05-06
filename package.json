@@ -7,8 +7,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'Build complete'",
-    "start": "node server-dev.js",
     "dev": "node server-dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
