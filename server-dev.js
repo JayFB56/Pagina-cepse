@@ -16,29 +16,43 @@ app.use('/css', express.static(path.join(__dirname, 'css')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/components', express.static(path.join(__dirname, 'components')));
 app.use('/pages', express.static(path.join(__dirname, 'pages')));
+app.use('/admin', express.static(path.join(__dirname, 'admin')));
 
 // Middleware para rewrite de URLs - DESPUÉS de servir estáticos
 app.use((req, res, next) => {
   const url = req.url;
-  
+
   // Ignorar archivos con extensión (ya fueron servidos como estáticos)
   if (url.includes('.')) {
     return next();
   }
-  
+
   // Si es raíz
   if (url === '/' || url === '') {
     return res.sendFile(path.join(__dirname, 'index.html'));
   }
-  
+
+  // Rutas de admin
+  if (url.startsWith('/admin')) {
+    const adminUrl = url === '/admin' || url === '/admin/' ? '/admin/index.html' : url + '.html';
+    let filePath = path.join(__dirname, 'admin', adminUrl.replace('/admin', ''));
+    if (fs.existsSync(filePath)) {
+      return res.sendFile(filePath);
+    }
+    filePath = path.join(__dirname, 'admin', adminUrl.replace('/admin', '') + '.html');
+    if (fs.existsSync(filePath)) {
+      return res.sendFile(filePath);
+    }
+  }
+
   // Convertir /seccion/pagina → /pages/seccion/pagina.html
   let filePath = path.join(__dirname, 'pages', url + '.html');
-  
+
   // Verificar si el archivo existe
   if (fs.existsSync(filePath)) {
     return res.sendFile(filePath);
   }
-  
+
   // Si la ruta es una carpeta de sección (ej: /nosotros/), buscar la primera subpágina
   const dirPath = path.join(__dirname, 'pages', url);
   if (fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory()) {
@@ -49,13 +63,13 @@ app.use((req, res, next) => {
       return res.redirect(301, `${cleanUrl}/${files[0].replace('.html', '')}`);
     }
   }
-  
+
   // Si no existe, intentar con index.html (para carpetas)
   filePath = path.join(__dirname, 'pages', url, 'index.html');
   if (fs.existsSync(filePath)) {
     return res.sendFile(filePath);
   }
-  
+
   // Si aún no existe, enviar 404
   next();
 });
