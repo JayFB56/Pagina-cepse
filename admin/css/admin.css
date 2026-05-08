@@ -1,0 +1,675 @@
+/* ============================================================
+   CEPSE — Panel de Administración
+   ============================================================ */
+
+:root {
+    --cepse-green: #006633;
+    --cepse-green-dark: #004d26;
+    --cepse-green-light: #008844;
+    --cepse-gold: #d4af37;
+    --cepse-gold-dark: #b8951f;
+
+    --bg: #f5f7f9;
+    --surface: #ffffff;
+    --surface-alt: #fafbfc;
+    --border: #e5e7eb;
+    --border-strong: #cbd5e1;
+
+    --text: #0f172a;
+    --text-muted: #475569;
+    --text-soft: #64748b;
+
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    --warning: #d97706;
+    --success: #059669;
+    --success-bg: #ecfdf5;
+
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.12);
+
+    --radius: 10px;
+    --radius-sm: 6px;
+    --radius-lg: 14px;
+
+    --sidebar-width: 250px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    font-size: 14.5px;
+    line-height: 1.5;
+}
+
+a { color: var(--cepse-green); text-decoration: none; }
+a:hover { color: var(--cepse-green-dark); text-decoration: underline; }
+
+button { font-family: inherit; cursor: pointer; }
+
+/* ============================================================
+   LOGIN
+   ============================================================ */
+.login-shell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #ecfdf5 100%);
+    padding: 1.5rem;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 2.25rem 2rem;
+    border-top: 4px solid var(--cepse-green);
+}
+
+.login-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-logo img {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 0.75rem;
+}
+
+.login-logo h1 {
+    font-size: 1.25rem;
+    color: var(--cepse-green);
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.login-logo p {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin: 0.25rem 0 0;
+}
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 0.625rem 0.85rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: var(--surface);
+    color: var(--text);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--cepse-green);
+    box-shadow: 0 0 0 3px rgba(0, 102, 51, 0.12);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+.form-help {
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    margin-top: 0.25rem;
+}
+
+.form-error {
+    background: var(--danger-bg);
+    color: var(--danger);
+    padding: 0.6rem 0.85rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--danger);
+}
+
+.form-success {
+    background: var(--success-bg);
+    color: var(--success);
+    padding: 0.6rem 0.85rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--success);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: var(--radius-sm);
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.15s;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.btn-primary {
+    background: var(--cepse-green);
+    color: white;
+}
+.btn-primary:hover { background: var(--cepse-green-dark); transform: translateY(-1px); color: white; text-decoration: none; }
+
+.btn-gold {
+    background: var(--cepse-gold);
+    color: #1a2332;
+}
+.btn-gold:hover { background: var(--cepse-gold-dark); transform: translateY(-1px); }
+
+.btn-secondary {
+    background: var(--surface);
+    color: var(--text-muted);
+    border: 1px solid var(--border-strong);
+}
+.btn-secondary:hover { background: var(--surface-alt); color: var(--text); text-decoration: none; }
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+.btn-danger:hover { background: #b91c1c; transform: translateY(-1px); color: white; text-decoration: none; }
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+}
+.btn-ghost:hover { background: var(--surface-alt); }
+
+.btn-block { width: 100%; }
+.btn-sm { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
+
+/* ============================================================
+   LAYOUT — Dashboard
+   ============================================================ */
+.app-shell {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.25rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.5rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+.sidebar-logo img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+
+.sidebar-logo .brand {
+    font-weight: 800;
+    color: var(--cepse-green);
+    font-size: 1.05rem;
+    line-height: 1.1;
+}
+
+.sidebar-logo .brand small {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-soft);
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.sidebar-user {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.65rem 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar-user .user-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.sidebar-user .user-role {
+    font-size: 0.72rem;
+    color: var(--cepse-green);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.sidebar-section {
+    margin-bottom: 1.25rem;
+}
+
+.sidebar-section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-soft);
+    padding: 0 0.65rem;
+    margin-bottom: 0.4rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: all 0.15s;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+}
+
+.sidebar-link:hover {
+    background: var(--surface-alt);
+    color: var(--cepse-green);
+    text-decoration: none;
+}
+
+.sidebar-link.active {
+    background: rgba(0, 102, 51, 0.08);
+    color: var(--cepse-green);
+    font-weight: 700;
+}
+
+.sidebar-link .icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.sidebar-footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.main-content {
+    padding: 1.75rem 2rem;
+    overflow-x: auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.page-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.page-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    margin: 0.2rem 0 0;
+}
+
+/* ============================================================
+   CARDS / METRICS
+   ============================================================ */
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--cepse-green);
+}
+
+.metric-card.gold { border-left-color: var(--cepse-gold); }
+.metric-card.muted { border-left-color: var(--text-soft); }
+
+.metric-label {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.35rem;
+}
+
+.metric-value {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.metric-meta {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    margin-top: 0.4rem;
+}
+
+/* ============================================================
+   PANEL / CARD
+   ============================================================ */
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.25rem;
+}
+
+.panel-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.panel-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text);
+}
+
+.panel-body { padding: 1.25rem; }
+.panel-body-flush { padding: 0; }
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.table-wrap { overflow-x: auto; }
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.table th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-soft);
+    padding: 0.85rem 1rem;
+    background: var(--surface-alt);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    color: var(--text);
+}
+
+.table tbody tr:hover { background: var(--surface-alt); }
+.table tbody tr:last-child td { border-bottom: none; }
+
+.table .actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.badge-published { background: var(--success-bg); color: var(--success); }
+.badge-draft { background: #fef3c7; color: #92400e; }
+.badge-section {
+    background: rgba(0, 102, 51, 0.08);
+    color: var(--cepse-green);
+}
+.badge-role {
+    background: var(--cepse-gold);
+    color: #1a2332;
+}
+.badge-role.presidente { background: var(--cepse-green); color: white; }
+
+/* ============================================================
+   FILTERS
+   ============================================================ */
+.filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-bar .form-select,
+.filter-bar .form-input { padding: 0.45rem 0.7rem; font-size: 0.85rem; }
+
+/* ============================================================
+   MODAL / IMAGE PREVIEW
+   ============================================================ */
+.image-preview {
+    margin-top: 0.5rem;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    background: var(--surface-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+}
+
+.image-preview img {
+    max-height: 220px;
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+    object-fit: contain;
+}
+
+.image-preview .empty {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+}
+
+/* ============================================================
+   EDITOR — Quill overrides
+   ============================================================ */
+.editor-container {
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.ql-toolbar.ql-snow {
+    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    background: var(--surface-alt);
+}
+
+.ql-container.ql-snow {
+    border: none !important;
+    min-height: 220px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.editor-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .editor-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   ACTIVITY LOG
+   ============================================================ */
+.activity-row {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    font-size: 0.88rem;
+}
+
+.activity-row:last-child { border-bottom: none; }
+.activity-time { color: var(--text-soft); font-size: 0.78rem; }
+.activity-user { font-weight: 700; color: var(--cepse-green); }
+.activity-action { color: var(--text); }
+.activity-detail { color: var(--text-soft); font-size: 0.82rem; }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.empty-state {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--text-soft);
+}
+
+.empty-state .icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(0, 102, 51, 0.2);
+    border-top-color: var(--cepse-green);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 0.75rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.text-sm { font-size: 0.85rem; }
+.text-muted { color: var(--text-muted); }
+.text-soft { color: var(--text-soft); }
+.text-right { text-align: right; }
+.hidden { display: none !important; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .app-shell { grid-template-columns: 1fr; }
+    .sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+    .main-content { padding: 1.25rem 1rem; }
+    .page-title { font-size: 1.3rem; }
+}

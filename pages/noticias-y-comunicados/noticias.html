@@ -180,6 +180,21 @@
                 </div>
             </div>
 
+            <!-- Noticias Institucionales (CMS) -->
+            <div class="space-y-8 mb-16">
+                <div class="flex items-center gap-4">
+                    <div class="h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent flex-grow"></div>
+                    <h3 class="text-xl font-bold text-emerald-700 uppercase tracking-[0.125em]">Noticias Institucionales CEPSE</h3>
+                    <div class="h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent flex-grow"></div>
+                </div>
+
+                <div id="cms-news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="col-span-full text-center py-8 text-slate-400 text-sm" id="cms-news-loading">
+                        Cargando noticias institucionales...
+                    </div>
+                </div>
+            </div>
+
             <!-- Archivo de Noticias -->
             <div class="space-y-8">
                 <div class="flex items-center gap-4">
@@ -379,12 +394,100 @@
             ]);
 
             await fetchNews();
+            loadCmsNews();
 
             setTimeout(() => {
                 if (window.initHeader) window.initHeader();
                 document.getElementById('preloader').classList.add('fade-out');
             }, 800);
         });
+
+        // ==================== NOTICIAS INSTITUCIONALES (CMS) ====================
+        const CMS_API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:3000'
+            : 'https://api.cepse-esmeraldas.com';
+
+        function cmsImg(url) {
+            if (!url) return '';
+            return url.startsWith('http') ? url : `${CMS_API_BASE}${url}`;
+        }
+
+        async function loadCmsNews() {
+            const grid = document.getElementById('cms-news-grid');
+            try {
+                const res = await fetch(`${CMS_API_BASE}/api/public/posts?section=noticias&limit=12`);
+                const data = await res.json();
+                if (!data.success || !data.data || data.data.length === 0) {
+                    grid.innerHTML = `<div class="col-span-full text-center py-8 text-slate-400 text-sm">
+                        Aún no hay noticias institucionales publicadas.
+                    </div>`;
+                    return;
+                }
+                grid.innerHTML = data.data.map(p => {
+                    const date = p.published_at || p.created_at;
+                    const dateStr = date ? new Date(date.replace(' ', 'T') + (date.includes('Z') ? '' : 'Z'))
+                        .toLocaleDateString('es-EC', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+                    const summary = (p.summary || '').slice(0, 200);
+                    const safeTitle = (p.title || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+                    return `
+                        <article class="news-card glass-card rounded-2xl overflow-hidden cursor-pointer" data-cms-id="${p.id}">
+                            <div class="aspect-video overflow-hidden bg-emerald-50">
+                                ${p.image_url
+                                    ? `<img src="${cmsImg(p.image_url)}" alt="" class="w-full h-full object-cover">`
+                                    : `<div class="w-full h-full flex items-center justify-center text-emerald-200 text-5xl">🏛️</div>`}
+                            </div>
+                            <div class="p-6">
+                                <div class="text-xs uppercase tracking-wider text-emerald-700 font-bold mb-2">CEPSE · ${dateStr}</div>
+                                <h3 class="text-lg font-bold text-slate-900 leading-snug">${safeTitle}</h3>
+                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">${summary.replace(/&/g, '&amp;').replace(/</g, '&lt;')}${p.summary && p.summary.length > 200 ? '...' : ''}</p>
+                                <span class="text-emerald-700 font-bold text-sm mt-3 inline-block">Leer más →</span>
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+
+                grid.querySelectorAll('[data-cms-id]').forEach(card => {
+                    const id = card.dataset.cmsId;
+                    const post = data.data.find(p => p.id == id);
+                    card.addEventListener('click', () => openCmsModal(post));
+                });
+            } catch (err) {
+                console.error('Error CMS:', err);
+                grid.innerHTML = `<div class="col-span-full text-center py-8 text-slate-400 text-sm">
+                    No fue posible cargar las noticias institucionales.
+                </div>`;
+            }
+        }
+
+        function openCmsModal(post) {
+            const existing = document.getElementById('cms-modal');
+            if (existing) existing.remove();
+            const date = post.published_at || post.created_at;
+            const dateStr = date ? new Date(date.replace(' ', 'T') + (date.includes('Z') ? '' : 'Z'))
+                .toLocaleDateString('es-EC', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+            const safeTitle = (post.title || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+            const html = `
+                <div id="cms-modal" style="position:fixed;inset:0;background:rgba(15,23,42,0.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);">
+                    <div style="background:white;max-width:800px;width:100%;max-height:90vh;overflow-y:auto;border-radius:1rem;padding:2rem;box-shadow:0 25px 50px -12px rgba(0,0,0,0.4);">
+                        <button id="cms-modal-close" style="float:right;background:#f3f4f6;border:none;padding:0.4rem 0.75rem;border-radius:0.5rem;cursor:pointer;font-weight:600;color:#475569">✕ Cerrar</button>
+                        <h2 style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:900;color:#006633;clear:both">${safeTitle}</h2>
+                        <div style="color:#64748b;font-size:0.85rem;margin-top:0.25rem">${dateStr}</div>
+                        ${post.image_url ? `<img src="${cmsImg(post.image_url)}" style="width:100%;border-radius:0.5rem;margin-top:1rem">` : ''}
+                        <div style="margin-top:1.25rem;color:#1f2937;line-height:1.7">${post.content || ('<p>' + (post.summary || '').replace(/</g, '&lt;') + '</p>')}</div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+            document.body.style.overflow = 'hidden';
+            const close = () => {
+                const m = document.getElementById('cms-modal');
+                if (m) m.remove();
+                document.body.style.overflow = '';
+            };
+            document.getElementById('cms-modal-close').addEventListener('click', close);
+            document.getElementById('cms-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'cms-modal') close();
+            });
+        }
     </script>
 </body>
 

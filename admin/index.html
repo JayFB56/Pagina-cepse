@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso — Panel CEPSE</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-shell">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="/assets/img/favicon.ico" alt="Logo CEPSE">
+                <h1>Panel CEPSE</h1>
+                <p>Acceso al sistema de gestión de contenidos</p>
+            </div>
+
+            <div id="login-error" class="form-error hidden"></div>
+
+            <form id="login-form" autocomplete="off">
+                <div class="form-group">
+                    <label class="form-label" for="username">Usuario</label>
+                    <input type="text" id="username" name="username" class="form-input"
+                        autocomplete="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" class="form-input"
+                        autocomplete="current-password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="login-btn">
+                    <span id="login-btn-text">Ingresar</span>
+                </button>
+            </form>
+
+            <p class="text-sm text-soft mt-4 text-right">
+                <a href="/" class="text-soft">Volver al sitio</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Si ya hay sesión, redirigir
+        if (CMSAuth.getToken()) {
+            CMSAuth.fetchMe().then(u => {
+                if (u) window.location.href = 'dashboard.html';
+            });
+        }
+
+        const form = document.getElementById('login-form');
+        const errEl = document.getElementById('login-error');
+        const btn = document.getElementById('login-btn');
+        const btnText = document.getElementById('login-btn-text');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errEl.classList.add('hidden');
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="spinner"></span> Verificando...';
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            const result = await CMSAuth.login(username, password);
+            if (result.ok) {
+                window.location.href = 'dashboard.html';
+            } else {
+                errEl.textContent = result.error || 'No fue posible iniciar sesión.';
+                errEl.classList.remove('hidden');
+                btn.disabled = false;
+                btnText.textContent = 'Ingresar';
+            }
+        });
+    </script>
+</body>
+</html>
