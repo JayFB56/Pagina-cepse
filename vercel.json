@@ -14,7 +14,7 @@
     { "source": "/privacidad", "destination": "/pages/privacidad" }
   ],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://YOUR-RAILWAY-BACKEND-URL.railway.app/api/:path*" }
+    { "source": "/api/:path*", "destination": "https://pagina-cepse-production.up.railway.app/api/:path*" }
   ],
   "redirects": [
     { "source": "/nosotros", "destination": "/nosotros/quienes-somos", "permanent": true },
