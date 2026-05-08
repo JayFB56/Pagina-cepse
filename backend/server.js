@@ -14,7 +14,27 @@ const cmsService = require('./services/cms_service');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+// CORS configuration
+const corsOptions = {
+    origin: function (origin, callback) {
+        const allowedOrigins = [
+            'http://localhost:3000',
+            'http://localhost:8080',
+            'http://127.0.0.1:3000',
+            'http://127.0.0.1:8080',
+            'https://cepse-esmeraldas.com',
+            'https://www.cepse-esmeraldas.com'
+        ];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '5mb' }));
 
 // Servir imágenes subidas (assets/img/cms) bajo /uploads para conveniencia
