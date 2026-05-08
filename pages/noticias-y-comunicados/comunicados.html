@@ -101,7 +101,7 @@
         const SECTION = 'comunicados';
         const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000'
-            : 'https://api.cepse-esmeraldas.com';
+            : '';  // Empty string en producción = usa proxy de Vercel
 
         function loadComponent(containerId, filePath) {
             fetch(filePath)

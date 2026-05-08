@@ -10,7 +10,7 @@ const API_BASE = (function () {
     }
     // En producción, usar el proxy de Vercel que redirige a Railway
     // Las rutas /api/* van a: https://pagina-cepse-production.up.railway.app
-    return `${window.location.protocol}//${window.location.hostname}`;
+    return '/api';
 })();
 
 const TOKEN_KEY = 'cepse_cms_token';

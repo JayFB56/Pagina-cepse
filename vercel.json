@@ -2,6 +2,7 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/api/:path*", "destination": "https://pagina-cepse-production.up.railway.app/api/:path*" },
     { "source": "/admin/:path*", "destination": "/admin/index.html" },
     { "source": "/nosotros/:path*", "destination": "/pages/nosotros/:path*" },
     { "source": "/asociaciones-y-miembros/:path*", "destination": "/pages/asociaciones-y-miembros/:path*" },
@@ -12,9 +13,6 @@
     { "source": "/contacto", "destination": "/pages/contacto" },
     { "source": "/galeria", "destination": "/pages/galeria" },
     { "source": "/privacidad", "destination": "/pages/privacidad" }
-  ],
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "https://pagina-cepse-production.up.railway.app/api/:path*" }
   ],
   "redirects": [
     { "source": "/nosotros", "destination": "/nosotros/quienes-somos", "permanent": true },
