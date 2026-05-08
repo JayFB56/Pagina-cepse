@@ -8,8 +8,14 @@ const API_BASE = (function () {
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         return 'http://localhost:3000';
     }
-    // En producción puedes hardcodear tu dominio aquí:
-    return 'https://api.cepse-esmeraldas.com';
+    // En producción: obtener del localStorage o usar variable de entorno
+    // Por defecto, asumir que el backend está en /api proxy de Vercel
+    // O dejar esta URL y actualizar en vercel.json si es necesario
+    if (typeof BACKEND_URL !== 'undefined') {
+        return BACKEND_URL;
+    }
+    // Fallback: si nada funciona, intentar en el mismo dominio
+    return `${window.location.protocol}//${window.location.hostname}`;
 })();
 
 const TOKEN_KEY = 'cepse_cms_token';
