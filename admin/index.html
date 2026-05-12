@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso — Panel CEPSE</title>
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="/admin/css/admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -43,12 +43,12 @@
         </div>
     </div>
 
-    <script src="js/auth.js"></script>
+    <script src="/admin/js/auth.js"></script>
     <script>
         // Si ya hay sesión, redirigir
         if (CMSAuth.getToken()) {
             CMSAuth.fetchMe().then(u => {
-                if (u) window.location.href = 'dashboard.html';
+                if (u) window.location.href = '/admin/dashboard.html';
             });
         }
 
@@ -68,7 +68,7 @@
 
             const result = await CMSAuth.login(username, password);
             if (result.ok) {
-                window.location.href = 'dashboard.html';
+                window.location.href = '/admin/dashboard.html';
             } else {
                 errEl.textContent = result.error || 'No fue posible iniciar sesión.';
                 errEl.classList.remove('hidden');

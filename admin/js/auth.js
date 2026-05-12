@@ -73,13 +73,13 @@ const CMSAuth = {
             } catch {}
         }
         this.clear();
-        window.location.href = 'index.html';
+        window.location.href = '/admin/index.html';
     },
 
     requireAuth() {
         const token = this.getToken();
         if (!token) {
-            window.location.href = 'index.html';
+            window.location.href = '/admin/index.html';
             return false;
         }
         return true;
@@ -105,7 +105,7 @@ const CMSAPI = {
 
         if (res.status === 401) {
             CMSAuth.clear();
-            window.location.href = 'index.html';
+            window.location.href = '/admin/index.html';
             return { ok: false, error: 'Sesión expirada' };
         }
 
