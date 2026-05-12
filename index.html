@@ -137,6 +137,9 @@
             </div>
         </section>
 
+        <!-- Noticias y Comunicados Section -->
+        <div id="noticias-container"></div>
+
         <!-- SEPS Section -->
         <div id="seps-container"></div>
     </main>
@@ -149,23 +152,23 @@
         async function loadComponent(containerId, filePath, level = 0) {
             try {
                 console.log(`[LOAD] Iniciando carga de: ${filePath}`);
-                
+
                 const response = await fetch(filePath);
                 console.log(`[FETCH] Respuesta para ${filePath}: status ${response.status}`);
-                
+
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status} - ${response.statusText}`);
                 }
-                
+
                 let html = await response.text();
                 console.log(`[SUCCESS] Componente ${filePath} cargado exitosamente`);
-                
+
                 // NO modificar rutas - los archivos HTML ya tienen rutas correctas
                 document.getElementById(containerId).innerHTML = html;
-                
+
             } catch (error) {
                 console.error(`[ERROR] Falló al cargar ${filePath}:`, error.message, error);
-                
+
                 // Mostrar error de forma legible
                 const errorDiv = document.getElementById(containerId);
                 if (errorDiv) {
@@ -182,20 +185,21 @@
         window.addEventListener('DOMContentLoaded', async () => {
             console.log('[INIT] Iniciando carga de componentes...');
             const startTime = Date.now();
-            
+
             try {
                 await Promise.all([
                     loadComponent('header-container', '/components/header.html'),
                     loadComponent('hero-container', '/components/hero.html'),
+                    loadComponent('noticias-container', '/components/noticias-comunicados.html'),
                     loadComponent('seps-container', '/components/seps-anuncios.html'),
                     loadComponent('footer-container', '/components/footer.html')
                 ]);
-                
+
                 console.log('[LOADED] Todos los componentes cargados');
             } catch (error) {
                 console.error('[CRITICAL ERROR] Error al cargar componentes:', error);
             }
-            
+
             // Aseguramos que los scripts se inicialicen después de cargar todo el HTML
             setTimeout(() => {
                 console.log('[INIT] Inicializando scripts...');
@@ -203,18 +207,22 @@
                     console.log('[INIT] Ejecutando initHeader');
                     window.initHeader();
                 }
+                if (window.initNoticiasComponent) {
+                    console.log('[INIT] Ejecutando initNoticiasComponent');
+                    window.initNoticiasComponent();
+                }
                 if (window.initSepsAnuncios) {
                     console.log('[INIT] Ejecutando initSepsAnuncios');
                     window.initSepsAnuncios();
                 }
-                
+
                 // Ocultar preloader con un delay mínimo para evitar parpadeos
                 const elapsedTime = Date.now() - startTime;
-                const minLoaderTime = 1200; 
+                const minLoaderTime = 1200;
                 const remainingTime = Math.max(0, minLoaderTime - elapsedTime);
-                
+
                 console.log(`[PRELOADER] Ocultando preloader en ${remainingTime}ms`);
-                
+
                 setTimeout(() => {
                     document.getElementById('preloader').classList.add('fade-out');
                     document.body.classList.remove('overflow-hidden');
@@ -231,6 +239,7 @@
     <!-- Core Scripts (Simplified) -->
     <script src="js/grid.js"></script>
     <script src="js/interactions.js"></script>
+    <script src="js/noticias-comunicados.js"></script>
     <script src="js/seps-anuncios.js"></script>
     <script src="js/hero.js"></script>
     

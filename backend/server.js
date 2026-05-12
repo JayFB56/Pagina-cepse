@@ -17,6 +17,9 @@ const PORT = process.env.PORT || 3000;
 // CORS configuration
 const corsOptions = {
     origin: function (origin, callback) {
+        // Permitir sin origin (peticiones server-side, como el proxy de Vercel)
+        if (!origin) return callback(null, true);
+
         const allowedOrigins = [
             'http://localhost:3000',
             'http://localhost:8080',
@@ -25,10 +28,22 @@ const corsOptions = {
             'https://cepse-esmeraldas.com',
             'https://www.cepse-esmeraldas.com'
         ];
-        if (!origin || allowedOrigins.includes(origin)) {
+
+        // Permitir dominios de Vercel (*.vercel.app) y Railway (*.railway.app)
+        const allowedPatterns = [
+            /^https:\/\/[\w-]+\.vercel\.app$/,
+            /^https:\/\/[\w-]+\.up\.railway\.app$/
+        ];
+
+        if (
+            allowedOrigins.includes(origin) ||
+            allowedPatterns.some(p => p.test(origin))
+        ) {
             callback(null, true);
         } else {
-            callback(new Error('Not allowed by CORS'));
+            // En producción no bloquear — loguear y permitir
+            console.warn('[CORS] Origen no listado (permitido):', origin);
+            callback(null, true);
         }
     },
     credentials: true
@@ -348,6 +363,56 @@ app.post('/api/cms/users', authService.authMiddleware, authService.requireRole('
             }
             throw dbErr;
         }
+    } catch (e) {
+        res.status(500).json({ success: false, error: e.message });
+    }
+});
+
+// Cambiar contraseña de usuario
+app.put('/api/cms/users/:id/password', authService.authMiddleware, authService.requireRole('admin'), async (req, res) => {
+    try {
+        const id = parseInt(req.params.id, 10);
+        const { password } = req.body || {};
+        if (!password || password.length < 8) {
+            return res.status(400).json({ success: false, error: 'Contraseña debe tener al menos 8 caracteres' });
+        }
+        const passwordHash = authService.hashPassword(password);
+        const result = dbService.updateUserPassword(id, passwordHash);
+        if (result.changes === 0) {
+            return res.status(404).json({ success: false, error: 'Usuario no encontrado' });
+        }
+        dbService.logActivity({
+            userId: req.user.id,
+            action: 'user_password_change',
+            targetType: 'user',
+            targetId: id,
+            ipAddress: req.ip
+        });
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ success: false, error: e.message });
+    }
+});
+
+// Eliminar usuario
+app.delete('/api/cms/users/:id', authService.authMiddleware, authService.requireRole('admin'), (req, res) => {
+    try {
+        const id = parseInt(req.params.id, 10);
+        if (id === req.user.id) {
+            return res.status(400).json({ success: false, error: 'No puedes eliminarte a ti mismo' });
+        }
+        const result = dbService.db.prepare('DELETE FROM cms_users WHERE id = ?').run(id);
+        if (result.changes === 0) {
+            return res.status(404).json({ success: false, error: 'Usuario no encontrado' });
+        }
+        dbService.logActivity({
+            userId: req.user.id,
+            action: 'user_delete',
+            targetType: 'user',
+            targetId: id,
+            ipAddress: req.ip
+        });
+        res.json({ success: true });
     } catch (e) {
         res.status(500).json({ success: false, error: e.message });
     }

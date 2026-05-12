@@ -1,0 +1,11 @@
+# Configuración Nixpacks para Railway
+# Documentación: https://nixpacks.com/docs/config/file
+
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["npm install --omit=dev"]
+
+[start]
+cmd = "node server.js"
