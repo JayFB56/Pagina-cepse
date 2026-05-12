@@ -254,26 +254,37 @@ function seedDefaultUsers() {
         INSERT INTO cms_users (username, password_hash, role)
         VALUES (?, ?, ?)
     `);
+    const updatePassword = db.prepare(`
+        UPDATE cms_users
+        SET password_hash = ?
+        WHERE id = ?
+    `);
 
     db.transaction(() => {
         for (const user of DEFAULT_USERS) {
             const exists = db.prepare(`
-                SELECT id
+                SELECT id, password_hash
                 FROM cms_users
                 WHERE username = ?
             `).get(user.username);
-
-            if (exists) continue;
 
             const envPassword = cleanText(process.env[user.envKey], '');
             const plainPassword = envPassword || generateTemporaryPassword();
             const passwordHash = hashPassword(plainPassword);
 
-            insert.run(user.username, passwordHash, user.role);
+            if (!exists) {
+                insert.run(user.username, passwordHash, user.role);
 
-            if (!envPassword) {
-                console.warn(`[db] Usuario inicial "${user.username}" creado con contraseña temporal: ${plainPassword}`);
-                console.warn(`[db] Define la variable de entorno ${user.envKey} para fijarla permanentemente.`);
+                if (!envPassword) {
+                    console.warn(`[db] Usuario inicial "${user.username}" creado con contraseña temporal: ${plainPassword}`);
+                    console.warn(`[db] Define la variable de entorno ${user.envKey} para fijarla permanentemente.`);
+                }
+                continue;
+            }
+
+            if (envPassword && !verifyPassword(envPassword, exists.password_hash)) {
+                updatePassword.run(passwordHash, exists.id);
+                console.warn(`[db] Usuario inicial "${user.username}" actualizado con la contraseña de entorno.`);
             }
         }
     })();
