@@ -282,7 +282,7 @@ function seedDefaultUsers() {
                 continue;
             }
 
-            if (envPassword && !verifyPassword(envPassword, exists.password_hash)) {
+            if (envPassword) {
                 updatePassword.run(passwordHash, exists.id);
                 console.warn(`[db] Usuario inicial "${user.username}" actualizado con la contraseña de entorno.`);
             }
