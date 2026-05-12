@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('./db_service');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'cambia-este-secret-en-produccion-cepse-cms';
+const JWT_SECRET = process.env.JWT_SECRET || '3b9f7e1d4c8a2f6e0d5b1a9c7f3e8d2b6a0c4f9e1b7d5a3c8e6f2d0a9b4c7e1f';
 const JWT_EXPIRES_IN = '8h';
 
 function signToken(user) {

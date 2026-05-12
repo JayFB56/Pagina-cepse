@@ -198,16 +198,35 @@
             await renderUsers();
         };
 
+        const editPanel = document.getElementById('edit-user-panel');
+        document.getElementById('eu-cancel').onclick = () => editPanel.classList.add('hidden');
+        document.getElementById('eu-save').onclick = async () => {
+            const euErr = document.getElementById('edit-user-error');
+            const euOk = document.getElementById('edit-user-success');
+            euErr.classList.add('hidden'); euOk.classList.add('hidden');
+            
+            const id = document.getElementById('eu-id').value;
+            const password = document.getElementById('eu-password').value;
+            
+            const r = await CMSAPI.put(`/api/cms/users/${id}/password`, { password });
+            if (!r.ok) {
+                euErr.textContent = r.error; euErr.classList.remove('hidden'); return;
+            }
+            euOk.textContent = 'Contraseña actualizada correctamente.';
+            euOk.classList.remove('hidden');
+            document.getElementById('eu-password').value = '';
+        };
+
         await renderUsers();
     }
 
     async function renderUsers() {
         const tbody = document.querySelector('#users-table tbody');
-        tbody.innerHTML = '<tr><td colspan="7" class="text-soft text-sm">Cargando...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" class="text-soft text-sm">Cargando...</td></tr>';
         const r = await CMSAPI.get('/api/cms/users');
-        if (!r.ok) { tbody.innerHTML = `<tr><td colspan="7" class="form-error">${r.error}</td></tr>`; return; }
+        if (!r.ok) { tbody.innerHTML = `<tr><td colspan="6" class="form-error">${r.error}</td></tr>`; return; }
         if (!r.data.length) {
-            tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Sin usuarios.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-state">Sin usuarios.</td></tr>';
             return;
         }
         tbody.innerHTML = r.data.map(u => `
@@ -218,22 +237,15 @@
                 <td>${u.active ? '<span class="badge badge-published">Activo</span>' : '<span class="badge badge-draft">Inactivo</span>'}</td>
                 <td class="text-sm text-soft">${u.last_login ? formatDate(u.last_login) : 'Nunca'}</td>
                 <td class="actions">
+                    <button class="btn btn-secondary btn-sm" data-edit="${u.id}" data-username="${escapeHtml(u.username)}">Editar</button>
                     <button class="btn btn-secondary btn-sm" data-toggle="${u.id}">
                         ${u.active ? 'Desactivar' : 'Activar'}
                     </button>
-                    <button class="btn btn-primary btn-sm" data-edit-user="${u.id}"
-                        data-username="${escapeHtml(u.username)}" data-role="${u.role}">
-                        Editar
-                    </button>
-                    <button class="btn btn-danger btn-sm" data-delete-user="${u.id}"
-                        data-username="${escapeHtml(u.username)}">
-                        Eliminar
-                    </button>
+                    <button class="btn btn-danger btn-sm" data-delete="${u.id}">Eliminar</button>
                 </td>
             </tr>
         `).join('');
 
-        // Botón activar/desactivar
         tbody.querySelectorAll('[data-toggle]').forEach(btn => {
             btn.addEventListener('click', async () => {
                 if (!confirm('¿Cambiar el estado de este usuario?')) return;
@@ -243,102 +255,26 @@
             });
         });
 
-        // Botón editar contraseña
-        tbody.querySelectorAll('[data-edit-user]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                openEditModal(parseInt(btn.dataset.editUser, 10), btn.dataset.username, btn.dataset.role);
-            });
-        });
-
-        // Botón eliminar
-        tbody.querySelectorAll('[data-delete-user]').forEach(btn => {
+        tbody.querySelectorAll('[data-delete]').forEach(btn => {
             btn.addEventListener('click', async () => {
-                const username = btn.dataset.username;
-                if (!confirm(`¿Eliminar al usuario "${username}"? Esta acción no se puede deshacer.`)) return;
-                const r = await CMSAPI.request(`/api/cms/users/${btn.dataset.deleteUser}`, { method: 'DELETE' });
+                if (!confirm('¿Eliminar permanentemente este usuario? Esta acción no se puede deshacer.')) return;
+                const r = await CMSAPI.del(`/api/cms/users/${btn.dataset.delete}`);
                 if (!r.ok) return alert(r.error);
                 await renderUsers();
             });
         });
+
+        tbody.querySelectorAll('[data-edit]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('eu-id').value = btn.dataset.edit;
+                document.getElementById('eu-username').textContent = btn.dataset.username;
+                document.getElementById('eu-password').value = '';
+                document.getElementById('edit-user-error').classList.add('hidden');
+                document.getElementById('edit-user-success').classList.add('hidden');
+                document.getElementById('edit-user-panel').classList.remove('hidden');
+            });
+        });
     }
-
-    // ============================================================
-    // MODAL — Editar contraseña de usuario
-    // ============================================================
-    let editingUserId = null;
-
-    function openEditModal(userId, username, role) {
-        editingUserId = userId;
-        document.getElementById('edit-user-info').innerHTML = `
-            <div class="modal-user-badge">
-                <strong>${escapeHtml(username)}</strong>
-                <span class="badge badge-role ${role}">${role === 'admin' ? 'Administrador' : 'Presidente'}</span>
-            </div>`;
-        document.getElementById('edit-password').value = '';
-        document.getElementById('edit-password-confirm').value = '';
-        document.getElementById('edit-user-error').classList.add('hidden');
-        document.getElementById('edit-user-success').classList.add('hidden');
-        document.getElementById('edit-user-modal').classList.remove('hidden');
-        document.getElementById('edit-password').focus();
-    }
-
-    function closeEditModal() {
-        document.getElementById('edit-user-modal').classList.add('hidden');
-        editingUserId = null;
-    }
-
-    // Inicializar eventos del modal
-    document.getElementById('edit-modal-close').addEventListener('click', closeEditModal);
-    document.getElementById('edit-modal-cancel').addEventListener('click', closeEditModal);
-    document.getElementById('edit-user-modal').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('edit-user-modal')) closeEditModal();
-    });
-
-    document.getElementById('edit-modal-save').addEventListener('click', async () => {
-        const errEl = document.getElementById('edit-user-error');
-        const okEl = document.getElementById('edit-user-success');
-        errEl.classList.add('hidden');
-        okEl.classList.add('hidden');
-
-        const password = document.getElementById('edit-password').value;
-        const confirm = document.getElementById('edit-password-confirm').value;
-
-        if (!password) {
-            errEl.textContent = 'Ingresa la nueva contraseña.';
-            errEl.classList.remove('hidden');
-            return;
-        }
-        if (password.length < 8) {
-            errEl.textContent = 'La contraseña debe tener al menos 8 caracteres.';
-            errEl.classList.remove('hidden');
-            return;
-        }
-        if (password !== confirm) {
-            errEl.textContent = 'Las contraseñas no coinciden.';
-            errEl.classList.remove('hidden');
-            return;
-        }
-
-        const saveBtn = document.getElementById('edit-modal-save');
-        saveBtn.disabled = true;
-        saveBtn.textContent = 'Guardando...';
-
-        const r = await CMSAPI.put(`/api/cms/users/${editingUserId}/password`, { password });
-        saveBtn.disabled = false;
-        saveBtn.textContent = 'Guardar cambios';
-
-        if (!r.ok) {
-            errEl.textContent = r.error;
-            errEl.classList.remove('hidden');
-            return;
-        }
-        okEl.textContent = 'Contraseña actualizada correctamente.';
-        okEl.classList.remove('hidden');
-        document.getElementById('edit-password').value = '';
-        document.getElementById('edit-password-confirm').value = '';
-        setTimeout(() => closeEditModal(), 1500);
-    });
-
 
     // ============================================================
     // ACTIVITY (admin)
@@ -402,8 +338,6 @@
             post_unpublish: 'despublicó una entrada',
             user_create: 'creó un usuario',
             user_toggle: 'cambió estado de usuario',
-            user_password_change: 'cambió contraseña de usuario',
-            user_delete: 'eliminó un usuario',
             upload: 'subió una imagen'
         };
         return map[a] || a;

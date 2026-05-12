@@ -2,16 +2,14 @@
    CEPSE CMS — Cliente compartido de autenticación + API
    ============================================================ */
 
-// URL del backend.
-// - En desarrollo (localhost): apunta directamente al servidor local en puerto 3000
-// - En producción (Vercel): vacío '', ya que vercel.json proxea /api/* hacia Railway
-//   NOTA: NO usar '/api' aquí porque las rutas del código ya incluyen /api/cms/...
-//   lo que causaría doble prefijo: /api/api/cms/... ❌
+// URL del backend. En dev: localhost:3000. En producción, cambiar al
+// dominio del backend desplegado (Railway, Render, etc.)
 const API_BASE = (function () {
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         return 'http://localhost:3000';
     }
-    // En producción: '' — Vercel proxea /api/* → https://pagina-cepse-production.up.railway.app/api/*
+    // En producción, usar el proxy de Vercel que redirige a Railway
+    // Las rutas /api/* van a: https://pagina-cepse-production.up.railway.app
     return '';
 })();
 

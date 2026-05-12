@@ -81,21 +81,15 @@ db.exec(`
 // ============================================================
 function seedDefaultUsers() {
     const count = db.prepare('SELECT COUNT(*) AS n FROM cms_users').get().n;
+    if (count > 0) return;
 
     const insert = db.prepare(`
-        INSERT OR IGNORE INTO cms_users (username, password_hash, role)
+        INSERT INTO cms_users (username, password_hash, role)
         VALUES (?, ?, ?)
     `);
-
-    // Insertar si no existen (OR IGNORE no falla si ya existen)
     insert.run('presidente', bcrypt.hashSync('Damian20', 10), 'presidente');
     insert.run('admin', bcrypt.hashSync('Admin@Cepse25', 10), 'admin');
-
-    if (count === 0) {
-        console.log('[db] Usuarios CMS iniciales creados (presidente, admin).');
-    } else {
-        console.log('[db] Usuarios CMS verificados. Seed omitido (ya existen registros).');
-    }
+    console.log('[db] Usuarios CMS iniciales creados (presidente, admin).');
 }
 
 seedDefaultUsers();
@@ -169,6 +163,9 @@ module.exports = {
     },
     updateUserPassword: (id, passwordHash) => {
         return db.prepare('UPDATE cms_users SET password_hash = ? WHERE id = ?').run(passwordHash, id);
+    },
+    deleteUser: (id) => {
+        return db.prepare('DELETE FROM cms_users WHERE id = ?').run(id);
     },
 
     // ---------- CMS posts ----------
