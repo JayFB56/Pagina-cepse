@@ -86,8 +86,10 @@ const UPLOAD_MAX_MB = Math.min(
     Math.max(Number(process.env.UPLOAD_MAX_MB) || 5, 1),
     20
 );
+const cloudinaryService = require('./services/cloudinary_service');
 
-const storage = multer.diskStorage({
+// Disk storage (fallback)
+const diskStorage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, UPLOAD_DIR),
     filename: (req, file, cb) => {
         const ext = MIME_TO_EXT[file.mimetype] || path.extname(file.originalname).toLowerCase() || '.jpg';
@@ -96,8 +98,8 @@ const storage = multer.diskStorage({
     },
 });
 
-const upload = multer({
-    storage,
+const diskUpload = multer({
+    storage: diskStorage,
     limits: { fileSize: UPLOAD_MAX_MB * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
         if (!ALLOWED_MIME.has(file.mimetype)) {
@@ -106,6 +108,42 @@ const upload = multer({
         cb(null, true);
     },
 });
+
+// Default to disk upload, but switch to CloudinaryStorage when credentials are present
+let upload = diskUpload;
+if (cloudinaryService && cloudinaryService.isConfigured) {
+    try {
+        const pkg = require('multer-storage-cloudinary');
+        const CloudinaryStorage = pkg.CloudinaryStorage || pkg;
+        if (!CloudinaryStorage) throw new Error('Cloudinary storage constructor not found in package');
+
+        const cloudStorage = new CloudinaryStorage({
+            cloudinary: cloudinaryService.cloudinary,
+            params: {
+                folder: 'cepse_cms',
+                allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
+                transformation: [{ width: 1600, crop: 'limit' }],
+            },
+        });
+
+        upload = multer({
+            storage: cloudStorage,
+            limits: { fileSize: UPLOAD_MAX_MB * 1024 * 1024 },
+            fileFilter: (req, file, cb) => {
+                if (!ALLOWED_MIME.has(file.mimetype)) {
+                    return cb(new Error('Tipo de archivo no permitido. Solo JPG, PNG y WEBP.'));
+                }
+                cb(null, true);
+            },
+        });
+
+        console.log('[Server] Cloudinary storage enabled for uploads');
+    } catch (e) {
+        console.error('[Server] Failed to initialize Cloudinary storage, falling back to disk storage:', e && e.message ? e.message : e);
+    }
+} else {
+    console.log('[Server] Cloudinary not configured - using local disk storage for uploads');
+}
 
 function parsePositiveInt(value, fallback = null) {
     const n = Number(value);
@@ -531,6 +569,7 @@ app.get('/api/cms/metrics', authService.authMiddleware, authService.requireRole(
 app.post('/api/cms/upload', authService.authMiddleware, (req, res) => {
     upload.single('image')(req, res, (err) => {
         if (err) {
+            console.error('[UPLOAD] error:', err.message);
             return res.status(400).json({ success: false, error: err.message });
         }
 
@@ -538,9 +577,25 @@ app.post('/api/cms/upload', authService.authMiddleware, (req, res) => {
             return res.status(400).json({ success: false, error: 'Archivo requerido' });
         }
 
-        const fileName = req.file.filename;
-        const uploadUrl = `/uploads/${fileName}`;
-        const assetUrl = `/assets/img/cms/${fileName}`;
+        // Determine returned URL depending on storage used
+        let fileName = req.file.filename || req.file.originalname || null;
+        let uploadUrl = null;
+        let assetUrl = null;
+
+        // Common places where Cloudinary storage may place the public URL
+        uploadUrl = req.file.path || req.file.secure_url || req.file.url || req.file.location || null;
+
+        if (!uploadUrl) {
+            // Local disk fallback
+            fileName = req.file.filename;
+            uploadUrl = `/uploads/${fileName}`;
+            assetUrl = `/assets/img/cms/${fileName}`;
+        } else {
+            // Cloudinary uploaded URL
+            assetUrl = uploadUrl;
+            // Try to pick a sensible filename/public id
+            if (req.file.public_id) fileName = req.file.public_id;
+        }
 
         dbService.logActivity({
             userId: req.user.id,
@@ -550,6 +605,8 @@ app.post('/api/cms/upload', authService.authMiddleware, (req, res) => {
             details: fileName,
             ipAddress: getIp(req),
         });
+
+        console.log(`[UPLOAD] user=${req.user.id} file=${fileName} url=${uploadUrl}`);
 
         res.json({
             success: true,

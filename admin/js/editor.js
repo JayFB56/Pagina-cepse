@@ -128,11 +128,19 @@
         if (!r.ok) return showError(r.error);
 
         showSuccess(editId ? 'Cambios guardados.' : 'Publicación creada.');
-        // Si era nueva, redirigir al editor con el ID para permitir ediciones posteriores
+
+        // Si era nueva, comportamiento según estado: publicar limpia el formulario,
+        // guardar en borrador redirige al editor para edición posterior.
+        const resultingStatus = r.data && r.data.status ? r.data.status : (forceStatus || $('status').value);
+
         if (!editId && r.data && r.data.id) {
-            setTimeout(() => {
-                window.location.href = `editor.html?id=${r.data.id}`;
-            }, 700);
+            if (resultingStatus === 'published') {
+                clearForm();
+            } else {
+                setTimeout(() => {
+                    window.location.href = `editor.html?id=${r.data.id}`;
+                }, 700);
+            }
         } else {
             $('status').value = r.data.status;
         }
@@ -161,6 +169,19 @@
     function clearMessages() {
         errEl.classList.add('hidden');
         okEl.classList.add('hidden');
+    }
+    function clearForm() {
+        $('title').value = '';
+        $('summary').value = '';
+        quill.root.innerHTML = '';
+        sectionEl.value = presetSection || 'noticias';
+        $('status').value = 'draft';
+        $('event_date').value = '';
+        imageUrlField.value = '';
+        imageInput.value = '';
+        renderPreview('');
+        setBusy(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     function setBusy(busy) {
         $('save-draft-btn').disabled = busy;
