@@ -40,6 +40,7 @@
             overflow: hidden;
             border-radius: 1.75rem;
             box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            min-height: 240px;
         }
 
         .video-container iframe {
@@ -67,6 +68,14 @@
             color: white;
             padding: 12px 0;
             border-radius: 9999px;
+        }
+
+        @media (min-width: 1024px) {
+            .video-container {
+                /* Ensure a taller, YouTube-like player on large screens */
+                min-height: 480px;
+                padding-bottom: 56.25%;
+            }
         }
 
         @keyframes scroll {
@@ -141,7 +150,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
 
                 <!-- Video + Noticia Principal -->
-                <div class="lg:col-span-8 space-y-6">
+                <div class="lg:col-span-9 space-y-6">
                     <div id="main-news-video" class="video-container bg-slate-900"></div>
 
                     <div id="main-news-content" class="glass-card p-8 md:p-10 rounded-3xl">
@@ -246,6 +255,7 @@
 
         let loadedNews = [];
         let firstLoad = true;
+        let featuredVideoId = null;
 
         // ==================== CARGAR NOTICIAS ====================
         async function fetchNews() {
@@ -299,8 +309,9 @@
             const news = loadedNews[index];
             if (!news) return;
 
+            const useVid = featuredVideoId || CONFIG.YOUTUBE_FEATURED_ID;
             const videoHtml = `
-                <iframe src="https://www.youtube.com/embed/${CONFIG.YOUTUBE_FEATURED_ID}?rel=0&modestbranding=1" 
+                <iframe src="https://www.youtube.com/embed/${useVid}?rel=0&modestbranding=1&autoplay=0&mute=1" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
@@ -364,6 +375,35 @@
             `).join('');
         }
 
+        // ==================== CARGAR VÍDEO DESTACADO DESDE BACKEND ====================
+        async function loadFeaturedVideoFromApi() {
+            try {
+                const base = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                    ? 'http://localhost:3000'
+                    : '';
+
+                const res = await fetch(`${base}/api/news/video`);
+                if (!res.ok) return null;
+                const json = await res.json();
+                if (json && json.success && json.data && json.data.selected && json.data.selected.videoId) {
+                    featuredVideoId = json.data.selected.videoId;
+                    const vid = featuredVideoId;
+                    const iframe = `
+                        <iframe src="https://www.youtube.com/embed/${vid}?rel=0&modestbranding=1&autoplay=1&mute=1" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>`;
+                    const container = document.getElementById('main-news-video');
+                    if (container) container.innerHTML = iframe;
+                    return featuredVideoId;
+                }
+            } catch (err) {
+                console.error('Error loading featured video from API:', err);
+            }
+            return null;
+        }
+
         // ==================== LOCUCIÓN (SIN REFERENCIAS A IA) ====================
         let currentUtterance = null;
 
@@ -394,6 +434,10 @@
             ]);
 
             await fetchNews();
+
+            // Cargar vídeo destacado automático desde el backend si está disponible
+            await loadFeaturedVideoFromApi();
+
             loadCmsNews();
 
             setTimeout(() => {
