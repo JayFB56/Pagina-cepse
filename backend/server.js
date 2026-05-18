@@ -87,6 +87,7 @@ const UPLOAD_MAX_MB = Math.min(
     20
 );
 const cloudinaryService = require('./services/cloudinary_service');
+const youtubeService = require('./services/youtube_service');
 
 // Disk storage (fallback)
 const diskStorage = multer.diskStorage({
@@ -563,6 +564,29 @@ app.get('/api/cms/metrics', authService.authMiddleware, authService.requireRole(
     }
 });
 
+// Endpoint para que admin/presidente roten el vídeo de noticias inmediatamente
+app.post('/api/cms/news/rotate-video', authService.authMiddleware, authService.requireRole('admin', 'presidente'), async (req, res) => {
+    try {
+        const result = await youtubeService.rotateRandomVideo();
+        if (!result) return res.status(500).json({ success: false, error: 'No fue posible rotar el vídeo' });
+
+        // Registrar actividad
+        try {
+            dbService.logActivity({
+                userId: req.user.id,
+                action: 'post_update',
+                targetType: 'news_video',
+                details: `Rotated video to ${result.selected.videoId}`,
+                ipAddress: getIp(req),
+            });
+        } catch (e) { /* no interrumpir */ }
+
+        return res.json({ success: true, data: result });
+    } catch (err) {
+        return res.status(500).json({ success: false, error: err.message || 'Error interno' });
+    }
+});
+
 // ============================================================
 // UPLOADS
 // ============================================================
@@ -858,6 +882,15 @@ app.use((err, req, res, next) => {
 // START
 // ============================================================
 if (require.main === module) {
+    // Inicializar rotación programada si hay datos previos
+    try {
+        if (youtubeService && typeof youtubeService.initScheduledRotation === 'function') {
+            youtubeService.initScheduledRotation();
+        }
+    } catch (e) {
+        console.error('[Server] Failed to init youtube scheduled rotation:', e && e.message ? e.message : e);
+    }
+
     app.listen(PORT, () => {
         console.log(`---  Servidor API + CMS activo en puerto ${PORT} ---`);
         console.log(`API URL:     http://localhost:${PORT}/api/noticias`);
