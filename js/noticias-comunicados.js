@@ -365,9 +365,57 @@ window.initNoticiasComponent = function() {
     }
 
     // ============================================
+    // VIDEO AUTOMÁTICO Y TICKER
+    // ============================================
+    async function loadNewsVideo() {
+        try {
+            const res = await fetch(`${API_BASE}/api/news/video`);
+            if (!res.ok) return;
+            const json = await res.json();
+            const container = document.getElementById('news-video');
+            if (!container) return;
+
+            if (json.success && json.data && json.data.selected && json.data.selected.videoId) {
+                const vid = json.data.selected.videoId;
+                const embedUrl = `https://www.youtube.com/embed/${vid}?autoplay=1&mute=1&rel=0`;
+                container.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:0"></iframe>`;
+            } else {
+                container.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white">No hay vídeo disponible</div>';
+            }
+        } catch (err) {
+            console.error('Error loading news video:', err);
+        }
+    }
+
+    async function loadTicker() {
+        try {
+            const res = await fetch(`${API_BASE}/api/noticias?limit=20`);
+            if (!res.ok) return;
+            const json = await res.json();
+            const content = document.getElementById('news-ticker-content');
+            if (!content) return;
+
+            if (json.success && Array.isArray(json.data)) {
+                const titles = json.data.map(item => item.title || '').filter(Boolean);
+                const text = titles.join('  •  ');
+                content.textContent = text || 'No hay noticias disponibles';
+            }
+        } catch (err) {
+            console.error('Error loading ticker:', err);
+        }
+    }
+
+    // ============================================
     // INITIALIZATION
     // ============================================
     fetchAllPosts();
+
+    // Cargar vídeo automático y ticker
+    loadNewsVideo();
+    loadTicker();
+
+    // Volver a cargar el vídeo cada 10 horas (coincide con el cron del backend)
+    setInterval(loadNewsVideo, 10 * 60 * 60 * 1000);
 
     return true;
 };

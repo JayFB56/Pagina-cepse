@@ -813,6 +813,21 @@ app.get('/api/health', (req, res) => {
 // ============================================================
 // 404 API
 // ============================================================
+app.get('/api/news/video', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'data', 'latest_news_video.json');
+        if (fs.existsSync(filePath)) {
+            const raw = fs.readFileSync(filePath, 'utf8');
+            const data = raw ? JSON.parse(raw) : null;
+            return res.json({ success: true, data });
+        }
+
+        return res.json({ success: true, data: null });
+    } catch (err) {
+        return res.status(500).json({ success: false, error: err.message });
+    }
+});
+
 app.use((req, res, next) => {
     if (req.path.startsWith('/api/')) {
         return res.status(404).json({ success: false, error: 'Ruta no encontrada' });

@@ -3,6 +3,7 @@ const newsService = require('../services/news_service');
 const aiService = require('../services/ai_service');
 const videoService = require('../services/video_service');
 const dbService = require('../services/db_service');
+const youtubeService = require('../services/youtube_service');
 
 require('dotenv').config();
 
@@ -68,5 +69,21 @@ cron.schedule('0 */6 * * *', () => {
 
 // Ejecutar inmediatamente al iniciar para efectos de demo
 runAutomation();
+
+// Programar actualización de vídeos de YouTube cada 10 horas
+cron.schedule('0 */10 * * *', () => {
+    try {
+        youtubeService.updateLatestVideos();
+    } catch (e) {
+        console.error('[CRON] youtubeService update failed:', e && e.message ? e.message : e);
+    }
+});
+
+// Ejecutar actualización de vídeos al iniciar
+try {
+    youtubeService.updateLatestVideos();
+} catch (e) {
+    console.error('[CRON] initial youtubeService update failed:', e && e.message ? e.message : e);
+}
 
 module.exports = runAutomation;
