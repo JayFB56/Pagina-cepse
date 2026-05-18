@@ -2,9 +2,9 @@
 
 const { v2: cloudinary } = require('cloudinary');
 
-const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_NAME;
-const API_KEY = process.env.CLOUDINARY_API_KEY || process.env.CLOUDINARY_KEY;
-const API_SECRET = process.env.CLOUDINARY_API_SECRET || process.env.CLOUDINARY_SECRET;
+const CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
+const API_KEY = process.env.CLOUDINARY_API_KEY;
+const API_SECRET = process.env.CLOUDINARY_API_SECRET;
 
 const isConfigured = Boolean(CLOUD_NAME && API_KEY && API_SECRET);
 
