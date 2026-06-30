@@ -33,25 +33,6 @@
             border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 1.75rem;
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-            min-height: 240px;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 1.75rem;
-        }
-
         .news-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -68,14 +49,6 @@
             color: white;
             padding: 12px 0;
             border-radius: 9999px;
-        }
-
-        @media (min-width: 1024px) {
-            .video-container {
-                /* Ensure a taller, YouTube-like player on large screens */
-                min-height: 480px;
-                padding-bottom: 56.25%;
-            }
         }
 
         @keyframes scroll {
@@ -146,13 +119,30 @@
                 <div id="last-update" class="text-sm font-medium text-slate-500"></div>
             </div>
 
+            <!-- Video playlist (YouTube) como en portada principal -->
+            <div id="news-video-wrapper" class="mb-10">
+                <div id="news-video" class="w-full h-56 md:h-80 lg:h-96 rounded-2xl overflow-hidden bg-black relative"></div>
+                <div id="video-thumbnails" class="mt-3 flex gap-2 overflow-x-auto pb-1"></div>
+            </div>
+
+            <!-- Noticias de Ecuador (RSS diario gratuito) -->
+            <div class="mb-12">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent flex-grow"></div>
+                    <h3 class="text-xl font-bold text-emerald-700 uppercase tracking-[0.125em]">Noticias de Ecuador</h3>
+                    <div class="h-px bg-gradient-to-r from-transparent via-emerald-200 to-transparent flex-grow"></div>
+                </div>
+                <p class="text-slate-600 text-center mb-6 text-sm">Actualidad del sector productivo, emprendimiento y econom&iacute;a solidaria</p>
+                <div id="ecuador-news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="col-span-full text-center py-8 text-slate-400 text-sm">Cargando noticias de Ecuador...</div>
+                </div>
+            </div>
+
             <!-- Contenido Principal -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
 
-                <!-- Video + Noticia Principal -->
+                <!-- Noticia Principal -->
                 <div class="lg:col-span-8 space-y-6">
-                    <div id="main-news-video" class="video-container bg-slate-900"></div>
-
                     <div id="main-news-content" class="glass-card p-8 md:p-10 rounded-3xl">
                         <h2 id="main-news-title"
                             class="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-6">
@@ -204,18 +194,6 @@
                 </div>
             </div>
 
-            <!-- Archivo de Noticias -->
-            <div class="space-y-8">
-                <div class="flex items-center gap-4">
-                    <div class="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent flex-grow"></div>
-                    <h3 class="text-xl font-bold text-slate-400 uppercase tracking-[0.125em]">Archivo de Noticias</h3>
-                    <div class="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent flex-grow"></div>
-                </div>
-
-                <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Cards generadas dinámicamente -->
-                </div>
-            </div>
         </div>
     </main>
 
@@ -237,8 +215,10 @@
             ]
         };
 
-        const RSS_URL = `https://news.google.com/rss/search?q=${CONFIG.SEARCH_KEYWORDS}&hl=es-419&gl=EC&ceid=EC:es-419`;
-        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+        const CMS_API = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:3000'
+            : '';
+        const RSS_URL = `${CMS_API}/api/rss?q=${CONFIG.SEARCH_KEYWORDS}`;
 
         const NEWS_LINKS = {
             "Nueva cooperativa entra en liquidación en Ecuador; la segunda, en lo que va del año": "https://www.expreso.ec/actualidad/economia/una-nueva-cooperativa-entra-en-liquidacion-la-segunda-en-lo-que-va-del-ano-279696.html",
@@ -258,7 +238,7 @@
         // ==================== CARGAR NOTICIAS ====================
         async function fetchNews() {
             try {
-                const res = await fetch(API_URL);
+                const res = await fetch(RSS_URL);
                 const json = await res.json();
 
                 if (json.status === 'ok' && json.items && json.items.length > 0) {
@@ -289,7 +269,7 @@
                     });
 
                     renderMainNews(0);
-                    renderNewsGrid(loadedNews.slice(1));
+                    renderEcuadorNews(loadedNews);
                     renderTicker(loadedNews);
 
                     document.getElementById('last-update').innerHTML = `
@@ -320,18 +300,66 @@
             return null;
         }
 
-        // ==================== NOTICIA PRINCIPAL CON VIDEO PLAYLIST ====================
-        function renderMainNews(index) {
-            var news = loadedNews[index];
-            if (!news) return;
+        // ==================== VIDEO PLAYLIST (como en portada principal) ====================
+        var videoPlayer = null;
+        var videoIdList = [];
+        var currentVideoIdx = 0;
 
-            var videoContainer = document.getElementById('main-news-video');
-            if (!videoContainer) return;
+        function ensureYouTubeAPI() {
+            return new Promise(function(resolve) {
+                if (window.YT && window.YT.Player) { resolve(); return; }
+                var prev = window.onYouTubeIframeAPIReady;
+                window.onYouTubeIframeAPIReady = function() {
+                    if (prev) prev();
+                    resolve();
+                };
+                if (!document.querySelector('script[src*="iframe_api"]')) {
+                    var tag = document.createElement('script');
+                    tag.src = 'https://www.youtube.com/iframe_api';
+                    document.head.appendChild(tag);
+                }
+            });
+        }
 
-            fetch('../assets/videos.txt').then(function(r) {
-                if (!r.ok) throw new Error('No videos.txt');
-                return r.text();
-            }).then(function(text) {
+        function renderThumbnails(ids) {
+            var container = document.getElementById('video-thumbnails');
+            if (!container) return;
+            var html = '';
+            for (var i = 0; i < ids.length; i++) {
+                var active = i === 0 ? 'border-emerald-500 ring-2 ring-emerald-500/40' : 'border-transparent hover:border-emerald-400';
+                html += '<button class="video-thumb flex-shrink-0 w-28 md:w-36 rounded-lg overflow-hidden border-2 transition-all duration-200 ' + active + '" data-index="' + i + '">';
+                html += '<img src="https://img.youtube.com/vi/' + ids[i] + '/mqdefault.jpg" alt="Video ' + (i + 1) + '" class="w-full aspect-video object-cover" loading="lazy">';
+                html += '</button>';
+            }
+            container.innerHTML = html;
+        }
+
+        function playVideo(index) {
+            if (!videoPlayer || !videoIdList.length) return;
+            currentVideoIdx = index;
+            videoPlayer.loadVideoById(videoIdList[index]);
+            var thumbs = document.querySelectorAll('.video-thumb');
+            for (var i = 0; i < thumbs.length; i++) {
+                var el = thumbs[i];
+                if (i === index) {
+                    el.classList.add('border-emerald-500', 'ring-2', 'ring-emerald-500/40');
+                    el.classList.remove('border-transparent', 'hover:border-emerald-400');
+                } else {
+                    el.classList.remove('border-emerald-500', 'ring-2', 'ring-emerald-500/40');
+                    el.classList.add('border-transparent', 'hover:border-emerald-400');
+                }
+            }
+        }
+
+        async function loadVideoPlaylist() {
+            try {
+                var res = await fetch('../assets/videos.txt');
+                if (!res.ok) {
+                    var c = document.getElementById('news-video');
+                    if (c) c.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white">No hay video disponible</div>';
+                    return;
+                }
+                var text = await res.text();
                 var lines = text.split('\n');
                 var ids = [];
                 for (var i = 0; i < lines.length; i++) {
@@ -341,11 +369,51 @@
                         if (id) ids.push(id);
                     }
                 }
-                if (!ids.length) throw new Error('No video IDs');
-                videoContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/' + ids[0] + '?playlist=' + ids.join(',') + '&rel=0&modestbranding=1&autoplay=0&mute=1&loop=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;"></iframe>';
-            }).catch(function() {
-                videoContainer.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white">Sin v\u00eddeo disponible</div>';
-            });
+                var container = document.getElementById('news-video');
+                if (!container) return;
+                if (!ids.length) {
+                    container.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white">No hay videos en la lista</div>';
+                    return;
+                }
+                videoIdList = ids;
+                container.innerHTML = '<div id="youtube-player" class="w-full h-full"></div>';
+                await ensureYouTubeAPI();
+                renderThumbnails(ids);
+                videoPlayer = new YT.Player('youtube-player', {
+                    width: '100%',
+                    height: '100%',
+                    videoId: ids[0],
+                    playerVars: {
+                        autoplay: 1,
+                        mute: 1,
+                        rel: 0,
+                        modestbranding: 1
+                    },
+                    events: {
+                        onReady: function() { videoPlayer.playVideo(); },
+                        onStateChange: function(e) {
+                            if (e.data === YT.PlayerState.ENDED) {
+                                playVideo((currentVideoIdx + 1) % videoIdList.length);
+                            }
+                        }
+                    }
+                });
+                var thumbsContainer = document.getElementById('video-thumbnails');
+                if (thumbsContainer) {
+                    thumbsContainer.addEventListener('click', function(e) {
+                        var btn = e.target.closest('.video-thumb');
+                        if (btn) playVideo(parseInt(btn.getAttribute('data-index')));
+                    });
+                }
+            } catch (err) {
+                console.error('Error loading video playlist:', err);
+            }
+        }
+
+        // ==================== NOTICIA PRINCIPAL ====================
+        function renderMainNews(index) {
+            var news = loadedNews[index];
+            if (!news) return;
 
             document.getElementById('main-news-title').innerText = news.title;
             document.getElementById('main-news-summary').innerHTML = `
@@ -369,29 +437,27 @@
             `;
         }
 
-        // ==================== GRID DE NOTICIAS ====================
-        function renderNewsGrid(list) {
-            const grid = document.getElementById('news-grid');
-            grid.innerHTML = list.map((item, idx) => {
-                const targetAttr = item.link !== "javascript:void(0)" ? 'target="_blank" rel="noopener noreferrer"' : '';
-                return `
-                <a href="${item.link}" ${targetAttr} onclick="renderMainNews(${idx + 1})" class="news-card glass-card rounded-3xl overflow-hidden cursor-pointer border border-white/60 block">
-                    <div class="h-60 bg-slate-200 overflow-hidden">
-                        <img src="${item.thumbnail}" 
-                             loading="lazy" 
-                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-                    </div>
-                    <div class="p-7">
-                        <div class="text-[10px] font-bold uppercase tracking-widest text-emerald-600 mb-3">
-                            ${new Date(item.created_at).toLocaleDateString('es-EC')}
-                        </div>
-                        <h4 class="font-bold text-slate-900 leading-tight line-clamp-3 mb-4 group-hover:text-emerald-700 transition-colors">
-                            ${item.title}
-                        </h4>
-                        <p class="text-slate-500 text-sm line-clamp-3">${item.summary}</p>
-                    </div>
-                </a>
-                `;
+        // ==================== NOTICIAS DE ECUADOR (RSS diario gratuito) ====================
+        function renderEcuadorNews(list) {
+            const grid = document.getElementById('ecuador-news-grid');
+            if (!grid) return;
+            var items = list || [];
+            if (!items.length) {
+                grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400 text-sm">No hay noticias disponibles en este momento.</div>';
+                return;
+            }
+            grid.innerHTML = items.slice(0, 8).map(function(item) {
+                var targetAttr = item.link !== "javascript:void(0)" ? 'target="_blank" rel="noopener noreferrer"' : '';
+                var date = new Date(item.created_at).toLocaleDateString('es-EC', { day: 'numeric', month: 'short' });
+                return '<a href="' + item.link + '" ' + targetAttr + ' class="group block bg-white rounded-xl overflow-hidden border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">' +
+                    '<div class="aspect-[16/10] bg-slate-100 overflow-hidden">' +
+                        '<img src="' + item.thumbnail + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">' +
+                    '</div>' +
+                    '<div class="p-4">' +
+                        '<div class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 mb-2">' + date + '</div>' +
+                        '<h4 class="text-sm font-bold text-slate-900 leading-snug line-clamp-3 group-hover:text-emerald-700 transition-colors">' + item.title + '</h4>' +
+                    '</div>' +
+                '</a>';
             }).join('');
         }
 
@@ -435,6 +501,7 @@
             await fetchNews();
 
             loadCmsNews();
+            loadVideoPlaylist();
 
             setTimeout(() => {
                 if (window.initHeader) window.initHeader();
@@ -443,19 +510,15 @@
         });
 
         // ==================== NOTICIAS INSTITUCIONALES (CMS) ====================
-        const CMS_API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-            ? 'http://localhost:3000'
-            : '';  // Empty string en producción = usa proxy de Vercel
-
         function cmsImg(url) {
             if (!url) return '';
-            return url.startsWith('http') ? url : `${CMS_API_BASE}${url}`;
+            return url.startsWith('http') ? url : `${CMS_API}${url}`;
         }
 
         async function loadCmsNews() {
             const grid = document.getElementById('cms-news-grid');
             try {
-                const res = await fetch(`${CMS_API_BASE}/api/public/posts?section=noticias&limit=12`);
+                const res = await fetch(`${CMS_API}/api/public/posts?section=noticias&limit=12`);
                 const data = await res.json();
                 if (!data.success || !data.data || data.data.length === 0) {
                     grid.innerHTML = `<div class="col-span-full text-center py-8 text-slate-400 text-sm">

@@ -810,6 +810,19 @@ app.get('/api/health', (req, res) => {
     }
 });
 
+// Proxy RSS gratuito (Google News vía rss2json)
+app.get('/api/rss', async (req, res) => {
+    try {
+        const q = req.query.q || 'Economia+Popular+Solidaria+Ecuador';
+        const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=es-419&gl=EC&ceid=EC:es-419`;
+        const axios = require('axios');
+        const r = await axios.get(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`, { timeout: 10000 });
+        return res.json(r.data);
+    } catch (err) {
+        return res.status(500).json({ success: false, error: err.message });
+    }
+});
+
 app.use((req, res, next) => {
     if (req.path.startsWith('/api/')) {
         return res.status(404).json({ success: false, error: 'Ruta no encontrada' });
