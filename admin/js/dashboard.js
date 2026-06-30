@@ -64,21 +64,6 @@
         const sectionFilter = document.getElementById('recent-section');
         sectionFilter.onchange = renderRecent;
         await renderRecent();
-
-        // Hook: botón para rotar vídeo (disponible para admin y presidente)
-        const rotateBtn = document.getElementById('rotate-video-btn');
-        if (rotateBtn) {
-            rotateBtn.onclick = async () => {
-                if (!confirm('¿Desea rotar el vídeo ahora y reiniciar el temporizador de 10 horas?')) return;
-                rotateBtn.disabled = true;
-                rotateBtn.textContent = 'Rotando...';
-                const r = await CMSAPI.post('/api/cms/news/rotate-video');
-                rotateBtn.disabled = false;
-                rotateBtn.textContent = '🔁 Rotar vídeo';
-                if (!r.ok) return alert(r.error || 'Error al rotar el vídeo');
-                alert('Vídeo rotado correctamente. El cambio se aplicará en la web.');
-            };
-        }
     }
 
     async function renderRecent() {

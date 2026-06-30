@@ -365,25 +365,139 @@ window.initNoticiasComponent = function() {
     }
 
     // ============================================
-    // VIDEO AUTOMÁTICO Y TICKER
+    // VIDEO PLAYLIST (desde assets/videos.txt)
     // ============================================
+    let videoPlayer = null;
+    let videoIdList = [];
+    let currentVideoIdx = 0;
+
+    function extractYouTubeId(url) {
+        if (!url) return null;
+        const trimmed = url.trim();
+        const patterns = [
+            /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/,
+            /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+            /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+            /(?:youtube\.com\/live\/)([a-zA-Z0-9_-]{11})/,
+            /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+        ];
+        for (const pattern of patterns) {
+            const match = trimmed.match(pattern);
+            if (match) return match[1];
+        }
+        if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
+        return null;
+    }
+
+    function ensureYouTubeAPI() {
+        return new Promise(function(resolve) {
+            if (window.YT && window.YT.Player) { resolve(); return; }
+            var prev = window.onYouTubeIframeAPIReady;
+            window.onYouTubeIframeAPIReady = function() {
+                if (prev) prev();
+                resolve();
+            };
+            if (!document.querySelector('script[src*="iframe_api"]')) {
+                var tag = document.createElement('script');
+                tag.src = 'https://www.youtube.com/iframe_api';
+                document.head.appendChild(tag);
+            }
+        });
+    }
+
+    function renderThumbnails(ids) {
+        var container = document.getElementById('video-thumbnails');
+        if (!container) return;
+        var html = '';
+        for (var i = 0; i < ids.length; i++) {
+            var active = i === 0 ? 'border-emerald-500 ring-2 ring-emerald-500/40' : 'border-transparent hover:border-emerald-400';
+            html += '<button class="video-thumb flex-shrink-0 w-28 md:w-36 rounded-lg overflow-hidden border-2 transition-all duration-200 ' + active + '" data-index="' + i + '">';
+            html += '<img src="https://img.youtube.com/vi/' + ids[i] + '/mqdefault.jpg" alt="Video ' + (i + 1) + '" class="w-full aspect-video object-cover" loading="lazy">';
+            html += '</button>';
+        }
+        container.innerHTML = html;
+    }
+
+    function playVideo(index) {
+        if (!videoPlayer || !videoIdList.length) return;
+        currentVideoIdx = index;
+        videoPlayer.loadVideoById(videoIdList[index]);
+        var thumbs = document.querySelectorAll('.video-thumb');
+        for (var i = 0; i < thumbs.length; i++) {
+            var el = thumbs[i];
+            if (i === index) {
+                el.classList.add('border-emerald-500', 'ring-2', 'ring-emerald-500/40');
+                el.classList.remove('border-transparent', 'hover:border-emerald-400');
+            } else {
+                el.classList.remove('border-emerald-500', 'ring-2', 'ring-emerald-500/40');
+                el.classList.add('border-transparent', 'hover:border-emerald-400');
+            }
+        }
+    }
+
     async function loadNewsVideo() {
         try {
-            const res = await fetch(`${API_BASE}/api/news/video`);
-            if (!res.ok) return;
-            const json = await res.json();
-            const container = document.getElementById('news-video');
+            var res = await fetch('/assets/videos.txt');
+            if (!res.ok) {
+                var c = document.getElementById('news-video');
+                if (c) c.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white">No hay v\u00eddeo disponible</div>';
+                return;
+            }
+            var text = await res.text();
+            var lines = text.split('\n');
+            var ids = [];
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i].trim();
+                if (line && line.charAt(0) !== '#') {
+                    var id = extractYouTubeId(line);
+                    if (id) ids.push(id);
+                }
+            }
+
+            var container = document.getElementById('news-video');
             if (!container) return;
 
-            if (json.success && json.data && json.data.selected && json.data.selected.videoId) {
-                const vid = json.data.selected.videoId;
-                const embedUrl = `https://www.youtube.com/embed/${vid}?autoplay=1&mute=1&rel=0`;
-                container.innerHTML = `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:0"></iframe>`;
-            } else {
-                container.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white">No hay vídeo disponible</div>';
+            if (!ids.length) {
+                container.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white">No hay v\u00eddeos en la lista</div>';
+                return;
+            }
+
+            videoIdList = ids;
+            container.innerHTML = '<div id="youtube-player" class="w-full h-full"></div>';
+
+            await ensureYouTubeAPI();
+
+            renderThumbnails(ids);
+
+            videoPlayer = new YT.Player('youtube-player', {
+                width: '100%',
+                height: '100%',
+                videoId: ids[0],
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,
+                    rel: 0,
+                    modestbranding: 1
+                },
+                events: {
+                    onReady: function() { videoPlayer.playVideo(); },
+                    onStateChange: function(e) {
+                        if (e.data === YT.PlayerState.ENDED) {
+                            playVideo((currentVideoIdx + 1) % videoIdList.length);
+                        }
+                    }
+                }
+            });
+
+            var thumbsContainer = document.getElementById('video-thumbnails');
+            if (thumbsContainer) {
+                thumbsContainer.addEventListener('click', function(e) {
+                    var btn = e.target.closest('.video-thumb');
+                    if (btn) playVideo(parseInt(btn.getAttribute('data-index')));
+                });
             }
         } catch (err) {
-            console.error('Error loading news video:', err);
+            console.error('Error loading video playlist:', err);
         }
     }
 
@@ -410,12 +524,9 @@ window.initNoticiasComponent = function() {
     // ============================================
     fetchAllPosts();
 
-    // Cargar vídeo automático y ticker
+    // Cargar playlist de vídeos y ticker
     loadNewsVideo();
     loadTicker();
-
-    // Volver a cargar el vídeo cada 10 horas (coincide con el cron del backend)
-    setInterval(loadNewsVideo, 10 * 60 * 60 * 1000);
 
     return true;
 };

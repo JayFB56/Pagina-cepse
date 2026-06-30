@@ -30,9 +30,10 @@
             <!-- Hero content rendered here -->
         </div>
 
-        <!-- Video automático (YouTube) + ticker de noticias -->
+        <!-- Video playlist (YouTube) + ticker de noticias -->
         <div id="news-video-wrapper" class="mb-8">
-            <div id="news-video" class="w-full h-56 md:h-80 lg:h-96 rounded-2xl overflow-hidden bg-black"></div>
+            <div id="news-video" class="w-full h-56 md:h-80 lg:h-96 rounded-2xl overflow-hidden bg-black relative"></div>
+            <div id="video-thumbnails" class="mt-3 flex gap-2 overflow-x-auto pb-1"></div>
             <div id="news-ticker" class="mt-3 overflow-hidden rounded-md">
                 <div id="news-ticker-content" class="ticker-inner text-white px-4 py-3">Cargando noticias...</div>
             </div>

@@ -224,7 +224,6 @@
     <script>
         // ==================== CONFIGURACIÓN INSTITUCIONAL ====================
         const CONFIG = {
-            YOUTUBE_FEATURED_ID: '0eBv-Qh7G_w',   // ← Cambia este ID fácilmente
             SEARCH_KEYWORDS: 'Economia+Ecuador+OR+Emprendimiento+Ecuador+OR+Agricultura+Ecuador+OR+Economia+Popular',
             DEFAULT_IMAGES: [
                 "https://images.unsplash.com/photo-1542601906990-b4d3fb773b09?w=1200&q=80",
@@ -255,7 +254,6 @@
 
         let loadedNews = [];
         let firstLoad = true;
-        let featuredVideoId = null;
 
         // ==================== CARGAR NOTICIAS ====================
         async function fetchNews() {
@@ -304,20 +302,50 @@
             }
         }
 
-        // ==================== NOTICIA PRINCIPAL CON VIDEO ====================
+        function extractYouTubeId(url) {
+            if (!url) return null;
+            var trimmed = url.trim();
+            var patterns = [
+                /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/,
+                /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+                /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+                /(?:youtube\.com\/live\/)([a-zA-Z0-9_-]{11})/,
+                /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+            ];
+            for (var i = 0; i < patterns.length; i++) {
+                var match = trimmed.match(patterns[i]);
+                if (match) return match[1];
+            }
+            if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
+            return null;
+        }
+
+        // ==================== NOTICIA PRINCIPAL CON VIDEO PLAYLIST ====================
         function renderMainNews(index) {
-            const news = loadedNews[index];
+            var news = loadedNews[index];
             if (!news) return;
 
-            const useVid = featuredVideoId || CONFIG.YOUTUBE_FEATURED_ID;
-            const videoHtml = `
-                <iframe src="https://www.youtube.com/embed/${useVid}?rel=0&modestbranding=1&autoplay=0&mute=1" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>`;
+            var videoContainer = document.getElementById('main-news-video');
+            if (!videoContainer) return;
 
-            document.getElementById('main-news-video').innerHTML = videoHtml;
+            fetch('../assets/videos.txt').then(function(r) {
+                if (!r.ok) throw new Error('No videos.txt');
+                return r.text();
+            }).then(function(text) {
+                var lines = text.split('\n');
+                var ids = [];
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i].trim();
+                    if (line && line.charAt(0) !== '#') {
+                        var id = extractYouTubeId(line);
+                        if (id) ids.push(id);
+                    }
+                }
+                if (!ids.length) throw new Error('No video IDs');
+                videoContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/' + ids[0] + '?playlist=' + ids.join(',') + '&rel=0&modestbranding=1&autoplay=0&mute=1&loop=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;"></iframe>';
+            }).catch(function() {
+                videoContainer.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white">Sin v\u00eddeo disponible</div>';
+            });
 
             document.getElementById('main-news-title').innerText = news.title;
             document.getElementById('main-news-summary').innerHTML = `
@@ -375,35 +403,6 @@
             `).join('');
         }
 
-        // ==================== CARGAR VÍDEO DESTACADO DESDE BACKEND ====================
-        async function loadFeaturedVideoFromApi() {
-            try {
-                const base = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-                    ? 'http://localhost:3000'
-                    : '';
-
-                const res = await fetch(`${base}/api/news/video`);
-                if (!res.ok) return null;
-                const json = await res.json();
-                if (json && json.success && json.data && json.data.selected && json.data.selected.videoId) {
-                    featuredVideoId = json.data.selected.videoId;
-                    const vid = featuredVideoId;
-                    const iframe = `
-                        <iframe src="https://www.youtube.com/embed/${vid}?rel=0&modestbranding=1&autoplay=1&mute=1" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>`;
-                    const container = document.getElementById('main-news-video');
-                    if (container) container.innerHTML = iframe;
-                    return featuredVideoId;
-                }
-            } catch (err) {
-                console.error('Error loading featured video from API:', err);
-            }
-            return null;
-        }
-
         // ==================== LOCUCIÓN (SIN REFERENCIAS A IA) ====================
         let currentUtterance = null;
 
@@ -434,9 +433,6 @@
             ]);
 
             await fetchNews();
-
-            // Cargar vídeo destacado automático desde el backend si está disponible
-            await loadFeaturedVideoFromApi();
 
             loadCmsNews();
 
