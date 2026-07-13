@@ -203,17 +203,21 @@
             // Aseguramos que los scripts se inicialicen después de cargar todo el HTML
             setTimeout(() => {
                 console.log('[INIT] Inicializando scripts...');
-                if (window.initHeader) {
-                    console.log('[INIT] Ejecutando initHeader');
-                    window.initHeader();
-                }
-                if (window.initNoticiasComponent) {
-                    console.log('[INIT] Ejecutando initNoticiasComponent');
-                    window.initNoticiasComponent();
-                }
-                if (window.initSepsAnuncios) {
-                    console.log('[INIT] Ejecutando initSepsAnuncios');
-                    window.initSepsAnuncios();
+                try {
+                    if (window.initHeader) {
+                        console.log('[INIT] Ejecutando initHeader');
+                        window.initHeader();
+                    }
+                    if (window.initNoticiasComponent) {
+                        console.log('[INIT] Ejecutando initNoticiasComponent');
+                        window.initNoticiasComponent();
+                    }
+                    if (window.initSepsAnuncios) {
+                        console.log('[INIT] Ejecutando initSepsAnuncios');
+                        window.initSepsAnuncios();
+                    }
+                } catch (e) {
+                    console.error('[INIT] Error en inicialización:', e);
                 }
 
                 // Ocultar preloader con un delay mínimo para evitar parpadeos
@@ -224,7 +228,8 @@
                 console.log(`[PRELOADER] Ocultando preloader en ${remainingTime}ms`);
 
                 setTimeout(() => {
-                    document.getElementById('preloader').classList.add('fade-out');
+                    const preloader = document.getElementById('preloader');
+                    if (preloader) preloader.classList.add('fade-out');
                     document.body.classList.remove('overflow-hidden');
                     console.log('[READY] Página lista');
                 }, remainingTime);

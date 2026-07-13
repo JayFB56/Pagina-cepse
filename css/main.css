@@ -558,8 +558,8 @@ textarea:focus {
 }
 
 /* ============================================
-   RESPONSIVE
-   ============================================ */
+    RESPONSIVE
+    ============================================ */
 
 @media (max-width: 768px) {
     .btn-primary,
@@ -575,6 +575,11 @@ textarea:focus {
     
     h2 {
         font-size: 24px !important;
+    }
+
+    /* Ocultar tarjeta "Trámites y Consultas" del hero en móvil */
+    #hero-card {
+        display: none !important;
     }
 }
 /* ============================================

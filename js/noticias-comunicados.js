@@ -1,14 +1,12 @@
 // ============================================
 // NOTICIAS-COMUNICADOS MODULE — js/noticias-comunicados.js
-// Integración de Noticias, Comunicados, Eventos y Destacados
+// Contenido estático (sin dependencia de Railway)
 // ============================================
 
 window.initNoticiasComponent = function() {
     'use strict';
 
-    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-        ? 'http://localhost:3000'
-        : '';
+    if (window.__noticiasInitialized) return true;
 
     const SECTIONS = {
         noticias: { icon: '🏛️', color: 'emerald', label: 'Noticias' },
@@ -24,12 +22,76 @@ window.initNoticiasComponent = function() {
         destacados: { bg: '#f3e8ff', text: '#6b21a8', badge: 'category-destacados' }
     };
 
+    // ============================================
+    // CONTENIDO ESTÁTICO (reemplaza Railway API)
+    // ============================================
+    const STATIC_POSTS = {
+        noticias: [
+            {
+                title: 'CEPSE fortalece alianzas con el sector solidario provincial',
+                summary: 'La Cámara Provincial impulsa nuevas estrategias para el fortalecimiento de cooperativas y asociaciones en Esmeraldas.',
+                image_url: 'assets/news/fortalecimiento.png',
+                published_at: '2025-06-15',
+                category: 'noticias'
+            },
+            {
+                title: 'Capacitación en gestión administrativa para emprendedores',
+                summary: 'Más de 50 emprendedores participaron en el taller de fortalecimiento de capacidades organizacionales.',
+                image_url: 'assets/news/gestion.png',
+                published_at: '2025-06-10',
+                category: 'noticias'
+            },
+            {
+                title: 'Nuevos convenios de cooperación interinstitucional',
+                summary: 'CEPSE firma acuerdos con entidades locales para ampliar el alcance de sus servicios.',
+                image_url: 'assets/news/cooperacion.png',
+                published_at: '2025-06-05',
+                category: 'noticias'
+            }
+        ],
+        comunicados: [
+            {
+                title: 'Comunicado oficial sobre el estado de la economía solidaria',
+                summary: 'Informe actualizado sobre los avances y desafíos del sector economía popular y solidaria en la provincia.',
+                image_url: '',
+                published_at: '2025-06-12',
+                category: 'comunicados'
+            }
+        ],
+        eventos: [
+            {
+                title: 'Feria del Emprendimiento Solidario 2025',
+                summary: 'Evento anual que reúne a los principales actores de la economía popular y solidaria de Esmeraldas.',
+                image_url: '',
+                published_at: '2025-07-01',
+                category: 'eventos'
+            }
+        ],
+        destacados: [
+            {
+                title: 'CEPSE: Un año de logros en favor del sector solidario',
+                summary: 'Resumen de los principales hitos alcanzados por la cámara durante el periodo institucional.',
+                image_url: '',
+                published_at: '2025-06-20',
+                category: 'destacados'
+            }
+        ]
+    };
+
+    const STATIC_TICKER = [
+        'CEPSE fortalece alianzas con el sector solidario',
+        'Capacitación en gestión administrativa para emprendedores',
+        'Nuevos convenios de cooperación interinstitucional',
+        'Feria del Emprendimiento Solidario 2025',
+        'CEPSE: Un año de logros en favor del sector solidario'
+    ];
+
     let state = {
         allPosts: {},
         currentFilter: 'noticias',
         heroIndex: 0,
         heroAutoplayInterval: null,
-        loading: true,
+        loading: false,
         error: null
     };
 
@@ -49,45 +111,19 @@ window.initNoticiasComponent = function() {
     if (!heroContainer || !postsContainer) return;
 
     // ============================================
-    // FETCH DATA
+    // CARGA DE CONTENIDO ESTÁTICO
     // ============================================
-    async function fetchAllPosts() {
-        state.loading = true;
-        state.error = null;
-        showLoadingState();
-
-        try {
-            const promises = Object.keys(SECTIONS).map(section =>
-                fetch(`${API_BASE}/api/public/posts?section=${section}&limit=20`)
-                    .then(r => r.json())
-                    .then(data => ({
-                        section,
-                        posts: (data.success && data.data) ? data.data : []
-                    }))
-                    .catch(() => ({ section, posts: [] }))
-            );
-
-            const results = await Promise.all(promises);
-
-            state.allPosts = {};
-            results.forEach(({ section, posts }) => {
-                state.allPosts[section] = posts;
-            });
-
-            state.loading = false;
-            renderContent();
-        } catch (err) {
-            state.error = err.message;
-            state.loading = false;
-            showErrorState();
-        }
+    function loadStaticContent() {
+        state.allPosts = { ...STATIC_POSTS };
+        state.loading = false;
+        renderContent();
     }
 
     // ============================================
     // RENDER FUNCTIONS
     // ============================================
     function showLoadingState() {
-        heroSkeleton.style.display = 'block';
+        if (heroSkeleton) heroSkeleton.style.display = 'block';
         postsContainer.innerHTML = `
             <div class="h-96 bg-slate-200 rounded-2xl overflow-hidden relative">
                 <div class="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 animate-shimmer"></div>
@@ -105,7 +141,7 @@ window.initNoticiasComponent = function() {
     }
 
     function showErrorState() {
-        heroSkeleton.style.display = 'none';
+        if (heroSkeleton) heroSkeleton.style.display = 'none';
         postsContainer.innerHTML = '';
         errorState.classList.remove('hidden');
         emptyState.classList.add('hidden');
@@ -113,7 +149,7 @@ window.initNoticiasComponent = function() {
     }
 
     function showEmptyState() {
-        heroSkeleton.style.display = 'none';
+        if (heroSkeleton) heroSkeleton.style.display = 'none';
         postsContainer.innerHTML = '';
         emptyState.classList.remove('hidden');
         errorState.classList.add('hidden');
@@ -128,17 +164,12 @@ window.initNoticiasComponent = function() {
             return;
         }
 
-        heroSkeleton.style.display = 'none';
+        if (heroSkeleton) heroSkeleton.style.display = 'none';
         emptyState.classList.add('hidden');
         errorState.classList.add('hidden');
 
-        // Render hero
         renderHero(posts[0]);
-
-        // Render grid
         renderGrid(posts.slice(1));
-
-        // Setup autoplay
         setupHeroAutoplay(posts);
     }
 
@@ -173,9 +204,6 @@ window.initNoticiasComponent = function() {
                     ${post.summary ? `<p class="text-sm md:text-base text-white/90 mb-4 line-clamp-2">${escapeHtml(post.summary)}</p>` : ''}
                     <div class="flex items-center justify-between">
                         <span class="text-xs md:text-sm font-bold opacity-80">📅 ${formattedDate}</span>
-                        <button onclick="window.location.href='#'" class="px-6 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg font-bold text-sm transition-all hover:shadow-lg">
-                            Leer más →
-                        </button>
                     </div>
                 </div>
 
@@ -195,7 +223,6 @@ window.initNoticiasComponent = function() {
 
         heroContainer.innerHTML = heroHTML;
 
-        // Attach button listeners
         document.getElementById('hero-prev')?.addEventListener('click', () => heroPrevious());
         document.getElementById('hero-next')?.addEventListener('click', () => heroNext());
     }
@@ -213,7 +240,6 @@ window.initNoticiasComponent = function() {
 
             return `
                 <div class="post-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all border border-slate-100/50 flex flex-col h-full group/card">
-                    <!-- Image/Visual -->
                     <div class="relative h-48 overflow-hidden bg-slate-200 group-hover/card:scale-105 transition-transform duration-500" style="${imageStyle}">
                         ${!hasImage ? `
                             <div class="absolute inset-0 flex items-center justify-center opacity-30">
@@ -221,29 +247,20 @@ window.initNoticiasComponent = function() {
                             </div>
                         ` : ''}
                     </div>
-
-                    <!-- Content -->
                     <div class="p-5 md:p-6 flex flex-col flex-grow">
-                        <!-- Badge -->
                         <div class="mb-3">
                             <span class="category-badge ${colors.badge}">
                                 ${SECTIONS[state.currentFilter].label}
                             </span>
                         </div>
-
-                        <!-- Title -->
                         <h4 class="text-lg font-bold text-slate-900 mb-2 line-clamp-2 group-hover/card:text-emerald-600 transition-colors">
                             ${escapeHtml(post.title)}
                         </h4>
-
-                        <!-- Summary -->
                         ${post.summary ? `
                             <p class="text-slate-600 text-sm mb-4 line-clamp-2 flex-grow">
                                 ${escapeHtml(post.summary)}
                             </p>
                         ` : ''}
-
-                        <!-- Footer -->
                         <div class="border-t border-slate-100 pt-4 mt-auto">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs font-bold text-slate-400">
@@ -305,7 +322,6 @@ window.initNoticiasComponent = function() {
         }
     }
 
-    // Global hero navigation function
     window.heroGoTo = function(index) {
         const posts = state.allPosts[state.currentFilter];
         state.heroIndex = index;
@@ -324,11 +340,9 @@ window.initNoticiasComponent = function() {
             state.currentFilter = filter;
             state.heroIndex = 0;
 
-            // Update button styles
             filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Re-render
             renderContent();
         });
     });
@@ -336,8 +350,8 @@ window.initNoticiasComponent = function() {
     // ============================================
     // EVENT LISTENERS
     // ============================================
-    retryBtn.addEventListener('click', fetchAllPosts);
-    retryErrorBtn.addEventListener('click', fetchAllPosts);
+    retryBtn?.addEventListener('click', loadStaticContent);
+    retryErrorBtn?.addEventListener('click', loadStaticContent);
 
     // ============================================
     // UTILITY FUNCTIONS
@@ -360,12 +374,11 @@ window.initNoticiasComponent = function() {
     }
 
     function adjustBrightness(color, percent) {
-        // Simple hex brightness adjustment
         return color;
     }
 
     // ============================================
-    // VIDEO PLAYLIST (desde assets/videos.txt)
+    // VIDEO PLAYLIST (desde assets/videos.txt — local)
     // ============================================
     let videoPlayer = null;
     let videoIdList = [];
@@ -501,33 +514,24 @@ window.initNoticiasComponent = function() {
         }
     }
 
-    async function loadTicker() {
-        try {
-            const res = await fetch(`${API_BASE}/api/noticias?limit=20`);
-            if (!res.ok) return;
-            const json = await res.json();
-            const content = document.getElementById('news-ticker-content');
-            if (!content) return;
-
-            if (json.success && Array.isArray(json.data)) {
-                const titles = json.data.map(item => item.title || '').filter(Boolean);
-                const text = titles.join('  •  ');
-                content.textContent = text || 'No hay noticias disponibles';
-            }
-        } catch (err) {
-            console.error('Error loading ticker:', err);
-        }
+    // ============================================
+    // TICKER ESTÁTICO (reemplaza Railway API)
+    // ============================================
+    function loadTicker() {
+        var content = document.getElementById('news-ticker-content');
+        if (!content) return;
+        var text = STATIC_TICKER.join('  •  ');
+        content.textContent = text || 'No hay noticias disponibles';
     }
 
     // ============================================
-    // INITIALIZATION
+    // INICIALIZACIÓN
     // ============================================
-    fetchAllPosts();
-
-    // Cargar playlist de vídeos y ticker
+    loadStaticContent();
     loadNewsVideo();
     loadTicker();
 
+    window.__noticiasInitialized = true;
     return true;
 };
 

@@ -39,6 +39,45 @@
             </div>
         </div>
 
+        <!-- Video local destacado -->
+        <div id="local-video-section" class="mb-10 md:mb-14">
+            <div class="relative w-full rounded-2xl overflow-hidden bg-black shadow-lg" style="aspect-ratio: 16/9;">
+                <video
+                    id="local-highlight-video"
+                    class="w-full h-full object-cover"
+                    src="assets/videos/asi-fue-terremoto-ecu.mp4"
+                    controls
+                    preload="metadata"
+                    playsinline
+                ></video>
+            </div>
+            <div class="mt-4 bg-white rounded-xl border border-slate-100 shadow-sm p-5 md:p-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden flex-shrink-0">
+                        <img src="assets/img/favicon.ico" alt="El CHAPU Business" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">El CHAPU Business.</p>
+                        <p class="text-xs text-slate-400">Publicación original</p>
+                    </div>
+                </div>
+                <div class="text-sm md:text-base text-slate-700 leading-relaxed space-y-3">
+                    <p>
+                        El 16 de abril de 2016 marcó un antes y un después para la costa ecuatoriana. En esta entrevista converso con <strong>don Rodrigo</strong>, uno de los empresarios más exitosos del sector inmobiliario en Ecuador, sobre cómo ese terremoto impactó a <strong>Tonsupa</strong>, qué ocurrió con la gran torre de Moon Beach y cómo lograron levantarse después de uno de los momentos más difíciles de su historia.
+                    </p>
+                    <p>
+                        Una conversación llena de <strong>aprendizaje</strong>, <strong>resiliencia</strong> y <strong>visión empresarial</strong> que vale la pena escuchar.
+                    </p>
+                    <p class="text-slate-500 italic">
+                        ¿Tú recuerdas dónde estabas cuando ocurrió el terremoto del 16 de abril? Te leo en los comentarios.
+                    </p>
+                    <p class="text-xs text-slate-400 pt-1">
+                        #Ecuador &nbsp;#Tonsupa &nbsp;#BienesRaíces &nbsp;#Emprendedores &nbsp;#HistoriasQueInspiran
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Filter tabs -->
         <div class="flex flex-wrap gap-2 md:gap-3 mb-10 justify-center md:justify-start">
             <button data-filter="noticias" class="filter-btn active px-5 py-2.5 rounded-full font-bold transition-all duration-300 text-sm md:text-base bg-emerald-600 text-white shadow-lg hover:shadow-xl hover:scale-105">
@@ -184,6 +223,22 @@
     .category-destacados {
         background-color: #f3e8ff;
         color: #6b21a8;
+    }
+
+    /* Video local destacado */
+    #local-video-section video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @media (max-width: 640px) {
+        #local-video-section {
+            border-radius: 0.75rem;
+        }
+        #local-video-section video {
+            aspect-ratio: 16 / 9;
+        }
     }
 
     .hero-content {
