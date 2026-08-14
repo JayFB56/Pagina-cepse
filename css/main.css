@@ -593,6 +593,55 @@ textarea:focus {
 @media (min-width: 1024px) {
     .section-compact-lg { padding-top: 5rem; padding-bottom: 5rem; }
 }
+/* ============================================
+   COMUNICADO OFICIAL - Tarjeta y estilos del visor
+   ============================================ */
+.comunicado-section {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+.comunicado-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 1.25rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,252,255,0.7));
+    border-radius: 1.25rem;
+    border: 1px solid rgba(16,185,129,0.08);
+    box-shadow: 0 10px 30px rgba(16,185,129,0.06);
+}
+.comunicado-thumb {
+    min-width: 84px;
+    min-height: 84px;
+    border-radius: 12px;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(180deg, var(--primary-light), var(--secondary));
+    color: white; font-size:34px;
+}
+.comunicado-meta { flex: 1; }
+.comunicado-title { font-size:1.125rem; font-weight:800; color:var(--gray-900); margin-bottom:4px; }
+.comunicado-date { color:var(--gray-600); font-weight:600; margin-bottom:6px; }
+.comunicado-desc { color:var(--gray-700); margin-bottom:12px; }
+.comunicado-badge {
+    display: inline-block; padding:6px 10px; border-radius:999px; font-weight:800; color: #fff;
+    background: linear-gradient(90deg,#ff6b6b,#ff3b3b); font-size:12px; letter-spacing:0.06em;
+}
+.comunicado-actions { display:flex; gap:10px; align-items:center; }
+
+/* Modal iframe responsive tweaks (complements existing .modal rules) */
+.modal-content.pdf-modal {
+    max-width: 1000px; padding: 18px; border-radius: 14px; background: #ffffff;
+}
+.pdf-frame {
+    width: 100%; height: 70vh; border: none; border-radius: 10px; background: #f3f4f6;
+}
+
+@media (max-width: 640px) {
+    .comunicado-card { flex-direction: column; align-items: stretch; }
+    .comunicado-thumb { width:100%; height:120px; min-width: unset; border-radius:12px; }
+    .pdf-frame { height: 60vh; }
+}
+
 
 /* Tighten global h-spacing in subpages */
 .subpage-main section,
